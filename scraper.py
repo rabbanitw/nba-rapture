@@ -19,6 +19,8 @@ output_file = "player_data.csv"
 
 # Write data to the CSV
 def save_data(timestamp, player_data, dir):
+
+  os.makedirs(dir, exists_ok = True)
   output_file = timestamp + ".csv"
   output_path = os.path.join(dir,output_file)
   if os.path.exists(output_path):
