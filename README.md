@@ -14,4 +14,4 @@ Current Phase: 1
 
 **Phase 5**: Fine-tuning
 
-**Phase 6**: Release
+**Phase 6**: Rapture Release
