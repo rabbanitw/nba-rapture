@@ -1,6 +1,6 @@
 ## Project Description
 
-This is an attempt to revive the [Raptor player rating][https://projects.fivethirtyeight.com/nba-player-ratings/](model)
+This is an attempt to revive the [RAPTOR player rating][https://projects.fivethirtyeight.com/nba-player-ratings/](model)
 
 Current Phase: 1
 
