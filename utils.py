@@ -42,58 +42,58 @@ def get_start(timestamp, season_type):
 
   season = get_season(timestamp)
 
-  if season == '2013-14':
-    if season_type == "Playoffs":
-      return "2014-04-19"
-    else:
-      return "2013-10-29"
-  elif season == '2014-15':
-    if season_type == "Playoffs":
-      return "2015-04-18" 
-    else:
-      return "2014-10-28"
-  elif season == '2015-16':
-    if season_type == "Playoffs":
-      return "2016-04-16"
-    else:
-      return "2015-10-27"
-  elif season == '2016-17':
-    if season_type == "Playoffs":
-      return "2017-04-15"
-    else:
-      return "2016-10-25"
-  elif season == '2017-18':
-    if season_type == "Playoffs":
-      return "2018-04-14"
-    else:
-      return "2017-10-17"
-  elif season == '2018-19':
-    if season_type == "Playoffs":
-      return "2019-04-13"
-    else:
-      return "2018-10-16"
-  elif season == '2019-20':
-    if season_type == "Playoffs":
-      return "2020-08-17"
-    else:
-      return "2019-10-22"
-  elif season == '2020-21':
-    if season_type == "Playoffs":
-      return '2021-05-22'
-    else:
-      return "2020-12-22"
-  elif season == '2021-22':
-    if season_type == "Playoffs":
-      return '2022-04-16'
-    else:
-      return "2021-10-19"
-  elif season == '2022-23':
-    if season_type == "Playoffs":
-      return '2023-04-15'
-    else:
-      return '2022-10-18'
-  else:
-    return "Bad timestamp!"
+  match season:
+    case '2013-14':
+      if season_type == "Playoffs":
+        return "2014-04-19"
+      else:
+        return "2013-10-29"
+    case '2014-15':
+      if season_type == "Playoffs":
+        return "2015-04-18" 
+      else:
+        return "2014-10-28"
+    case '2015-16':
+      if season_type == "Playoffs":
+        return "2016-04-16"
+      else:
+        return "2015-10-27"
+    case '2016-17':
+      if season_type == "Playoffs":
+        return "2017-04-15"
+      else:
+        return "2016-10-25"
+    case '2017-18':
+      if season_type == "Playoffs":
+        return "2018-04-14"
+      else:
+        return "2017-10-17"
+    case '2018-19':
+      if season_type == "Playoffs":
+        return "2019-04-13"
+      else:
+        return "2018-10-16"
+    case '2019-20':
+      if season_type == "Playoffs":
+        return "2020-08-17"
+      else:
+        return "2019-10-22"
+    case '2020-21':
+      if season_type == "Playoffs":
+        return '2021-05-22'
+      else:
+        return "2020-12-22"
+    case '2021-22':
+      if season_type == "Playoffs":
+        return '2022-04-16'
+      else:
+        return "2021-10-19"
+    case '2022-23':
+      if season_type == "Playoffs":
+        return '2023-04-15'
+      else:
+        return '2022-10-18'
+  return "Bad timestamp!"
 
 def regular_time(waystamp):
 
