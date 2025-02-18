@@ -22,7 +22,7 @@ def get_season(waystamp):
   if waystamp >= wayback_time("2013-10-29") and waystamp < wayback_time("2014-10-28"):
     return '2013-14'
   elif waystamp >= wayback_time("2014-10-28") and waystamp < wayback_time("2015-10-27"):
-    return '2014-15'  
+    return '2014-15'
   elif waystamp >= wayback_time("2015-10-27") and waystamp < wayback_time("2016-10-25"):
     return '2015-16'
   elif waystamp >= wayback_time("2016-10-25") and waystamp < wayback_time("2017-10-17"):
@@ -42,23 +42,24 @@ def inside_range(timestamp, end):
   if timestamp < wayback_time(end):
     return True
 
-
 def get_date_range(timestamp, season_type):
-  
+
   season = get_season(timestamp)
 
   match season:
     case '2020-21':
       if season_type == "Playoffs":
-        return ['2021-05-22','2021-07-20']
+        if inside_range(timestamp,'2021-07-20'):
+          return ['2021-05-22',regular_time(timestamp)]
       elif season_type == "Regular Season":
         if inside_range(timestamp,'2021-05-22'):
           return ['2020-12-22',regular_time(timestamp)]
-      else: 
+      else:
         return ['2020-12-22',regular_time(timestamp)]
     case '2021-22':
       if season_type == "Playoffs":
-        return ['2022-04-16','2022-06-16']
+        if inside_range(timestamp,'2022-06-16'):
+          return ['2022-04-16',regular_time(timestamp)]
       elif season_style == "Regular season":
         if inside_range(timestamp, "2022-04-16"):
           return ["2021-10-19",regular_time(timestamp)]
@@ -66,7 +67,8 @@ def get_date_range(timestamp, season_type):
         return ["2021-10-19",regular_time(timestamp)]
     case '2022-23':
       if season_type == "Playoffs":
-        return ["2023-04-15","2023-06-12"]
+        if inside_range(timestamp, "2023-06-12"):
+          return ["2023-04-15",regular_time(timestamp)]
       elif season_type == "Regular season":
         if inside_range(timestamp,"2023-04-15"):
           return ['2022-10-18', regular_time(timestamp)]
@@ -84,7 +86,7 @@ def wayback_time(date):
 
   #PBP date format
   date_object = datetime.strptime(date, "%Y-%m-%d")
-  
+
   #Turn into wayback timestamp
   convert_date = date_object.strftime("%Y%m%d%H%M%S")
 
