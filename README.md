@@ -2,7 +2,7 @@
 
 This is an attempt to revive the [RAPTOR player rating](https://projects.fivethirtyeight.com/nba-player-ratings/).
 
-Current Phase: 1
+Current Phase: 2
 
 **Phase 1**: Scraping archived RAPTOR ratings
 
