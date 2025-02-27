@@ -59,11 +59,12 @@ def save_data():
         {'Regular Season': 'Regular season'},
         {'Playoffs': 'Playoffs'},
         {'PlayIn': 'Play in'},
-        {'All': 'All'}
+        {'All': 'All'},
+        {'Full Season': 'Full season'},
     ]
     for season_type in season_types:
         for season_type_key, season_type_value in season_type.items():
-            folder_path = '/nba-ml'
+            folder_path = 'nba-ml'
             directory = season_type_value
             files = os.listdir(f"{folder_path}/{directory}")
             for filename in files:
