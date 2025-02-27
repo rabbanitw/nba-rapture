@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 '''
 ### NBA Regular Season and Postseason Dates (2013–2023)
@@ -60,7 +61,7 @@ def get_date_range(timestamp, season_type):
       if season_type == "Playoffs":
         if inside_range(timestamp,'2022-06-16'):
           return ['2022-04-16',regular_time(timestamp)]
-      elif season_style == "Regular season":
+      elif season_type == "Regular season":
         if inside_range(timestamp, "2022-04-16"):
           return ["2021-10-19",regular_time(timestamp)]
       else:
@@ -91,3 +92,7 @@ def wayback_time(date):
   convert_date = date_object.strftime("%Y%m%d%H%M%S")
 
   return convert_date
+
+
+def remove_numbers_and_apostrophes(string: str) -> str:
+  return re.sub(r'[\d\'\-]+$', '', string)
