@@ -46,6 +46,16 @@ def read_document(db, query):
     return document
 
 
+def document_exists(db, query):
+    """
+    Find a single document in 'my_collection' that matches 'query'.
+    Returns the first matching document, or None if no match.
+    """
+    collection = db["nba_rapture"]
+    count = collection.count_documents(query, limit=1)
+    return count > 0
+
+
 def update_document(db, query, new_values):
     """
     Update a single document in 'my_collection' that matches 'query'.

@@ -7,17 +7,27 @@ import database
 db = database.get_database()
 
 
+def already_processed(player_name: str, timestamp: str, source: str):
+    query = {
+        "name": player_name,
+        "timestamp": timestamp,
+        "source": source
+    }
+    return database.document_exists(db, query)
+
+
 def process_pbp(timestamp: str, file_path: str):
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
             for row_dict in reader:
-                player_name = utils.remove_numbers_and_apostrophes(row_dict.get("Name"))
-                print(f"Now processing {player_name} and timestamp {timestamp} from 538")
-                row_dict["Name"] = player_name
-                row_dict["timestamp"] = timestamp
-                row_dict["source"] = "pbp"
-                database.create_document(db, row_dict)
+                if not already_processed(player_name, timestamp, "pbp"):
+                    player_name = utils.remove_numbers_and_apostrophes(row_dict.get("Name"))
+                    print(f"Now processing {player_name} and timestamp {timestamp} from 538")
+                    row_dict["name"] = player_name
+                    row_dict["timestamp"] = timestamp
+                    row_dict["source"] = "pbp"
+                    database.create_document(db, row_dict)
         print(f"Finished processing PBP")
     else:
         print(f"File not found: {file_path}")
@@ -28,11 +38,12 @@ def process_nba(timestamp: str, file_path: str):
         with open(file_path, "r") as file:
             data = json.load(file)
             for player_name, row_dict in data.items():
-                print(f"Now processing {player_name} and timestamp {timestamp} from nba tracking data")
-                row_dict["NAME"] = utils.remove_numbers_and_apostrophes(player_name)
-                row_dict["timestamp"] = timestamp
-                row_dict["source"] = "nba-tracking"
-                database.create_document(db, row_dict)
+                if not already_processed(player_name, timestamp, "nba-tracking"):
+                    print(f"Now processing {player_name} and timestamp {timestamp} from nba tracking data")
+                    row_dict["name"] = utils.remove_numbers_and_apostrophes(player_name)
+                    row_dict["timestamp"] = timestamp
+                    row_dict["source"] = "nba-tracking"
+                    database.create_document(db, row_dict)
         print(f"Finished processing NBA tracking data")
     else:
         print(f"File not found: {file_path}")
@@ -43,12 +54,13 @@ def process_538(timestamp: str, file_path: str):
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
             for row_dict in reader:
-                player_name = utils.remove_numbers_and_apostrophes(row_dict.get("name"))
-                print(f"Now processing {player_name} and timestamp {timestamp} from 538")
-                row_dict["name"] = player_name
-                row_dict["timestamp"] = timestamp
-                row_dict["source"] = "538"
-                database.create_document(db, row_dict)
+                if not already_processed(player_name, timestamp, "538"):
+                    player_name = utils.remove_numbers_and_apostrophes(row_dict.get("name"))
+                    print(f"Now processing {player_name} and timestamp {timestamp} from 538")
+                    row_dict["name"] = player_name
+                    row_dict["timestamp"] = timestamp
+                    row_dict["source"] = "538"
+                    database.create_document(db, row_dict)
         print(f"Finished processing 538")
     else:
         print(f"File not found: {file_path}")
