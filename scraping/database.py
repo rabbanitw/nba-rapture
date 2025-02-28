@@ -1,5 +1,8 @@
 import pymongo
+import ssl
 
+ASC = 1
+DESC = -1
 
 # -------------------------------------------------------------------
 # 1. CONNECTING TO MONGODB
@@ -16,7 +19,7 @@ def get_database():
     client = pymongo.MongoClient(MONGO_URI)
 
     # The name of the database you want to access
-    db = client["my_database"]
+    db = client["nba_rapture"]
     return db
 
 
@@ -28,7 +31,7 @@ def create_document(db, data):
     Insert a single document into 'my_collection'.
     Returns the inserted document's ID.
     """
-    collection = db["my_collection"]
+    collection = db["nba_rapture"]
     result = collection.insert_one(data)
     return result.inserted_id
 
@@ -38,9 +41,19 @@ def read_document(db, query):
     Find a single document in 'my_collection' that matches 'query'.
     Returns the first matching document, or None if no match.
     """
-    collection = db["my_collection"]
+    collection = db["nba_rapture"]
     document = collection.find_one(query)
     return document
+
+
+def document_exists(db, query):
+    """
+    Find a single document in 'my_collection' that matches 'query'.
+    Returns the first matching document, or None if no match.
+    """
+    collection = db["nba_rapture"]
+    count = collection.count_documents(query, limit=1)
+    return count > 0
 
 
 def update_document(db, query, new_values):
@@ -49,7 +62,7 @@ def update_document(db, query, new_values):
     'new_values' should be a dict of fields to set.
     Returns the number of documents modified.
     """
-    collection = db["my_collection"]
+    collection = db["nba_rapture"]
     result = collection.update_one(query, {"$set": new_values})
     return result.modified_count
 
@@ -59,7 +72,7 @@ def delete_document(db, query):
     Delete a single document in 'my_collection' that matches 'query'.
     Returns the number of documents deleted.
     """
-    collection = db["my_collection"]
+    collection = db["nba_rapture"]
     result = collection.delete_one(query)
     return result.deleted_count
 
@@ -67,30 +80,47 @@ def delete_document(db, query):
 # -------------------------------------------------------------------
 # 3. DEMO USAGE
 # -------------------------------------------------------------------
-# if __name__ == "__main__":
-#     # Get a reference to our remote database
-#     db = get_database()
-#
-#     # CREATE
-#     print("Creating a document...")
-#     doc_id = create_document(db, {"name": "Alice", "score": 100})
-#     print(f"Inserted document with _id: {doc_id}")
-#
-#     # READ
-#     print("\nReading the document...")
-#     doc = read_document(db, {"name": "Alice"})
-#     print("Found document:", doc)
-#
-#     # UPDATE
-#     print("\nUpdating the document...")
-#     modified_count = update_document(db, {"name": "Alice"}, {"score": 200})
-#     print(f"Number of documents updated: {modified_count}")
-#
-#     # READ AGAIN (to verify update)
-#     doc = read_document(db, {"name": "Alice"})
-#     print("Updated document:", doc)
-#
-#     # DELETE
-#     print("\nDeleting the document...")
-#     deleted_count = delete_document(db, {"name": "Alice"})
-#     print(f"Number of documents deleted: {deleted_count}")
+if __name__ == "__main__":
+    # Get a reference to our remote database
+    db = get_database()
+    collection = db["nba_rapture"]  # Replace with your collection name
+    documents = collection.find().sort("_id", ASC).limit(1)
+
+    # Print results
+    for doc in documents:
+        print(doc)
+
+    # coll = db["nba_rapture"]
+    # coll.delete_many({})
+    # CREATE
+    # print("Creating a document...")
+    # doc_id = create_document(db, {"name": "Alice", "score": 100})
+    # print(f"Inserted document with _id: {doc_id}")
+    #
+    # # READ
+    # print("\nReading the document...")
+    # doc = read_document(db, {"name": "Alice"})
+    # print("Found document:", doc)
+    #
+    # # UPDATE
+    # print("\nUpdating the document...")
+    # modified_count = update_document(db, {"name": "Alice"}, {"score": 200})
+    # print(f"Number of documents updated: {modified_count}")
+    #
+    # # READ AGAIN (to verify update)
+    # doc = read_document(db, {"name": "Alice"})
+    # print("Updated document:", doc)
+    #
+    # # DELETE
+    # print("\nDeleting the document...")
+    # deleted_count = delete_document(db, {"name": "Alice"})
+    # print(f"Number of documents deleted: {deleted_count}")
+
+    # client = pymongo.MongoClient(
+    #     MONGO_URI,
+    # )
+    #
+    # db = client["my_database"]
+    # # test query
+    # print(db.list_collection_names())
+
