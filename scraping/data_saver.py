@@ -7,10 +7,11 @@ import database
 db = database.get_database()
 
 
-def already_processed(player_name: str, timestamp: str, source: str):
+def already_processed(player_name: str, timestamp: str, season_type: str, source: str):
     query = {
         "name": player_name,
         "timestamp": timestamp,
+        "season_type": season_type,
         "source": source
     }
     return database.document_exists(db, query)
@@ -22,7 +23,7 @@ def process_pbp(timestamp: str, file_path: str, season_type: str):
             reader = csv.DictReader(file)
             for row_dict in reader:
                 player_name = utils.remove_numbers_and_apostrophes(row_dict.get("Name"))
-                if not already_processed(player_name, timestamp, "pbp"):
+                if not already_processed(player_name, timestamp, season_type, "pbp"):
                     print(f"Now processing {player_name} and timestamp {timestamp} from 538")
                     row_dict["name"] = player_name
                     row_dict["timestamp"] = timestamp
@@ -39,7 +40,7 @@ def process_nba(timestamp: str, file_path: str, season_type: str):
         with open(file_path, "r") as file:
             data = json.load(file)
             for player_name, row_dict in data.items():
-                if not already_processed(player_name, timestamp, "nba-tracking"):
+                if not already_processed(player_name, timestamp, season_type, "nba-tracking"):
                     print(f"Now processing {player_name} and timestamp {timestamp} from nba tracking data")
                     row_dict["name"] = utils.remove_numbers_and_apostrophes(player_name)
                     row_dict["timestamp"] = timestamp
@@ -57,7 +58,7 @@ def process_538(timestamp: str, file_path: str, season_type: str):
             reader = csv.DictReader(file)
             for row_dict in reader:
                 player_name = utils.remove_numbers_and_apostrophes(row_dict.get("name"))
-                if not already_processed(player_name, timestamp, "538"):
+                if not already_processed(player_name, timestamp, season_type, "538"):
                     print(f"Now processing {player_name} and timestamp {timestamp} from 538")
                     row_dict["name"] = player_name
                     row_dict["timestamp"] = timestamp
