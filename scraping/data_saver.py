@@ -21,8 +21,8 @@ def process_pbp(timestamp: str, file_path: str):
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
             for row_dict in reader:
+                player_name = utils.remove_numbers_and_apostrophes(row_dict.get("Name"))
                 if not already_processed(player_name, timestamp, "pbp"):
-                    player_name = utils.remove_numbers_and_apostrophes(row_dict.get("Name"))
                     print(f"Now processing {player_name} and timestamp {timestamp} from 538")
                     row_dict["name"] = player_name
                     row_dict["timestamp"] = timestamp
@@ -54,8 +54,8 @@ def process_538(timestamp: str, file_path: str):
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
             for row_dict in reader:
+                player_name = utils.remove_numbers_and_apostrophes(row_dict.get("name"))
                 if not already_processed(player_name, timestamp, "538"):
-                    player_name = utils.remove_numbers_and_apostrophes(row_dict.get("name"))
                     print(f"Now processing {player_name} and timestamp {timestamp} from 538")
                     row_dict["name"] = player_name
                     row_dict["timestamp"] = timestamp
