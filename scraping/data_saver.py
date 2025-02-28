@@ -16,7 +16,7 @@ def already_processed(player_name: str, timestamp: str, source: str):
     return database.document_exists(db, query)
 
 
-def process_pbp(timestamp: str, file_path: str):
+def process_pbp(timestamp: str, file_path: str, season_type: str):
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
@@ -26,6 +26,7 @@ def process_pbp(timestamp: str, file_path: str):
                     print(f"Now processing {player_name} and timestamp {timestamp} from 538")
                     row_dict["name"] = player_name
                     row_dict["timestamp"] = timestamp
+                    row_dict["season_type"] = season_type
                     row_dict["source"] = "pbp"
                     database.create_document(db, row_dict)
         print(f"Finished processing PBP")
@@ -33,7 +34,7 @@ def process_pbp(timestamp: str, file_path: str):
         print(f"File not found: {file_path}")
 
 
-def process_nba(timestamp: str, file_path: str):
+def process_nba(timestamp: str, file_path: str, season_type: str):
     if os.path.isfile(file_path):
         with open(file_path, "r") as file:
             data = json.load(file)
@@ -42,6 +43,7 @@ def process_nba(timestamp: str, file_path: str):
                     print(f"Now processing {player_name} and timestamp {timestamp} from nba tracking data")
                     row_dict["name"] = utils.remove_numbers_and_apostrophes(player_name)
                     row_dict["timestamp"] = timestamp
+                    row_dict["season_type"] = season_type
                     row_dict["source"] = "nba-tracking"
                     database.create_document(db, row_dict)
         print(f"Finished processing NBA tracking data")
@@ -49,7 +51,7 @@ def process_nba(timestamp: str, file_path: str):
         print(f"File not found: {file_path}")
 
 
-def process_538(timestamp: str, file_path: str):
+def process_538(timestamp: str, file_path: str, season_type: str):
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
@@ -59,6 +61,7 @@ def process_538(timestamp: str, file_path: str):
                     print(f"Now processing {player_name} and timestamp {timestamp} from 538")
                     row_dict["name"] = player_name
                     row_dict["timestamp"] = timestamp
+                    row_dict["season_type"] = season_type
                     row_dict["source"] = "538"
                     database.create_document(db, row_dict)
         print(f"Finished processing 538")
@@ -84,15 +87,15 @@ def save_data():
                 if name.startswith('pbp_stats_'):  # PBP API data
                     timestamp = name.replace('pbp_stats_', '')
                     file_path = os.path.join(folder_path, season_type_value, f"{name}.csv")
-                    process_pbp(timestamp, file_path)
+                    process_pbp(timestamp, file_path, season_type_value)
                 elif name.startswith('nba_api_'):  # NBA tracking data
                     timestamp = name.replace('nba_api_', '')
                     file_path = os.path.join(folder_path, season_type_value, f"{name}.json")
-                    process_nba(timestamp, file_path)
+                    process_nba(timestamp, file_path, season_type_value)
                 elif name.isnumeric():  # 538 raptor
                     timestamp = name
                     file_path = os.path.join(folder_path, season_type_value, f"{name}.csv")
-                    process_538(timestamp, file_path)
+                    process_538(timestamp, file_path, season_type_value)
                 else:
                     print(f"Skipping file: {name}")
     print(f"We are done!")
