@@ -3,6 +3,10 @@ import csv
 import os
 import utils
 import database
+import time
+import traceback
+
+PROCESSED_FILES_LOG = "processed_files_wowy.log"
 
 db = database.get_database()
 
@@ -38,6 +42,47 @@ nba_team_ids = {
     "Jazz": 1610612762,
     "Wizards": 1610612764
 }
+
+
+def load_processed_files() -> set:
+    if not os.path.exists(PROCESSED_FILES_LOG):
+        return set()
+    with open(PROCESSED_FILES_LOG, "r") as f:
+        processed = {line.strip() for line in f if line.strip()}
+    return processed
+
+
+def mark_file_processed(file_name: str):
+    with open(PROCESSED_FILES_LOG, "a") as f:
+        f.write(file_name + "\n")
+
+
+def robust_get_wowy_data(player_name, team_name, date_str, season_type_key, season_type_value,
+                         is_on, nba_player_ids):
+    max_retries = 5
+    base_sleep = 3
+    attempt = 1
+    while True:
+        try:
+            retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season_type_value, is_on,
+                               nba_player_ids)
+            # If we succeed, break out of the loop
+            break
+
+        except Exception as e:
+            print(
+                f"[ERROR] Failed to process {player_name} on {team_name} at {date_str} with type {"ON" if is_on else "OFF"} (attempt {attempt}/{max_retries}).")
+            traceback.print_exc()
+
+            if attempt >= max_retries:
+                print(f"[CRITICAL] Exceeded max retries for {player_name} on {team_name} at {date_str} with type {"ON" if is_on else "OFF"}.")
+                raise  # Re-raise the error or handle as appropriate
+
+            # Exponential-ish backoff
+            sleep_time = base_sleep * (2 ** (attempt - 1))
+            print(f"[INFO] Retrying {player_name} on {team_name} at {date_str} with type {"ON" if is_on else "OFF"} in {sleep_time} seconds...")
+            time.sleep(sleep_time)
+            attempt += 1
 
 
 def get_all_players():
@@ -115,6 +160,7 @@ def retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season
 
 
 def main():
+    processed_files = load_processed_files()
     nba_player_ids = get_all_players()
     print(nba_player_ids)
     season_types = [
@@ -128,6 +174,9 @@ def main():
             folder_path = '/content/drive/MyDrive/nba-ml'
             files = os.listdir(f"{folder_path}/{season_type_value}")
             for filename in files:
+                if filename in processed_files:
+                    print(f"Skipping already processed file: {filename}")
+                    continue
                 name, extension = os.path.splitext(filename)
                 if name.isnumeric():
                     full_file_path = os.path.join(folder_path, season_type_value, filename)
@@ -139,12 +188,13 @@ def main():
                             player_name = utils.remove_numbers_and_apostrophes(row['name'])
                             team_name = row['team']
                             date_str = name
-                            retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season_type_value,
+                            robust_get_wowy_data(player_name, team_name, date_str, season_type_key, season_type_value,
                                                  True, nba_player_ids)
-                            retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season_type_value,
+                            robust_get_wowy_data(player_name, team_name, date_str, season_type_key, season_type_value,
                                                  False, nba_player_ids)
                 else:
                     print(f"we're not processing this file lmao {name}")
+                mark_file_processed(filename)
     print("wowee we're done!")
 
 
