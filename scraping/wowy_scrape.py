@@ -71,16 +71,16 @@ def robust_get_wowy_data(player_name, team_name, date_str, season_type_key, seas
 
         except Exception as e:
             print(
-                f"[ERROR] Failed to process {player_name} on {team_name} at {date_str} with type {"ON" if is_on else "OFF"} (attempt {attempt}/{max_retries}).")
+                f"[ERROR] Failed to process {player_name} on {team_name} at {date_str} with type {'ON' if is_on else 'OFF'} (attempt {attempt}/{max_retries}).")
             traceback.print_exc()
 
             if attempt >= max_retries:
-                print(f"[CRITICAL] Exceeded max retries for {player_name} on {team_name} at {date_str} with type {"ON" if is_on else "OFF"}.")
+                print(f"[CRITICAL] Exceeded max retries for {player_name} on {team_name} at {date_str} with type {'ON' if is_on else 'OFF'}.")
                 raise  # Re-raise the error or handle as appropriate
 
             # Exponential-ish backoff
             sleep_time = base_sleep * (2 ** (attempt - 1))
-            print(f"[INFO] Retrying {player_name} on {team_name} at {date_str} with type {"ON" if is_on else "OFF"} in {sleep_time} seconds...")
+            print(f"[INFO] Retrying {player_name} on {team_name} at {date_str} with type {'ON' if is_on else 'OFF'} in {sleep_time} seconds...")
             time.sleep(sleep_time)
             attempt += 1
 
