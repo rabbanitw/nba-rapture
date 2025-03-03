@@ -145,7 +145,8 @@ def retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season
 
         is_on_string = "on" if is_on else "off"
         output_file = f"pbp_wowy_{player_name}_{is_on_string}_{date_str}.csv"
-        output_path = os.path.join(season_type_value, output_file)
+        output_path = os.path.join("nba-ml", season_type_value, output_file)
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
         if stats:
             # save_local_wowy_data(stats, output_path)
@@ -171,7 +172,7 @@ def main():
     ]
     for season_type in season_types:
         for season_type_key, season_type_value in season_type.items():
-            folder_path = '/content/drive/MyDrive/nba-ml'
+            folder_path = 'nba-ml'
             files = os.listdir(f"{folder_path}/{season_type_value}")
             for filename in files:
                 if filename in processed_files:
