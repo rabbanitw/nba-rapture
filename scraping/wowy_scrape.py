@@ -192,10 +192,10 @@ def main():
                             player_name = utils.remove_numbers_and_apostrophes(row['name'])
                             team_name = row['team']
                             date_str = name
-                            time.sleep(1)
+                            time.sleep(2)
                             robust_get_wowy_data(player_name, team_name, date_str, season_type_key, season_type_value,
                                                  True, nba_player_ids)
-                            time.sleep(1)
+                            time.sleep(2)
                             robust_get_wowy_data(player_name, team_name, date_str, season_type_key, season_type_value,
                                                  False, nba_player_ids)
                 else:
