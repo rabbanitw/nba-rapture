@@ -7,6 +7,9 @@ import time
 import traceback
 
 PROCESSED_FILES_LOG = "processed_files_wowy.log"
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+}
 
 db = database.get_database()
 
@@ -86,7 +89,7 @@ def robust_get_wowy_data(player_name, team_name, date_str, season_type_key, seas
 
 
 def get_all_players():
-    players_response = requests.get("https://api.pbpstats.com/get-all-players-for-league/nba")
+    players_response = requests.get("https://api.pbpstats.com/get-all-players-for-league/nba", headers=headers)
     players = players_response.json()
     nba_player_ids = {
         utils.remove_numbers_and_apostrophes(player_name): player_id
@@ -135,7 +138,7 @@ def retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season
     print("params:", params)
 
     try:
-        response = requests.get(url, params=params)
+        response = requests.get(url, params=params, headers=headers)
         response.raise_for_status()
         response_json = response.json()
         stats = response_json["single_row_table_data"]
@@ -189,8 +192,10 @@ def main():
                             player_name = utils.remove_numbers_and_apostrophes(row['name'])
                             team_name = row['team']
                             date_str = name
+                            time.sleep(1)
                             robust_get_wowy_data(player_name, team_name, date_str, season_type_key, season_type_value,
                                                  True, nba_player_ids)
+                            time.sleep(1)
                             robust_get_wowy_data(player_name, team_name, date_str, season_type_key, season_type_value,
                                                  False, nba_player_ids)
                 else:
