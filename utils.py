@@ -95,4 +95,4 @@ def wayback_time(date):
 
 
 def remove_numbers_and_apostrophes(string: str) -> str:
-  return re.sub(r'[\d\'\-]+$', '', string)
+  return re.sub(r'[\d\'\-.]+', '', string)
