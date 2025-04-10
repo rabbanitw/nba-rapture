@@ -1,28 +1,31 @@
+import os
+import csv
+import json
+import asyncio
+import requests
+
+from time import sleep
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import os
-import requests
-import json
-from time import sleep
-#'https://web.archive.org/web/20210210150139/https://projects.fivethirtyeight.com/nba-player-ratings/'
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-import csv
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome()
+headers = ['data_key', 'id', 'row_num', 'name', 'team', 'pos', 'mp',
+           'rap_box_o', 'rap_box_d', 'rap_box', 'rap_onoff_o', 'rap_onoff_d',
+           'rap_onoff', 'rap_o', 'rap_d', 'rap', 'war']
 
-# Specify the output CSV file
-output_file = "player_data.csv"
+target_url = "https://projects.fivethirtyeight.com/nba-player-ratings/"
 
 # Write data to the CSV
 def save_data(timestamp, player_data, dir):
 
   os.makedirs(dir, exist_ok = True)
-  output_file = timestamp + ".csv"
-  output_path = os.path.join(dir,output_file)
+  output_file = f"{timestamp}-bs4.csv"
+  output_path = os.path.join(dir, output_file)
   if os.path.exists(output_path):
     print("File exists!")
     return
@@ -30,25 +33,24 @@ def save_data(timestamp, player_data, dir):
   with open(output_path, mode='w', newline='', encoding='utf-8') as file:
       writer = csv.writer(file)
 
+      print(player_data)
       # Write the header (keys from the first dictionary in player_data)
       if player_data:  # Check if the list is not empty
-          header = player_data[0].keys()
-          writer.writerow(header)
+          writer.writerow(headers)
 
           # Write each player's data (values)
           for player in player_data:
-              writer.writerow(player.values())
+              writer.writerow(player)
+
   print(timestamp, " saved!")
   return
 
+async def scrape(url, timestamp, season):
 
-def scrape(driver, url, timestamp, season):
-  print(f"url: {url}")
+  driver = await drivers()
   driver.get(url)
+
   slider = driver.find_element(By.ID, 'filter-slider')
-  #slider = WebDriverWait(driver, 15).until(
-  #      EC.visibility_of_all_elements_located((By.ID, 'filter-slider'))
-  #  )
 
   # Use JavaScript to set the slider value and dispatch input and change events
   desired_value = 1
@@ -59,16 +61,8 @@ def scrape(driver, url, timestamp, season):
       slider.dispatchEvent(new Event('change'));
   """, slider, desired_value)
 
-
-  # checkboxes = driver.find_elements(By.CLASS_NAME, "year-checkbox")
-  # for checkbox in checkboxes:
-  #   if not checkbox.is_selected():
-  #       checkbox.click()
-  # for checkbox in checkboxes:
-  #   print(f"Checkbox for {checkbox.get_attribute('year')} is {'checked' if checkbox.is_selected() else 'unchecked'}.")
-
-  # change the dropdown to Regular season
-  wait = WebDriverWait(driver, 10)
+  # change the dropdown to season
+  wait = WebDriverWait(driver, 5)
   dropdown_element = wait.until(
       EC.presence_of_element_located((By.ID, "filter-season-type"))
   )
@@ -83,41 +77,32 @@ def scrape(driver, url, timestamp, season):
   selected_option = select_dropdown.first_selected_option.text
   print("Selected option:", selected_option)
 
+  soup = BeautifulSoup(driver.page_source, 'html.parser')
+  driver.quit()
+  del driver
 
+  parse_html(soup, timestamp, season)
 
-  # Wait for the table to update (use WebDriverWait if necessary for AJAX loads)
-  #WebDriverWait(driver, 15).until(EC.presence_of_all_elements_located((By.XPATH, "//tr[@data-key]")))
+def parse_html(html, timestamp, season):
 
-  # Locate all rows in the table
-  rows = driver.find_elements(By.XPATH, "//tr[@data-key]")
+    table = html.find('table')
+    table_body = table.find('tbody')
+    rows = table_body.find_all('tr')
+    player_data = []
 
-  upper = ['row_num', 'name', 'team', 'pos', 'mp','rap_box_o', 'rap_box_d', 'rap_box', 'rap_onoff_o', 'rap_onoff_d', 'rap_onoff', 'rap_o', 'rap_d', 'rap', 'war']
-  # Initialize an empty list to store player data
-  player_data = []
+    for row in rows:
+          cols = row.find_all('td')
+          cols = [ele.text.strip() for ele in cols]
+          cols.insert(0, row.attrs.get('data-key'))
+          cols.insert(1, row.attrs.get('id'))
 
-  ids = []
+          # Add the player data to the list
+          player_data.append(cols)
 
-  # Loop through each row and gather all data
-  for row in rows:
-      player = {}
-      # Extract key attributes
-      player['data_key'] = row.get_attribute('data-key')
-      player['id'] = row.get_attribute('id')
+    dir = season
+    save_data(timestamp, player_data, season)
 
-      # Extract all columns, even if empty
-      columns_td = row.find_elements(By.TAG_NAME, 'td')
-      for idx, col in enumerate(columns_td):
-          text = col.text.strip()  # Extract text content
-          if not text:  # Handle empty cells
-              text = col.get_attribute('data-val') or ''  # Try to fetch 'data-val' if available
-          player[upper[idx]] = text
-
-      # Add the player data to the list
-      player_data.append(player)
-
-  dir = season
-  save_data(timestamp, player_data, season)
-
+# update this to also accept a list of snapshots dates
 def fetch_wayback_snapshots(url):
     """
     Fetch a list of snapshots for the given URL using
@@ -136,7 +121,6 @@ def fetch_wayback_snapshots(url):
     try:
         response = requests.get(cdx_url)
         response.raise_for_status()
-
         data = response.json()
 
         # The first item in `data` is a list of headers (e.g., ["timestamp", "original", "statuscode"])
@@ -146,8 +130,7 @@ def fetch_wayback_snapshots(url):
 
         headers = data[0]       # e.g. ["timestamp", "original", "statuscode"]
         snapshot_rows = data[1:]
-
-        snapshots_list = []
+        snapshots_dict = {}
 
         for row in snapshot_rows:
             snapshot_info = dict(zip(headers, row))
@@ -157,68 +140,39 @@ def fetch_wayback_snapshots(url):
             # Construct the Wayback Machine archived URL
             archived_url = f"https://web.archive.org/web/{timestamp}/{original_url}"
 
-            # Add to our list
-            snapshots_list.append({
-                "timestamp": timestamp,
-                "archived_url": archived_url
-            })
+            snapshots_dict[timestamp] = archived_url
 
-        return snapshots_list
+        return snapshots_dict
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching snapshots: {e}")
         return []
 
-if __name__ == "__main__":
-    target_url = "https://projects.fivethirtyeight.com/nba-player-ratings/"
-    snapshots = fetch_wayback_snapshots(target_url)
+async def scrape_setup(timestamp, url):
     failed_timestamps = []
+    tasks = []
+    try:
+        for season in ["Full season", "Regular season", "Playoffs"]:
+            tasks.append(await asyncio.create_task(scrape(url, timestamp, season)))
+    except Exception as e:
+        print(f"error getting data for timestamp {timestamp}")
+        print(e)
+        failed_timestamps.append(timestamp)
 
+async def drivers():
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
+    return driver
 
+async def main(target_url):
+    # snapshots = fetch_wayback_snapshots(target_url)
+    snapshots = {'20250306182230': 'https://web.archive.org/web/20250306182230/https://projects.fivethirtyeight.com/nba-player-ratings/'}
 
     # Print a few sample entries
-    for s in snapshots:  # Show only the first 10 for brevity
-        for season in ["Full season", "Regular season", "Playoffs"]:
-          output_file = f"{s['timestamp']}-{season}" + ".csv"
-          if os.path.exists(output_file):
-            print("File exists!")
-            continue
-          print(f"url: {s['archived_url']}")
-          sleep(10)
-          try:
-              scrape(driver, s['archived_url'], s['timestamp'], season)
-          except Exception as e:
-              print(f"error getting data for timestamp {s['timestamp']}")
-              print(e)
-              failed_timestamps.append(s['timestamp'])
-          print(s)
-    print("Failed timestamps", failed_timestamps)
-
-def main():
-
-    target_url = "https://projects.fivethirtyeight.com/nba-player-ratings/"
-    snapshots = fetch_wayback_snapshots(target_url)
-    failed_timestamps = []
-
-    # Print a few sample entries
-    for s in snapshots:  # Show only the first 10 for brevity
-        for season in ["Full season", "Regular season", "Playoffs"]:
-          output_file = f"{s['timestamp']}.csv"
-          if os.path.exists(os.path.join(season,output_file)):
-            print("File exists!")
-            continue
-          print(f"url: {s['archived_url']}")
-          sleep(10)
-          try:
-              scrape(driver, s['archived_url'], s['timestamp'], season)
-          except Exception as e:
-              print(f"error getting data for timestamp {s['timestamp']}")
-              print(e)
-              failed_timestamps.append(s['timestamp'])
-          print(s)
-    print("Failed timestamps", failed_timestamps)
-
+    for timestamp, url in snapshots.items():
+        await scrape_setup(timestamp, url)
+    # print("Failed timestamps", failed_timestamps)
 
 if __name__ == "__main__":
-    main()
-
+    asyncio.run(main(target_url))

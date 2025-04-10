@@ -1,5 +1,7 @@
-import pymongo
+import os
 import ssl
+import json
+import pymongo
 
 ASC = 1
 DESC = -1
@@ -12,8 +14,14 @@ def get_database():
     Returns a reference to the 'my_database' database
     on the remote MongoDB cluster.
     """
+    with open('../.env', 'r') as f:
+        credentials = json.load(f)
+
     # Replace this with your actual connection string
-    MONGO_URI = "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/?retryWrites=true&w=majority"
+    MONGO_URI = (
+      f"mongodb+srv://{credentials['username']}:{credentials['password']}@nba-rapture-2.qnfzf.mongodb.net/"
+      "?retryWrites=true&w=majority&appName=nba-rapture-2"
+    )
 
     # Create a MongoClient using PyMongo
     client = pymongo.MongoClient(MONGO_URI)
@@ -89,38 +97,4 @@ if __name__ == "__main__":
     # Print results
     for doc in documents:
         print(doc)
-
-    # coll = db["nba_rapture"]
-    # coll.delete_many({})
-    # CREATE
-    # print("Creating a document...")
-    # doc_id = create_document(db, {"name": "Alice", "score": 100})
-    # print(f"Inserted document with _id: {doc_id}")
-    #
-    # # READ
-    # print("\nReading the document...")
-    # doc = read_document(db, {"name": "Alice"})
-    # print("Found document:", doc)
-    #
-    # # UPDATE
-    # print("\nUpdating the document...")
-    # modified_count = update_document(db, {"name": "Alice"}, {"score": 200})
-    # print(f"Number of documents updated: {modified_count}")
-    #
-    # # READ AGAIN (to verify update)
-    # doc = read_document(db, {"name": "Alice"})
-    # print("Updated document:", doc)
-    #
-    # # DELETE
-    # print("\nDeleting the document...")
-    # deleted_count = delete_document(db, {"name": "Alice"})
-    # print(f"Number of documents deleted: {deleted_count}")
-
-    # client = pymongo.MongoClient(
-    #     MONGO_URI,
-    # )
-    #
-    # db = client["my_database"]
-    # # test query
-    # print(db.list_collection_names())
 
