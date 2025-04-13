@@ -40,8 +40,7 @@ def get_season(waystamp):
     return '2022-23'
 
 def inside_range(timestamp, end):
-  if timestamp < wayback_time(end):
-    return True
+  return timestamp < wayback_time(end)
 
 def get_date_range(timestamp, season_type):
 
@@ -52,7 +51,7 @@ def get_date_range(timestamp, season_type):
       if season_type == "Playoffs":
         if inside_range(timestamp,'2021-07-20'):
           return ['2021-05-22',regular_time(timestamp)]
-      elif season_type == "Regular Season":
+      elif season_type == "Regular season":
         if inside_range(timestamp,'2021-05-22'):
           return ['2020-12-22',regular_time(timestamp)]
       else:
@@ -96,3 +95,8 @@ def wayback_time(date):
 
 def remove_numbers_and_apostrophes(string: str) -> str:
   return re.sub(r'[\d\'\-.]+', '', string)
+
+
+def reformat_date(timestamp):
+  date_object = datetime.strptime(timestamp, "%Y-%m-%d")
+  return date_object.strftime("%m/%d/%Y")

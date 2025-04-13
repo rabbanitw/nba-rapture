@@ -1,5 +1,22 @@
 from datetime import datetime
 import re
+import asyncio, functools, os
+
+
+
+_failed_log_lock = asyncio.Lock()          # one lock for the whole module
+
+async def log_failed(timestamp: str, season_type: str, reason: str):
+    """Append a line to failed_timestamps.csv in a thread‑safe way."""
+    line = f"{timestamp},{season_type},{reason}\n"
+    async with _failed_log_lock:
+        # run the blocking file‑write in a thread so we don't block the loop
+        await asyncio.to_thread(
+            functools.partial(
+                open("failed_timestamps.csv", "a", encoding="utf-8").write,
+                line
+            )
+        )
 
 '''
 ### NBA Regular Season and Postseason Dates (2013–2023)
@@ -40,8 +57,7 @@ def get_season(waystamp):
     return '2022-23'
 
 def inside_range(timestamp, end):
-  if timestamp < wayback_time(end):
-    return True
+  return timestamp < wayback_time(end)
 
 def get_date_range(timestamp, season_type):
 
@@ -75,6 +91,10 @@ def get_date_range(timestamp, season_type):
           return ['2022-10-18', regular_time(timestamp)]
       else:
           return ['2022-10-18', regular_time(timestamp)]
+  raise ValueError(
+      f"No date‑range rule for season={get_season(timestamp)} "
+      f"season_type={season_type}"
+  )
 
 def regular_time(waystamp):
 
@@ -110,7 +130,13 @@ import glob
 async def scrape_and_save(date_str, season_type_key, season_type_value, output_path):
   print(f"now processing {output_path}")
   url = "https://api.pbpstats.com/get-totals/nba"
-  start_date, end_date = get_date_range(date_str, season_type_value)
+  try:
+      start_date, end_date = get_date_range(date_str, season_type_value)
+  except ValueError as e:
+      await log_failed(date_str, season_type_value, str(e))
+      print(f"[SKIP] {e}")
+      return
+
   params = {
       "Season": get_season(date_str),
       "SeasonType": season_type_key,
@@ -164,13 +190,13 @@ async def new_retrieve_from_pbp():
   season_types = [
     {'Regular Season': 'Regular season'},
     {'Playoffs': 'Playoffs'},
-    {'PlayIn': 'Play in'},
-    {'All': 'All'},
-    # {'Full': 'Full season'}
+    # {'PlayIn': 'Play in'},
+    {'All': 'Full'},
+    # {'Full': 'Full'}
   ]
   for season_type in season_types:
     for season_type_key, season_type_value in season_type.items():
-      folder_path = 'nba-ml'
+      folder_path = 'all_files'
       # List all files in the folder
       files = os.listdir(os.path.join(folder_path, season_type_value))
       for filename in files:
@@ -178,7 +204,7 @@ async def new_retrieve_from_pbp():
         # print(name)
         if name.isnumeric():
           date_str = name
-          output_file = f"pbp_stats_2_{date_str}.csv"
+          output_file = f"pbp_stats_{date_str}.csv"
           output_path = os.path.join(season_type_value, output_file)
 
           os.makedirs(season_type_value, exist_ok=True)
@@ -189,7 +215,7 @@ async def new_retrieve_from_pbp():
           tasks.append(asyncio.create_task(scrape_and_save(date_str, season_type_key, season_type_value, output_path)))
         else:
           print(f"Skipping file: {name}")
-  await asyncio.gather(*tasks)
+  await asyncio.gather(*tasks, return_exceptions=True)
   print("All tasks in new retrieve from pbp have completed!")
 
 
