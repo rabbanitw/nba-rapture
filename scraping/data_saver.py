@@ -10,7 +10,8 @@ db = database.get_database()
 
 
 def extract_parts(filename: str) -> Tuple[str, str]:
-    match = re.match(r"nba_api_(.+?)_(\d{14})\.json", filename)
+    print('filename?', filename)
+    match = re.match(r"nba_api_(.+?)_(\d{14})", filename)
     if match:
         something = match.group(1)
         timestamp = match.group(2)
