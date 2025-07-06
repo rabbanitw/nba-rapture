@@ -808,7 +808,7 @@ nba_player_ids = {'Grant Long': '3', 'Eric Piatkowski': '15', 'Greg Anthony': '2
                   'Spencer Jones': '1642461', 'RayJ Dennis': '1642484', 'Malevy Leons': '1642502',
                   'Alex Ducas': '1642505', 'Yuki Kawamura': '1642530'}
 
-fuzzy_nba_player_ids = FuzzyDict()
+fuzzy_nba_player_ids = FuzzyDict(threshold=80)
 fuzzy_nba_player_ids.update(nba_player_ids)
 
 
@@ -876,7 +876,12 @@ def save_local_wowy_data(wowy_data, output_path):
 
 def retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season_type_value, is_on):
     url = "https://api.pbpstats.com/get-wowy-stats/nba"
-    start_date, end_date = utils.get_date_range(date_str, season_type_value)
+    try:
+      start_date, end_date = utils.get_date_range(date_str, season_type_value)
+    except TypeError as e:
+      # await log_failed(date_str, season_type_value, str(e))
+      print(f"[SKIP] {e}")
+      return
     # print(f"start_date: {start_date}")
     # print(f"end_date: {end_date}")
 
@@ -902,10 +907,10 @@ def retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season
     # print(stats)
     # print(type(stats))
 
-    is_on_string = "on" if is_on else "off"
-    output_file = f"pbp_wowy_{player_name}_{is_on_string}_{date_str}.csv"
-    output_path = os.path.join("nba-ml", season_type_value, output_file)
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    # is_on_string = "on" if is_on else "off"
+    # output_file = f"pbp_wowy_{player_name}_{is_on_string}_{date_str}.csv"
+    # output_path = os.path.join("all_files", season_type_value, output_file)
+    # os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     if stats:
         # save_local_wowy_data(stats, output_path)
@@ -945,7 +950,7 @@ async def main():
     season_types = [
         {'Regular Season': 'Regular season'},
         {'Playoffs': 'Playoffs'},
-        {'PlayIn': 'Play in'},
+        # {'PlayIn': 'Play in'},
         {'All': 'All'},
     ]
 
@@ -954,7 +959,7 @@ async def main():
 
     for season_type_dict in season_types:
         for season_type_key, season_type_value in season_type_dict.items():
-            folder_path = 'nba-ml'
+            folder_path = 'all_files'
             files = os.listdir(f"{folder_path}/{season_type_value}")
             for filename in files:
                 if filename in processed_files:

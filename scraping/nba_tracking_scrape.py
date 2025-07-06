@@ -14,7 +14,7 @@ from selenium.webdriver.support.ui import Select
 import os
 import utils
 
-ROOT_DIR = Path("/home/ec2-user/nba-rapture/wb_scraping/all_files")        # ← change to your real path
+ROOT_DIR = Path("all_files")        # ← change to your real path
 SUBFOLDERS = ["Playoffs", "Regular season", "Full season"]
 
 # Increase the connection and read timeouts (in seconds)
@@ -27,6 +27,19 @@ def get_number_or_zero(value):
     return float(value)
   except:
     return 0
+
+
+def to_int(value: str, default=0) -> int:
+  """
+  Accepts '90', '90.0', '105 023', '105023.0', etc.
+  Returns an int or *default* if the cast fails.
+  """
+  try:
+    # strip thousands separators, then cast to float first
+    value = value.replace(',', '')
+    return int(float(value))
+  except (ValueError, TypeError):
+    return default
 
 
 def parse_line(line: str) -> (str, dict):
@@ -47,10 +60,10 @@ def parse_line(line: str) -> (str, dict):
   # Convert each of the 12 columns to either strings or numeric
   # For example: TEAM is a string, GP, W, L, MIN, DIST_FEET are ints, the rest are floats.
   team = data_cols[0]
-  gp = int(data_cols[1])
-  w = int(data_cols[2])
-  l = int(data_cols[3])
-  minutes = int(data_cols[4])
+  gp = to_int(data_cols[1])
+  w = to_int(data_cols[2])
+  l = to_int(data_cols[3])
+  minutes = to_int(data_cols[4])  # ← this is where '90.0' appeared
   dist_feet = int(get_number_or_zero(data_cols[5]))
   dist_miles = float(get_number_or_zero(data_cols[6]))
   dist_miles_off = float(get_number_or_zero(data_cols[7]))
@@ -124,8 +137,8 @@ def convert_to_nba_api_season(season_type_value):
       return 'Unknown'
 
 
-def retrieve_from_nba_api(timestamp: str, season_type: str) -> None:
-  url = "https://www.nba.com/stats/players/speed-distance"
+def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> None:
+  url = f"https://www.nba.com/stats/players/{stat_type}"
   date_range = utils.get_date_range(timestamp, season_type)
   if not date_range or len(date_range) != 2:
     print(f"⚠️  No valid date range for {timestamp!r} / {season_type!r}.  Skipping.")
@@ -152,7 +165,7 @@ def retrieve_from_nba_api(timestamp: str, season_type: str) -> None:
     "PerMode": "Totals"
   }
 
-  output_file = f"nba_api_{timestamp}.json"
+  output_file = f"nba_api_{stat_type}_{timestamp}.json"
   output_path = ROOT_DIR / Path(season_type) / output_file
 
   if output_path.exists():
@@ -183,7 +196,9 @@ def retrieve_from_nba_api(timestamp: str, season_type: str) -> None:
 
     wait = WebDriverWait(driver, 30)
     settings_div = driver.find_element(By.CSS_SELECTOR, "div.Crom_cromSettings__ak6Hd")
+    print('settings div?', settings_div)
     page_select_dropdown = settings_div.find_element(By.CSS_SELECTOR, "select.DropDown_select__4pIg9")
+    print('page_select_dropdown?', page_select_dropdown)
     dropdown = Select(page_select_dropdown)
     dropdown.select_by_index(0)
 
@@ -235,9 +250,27 @@ def main() -> None:
       print(f"⚠️  Skipping missing folder: {folder}")
       continue
 
+    stat_types = [
+        "drives",
+        "defensive-impact",
+        "catch-shoot",
+        "passing",
+        "touches",
+        "pullup",
+        "rebounding",
+        "offensive-rebounding",
+        "defensive-rebounding",
+        "shooting-efficiency",
+        "speed-distance",
+        "elbow-touch",
+        "tracking-post-ups",
+        "paint-touch"
+    ]
+
     for item in folder.iterdir():
       if item.is_file() and item.stem.isnumeric():
-        retrieve_from_nba_api(item.stem, sub)
+        for stat_type in stat_types:
+          retrieve_from_nba_api(item.stem, sub, stat_type)
 
 
 if __name__ == "__main__":
