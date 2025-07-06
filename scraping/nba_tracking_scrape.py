@@ -13,8 +13,14 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 import os
 import utils
+from datetime import datetime
+from typing import Any
+# Modern style (3.10+) – Callable lives in collections.abc
+from collections.abc import Callable
+import re
 
-ROOT_DIR = Path("all_files")        # ← change to your real path
+
+ROOT_DIR = Path("data")        # ← change to your real path
 SUBFOLDERS = ["Playoffs", "Regular season", "Full season"]
 
 # Increase the connection and read timeouts (in seconds)
@@ -42,80 +48,6 @@ def to_int(value: str, default=0) -> int:
     return default
 
 
-def parse_line(line: str) -> (str, dict):
-  """
-  Parses a single line of data and returns (player_name, stats_dict).
-  """
-  tokens = line.split()
-  # The last 12 tokens are known columns (TEAM, GP, W, L, etc.)
-  if len(tokens) < 13:
-    raise ValueError(f"Line doesn't have enough tokens: {line}")
-
-  # Slice out the last 12 tokens
-  data_cols = tokens[-12:]  # e.g. ["DEN", "10", "6", "4", "272", ...]
-  # Everything else (start to -12) is the player's name
-  name_tokens = tokens[:-12]  # e.g. ["Aaron", "Gordon"]
-  player_name = " ".join(name_tokens)  # "Aaron Gordon"
-
-  # Convert each of the 12 columns to either strings or numeric
-  # For example: TEAM is a string, GP, W, L, MIN, DIST_FEET are ints, the rest are floats.
-  team = data_cols[0]
-  gp = to_int(data_cols[1])
-  w = to_int(data_cols[2])
-  l = to_int(data_cols[3])
-  minutes = to_int(data_cols[4])  # ← this is where '90.0' appeared
-  dist_feet = int(get_number_or_zero(data_cols[5]))
-  dist_miles = float(get_number_or_zero(data_cols[6]))
-  dist_miles_off = float(get_number_or_zero(data_cols[7]))
-  dist_miles_def = float(get_number_or_zero(data_cols[8]))
-  avg_speed = float(get_number_or_zero(data_cols[9]))
-  avg_speed_off = float(get_number_or_zero(data_cols[10]))
-  avg_speed_def = float(get_number_or_zero(data_cols[11]))
-
-  # Construct a dictionary for the stats
-  stats_dict = {
-    "TEAM": team,
-    "GP": gp,
-    "W": w,
-    "L": l,
-    "MIN": minutes,
-    "DIST_FEET": dist_feet,
-    "DIST_MILES": dist_miles,
-    "DIST_MILES_OFF": dist_miles_off,
-    "DIST_MILES_DEF": dist_miles_def,
-    "AVG_SPEED": avg_speed,
-    "AVG_SPEED_OFF": avg_speed_off,
-    "AVG_SPEED_DEF": avg_speed_def
-  }
-  return player_name, stats_dict
-
-
-def parse_all_lines(lines):
-  """
-  lines is a list of strings, e.g.
-  [
-    "PLAYER TEAM GP W L MIN DIST. FEET DIST. MILES DIST. MILES OFF ...",
-    "Aaron Gordon DEN 10 6 4 272 105023 19.90 11.10 8.80 4.15 4.60 3.70",
-    ...
-  ]
-  """
-  # First line is the header; skip or verify
-  header_line = lines[0]
-  # e.g. "PLAYER TEAM GP W L MIN ..."
-
-  # Initialize a dictionary keyed by player
-  data_by_player = {}
-  for line in lines[1:]:  # skip header line
-    # skip empty lines
-    if not line.strip():
-      continue
-    name, stats = parse_line(line)
-    data_by_player[name] = stats
-
-  return data_by_player
-
-
-
 def write_to_file(data, output_path):
   try:
     print(f"writing to file: {output_path}")
@@ -137,14 +69,65 @@ def convert_to_nba_api_season(season_type_value):
       return 'Unknown'
 
 
+
+def to_float(x: str) -> float:
+  return float(x or 0)
+
+
+CONVERTERS: dict[str, Callable[[str], Any]] = {
+  "GP": to_int,
+  "W": to_int,
+  "L": to_int,
+  "MIN": to_int,
+  "DIST_FEET": to_int,
+  "DIST_MILES": to_float,
+  "DIST_MILES_OFF": to_float,
+  "DIST_MILES_DEF": to_float,
+  "AVG_SPEED": to_float,
+  "AVG_SPEED_OFF": to_float,
+  "AVG_SPEED_DEF": to_float,
+  # add others only when you care about them
+}
+
+_num = re.compile(r"""
+    ^\s*
+    [+-]?
+    (?:
+        (?:\d{1,3}(?:,\d{3})*|\d+)?
+        (?:\.\d*)?
+        |\.\d+
+    )
+    \s*%?\s*$
+""", re.VERBOSE)
+
+def to_float_if_num(value: str | Any) -> Any:
+    """
+    Convert the incoming value to float when it looks numeric,
+    otherwise return it unchanged.
+    """
+    if isinstance(value, str) and _num.match(value):
+        # strip commas and trailing percent, then cast
+        clean = value.replace(",", "").rstrip("%").strip()
+        # empty string after stripping? -> leave unchanged
+        if clean:
+            try:
+                return float(clean)
+            except ValueError:
+                pass            # fall through to return original
+    return value
+
 def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> None:
   url = f"https://www.nba.com/stats/players/{stat_type}"
   date_range = utils.get_date_range(timestamp, season_type)
   if not date_range or len(date_range) != 2:
-    print(f"⚠️  No valid date range for {timestamp!r} / {season_type!r}.  Skipping.")
+    # print(f"⚠️  No valid date range for {timestamp!r} / {season_type!r}.  Skipping.")
     return
 
   start_date, end_date = date_range
+
+  if datetime.strptime(start_date, "%Y-%m-%d") > datetime.strptime(end_date, "%Y-%m-%d"):
+    # print(f"⚠️  Invalid date range: {start_date} > {end_date}. Skipping.")
+    return
 
   nba_api_season = convert_to_nba_api_season(season_type)
   if nba_api_season == 'Unknown':
@@ -160,7 +143,7 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
     "PlayerOrTeam": "Player",
     "DateFrom": start_date,
     "DateTo": end_date,
-    "MeasureType": "SpeedDistance",
+    # "MeasureType": "SpeedDistance",
     "SeasonType": nba_api_season,
     "PerMode": "Totals"
   }
@@ -169,7 +152,7 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
   output_path = ROOT_DIR / Path(season_type) / output_file
 
   if output_path.exists():
-    print(f"✅  {output_path} already exists – skipping.")
+    # print(f"✅  {output_path} already exists – skipping.")
     return
 
   chrome_options = Options()
@@ -184,8 +167,6 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
   driver = webdriver.Chrome(options=chrome_options)
   final_url = f"{url}?{urlencode(params)}"
 
-  all_data = {}
-
   try:
     print("Getting page...")
 
@@ -194,11 +175,8 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
     driver.get(final_url)
     time.sleep(5)
 
-    wait = WebDriverWait(driver, 30)
     settings_div = driver.find_element(By.CSS_SELECTOR, "div.Crom_cromSettings__ak6Hd")
-    print('settings div?', settings_div)
     page_select_dropdown = settings_div.find_element(By.CSS_SELECTOR, "select.DropDown_select__4pIg9")
-    print('page_select_dropdown?', page_select_dropdown)
     dropdown = Select(page_select_dropdown)
     dropdown.select_by_index(0)
 
@@ -208,12 +186,22 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
       EC.presence_of_element_located((By.XPATH, "//table[contains(@class, 'Crom_table__')]"))
     )
     table2 = driver.find_element(By.XPATH, "//table[contains(@class, 'Crom_table')]")
-    rows = table2.find_elements(By.CSS_SELECTOR, "tr")
-    row_texts = [row.text for row in rows]
-    data_dict = parse_all_lines(row_texts)
-    all_data = all_data | data_dict
+    header_elems = table2.find_elements(By.CSS_SELECTOR, "thead tr th")
+    headers = [h.text.strip() for h in header_elems]
 
-    write_to_file(all_data, output_path)
+    # rows = table2.find_elements(By.CSS_SELECTOR, "tr")
+    rows = table2.find_elements(By.CSS_SELECTOR, "tbody tr")
+    # row_texts = [row.text for row in rows]
+    # data_dict = parse_all_lines(row_texts)
+    # write_to_file(data_dict, output_path)
+    records = []
+    for row in rows:
+      cells = [td.text.strip() for td in row.find_elements(By.TAG_NAME, "td")]
+      record = dict(zip(headers, cells))
+      record = {k: to_float_if_num(v) for k, v in record.items()}
+      records.append(record)
+    print('record:', records)
+    write_to_file(records, output_path)
 
   except TimeoutException:
     print("Timeout! Could not find the table element. Trying a different locator...")
