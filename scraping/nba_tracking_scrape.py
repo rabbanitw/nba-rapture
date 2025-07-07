@@ -1,6 +1,5 @@
 from pathlib import Path
 import requests
-import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
@@ -18,6 +17,18 @@ from typing import Any
 # Modern style (3.10+) – Callable lives in collections.abc
 from collections.abc import Callable
 import re
+import ctypes
+import time
+import atexit
+
+# Constants for SetThreadExecutionState
+ES_CONTINUOUS       = 0x80000000
+ES_SYSTEM_REQUIRED  = 0x00000001
+ES_AWAYMODE_REQUIRED = 0x00000040
+
+ctypes.windll.kernel32.SetThreadExecutionState(
+    ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_AWAYMODE_REQUIRED
+)
 
 
 ROOT_DIR = Path("data")        # ← change to your real path
@@ -35,17 +46,6 @@ def get_number_or_zero(value):
     return 0
 
 
-def to_int(value: str, default=0) -> int:
-  """
-  Accepts '90', '90.0', '105 023', '105023.0', etc.
-  Returns an int or *default* if the cast fails.
-  """
-  try:
-    # strip thousands separators, then cast to float first
-    value = value.replace(',', '')
-    return int(float(value))
-  except (ValueError, TypeError):
-    return default
 
 
 def write_to_file(data, output_path):
@@ -74,20 +74,6 @@ def to_float(x: str) -> float:
   return float(x or 0)
 
 
-CONVERTERS: dict[str, Callable[[str], Any]] = {
-  "GP": to_int,
-  "W": to_int,
-  "L": to_int,
-  "MIN": to_int,
-  "DIST_FEET": to_int,
-  "DIST_MILES": to_float,
-  "DIST_MILES_OFF": to_float,
-  "DIST_MILES_DEF": to_float,
-  "AVG_SPEED": to_float,
-  "AVG_SPEED_OFF": to_float,
-  "AVG_SPEED_DEF": to_float,
-  # add others only when you care about them
-}
 
 _num = re.compile(r"""
     ^\s*
@@ -259,6 +245,12 @@ def main() -> None:
       if item.is_file() and item.stem.isnumeric():
         for stat_type in stat_types:
           retrieve_from_nba_api(item.stem, sub, stat_type)
+
+def allow_sleep_again():
+  ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS)
+
+
+atexit.register(allow_sleep_again)
 
 
 if __name__ == "__main__":
