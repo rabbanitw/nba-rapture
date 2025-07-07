@@ -1,5 +1,6 @@
 from pathlib import Path
 import requests
+import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
@@ -17,18 +18,6 @@ from typing import Any
 # Modern style (3.10+) – Callable lives in collections.abc
 from collections.abc import Callable
 import re
-import ctypes
-import time
-import atexit
-
-# Constants for SetThreadExecutionState
-ES_CONTINUOUS       = 0x80000000
-ES_SYSTEM_REQUIRED  = 0x00000001
-ES_AWAYMODE_REQUIRED = 0x00000040
-
-ctypes.windll.kernel32.SetThreadExecutionState(
-    ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_AWAYMODE_REQUIRED
-)
 
 
 ROOT_DIR = Path("data")        # ← change to your real path
@@ -245,12 +234,6 @@ def main() -> None:
       if item.is_file() and item.stem.isnumeric():
         for stat_type in stat_types:
           retrieve_from_nba_api(item.stem, sub, stat_type)
-
-def allow_sleep_again():
-  ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS)
-
-
-atexit.register(allow_sleep_again)
 
 
 if __name__ == "__main__":
