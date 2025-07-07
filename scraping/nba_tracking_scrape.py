@@ -161,19 +161,25 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
       EC.presence_of_element_located((By.XPATH, "//table[contains(@class, 'Crom_table__')]"))
     )
     table = driver.find_element(By.XPATH, "//table[contains(@class, 'Crom_table')]")
-    header_elems = table.find_elements(By.CSS_SELECTOR, "thead tr th")
-    headers = [h.text.strip() for h in header_elems]
+
+    raw_headers = [th.text.strip() for th in table.find_elements(By.CSS_SELECTOR, "thead tr th")]
+    # the first header is blank/“#”; insert PLAYER after it
+    if raw_headers[0] in ("", "#"):
+      raw_headers[0] = "RANK"  # or "#" if you want the rank
+      raw_headers.insert(1, "PLAYER")  # now PLAYER is in the list
+    headers = raw_headers
 
     rows = table.find_elements(By.CSS_SELECTOR, "tbody tr")
 
-    records = []
+    data = {}
     for row in rows:
       cells = [td.text.strip() for td in row.find_elements(By.TAG_NAME, "td")]
       record = dict(zip(headers, cells))
       record = {k: to_float_if_num(v) for k, v in record.items()}
-      records.append(record)
-    print('record:', records)
-    write_to_file(records, output_path)
+      player = record["PLAYER"]  # ➋ use the PLAYER field
+      data[player] = record  # ➌ key the dict by name
+
+    write_to_file(data, output_path)
 
   except TimeoutException:
     print("Timeout! Could not find the table element. Trying a different locator...")
