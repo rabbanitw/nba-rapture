@@ -160,15 +160,12 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
     WebDriverWait(driver, 60).until(
       EC.presence_of_element_located((By.XPATH, "//table[contains(@class, 'Crom_table__')]"))
     )
-    table2 = driver.find_element(By.XPATH, "//table[contains(@class, 'Crom_table')]")
-    header_elems = table2.find_elements(By.CSS_SELECTOR, "thead tr th")
+    table = driver.find_element(By.XPATH, "//table[contains(@class, 'Crom_table')]")
+    header_elems = table.find_elements(By.CSS_SELECTOR, "thead tr th")
     headers = [h.text.strip() for h in header_elems]
 
-    # rows = table2.find_elements(By.CSS_SELECTOR, "tr")
-    rows = table2.find_elements(By.CSS_SELECTOR, "tbody tr")
-    # row_texts = [row.text for row in rows]
-    # data_dict = parse_all_lines(row_texts)
-    # write_to_file(data_dict, output_path)
+    rows = table.find_elements(By.CSS_SELECTOR, "tbody tr")
+
     records = []
     for row in rows:
       cells = [td.text.strip() for td in row.find_elements(By.TAG_NAME, "td")]
