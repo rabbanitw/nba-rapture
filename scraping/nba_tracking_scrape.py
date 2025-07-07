@@ -20,7 +20,7 @@ from collections.abc import Callable
 import re
 
 
-ROOT_DIR = Path("data")        # ← change to your real path
+ROOT_DIR = Path("latest_data")        # ← change to your real path
 SUBFOLDERS = ["Playoffs", "Regular season", "Full season"]
 
 # Increase the connection and read timeouts (in seconds)
@@ -95,13 +95,13 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
   url = f"https://www.nba.com/stats/players/{stat_type}"
   date_range = utils.get_date_range(timestamp, season_type)
   if not date_range or len(date_range) != 2:
-    # print(f"⚠️  No valid date range for {timestamp!r} / {season_type!r}.  Skipping.")
+    print(f"⚠️  No valid date range for {timestamp!r} / {season_type!r}.  Skipping.")
     return
 
   start_date, end_date = date_range
 
   if datetime.strptime(start_date, "%Y-%m-%d") > datetime.strptime(end_date, "%Y-%m-%d"):
-    # print(f"⚠️  Invalid date range: {start_date} > {end_date}. Skipping.")
+    print(f"⚠️  Invalid date range: {start_date} > {end_date}. Skipping.")
     return
 
   nba_api_season = convert_to_nba_api_season(season_type)
@@ -127,7 +127,7 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
   output_path = ROOT_DIR / Path(season_type) / output_file
 
   if output_path.exists():
-    # print(f"✅  {output_path} already exists – skipping.")
+    print(f"✅  {output_path} already exists – skipping.")
     return
 
   chrome_options = Options()
