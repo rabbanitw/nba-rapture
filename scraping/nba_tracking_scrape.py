@@ -150,10 +150,16 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
     driver.get(final_url)
     time.sleep(5)
 
-    settings_div = driver.find_element(By.CSS_SELECTOR, "div.Crom_cromSettings__ak6Hd")
-    page_select_dropdown = settings_div.find_element(By.CSS_SELECTOR, "select.DropDown_select__4pIg9")
-    dropdown = Select(page_select_dropdown)
-    dropdown.select_by_index(0)
+    wait = WebDriverWait(driver, 10)
+
+    settings_div = wait.until(
+      EC.presence_of_element_located((By.CSS_SELECTOR,
+                                      "div.Crom_cromSettings__ak6Hd"))
+    )
+    page_select = settings_div.find_element(By.CSS_SELECTOR,
+                                            "select.DropDown_select__4pIg9")
+    Select(page_select).select_by_index(0)
+
 
     time.sleep(5)  # naive approach
 
