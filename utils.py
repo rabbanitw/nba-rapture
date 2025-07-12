@@ -46,8 +46,7 @@ def get_date_range(timestamp, season_type):
 
   season = get_season(timestamp)
 
-  match season:
-    case '2020-21':
+  if season == '2020-21':
       if season_type == "Playoffs":
         if inside_range(timestamp,'2021-07-20'):
           return ['2021-05-22',regular_time(timestamp)]
@@ -56,7 +55,7 @@ def get_date_range(timestamp, season_type):
           return ['2020-12-22',regular_time(timestamp)]
       else:
         return ['2020-12-22',regular_time(timestamp)]
-    case '2021-22':
+  if season ==  '2021-22':
       if season_type == "Playoffs":
         if inside_range(timestamp,'2022-06-16'):
           return ['2022-04-16',regular_time(timestamp)]
@@ -65,7 +64,7 @@ def get_date_range(timestamp, season_type):
           return ["2021-10-19",regular_time(timestamp)]
       else:
         return ["2021-10-19",regular_time(timestamp)]
-    case '2022-23':
+  if season ==  '2022-23':
       if season_type == "Playoffs":
         if inside_range(timestamp, "2023-06-12"):
           return ["2023-04-15",regular_time(timestamp)]

@@ -18,6 +18,9 @@ from typing import Any
 # Modern style (3.10+) – Callable lives in collections.abc
 from collections.abc import Callable
 import re
+import tempfile
+import shutil
+import undetected_chromedriver as uc
 
 
 ROOT_DIR = Path("latest_data")        # ← change to your real path
@@ -47,16 +50,11 @@ def write_to_file(data, output_path):
 
 
 def convert_to_nba_api_season(season_type_value):
-  match season_type_value:
-    case 'Regular season':
-      return 'Regular Season'
-    case 'Playoffs':
-      return 'Playoffs'
-    case 'Play in':
-      return 'PlayIn'
-    case _:
-      return 'Unknown'
-
+  return {
+    'Regular season': 'Regular Season',
+    'Playoffs': 'Playoffs',
+    'Play in': 'PlayIn',
+  }.get(season_type_value)
 
 
 def to_float(x: str) -> float:
@@ -75,7 +73,7 @@ _num = re.compile(r"""
     \s*%?\s*$
 """, re.VERBOSE)
 
-def to_float_if_num(value: str | Any) -> Any:
+def to_float_if_num(value) -> Any:
     """
     Convert the incoming value to float when it looks numeric,
     otherwise return it unchanged.
@@ -135,7 +133,11 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
   chrome_options.add_argument('--no-sandbox')
   chrome_options.add_argument('--disable-dev-shm-usage')
   chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                              "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
+                              "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/530.36")
+
+
+  tmp_profile = tempfile.mkdtemp(prefix="chrome-scrape-")
+  chrome_options.add_argument(f"--user-data-dir={tmp_profile}")
 
   print("Starting Selenium...")
 
@@ -188,17 +190,12 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
     write_to_file(data, output_path)
 
   except TimeoutException:
-    print("Timeout! Could not find the table element. Trying a different locator...")
-    try:
-      # If the original XPath fails, try a more general one
-      WebDriverWait(driver, 30).until(
-        EC.presence_of_element_located((By.TAG_NAME, "table"))
-      )
-      print("Found the table using a different locator!")
-    except TimeoutException:
-      print("Timeout again! Table element could not be located.")
-      driver.quit()  # Close the browser to avoid resource leaks
-      return
+    print("Timeout! Table element could not be located.")
+    with open("debug_page.html", "w", encoding="utf-8") as f:
+      f.write(driver.page_source)
+
+    driver.save_screenshot("debug_screen.png")
+    return
   except requests.exceptions.RequestException as e:
     print(f"Failed to write {output_path}: {e}")
     return
@@ -210,8 +207,10 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
     return
   except Exception as e:
     print(f"Unknown exception: {e}")
+    return
   finally:
     driver.quit()
+    shutil.rmtree(tmp_profile, ignore_errors=True)
 
 
 def main() -> None:
@@ -242,7 +241,8 @@ def main() -> None:
     for item in folder.iterdir():
       if item.is_file() and item.stem.isnumeric():
         for stat_type in stat_types:
-          retrieve_from_nba_api(item.stem, sub, stat_type)
+          if sub is not 'Full season':
+            retrieve_from_nba_api(item.stem, sub, stat_type)
 
 
 if __name__ == "__main__":
