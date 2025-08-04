@@ -21,14 +21,17 @@ import re
 import tempfile
 import shutil
 import undetected_chromedriver as uc
+import traceback
 
 
-ROOT_DIR = Path("latest_data")        # ← change to your real path
+
+ROOT_DIR = Path("missing_data")        # ← change to your real path
 SUBFOLDERS = ["Playoffs", "Regular season", "Full season"]
 
 # Increase the connection and read timeouts (in seconds)
 os.environ['NBA_API_CONNECTION_TIMEOUT'] = '60'
 os.environ['NBA_API_READ_TIMEOUT'] = '60'
+Path.mkdir(ROOT_DIR , exist_ok=True)
 
 
 def get_number_or_zero(value):
@@ -43,10 +46,10 @@ def get_number_or_zero(value):
 def write_to_file(data, output_path):
   try:
     print(f"writing to file: {output_path}")
-    with open(output_path, 'w') as file:
+    with open(output_path, 'w', encoding='utf-8') as file:
       json.dump(data, file)
-  except:
-    print(f"Failed to write {output_path}")
+  except Exception as e:
+    print(f"Failed to write {output_path}", e)
 
 
 def convert_to_nba_api_season(season_type_value):
@@ -124,6 +127,8 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
   output_file = f"nba_api_{stat_type}_{timestamp}.json"
   output_path = ROOT_DIR / Path(season_type) / output_file
 
+  output_path.parent.mkdir(parents=True, exist_ok=True)
+
   if output_path.exists():
     print(f"✅  {output_path} already exists – skipping.")
     return
@@ -152,7 +157,7 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str) -> N
     driver.get(final_url)
     time.sleep(5)
 
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)
 
     settings_div = wait.until(
       EC.presence_of_element_located((By.CSS_SELECTOR,
@@ -241,7 +246,7 @@ def main() -> None:
     for item in folder.iterdir():
       if item.is_file() and item.stem.isnumeric():
         for stat_type in stat_types:
-          if sub is not 'Full season':
+          if sub != 'Full season':
             retrieve_from_nba_api(item.stem, sub, stat_type)
 
 

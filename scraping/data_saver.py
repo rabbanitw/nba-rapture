@@ -62,6 +62,7 @@ def process_nba(timestamp: str, file_path: str, season_type: str, data_type: str
                     row_dict["season_type"] = season_type
                     row_dict["data_type"] = data_type
                     row_dict["source"] = "nba-tracking"
+                    print("row_dict?", row_dict)
                     database.create_document(db, row_dict)
         print(f"Finished processing NBA tracking data")
     else:
@@ -96,23 +97,25 @@ def save_data():
     ]
     for season_type in season_types:
         for season_type_key, season_type_value in season_type.items():
-            folder_path = 'data'
+            folder_path = 'latest_data'
             directory = season_type_value
             files = os.listdir(f"{folder_path}/{directory}")
             for filename in files:
                 name, extension = os.path.splitext(filename)
                 if name.startswith('pbp_stats_'):  # PBP API data
-                    timestamp = name.replace('pbp_stats_', '')
-                    file_path = os.path.join(folder_path, season_type_value, f"{name}.csv")
-                    process_pbp(timestamp, file_path, season_type_value)
+                    # timestamp = name.replace('pbp_stats_', '')
+                    # file_path = os.path.join(folder_path, season_type_value, f"{name}.csv")
+                    # process_pbp(timestamp, file_path, season_type_value)
+                    print("We're not processing PBP this time")
                 elif name.startswith('nba_api_'):  # NBA tracking data
                     data_type, timestamp = extract_parts(name)
                     file_path = os.path.join(folder_path, season_type_value, f"{name}.json")
                     process_nba(timestamp, file_path, season_type_value, data_type)
                 elif name.isnumeric():  # 538 raptor
-                    timestamp = name
-                    file_path = os.path.join(folder_path, season_type_value, f"{name}.csv")
-                    process_538(timestamp, file_path, season_type_value)
+                    # timestamp = name
+                    # file_path = os.path.join(folder_path, season_type_value, f"{name}.csv")
+                    # process_538(timestamp, file_path, season_type_value)
+                    print("We're not processing 538 this time")
                 else:
                     print(f"Skipping file: {name}")
     print(f"We are done!")

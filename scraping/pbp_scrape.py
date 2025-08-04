@@ -1,8 +1,7 @@
 from datetime import datetime
 import re
 import asyncio, functools, os
-
-
+from time import sleep
 
 _failed_log_lock = asyncio.Lock()          # one lock for the whole module
 
@@ -60,41 +59,42 @@ def inside_range(timestamp, end):
   return timestamp < wayback_time(end)
 
 def get_date_range(timestamp, season_type):
+    season = get_season(timestamp)
 
-  season = get_season(timestamp)
+    if season == '2020-21':
+        if season_type == "Playoffs":
+            if inside_range(timestamp, '2021-07-20'):
+                return ['2021-05-22', regular_time(timestamp)]
+        elif season_type == "Regular Season":
+            if inside_range(timestamp, '2021-05-22'):
+                return ['2020-12-22', regular_time(timestamp)]
+        else:
+            return ['2020-12-22', regular_time(timestamp)]
 
-  match season:
-    case '2020-21':
-      if season_type == "Playoffs":
-        if inside_range(timestamp,'2021-07-20'):
-          return ['2021-05-22',regular_time(timestamp)]
-      elif season_type == "Regular Season":
-        if inside_range(timestamp,'2021-05-22'):
-          return ['2020-12-22',regular_time(timestamp)]
-      else:
-        return ['2020-12-22',regular_time(timestamp)]
-    case '2021-22':
-      if season_type == "Playoffs":
-        if inside_range(timestamp,'2022-06-16'):
-          return ['2022-04-16',regular_time(timestamp)]
-      elif season_type == "Regular season":
-        if inside_range(timestamp, "2022-04-16"):
-          return ["2021-10-19",regular_time(timestamp)]
-      else:
-        return ["2021-10-19",regular_time(timestamp)]
-    case '2022-23':
-      if season_type == "Playoffs":
-        if inside_range(timestamp, "2023-06-12"):
-          return ["2023-04-15",regular_time(timestamp)]
-      elif season_type == "Regular season":
-        if inside_range(timestamp,"2023-04-15"):
-          return ['2022-10-18', regular_time(timestamp)]
-      else:
-          return ['2022-10-18', regular_time(timestamp)]
-  raise ValueError(
-      f"No date‑range rule for season={get_season(timestamp)} "
-      f"season_type={season_type}"
-  )
+    elif season == '2021-22':
+        if season_type == "Playoffs":
+            if inside_range(timestamp, '2022-06-16'):
+                return ['2022-04-16', regular_time(timestamp)]
+        elif season_type == "Regular season":
+            if inside_range(timestamp, '2022-04-16'):
+                return ['2021-10-19', regular_time(timestamp)]
+        else:
+            return ['2021-10-19', regular_time(timestamp)]
+
+    elif season == '2022-23':
+        if season_type == "Playoffs":
+            if inside_range(timestamp, '2023-06-12'):
+                return ['2023-04-15', regular_time(timestamp)]
+        elif season_type == "Regular season":
+            if inside_range(timestamp, '2023-04-15'):
+                return ['2022-10-18', regular_time(timestamp)]
+        else:
+            return ['2022-10-18', regular_time(timestamp)]
+
+    # no matching branch
+    raise ValueError(
+        f"No date-range rule for season={season} season_type={season_type}"
+    )
 
 def regular_time(waystamp):
 
@@ -126,6 +126,60 @@ import asyncio
 import glob
 
 # timestamp = utils.get_timestamp()
+def scrape_and_save_without_async(date_str, season_type_key, season_type_value, output_path):
+  print(f"now processing {output_path}")
+  url = "https://api.pbpstats.com/get-totals/nba"
+  try:
+      start_date, end_date = get_date_range(date_str, season_type_value)
+  except ValueError as e:
+      print(f"[SKIP] {e}")
+      return
+
+  params = {
+      "Season": get_season(date_str),
+      "SeasonType": season_type_key,
+      "Type": "Player",
+      "FromDate": start_date,
+      "ToDate": end_date,
+      "StartType": "All",
+      "StatType": "Per100Possessions"
+  }
+  attempt = 0
+  max_delay = 600  # 10 minutes in seconds
+
+  while True:
+      try:
+          response = requests.get(url, params=params)
+          response.raise_for_status()
+
+          response_json = response.json()
+          player_stats = response_json["multi_row_table_data"]
+
+          # Collect all fieldnames
+          all_keys = set()
+          for row in player_stats:
+              all_keys.update(row.keys())
+
+          # Write to CSV
+          with open(output_path, mode='w', newline='', encoding='utf-8') as csvfile:
+              writer = csv.DictWriter(csvfile, fieldnames=all_keys)
+              writer.writeheader()
+              writer.writerows(player_stats)
+
+          print(f"Data has been written to {output_path}")
+          return  # Exit the function if successful
+
+      except requests.exceptions.RequestException as e:
+          attempt += 1
+          # Exponential backoff: 2^(attempt-1), but capped at 600 seconds
+          delay = min(2 ** (attempt - 1), max_delay)
+          print(
+              f"[Attempt {attempt}] Failed to write {output_path}: {e}\n"
+              f"Retrying in {delay} seconds..."
+          )
+          sleep(delay)
+
+
 
 async def scrape_and_save(date_str, season_type_key, season_type_value, output_path):
   print(f"now processing {output_path}")
