@@ -7,6 +7,11 @@ from fuzzydict import FuzzyDict
 import asyncio
 import os, csv, json
 from pathlib import Path
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import json
+import time
+from urllib.parse import urlencode
 
 PROCESSED_FILES_LOG = "processed_files_wowy.log"
 # headers = {
@@ -822,6 +827,64 @@ nba_player_ids = {'Grant Long': '3', 'Eric Piatkowski': '15', 'Greg Anthony': '2
 
 fuzzy_nba_player_ids = FuzzyDict(threshold=80)
 fuzzy_nba_player_ids.update(nba_player_ids)
+
+
+
+def retrieve_from_wowy_via_selenium(player_name, team_name, date_str, season_type_key, season_type_value, is_on, output_path = None, team_id = None):
+    options = Options()
+    options.add_argument("--headless=new")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    driver = webdriver.Chrome(options=options)
+
+    try:
+        start_date, end_date = utils.get_date_range(date_str, season_type_value)
+    except TypeError as e:
+        print(f"[SKIP] {e}")
+        return
+
+    # 2. Construct the final URL yourself
+    params = {
+        "Season": utils.get_season(date_str),
+        "SeasonType": season_type_key,
+        "Type": "Team",
+        "FromDate": start_date,
+        "ToDate": end_date,
+        "TeamId": team_id or nba_team_ids[team_name],
+    }
+    if is_on:
+        params['0Exactly1OnFloor'] = fuzzy_nba_player_ids.get(player_name)
+    else:
+        params['0Exactly0OnFloor'] = fuzzy_nba_player_ids.get(player_name)
+    print("now processing params:", params)
+
+
+    url = f"https://api.pbpstats.com/get-wowy-stats/nba?{urlencode(params)}"
+    print("url?", url)
+
+    # 3. Load the page
+    driver.get(url)
+    time.sleep(3)  # give it time to load
+
+    # 4. Extract the raw JSON text
+    raw_text = driver.find_element("tag name", "pre").text
+    data = json.loads(raw_text)
+
+    # 5. Done
+    parsed_rows = data.get("single_row_table_data", [])
+    print("✅ Parsed rows:", len(parsed_rows))
+
+    if parsed_rows:
+        save_local_wowy_data(parsed_rows, output_path)
+        # write_wowy_data(stats, player_name, date_str, season_type_value, is_on)
+    else:
+        print("No data to write")
+        with open("wowy_skipped.txt", "a", encoding="utf-8") as f:
+            f.write(output_path + "\n")
+
+    driver.quit()
 
 
 def load_processed_files() -> set:

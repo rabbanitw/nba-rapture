@@ -1,7 +1,7 @@
 import csv
 import glob
 import os
-from time import sleep
+import time
 
 import wowy_scrape
 import pbp_scrape
@@ -11,7 +11,7 @@ from nba_api.stats.static import players, teams
 from nba_api.stats.endpoints import PlayerGameLog, CommonPlayerInfo
 import nba_tracking_scrape
 import traceback
-
+from requests.exceptions import ReadTimeout
 
 _ALL_TEAMS = teams.get_teams()
 ID_BY_ABBR    = { t["abbreviation"]: t["id"]        for t in _ALL_TEAMS }
@@ -19,6 +19,13 @@ NAME_BY_ID    = { t["id"]:           t["full_name"] for t in _ALL_TEAMS }
 
 
 completed_nba_tracking_timestamps = []
+
+
+if os.path.exists("wowy_skipped.txt"):
+    with open("wowy_skipped.txt", encoding="utf-8") as f:
+        SKIPPED_OUTPUTS = set(line.strip() for line in f)
+else:
+    SKIPPED_OUTPUTS = set()
 
 
 # ——— Your per-source handlers ———
@@ -100,9 +107,14 @@ def handle_wowy(row):
             on_or_off = row["on_or_off"]
             output_file = f"wowy_{timestamp}_{name}_{on_or_off}.csv"
             output_path = os.path.join(folder_path, season_type_value, output_file)
+            print("output_path", output_path)
             if os.path.exists(output_path):
                 print("WOWY file exists!")
-            wowy_scrape.retrieve_from_wowy(
+                continue
+            if output_path in SKIPPED_OUTPUTS:
+                print(f"⏭️ Skipping known-empty {output_path}")
+                continue
+            wowy_scrape.retrieve_from_wowy_via_selenium(
                 player_name=name,
                 team_name=team_name,
                 date_str=timestamp,
@@ -158,7 +170,7 @@ def main():
 
 
 
-def get_team_at_timestamp(player_name: str, timestamp: str) -> tuple[int,str]:
+def get_team_at_timestamp(player_name: str, timestamp: str, max_retries=5) -> tuple[int,str]:
     # 1) look up player
     matches = players.find_players_by_full_name(player_name)
     if not matches:
@@ -171,7 +183,17 @@ def get_team_at_timestamp(player_name: str, timestamp: str) -> tuple[int,str]:
     season = f"{start_year}-{str(start_year+1)[-2:]}"
 
     # 3) fetch game log
-    gl = PlayerGameLog(player_id=pid, season=season)
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            gl = PlayerGameLog(player_id=pid, season=season)
+            break  # success
+        except ReadTimeout:
+            print(f"⏳ Timeout on PlayerGameLog for {player_name}, retrying ({attempt}/{max_retries})...")
+            time.sleep(2 ** attempt)  # exponential backoff
+    else:
+        raise RuntimeError(f"❌ Failed to fetch PlayerGameLog for {player_name} after {max_retries} retries.")
+
     df = gl.get_data_frames()[0]
     df["GAME_DATE"] = pd.to_datetime(df["GAME_DATE"])
 
