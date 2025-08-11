@@ -828,16 +828,15 @@ nba_player_ids = {'Grant Long': '3', 'Eric Piatkowski': '15', 'Greg Anthony': '2
 fuzzy_nba_player_ids = FuzzyDict(threshold=80)
 fuzzy_nba_player_ids.update(nba_player_ids)
 
+options = Options()
+options.add_argument("--headless=new")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+driver = webdriver.Chrome(options=options)
 
 
 def retrieve_from_wowy_via_selenium(player_name, team_name, date_str, season_type_key, season_type_value, is_on, output_path = None, team_id = None):
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-
-    driver = webdriver.Chrome(options=options)
 
     try:
         start_date, end_date = utils.get_date_range(date_str, season_type_value)
@@ -876,6 +875,7 @@ def retrieve_from_wowy_via_selenium(player_name, team_name, date_str, season_typ
     parsed_rows = data.get("single_row_table_data", [])
     print("✅ Parsed rows:", len(parsed_rows))
 
+
     if parsed_rows:
         save_local_wowy_data(parsed_rows, output_path)
         # write_wowy_data(stats, player_name, date_str, season_type_value, is_on)
@@ -884,7 +884,6 @@ def retrieve_from_wowy_via_selenium(player_name, team_name, date_str, season_typ
         with open("wowy_skipped.txt", "a", encoding="utf-8") as f:
             f.write(output_path + "\n")
 
-    driver.quit()
 
 
 def load_processed_files() -> set:
@@ -1089,3 +1088,5 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+    driver.quit()
+
