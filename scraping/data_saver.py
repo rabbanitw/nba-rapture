@@ -156,9 +156,9 @@ def save_data():
     season_types = [
         {'Regular Season': 'Regular season'},
         {'Playoffs': 'Playoffs'},
-        {'PlayIn': 'Play in'},
+        # {'PlayIn': 'Play in'},
         {'All': 'All'},
-        {'Full Season': 'Full season'},
+        {'Full Season': 'Full'},
     ]
     for season_type in season_types:
         for season_type_key, season_type_value in season_type.items():
