@@ -268,13 +268,13 @@ def main():
     for snap in snapshots:
         for season in ["Full season", "Regular season", "Playoffs"]:
             checkbox_ids = [
-                'filter-2014',
-                'filter-2015',
-                'filter-2016',
-                'filter-2017',
-                'filter-2018',
-                'filter-2019',
-                'filter-2020',
+                # 'filter-2014',
+                # 'filter-2015',
+                # 'filter-2016',
+                # 'filter-2017',
+                # 'filter-2018',
+                # 'filter-2019',
+                # 'filter-2020',
                 'filter-2021',
                 'filter-2022'
             ]
