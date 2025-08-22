@@ -45,6 +45,14 @@ def already_processed(player_name: str, timestamp: str, season_type: str, source
     return database.document_exists(db, query)
 
 
+def timestamp_already_processed(timestamp: str, source: str):
+    query = {
+        "timestamp": timestamp,
+        "source": source
+    }
+    return database.document_exists(db, query)
+
+
 def process_pbp(timestamp: str, file_path: str, season_type: str):
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:

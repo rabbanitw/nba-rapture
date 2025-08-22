@@ -4,21 +4,34 @@ from selenium.webdriver.common.by import By
 import os
 import requests
 from time import sleep
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import (
+    ElementClickInterceptedException,
+    ElementNotInteractableException,
+    StaleElementReferenceException,
+)
 import csv
+from pathlib import Path
+from selenium.webdriver.common.action_chains import ActionChains
+import time
+
+
+
+from scraping.data_saver import timestamp_already_processed
 
 # Specify the output CSV file
 output_file = "player_data.csv"
 
+
 def new_driver() -> webdriver.Chrome:
     """Return a fresh, headless Chrome with its own throw‑away profile."""
     opts = Options()
-    opts.add_argument("--headless=new")          # headless Chrome ≥115
-    opts.add_argument("--no-sandbox")            # good practice on EC2
-    opts.add_argument("--disable-dev-shm-usage") # avoid /dev/shm issues
+    opts.add_argument("--headless=new")  # headless Chrome ≥115
+    opts.add_argument("--no-sandbox")  # good practice on EC2
+    opts.add_argument("--disable-dev-shm-usage")  # avoid /dev/shm issues
 
     # each run gets a unique profile so the 'user‑data‑dir already in use'
     # lock files can never collide
@@ -26,7 +39,7 @@ def new_driver() -> webdriver.Chrome:
     opts.add_argument(f"--user-data-dir={profile_dir}")
 
     driver = webdriver.Chrome(options=opts)
-    driver._profile_dir = profile_dir           # stash so we can delete it
+    driver._profile_dir = profile_dir  # stash so we can delete it
     return driver
 
 
@@ -37,106 +50,154 @@ def close_driver(driver: webdriver.Chrome):
     finally:
         shutil.rmtree(getattr(driver, "_profile_dir", ""), ignore_errors=True)
 
+
 # Write data to the CSV
-def save_data(timestamp, player_data, dir):
+def save_data(timestamp, player_data, season, file_path, checkbox_id):
 
-  os.makedirs(dir, exist_ok = True)
-  output_file = timestamp + ".csv"
-  output_path = os.path.join(dir,output_file)
-  if os.path.exists(output_path):
-    print("File exists!")
-    return
+    base_dir = Path(__file__).resolve().parent
+    dir_538 = base_dir / "538"
+    new_dir = dir_538 / season / checkbox_id
+    new_dir.mkdir(parents=True, exist_ok=True)
+    new_path = os.path.join(new_dir, f"{timestamp}.csv")
 
-  with open(output_path, mode='w', newline='', encoding='utf-8') as file:
-      writer = csv.writer(file)
+    if os.path.exists(new_path):
+        print(f"File {new_path} exists!")
+        return
 
-      # Write the header (keys from the first dictionary in player_data)
-      if player_data:  # Check if the list is not empty
-          header = player_data[0].keys()
-          writer.writerow(header)
+    with open(new_path, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
 
-          # Write each player's data (values)
-          for player in player_data:
-              writer.writerow(player.values())
-  print(timestamp, " saved!")
-  return
+        # Write the header (keys from the first dictionary in player_data)
+        if player_data:  # Check if the list is not empty
+            header = player_data[0].keys()
+            writer.writerow(header)
+
+            # Write each player's data (values)
+            for player in player_data:
+                writer.writerow(player.values())
+    print(f"Timestamp {timestamp} and season {season} saved!")
 
 
-def scrape(driver, url, timestamp, season):
-  print(f"url: {url}")
-  driver.get(url)
-  slider = driver.find_element(By.ID, 'filter-slider')
-  #slider = WebDriverWait(driver, 15).until(
-  #      EC.visibility_of_all_elements_located((By.ID, 'filter-slider'))
-  #  )
+def unselect_all_checkboxes(driver):
+    js_unselect_all = """
+    var checkboxes = document.querySelectorAll('.year-checkbox');
+    checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            checkbox.checked = false;
+            checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+            checkbox.dispatchEvent(new Event('click', { bubbles: true }));
+        }
+    });
+    """
+    driver.execute_script(js_unselect_all)
+    print("Unselected all checkboxes")
 
-  # Use JavaScript to set the slider value and dispatch input and change events
-  desired_value = 1
-  driver.execute_script("""
+
+# Function to select a specific checkbox by ID
+def select_checkbox_by_id(driver, checkbox_id):
+    js_select = f"""
+    var checkbox = document.getElementById('{checkbox_id}');
+    if (checkbox && !checkbox.checked) {{
+        checkbox.checked = true;
+        checkbox.dispatchEvent(new Event('change', {{ bubbles: true }}));
+        checkbox.dispatchEvent(new Event('click', {{ bubbles: true }}));
+    }}
+    """
+    driver.execute_script(js_select)
+    print(f"Selected checkbox: {checkbox_id}")
+
+
+def fetch_and_save_data(driver):
+    player_data = []
+    rows = driver.find_elements(By.XPATH, "//tr[@data-key]")
+
+    upper = ['row_num', 'name', 'team', 'pos', 'mp', 'rap_box_o', 'rap_box_d', 'rap_box', 'rap_onoff_o', 'rap_onoff_d',
+             'rap_onoff', 'rap_o', 'rap_d', 'rap', 'war']
+    # Loop through each row and gather all data
+    for row in rows:
+        player = {}
+        # Extract key attributes
+        player['data_key'] = row.get_attribute('data-key')
+        player['id'] = row.get_attribute('id')
+
+        # Extract all columns, even if empty
+        columns_td = row.find_elements(By.TAG_NAME, 'td')
+        for idx, col in enumerate(columns_td):
+            text = col.text.strip()  # Extract text content
+            if not text:  # Handle empty cells
+                text = col.get_attribute('data-val') or ''  # Try to fetch 'data-val' if available
+            player[upper[idx]] = text
+
+        # Add the player data to the list
+        player_data.append(player)
+    return player_data
+
+
+def scrape(driver, url, timestamp, season, file_path):
+    print(f"url: {url}")
+    driver.get(url)
+    slider = driver.find_element(By.ID, 'filter-slider')
+
+    # Use JavaScript to set the slider value and dispatch input and change events
+    desired_value = 1
+    driver.execute_script("""
       var slider = arguments[0];
       slider.value = arguments[1];
       slider.dispatchEvent(new Event('input'));
       slider.dispatchEvent(new Event('change'));
   """, slider, desired_value)
 
+    # change the dropdown to Regular season
+    wait = WebDriverWait(driver, 10)
+    dropdown_element = wait.until(
+        EC.presence_of_element_located((By.ID, "filter-season-type"))
+    )
 
-  # checkboxes = driver.find_elements(By.CLASS_NAME, "year-checkbox")
-  # for checkbox in checkboxes:
-  #   if not checkbox.is_selected():
-  #       checkbox.click()
-  # for checkbox in checkboxes:
-  #   print(f"Checkbox for {checkbox.get_attribute('year')} is {'checked' if checkbox.is_selected() else 'unchecked'}.")
+    # Create a Selenium Select object based on the dropdown
+    select_dropdown = Select(dropdown_element)
 
-  # change the dropdown to Regular season
-  wait = WebDriverWait(driver, 10)
-  dropdown_element = wait.until(
-      EC.presence_of_element_located((By.ID, "filter-season-type"))
-  )
+    # Select by visible text
+    select_dropdown.select_by_visible_text(season)
 
-  # Create a Selenium Select object based on the dropdown
-  select_dropdown = Select(dropdown_element)
+    # (Optional) Print out the newly selected option
+    selected_option = select_dropdown.first_selected_option.text
+    print("Selected option:", selected_option)
 
-  # Select by visible text
-  select_dropdown.select_by_visible_text(season)
+    # Wait for the checkboxes to be present
+    wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "year-checkbox")))
 
-  # (Optional) Print out the newly selected option
-  selected_option = select_dropdown.first_selected_option.text
-  print("Selected option:", selected_option)
+    # Array of checkbox IDs to iterate through
+    checkbox_ids = [
+        'filter-2014',
+        'filter-2015',
+        'filter-2016',
+        'filter-2017',
+        'filter-2018',
+        'filter-2019',
+        'filter-2020',
+        'filter-2021',
+        'filter-2022'
+    ]
 
+    for checkbox_id in checkbox_ids:
+        print(f"\n--- Processing {checkbox_id} ---")
 
+        # Step 1: Unselect all checkboxes to ensure only one is selected
+        unselect_all_checkboxes(driver)
 
-  # Wait for the table to update (use WebDriverWait if necessary for AJAX loads)
-  #WebDriverWait(driver, 15).until(EC.presence_of_all_elements_located((By.XPATH, "//tr[@data-key]")))
+        # Small delay to let the page process
+        time.sleep(1)
 
-  # Locate all rows in the table
-  rows = driver.find_elements(By.XPATH, "//tr[@data-key]")
+        # Step 2: Select the current checkbox
+        select_checkbox_by_id(driver, checkbox_id)
 
-  upper = ['row_num', 'name', 'team', 'pos', 'mp','rap_box_o', 'rap_box_d', 'rap_box', 'rap_onoff_o', 'rap_onoff_d', 'rap_onoff', 'rap_o', 'rap_d', 'rap', 'war']
-  # Initialize an empty list to store player data
-  player_data = []
+        # Small delay to let the page process the selection
+        time.sleep(5)
 
-  ids = []
+        # Step 3: Call download()
+        player_data = fetch_and_save_data(driver)
+        save_data(timestamp, player_data, season, file_path, checkbox_id)
 
-  # Loop through each row and gather all data
-  for row in rows:
-      player = {}
-      # Extract key attributes
-      player['data_key'] = row.get_attribute('data-key')
-      player['id'] = row.get_attribute('id')
-
-      # Extract all columns, even if empty
-      columns_td = row.find_elements(By.TAG_NAME, 'td')
-      for idx, col in enumerate(columns_td):
-          text = col.text.strip()  # Extract text content
-          if not text:  # Handle empty cells
-              text = col.get_attribute('data-val') or ''  # Try to fetch 'data-val' if available
-          player[upper[idx]] = text
-
-      # Add the player data to the list
-      player_data.append(player)
-
-  dir = season
-  save_data(timestamp, player_data, season)
 
 def fetch_wayback_snapshots(url):
     """
@@ -145,57 +206,6 @@ def fetch_wayback_snapshots(url):
     of dictionaries with timestamp and the complete
     archived URL.
     """
-    # CDX API endpoint with JSON output
-    missing_timestamps = ['20221027170035', '20220611185233', '20250306125347', '20230516130653', '20250102180841',
-                          '20230427031018', '20211220130617', '20210712174807', '20220622193644', '20220527213923',
-                          '20220328193951', '20230427032049', '20211216233434', '20231031172208', '20250306030046',
-                          '20230427031254', '20231203213544', '20220723033222', '20220321165347', '20220405032451',
-                          '20220104004934', '20210930085104', '20230427030700', '20230427030245', '20230427030630',
-                          '20230427032439', '20230331204701', '20221227232407', '20240119013336', '20230427030111',
-                          '20230125235613', '20230427030648', '20211228215345', '20220922202824', '20220218020704',
-                          '20230110171212', '20230130181128', '20220413162204', '20210613164620', '20210713150229',
-                          '20220313045617', '20230427025720', '20230427032414', '20220219042241', '20231223025040',
-                          '20230427030030', '20220107000332', '20211217073728', '20230427031418', '20221219133756',
-                          '20211227193849', '20230521135514', '20230427030821', '20230111181221', '20220429155256',
-                          '20230427031103', '20220211160504', '20230427031905', '20220202150808', '20230427033450',
-                          '20230427031749', '20230427032056', '20230427030202', '20230427030946', '20230521135346',
-                          '20230427030358', '20230315050931', '20230427031153', '20230427031405', '20230427030857',
-                          '20240716020028', '20230726112335', '20230109161003', '20230427032259', '20230427030454',
-                          '20230427031535', '20220228231924', '20230110170543', '20220414132338', '20220313034447',
-                          '20220310180700', '20221216153824', '20210716133708', '20211218150806', '20230427032607',
-                          '20221225025305', '20210613132344', '20230427033611', '20230427030131', '20230427030331',
-                          '20220423094827', '20230516130201', '20221129223819', '20211223202134', '20230427032634',
-                          '20230427033656', '20250306013802', '20211229052155', '20230413201712', '20230427032358',
-                          '20220108110854', '20230427033532', '20230427031504', '20240111083822', '20230621145310',
-                          '20230121202458', '20230427031531', '20230427030510', '20220310130132', '20230427033559',
-                          '20230427033636', '20220511223358', '20230726161017', '20230427031242', '20221110201351',
-                          '20230102040645', '20221205183628', '20211220222259', '20230705162722', '20250129230503',
-                          '20230427030308', '20230427045833', '20230427031521', '20220518220811', '20220218030842',
-                          '20230104165156', '20210706140744', '20220311180739', '20230516130208', '20230705172423',
-                          '20230427031621', '20220215210507', '20221110125421', '20230427033717', '20230314232259',
-                          '20230427031644', '20230427031036', '20230130180424', '20221202005041', '20211225192748',
-                          '20230427030800', '20230427032456', '20230427031352', '20221105202519', '20221110094247',
-                          '20230705202955', '20241002175457', '20221025125529', '20230427031130', '20230103103710',
-                          '20230104165651', '20230705053912', '20220406185135', '20230427032736', '20241008080203',
-                          '20230419112111', '20230705025214', '20220411135336', '20221219222129', '20221213020222',
-                          '20230427043426', '20221130175609', '20221110090001', '20221216211010', '20220218194837',
-                          '20230117203943', '20220509142356', '20230427033745', '20230217095605', '20220211161059',
-                          '20221112202317', '20220617010746', '20230427032711', '20250304201139', '20230210144050',
-                          '20230427032156', '20230427030557', '20230625193104', '20230120195118', '20230427030920',
-                          '20221127174056', '20230427031327', '20230427032550', '20230328185315', '20230427031442',
-                          '20230109160432', '20230427032647', '20250305140835', '20220617032052', '20230327160805',
-                          '20230427032323', '20230113014403', '20230120044359', '20210916100351', '20220705205723',
-                          '20220111131517', '20220112144241', '20230427031438', '20230427030404', '20230308040913',
-                          '20240123040332', '20221208172539', '20230328235512', '20230427030740', '20220423135506',
-                          '20230705052904', '20220412183957', '20230427030541', '20240519162623', '20221126212301',
-                          '20220609034716', '20230330021102', '20250306182230', '20230427031601', '20230427030433',
-                          '20230428084720', '20220217182257', '20230427033503', '20221120140346', '20230427032752',
-                          '20230113025136', '20230125235051', '20250118082338', '20220120135952', '20220403123134',
-                          '20231001010444', '20220324192516', '20221219230252', '20221222190945', '20220416005214',
-                          '20230427025949', '20211227184248', '20220414120855', '20230508032223', '20220313224831',
-                          '20240408182502', '20211227204848', '20220313063115', '20230427031721', '20230427030052',
-                          '20220430055036', '20220215211049', '20230427032809', '20230306010123', '20220408230001']
-
     cdx_url = (
         "https://web.archive.org/cdx/search/cdx"
         "?url={url}&output=json"
@@ -214,7 +224,7 @@ def fetch_wayback_snapshots(url):
             print("No snapshots found or no data returned.")
             return []
 
-        headers = data[0]       # e.g. ["timestamp", "original", "statuscode"]
+        headers = data[0]  # e.g. ["timestamp", "original", "statuscode"]
         snapshot_rows = data[1:]
 
         snapshots_list = []
@@ -224,8 +234,12 @@ def fetch_wayback_snapshots(url):
         for row in snapshot_rows:
             snapshot_info = dict(zip(headers, row))
             timestamp = snapshot_info["timestamp"]
-            if timestamp not in missing_timestamps:
+            # if timestamp not in missing_timestamps:
+            if timestamp_already_processed(timestamp, "538"):
+                print(f"Skipping already processed timestamp: {timestamp}")
                 continue
+            else:
+                print(f"Processing timestamp: {timestamp}")
             original_url = snapshot_info["original"]
 
             # Construct the Wayback Machine archived URL
@@ -243,26 +257,34 @@ def fetch_wayback_snapshots(url):
         print(f"Error fetching snapshots: {e}")
         return []
 
+
 def main():
     target_url = "https://projects.fivethirtyeight.com/nba-player-ratings/"
-    snapshots   = fetch_wayback_snapshots(target_url)
-    failed      = []
+    snapshots = fetch_wayback_snapshots(target_url)
+    failed = []
+
+    base_dir = Path(__file__).resolve().parent
+    dir_538 = base_dir / "538"
 
     for snap in snapshots:
         for season in ["Full season", "Regular season", "Playoffs"]:
-            outfile = f"{snap['timestamp']}.csv"
-            if os.path.exists(os.path.join(season, outfile)):
+            new_dir = dir_538 / season
+            new_dir.mkdir(parents=True, exist_ok=True)
+
+            timestamp = snap['timestamp']
+            outfile = f"{timestamp}.csv"
+            file_path = os.path.join("538", season, outfile)
+            if os.path.exists(file_path):
                 continue
 
-            driver = new_driver()                       # <-- create
+            driver = new_driver()  # <-- create
             try:
-                scrape(driver, snap['archived_url'],
-                       snap['timestamp'], season)
+                scrape(driver, snap['archived_url'], timestamp, season, file_path)
             except Exception as e:
-                print(f"[{snap['timestamp']}] failed: {e}")
-                failed.append(snap['timestamp'])
+                print(f"[{timestamp}] failed: {e}")
+                failed.append(timestamp)
             finally:
-                close_driver(driver)                    # <-- destroy
+                close_driver(driver)  # <-- destroy
 
     print("Failed timestamps:", failed)
 
