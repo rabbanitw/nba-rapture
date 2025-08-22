@@ -178,7 +178,7 @@ def save_data():
                     process_nba(timestamp, file_path, season_type_value, data_type)
                 elif name.startswith('wowy_'):  # NBA tracking data
                     source, timestamp, player, on_or_off = extract_parts_wowy(name)
-                    file_path = os.path.join(folder_path, season_type_value, f"{name}.json")
+                    file_path = os.path.join(folder_path, season_type_value, f"{name}.csv")
                     process_wowy(timestamp, file_path, season_type_value, on_or_off, player)
                 elif name.isnumeric():  # 538 raptor
                     # timestamp = name
