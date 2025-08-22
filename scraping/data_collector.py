@@ -321,10 +321,10 @@ async def process_player(ts: str, player: str, LOG: dict, log_lock: asyncio.Lock
     TRACKING_PLAYOFFS = ""
 
     for season in season_types:
-        if season == "Playoffs":
-            if not is_legit_playoff_timestamp(ts):
-                # Not a playoff timestamp; skip this season
-                continue
+        # if season == "Playoffs":
+        #     if not is_legit_playoff_timestamp(ts):
+        #         # Not a playoff timestamp; skip this season
+        #         continue
         if season == "Full":
             # Depends on reg + playoffs existing; logic kept as in original
             if MP_PLAYOFFS:
