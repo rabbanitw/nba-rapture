@@ -52,7 +52,7 @@ def close_driver(driver: webdriver.Chrome):
 
 
 # Write data to the CSV
-def save_data(timestamp, player_data, season, file_path, checkbox_id):
+def save_data(timestamp, player_data, season, checkbox_id):
 
     base_dir = Path(__file__).resolve().parent
     dir_538 = base_dir / "538"
@@ -133,7 +133,7 @@ def fetch_and_save_data(driver):
     return player_data
 
 
-def scrape(driver, url, timestamp, season, file_path):
+def scrape(driver, url, timestamp, season, checkbox_id):
     print(f"url: {url}")
     driver.get(url)
     slider = driver.find_element(By.ID, 'filter-slider')
@@ -167,36 +167,23 @@ def scrape(driver, url, timestamp, season, file_path):
     wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "year-checkbox")))
 
     # Array of checkbox IDs to iterate through
-    checkbox_ids = [
-        'filter-2014',
-        'filter-2015',
-        'filter-2016',
-        'filter-2017',
-        'filter-2018',
-        'filter-2019',
-        'filter-2020',
-        'filter-2021',
-        'filter-2022'
-    ]
+    print(f"\n--- Processing {checkbox_id} ---")
 
-    for checkbox_id in checkbox_ids:
-        print(f"\n--- Processing {checkbox_id} ---")
+    # Step 1: Unselect all checkboxes to ensure only one is selected
+    unselect_all_checkboxes(driver)
 
-        # Step 1: Unselect all checkboxes to ensure only one is selected
-        unselect_all_checkboxes(driver)
+    # Small delay to let the page process
+    time.sleep(1)
 
-        # Small delay to let the page process
-        time.sleep(1)
+    # Step 2: Select the current checkbox
+    select_checkbox_by_id(driver, checkbox_id)
 
-        # Step 2: Select the current checkbox
-        select_checkbox_by_id(driver, checkbox_id)
+    # Small delay to let the page process the selection
+    time.sleep(4)
 
-        # Small delay to let the page process the selection
-        time.sleep(5)
-
-        # Step 3: Call download()
-        player_data = fetch_and_save_data(driver)
-        save_data(timestamp, player_data, season, file_path, checkbox_id)
+    # Step 3: Call download()
+    player_data = fetch_and_save_data(driver)
+    save_data(timestamp, player_data, season, checkbox_id)
 
 
 def fetch_wayback_snapshots(url):
@@ -261,6 +248,18 @@ def fetch_wayback_snapshots(url):
 def main():
     target_url = "https://projects.fivethirtyeight.com/nba-player-ratings/"
     snapshots = fetch_wayback_snapshots(target_url)
+    print(f"snapshots length: {len(snapshots)}")
+    seen_timestamps = set()
+    unique_snapshots = []
+
+    for snapshot in snapshots:
+        if snapshot["timestamp"] not in seen_timestamps:
+            seen_timestamps.add(snapshot["timestamp"])
+            unique_snapshots.append(snapshot)
+
+    snapshots = unique_snapshots
+    print(f"new snapshots length: {len(snapshots)}")
+
     failed = []
 
     base_dir = Path(__file__).resolve().parent
@@ -268,23 +267,38 @@ def main():
 
     for snap in snapshots:
         for season in ["Full season", "Regular season", "Playoffs"]:
-            new_dir = dir_538 / season
-            new_dir.mkdir(parents=True, exist_ok=True)
+            checkbox_ids = [
+                'filter-2014',
+                'filter-2015',
+                'filter-2016',
+                'filter-2017',
+                'filter-2018',
+                'filter-2019',
+                'filter-2020',
+                'filter-2021',
+                'filter-2022'
+            ]
+            for checkbox_id in checkbox_ids:
+                new_dir = dir_538 / season
+                new_dir.mkdir(parents=True, exist_ok=True)
+                new_dir = new_dir / checkbox_id
+                new_dir.mkdir(parents=True, exist_ok=True)
 
-            timestamp = snap['timestamp']
-            outfile = f"{timestamp}.csv"
-            file_path = os.path.join("538", season, outfile)
-            if os.path.exists(file_path):
-                continue
+                timestamp = snap['timestamp']
+                outfile = f"{timestamp}.csv"
+                file_path = os.path.join(new_dir, outfile)
+                if os.path.exists(file_path):
+                    print(f"Skipping already processed file_path: {file_path}")
+                    continue
 
-            driver = new_driver()  # <-- create
-            try:
-                scrape(driver, snap['archived_url'], timestamp, season, file_path)
-            except Exception as e:
-                print(f"[{timestamp}] failed: {e}")
-                failed.append(timestamp)
-            finally:
-                close_driver(driver)  # <-- destroy
+                driver = new_driver()  # <-- create
+                try:
+                    scrape(driver, snap['archived_url'], timestamp, season, checkbox_id)
+                except Exception as e:
+                    print(f"[{timestamp}] failed: {e}")
+                    failed.append(timestamp)
+                finally:
+                    close_driver(driver)  # <-- destroy
 
     print("Failed timestamps:", failed)
 
