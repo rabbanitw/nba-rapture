@@ -2,6 +2,7 @@ from datetime import datetime
 import re
 import asyncio, functools, os
 from time import sleep
+from utils import get_date_range
 
 _failed_log_lock = asyncio.Lock()  # one lock for the whole module
 
@@ -72,110 +73,6 @@ def get_season(waystamp):
 def inside_range(timestamp, end):
     return timestamp < wayback_time(end)
 
-
-def get_date_range(timestamp, season_type):
-    season = get_season(timestamp)
-
-    # 2020-21 season (COVID-affected)
-    if season == '2020-21':
-        if season_type == "Playoffs":
-            if inside_range(timestamp, '2021-07-20'):
-                return ['2021-05-22', regular_time(timestamp)]
-        elif season_type == "Regular Season":
-            if inside_range(timestamp, '2021-05-22'):
-                return ['2020-12-22', regular_time(timestamp)]
-        else:
-            return ['2020-12-22', regular_time(timestamp)]
-
-    # 2021-22 season
-    elif season == '2021-22':
-        if season_type == "Playoffs":
-            if inside_range(timestamp, '2022-06-16'):
-                return ['2022-04-16', regular_time(timestamp)]
-        elif season_type == "Regular season":
-            if inside_range(timestamp, '2022-04-16'):
-                return ['2021-10-19', regular_time(timestamp)]
-        else:
-            return ['2021-10-19', regular_time(timestamp)]
-
-    # 2022-23 season
-    elif season == '2022-23':
-        if season_type == "Playoffs":
-            if inside_range(timestamp, '2023-06-12'):
-                return ['2023-04-15', regular_time(timestamp)]
-        elif season_type == "Regular season":
-            if inside_range(timestamp, '2023-04-15'):
-                return ['2022-10-18', regular_time(timestamp)]
-        else:
-            return ['2022-10-18', regular_time(timestamp)]
-
-    # 2019-20 season (COVID-affected)
-    elif season == '2019-20':
-        if season_type == "Playoffs":
-            return ['2020-08-17', '2020-10-11']  # Playoffs resumed in bubble
-        elif season_type == "Regular Season":
-            return ['2019-10-22', '2020-08-17']
-        else:
-            return ['2019-10-22', '2020-10-11']
-
-    # 2018-19 season
-    elif season == '2018-19':
-        if season_type == "Playoffs":
-            return ['2019-04-13', '2019-06-13']
-        elif season_type == "Regular Season":
-            return ['2018-10-16', '2019-04-13']
-        else:
-            return ['2018-10-16', '2019-06-13']
-
-    # 2017-18 season
-    elif season == '2017-18':
-        if season_type == "Playoffs":
-            return ['2018-04-14', '2018-06-08']
-        elif season_type == "Regular Season":
-            return ['2017-10-17', '2018-04-14']
-        else:
-            return ['2017-10-17', '2018-06-08']
-
-    # 2016-17 season
-    elif season == '2016-17':
-        if season_type == "Playoffs":
-            return ['2017-04-15', '2017-06-12']
-        elif season_type == "Regular Season":
-            return ['2016-10-25', '2017-04-15']
-        else:
-            return ['2016-10-25', '2017-06-12']
-
-    # 2015-16 season
-    elif season == '2015-16':
-        if season_type == "Playoffs":
-            return ['2016-04-16', '2016-06-19']
-        elif season_type == "Regular Season":
-            return ['2015-10-27', '2016-04-16']
-        else:
-            return ['2015-10-27', '2016-06-19']
-
-    # 2014-15 season
-    elif season == '2014-15':
-        if season_type == "Playoffs":
-            return ['2015-04-18', '2015-06-16']
-        elif season_type == "Regular Season":
-            return ['2014-10-28', '2015-04-18']
-        else:
-            return ['2014-10-28', '2015-06-16']
-
-    # 2013-14 season
-    elif season == '2013-14':
-        if season_type == "Playoffs":
-            return ['2014-04-19', '2014-06-15']
-        elif season_type == "Regular Season":
-            return ['2013-10-29', '2014-04-19']
-        else:
-            return ['2013-10-29', '2014-06-15']
-
-    # No matching branch
-    raise ValueError(
-        f"No date-range rule for season={season} season_type={season_type}"
-    )
 
 
 def regular_time(waystamp):

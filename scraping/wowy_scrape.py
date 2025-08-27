@@ -33,7 +33,6 @@ headers = {
 
 db = database.get_database()
 
-SEM = asyncio.Semaphore(10)
 lock = asyncio.Lock()
 processed_count = 0
 
@@ -79,6 +78,11 @@ options.add_argument("--disable-gpu")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
+
+
+def is_after_last_timestamp(timestamp):
+    return timestamp >= '20220107000332'
+
 
 
 def retrieve_from_wowy_via_selenium(player_name, team_name, date_str, season_type_key, season_type_value, is_on,
@@ -212,7 +216,7 @@ def save_local_wowy_data(wowy_data, output_path):
     #     print("File exists!")
 
     else:
-        print("writing to file")
+        print("writing to file", path)
         # with open(output_path, mode='w', newline='', encoding='utf-8') as csvfile:
         #     writer = csv.DictWriter(csvfile, fieldnames=wowy_data.keys())
         #     writer.writeheader()
@@ -277,7 +281,11 @@ async def process_file(full_file_path, filename, season_type_key, season_type_va
 
     with open(full_file_path, 'r') as file:
         c = csv.DictReader(file)
-        header = next(c)
+        try:
+            header = next(c)
+        except StopIteration:
+            print(f"Warning: Empty CSV file: {full_file_path}")
+            return
         for row in c:
             player_name = utils.remove_numbers_and_apostrophes(row['name'])
             team_name = row['team']
@@ -330,7 +338,7 @@ async def main():
     season_type_keys = {
         'Regular season': 'Regular Season',
         'Playoffs': 'Playoffs',
-        'Full season': 'Full season'
+        'Full season': 'All'
     }
 
     base_folder = '538'
@@ -341,7 +349,7 @@ async def main():
         return
 
     # concurrency limit to 10 tasks at a time (tweak as needed)
-    sem = asyncio.Semaphore(10)
+    sem = asyncio.Semaphore(3)
 
     # Iterate through season type folders
     for season_type_folder in os.listdir(base_folder):
@@ -390,6 +398,10 @@ async def main():
 
                 if not name.isnumeric():
                     print(f"    Skipping non-numeric file: {filename}")
+                    continue
+
+                if is_after_last_timestamp(name):
+                    print(f"    Skipping because it's after the last timestamp: {filename}")
                     continue
 
                 full_file_path = filepath
