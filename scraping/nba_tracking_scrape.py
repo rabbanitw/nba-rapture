@@ -15,12 +15,9 @@ import os
 import utils
 from datetime import datetime
 from typing import Any
-# Modern style (3.10+) – Callable lives in collections.abc
-from collections.abc import Callable
 import re
 import tempfile
 import shutil
-import undetected_chromedriver as uc
 import traceback
 from data import nba_player_ids, historical_checkbox_ids, get_final_timestamp_for_season
 import csv
@@ -95,12 +92,12 @@ def to_float_if_num(value) -> Any:
     return value
 
 
-def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str, player_name: str = None) -> None:
+def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str, player_name: str = None, custom_root_dir: str = None) -> None:
     """
     Modified to optionally filter for a specific player and save to a unique filename.
     """
     url = f"https://www.nba.com/stats/players/{stat_type}"
-    date_range = utils.get_date_range(timestamp, season_type)
+    date_range = utils.get_date_range_extended(timestamp, season_type)
     if not date_range or len(date_range) != 2:
         print(f"No valid date range for {timestamp!r} / {season_type!r}. Skipping.")
         return
@@ -143,7 +140,7 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str, play
     filter_folder = f"filter-{year}"
 
     # Create directory structure: nba_api/season_type/filter_folder/file
-    output_dir = ROOT_DIR / season_type / filter_folder
+    output_dir = (custom_root_dir or ROOT_DIR) / season_type / filter_folder
     output_path = output_dir / output_file
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

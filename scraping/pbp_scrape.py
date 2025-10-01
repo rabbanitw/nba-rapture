@@ -2,7 +2,7 @@ from datetime import datetime
 import re
 import asyncio, functools, os
 from time import sleep
-from utils import get_date_range
+from utils import get_date_range_extended
 
 _failed_log_lock = asyncio.Lock()  # one lock for the whole module
 
@@ -110,7 +110,7 @@ def scrape_and_save_without_async(date_str, season_type_key, season_type_value, 
     print(f"now processing {output_path}")
     url = "https://api.pbpstats.com/get-totals/nba"
     try:
-        start_date, end_date = get_date_range(date_str, season_type_value)
+        start_date, end_date = get_date_range_extended(date_str, season_type_value)
     except ValueError as e:
         print(f"[SKIP] {e}")
         return
@@ -184,7 +184,7 @@ async def scrape_and_save(date_str, season_type_key, season_type_value, output_p
     print(f"now processing {output_path}")
     url = "https://api.pbpstats.com/get-totals/nba"
     try:
-        start_date, end_date = get_date_range(date_str, season_type_value)
+        start_date, end_date = get_date_range_extended(date_str, season_type_value)
     except ValueError as e:
         await log_failed(date_str, season_type_value, str(e))
         print(f"[SKIP] {e}")

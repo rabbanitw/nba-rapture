@@ -97,7 +97,7 @@ def is_after_last_timestamp(timestamp):
 def retrieve_from_wowy_via_selenium(player_name, team_name, date_str, season_type_key, season_type_value, is_on,
                                     output_path=None, team_id=None):
     try:
-        start_date, end_date = utils.get_date_range(date_str, season_type_value)
+        start_date, end_date = utils.get_date_range_extended(date_str, season_type_value)
     except TypeError as e:
         print(f"[SKIP] {e}")
         return
@@ -134,7 +134,7 @@ def retrieve_from_wowy_via_selenium(player_name, team_name, date_str, season_typ
 
     if parsed_rows:
         save_local_wowy_data(parsed_rows, output_path)
-        write_wowy_data(stats, player_name, date_str, season_type_value, is_on)
+        # write_wowy_data(stats, player_name, date_str, season_type_value, is_on)
     else:
         print("No data to write")
         with open("wowy_skipped.txt", "a", encoding="utf-8") as f:
@@ -250,7 +250,7 @@ def retrieve_from_wowy(player_name, team_name, date_str, season_type_key, season
                        team_id=None):
     url = "https://api.pbpstats.com/get-wowy-stats/nba"
     try:
-        start_date, end_date = utils.get_date_range(date_str, season_type_value)
+        start_date, end_date = utils.get_date_range_extended(date_str, season_type_value)
     except TypeError as e:
         print(f"[SKIP] {e}")
         return
