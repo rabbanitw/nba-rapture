@@ -53,6 +53,46 @@ def inside_range(timestamp, end):
 
 
 def get_date_range(timestamp, season_type):
+
+  season = get_season(timestamp)
+
+  match season:
+    case '2020-21':
+      if season_type == "Playoffs":
+        if inside_range(timestamp,'2021-07-20'):
+          return ['2021-05-22',regular_time(timestamp)]
+        else:
+          return ""
+      elif season_type == "Regular season":
+        if inside_range(timestamp,'2021-05-22'):
+          return ['2020-12-22',regular_time(timestamp)]
+      else:
+        return ['2020-12-22',regular_time(timestamp)]
+    case '2021-22':
+      if season_type == "Playoffs":
+        if inside_range(timestamp,'2022-06-16'):
+          return ['2022-04-16',regular_time(timestamp)]
+        else:
+          return ""
+      elif season_type == "Regular season":
+        if inside_range(timestamp, "2022-04-16"):
+          return ["2021-10-19",regular_time(timestamp)]
+      else:
+        return ["2021-10-19",regular_time(timestamp)]
+    case '2022-23':
+      if season_type == "Playoffs":
+        if inside_range(timestamp, "2023-06-12"):
+          return ["2023-04-15",regular_time(timestamp)]
+        else:
+          return ""
+      elif season_type == "Regular season":
+        if inside_range(timestamp,"2023-04-15"):
+          return ['2022-10-18', regular_time(timestamp)]
+      else:
+          return ['2022-10-18', regular_time(timestamp)]
+
+## Note - use this instead of get_date_range()
+def get_date_range_extended(timestamp, season_type):
   season = get_season(timestamp)
 
   # 2024-25 season

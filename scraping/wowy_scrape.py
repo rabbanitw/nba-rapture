@@ -79,6 +79,15 @@ options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
 
+timestamps_to_scrape = [
+    '20140715000000',
+    '20150715000000',
+    '20160715000000',
+    '20170715000000',
+    '20180715000000',
+    '20201101000000'
+]
+
 
 def is_after_last_timestamp(timestamp):
     return timestamp >= '20220107000332'
@@ -125,7 +134,7 @@ def retrieve_from_wowy_via_selenium(player_name, team_name, date_str, season_typ
 
     if parsed_rows:
         save_local_wowy_data(parsed_rows, output_path)
-        # write_wowy_data(stats, player_name, date_str, season_type_value, is_on)
+        write_wowy_data(stats, player_name, date_str, season_type_value, is_on)
     else:
         print("No data to write")
         with open("wowy_skipped.txt", "a", encoding="utf-8") as f:
@@ -327,14 +336,14 @@ async def process_file(full_file_path, filename, season_type_key, season_type_va
 async def main():
     processed_files = load_processed_files()
 
-    # Define the mapping between folder names and API season types
+    # Folder-name -> utils.get_date_range() "season_type_value"
     season_type_mapping = {
         'Regular season': 'Regular season',
         'Playoffs': 'Playoffs',
         'Full season': 'All'
     }
 
-    # Define the mapping between folder names and API keys
+    # Folder-name -> API "SeasonType" value
     season_type_keys = {
         'Regular season': 'Regular Season',
         'Playoffs': 'Playoffs',
@@ -342,77 +351,61 @@ async def main():
     }
 
     base_folder = '538'
-
-    # Check if 538 folder exists
     if not os.path.exists(base_folder):
         print(f"Error: {base_folder} folder not found!")
         return
 
-    # concurrency limit to 10 tasks at a time (tweak as needed)
+    # Concurrency cap
     sem = asyncio.Semaphore(3)
 
-    # Iterate through season type folders
-    for season_type_folder in os.listdir(base_folder):
-        season_type_path = os.path.join(base_folder, season_type_folder)
-
-        # Skip if not a directory or not in our mapping
-        if not os.path.isdir(season_type_path) or season_type_folder not in season_type_mapping:
+    # Iterate the explicit lists instead of scanning the directory tree
+    for season_type_folder, season_type_key in season_type_keys.items():
+        # Skip unknown folders just in case
+        if season_type_folder not in season_type_mapping:
             continue
 
         season_type_value = season_type_mapping[season_type_folder]
-        season_type_key = season_type_keys[season_type_folder]
+        print(f"Processing season type: {season_type_folder} ({season_type_key})")
 
-        print(f"Processing season type: {season_type_folder}")
-
-        # Iterate through filter folders (filter-2014, filter-2015, etc.)
-        for filter_folder in os.listdir(season_type_path):
-            filter_path = os.path.join(season_type_path, filter_folder)
-
-            # Skip if not a directory or doesn't start with 'filter-'
-            if not os.path.isdir(filter_path) or not filter_folder.startswith('filter-'):
+        for timestamp in timestamps_to_scrape:
+            # Basic guards
+            if not isinstance(timestamp, str) or not timestamp.isdigit():
+                print(f"  Skipping invalid timestamp: {timestamp!r}")
+                continue
+            if is_after_last_timestamp(timestamp):
+                print(f"  Skipping because it's after the last timestamp: {timestamp}")
                 continue
 
-            print(f"  Processing filter: {filter_folder}")
+            # Derive filter folder from the year in the timestamp
+            year = timestamp[:4] if timestamp[:4] != '2020' else '2019'
+            filter_folder = f"filter-{year}"
+            filename = f"{timestamp}.csv"
+            filepath = os.path.join(base_folder, season_type_folder, filter_folder, filename)
 
-            # Iterate through files in the filter folder
-            for filename in os.listdir(filter_path):
-                filepath = os.path.join(filter_path, filename)
+            # Unique id for processed-files tracking
+            file_identifier = f"{season_type_folder}/{filter_folder}/{filename}"
 
-                # Skip if not a file
-                if not os.path.isfile(filepath):
-                    continue
+            if file_identifier in processed_files:
+                print(f"  Skipping already processed file: {file_identifier}")
+                continue
 
-                # Create a unique identifier for processed files tracking
-                file_identifier = f"{season_type_folder}/{filter_folder}/{filename}"
+            # Make sure the CSV exists
+            if not os.path.isfile(filepath):
+                print(f"  Missing CSV: {filepath} — skipping")
+                continue
 
-                if file_identifier in processed_files:
-                    print(f"    Skipping already processed file: {file_identifier}")
-                    continue
+            print(f"  Processing: {file_identifier}")
+            await process_file(
+                filepath,
+                filename,
+                season_type_key,
+                season_type_value,
+                season_type_folder,
+                filter_folder,
+                sem
+            )
 
-                name, extension = os.path.splitext(filename)
-
-                # Skip if not a CSV file or filename is not numeric (timestamp)
-                if extension.lower() != '.csv':
-                    print(f"    Skipping non-CSV file: {filename}")
-                    continue
-
-                if not name.isnumeric():
-                    print(f"    Skipping non-numeric file: {filename}")
-                    continue
-
-                if is_after_last_timestamp(name):
-                    print(f"    Skipping because it's after the last timestamp: {filename}")
-                    continue
-
-                full_file_path = filepath
-
-                print(f"    Processing file: {filename}")
-
-                # Process one file at a time
-                await process_file(full_file_path, filename, season_type_key,
-                                   season_type_value, season_type_folder, filter_folder, sem)
-
-                mark_file_processed(file_identifier)
+            # mark_file_processed(file_identifier)
 
     print("wowee we're done!")
 

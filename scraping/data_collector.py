@@ -3,16 +3,19 @@ import json
 import os
 import pickle
 import re
+import time
 from datetime import datetime
 from typing import Optional
+import utils
 
 import aiofiles
 from motor.motor_asyncio import AsyncIOMotorClient
 
+OUTPUT_DIR = "nba_data_v2"
 
 # ==== Mongo setup (async) ====
 username = 'nbarapture'
-password = 'cdTMM9n3Awh4ntQw'
+password = 'fAY8cOij4S9NA8Bx'
 MONGO_URI = (
     f"mongodb+srv://{username}:{password}@nba-rapture-2.qnfzf.mongodb.net/"
     "?retryWrites=true&w=majority&appName=nba-rapture-2"
@@ -20,6 +23,12 @@ MONGO_URI = (
 client = AsyncIOMotorClient(MONGO_URI, serverSelectionTimeoutMS=3000000, socketTimeoutMS=3000000)
 db = client["nba_rapture"]
 coll = db["nba_rapture"]
+
+# Global tracking for key counts
+current_wowy_on_keys = None
+current_wowy_off_keys = None
+wowy_on_key_changes = []
+wowy_off_key_changes = []
 
 # ==== Preload key files (sync load is fine at startup; tiny files) ====
 with open("PBP_KEYS.json", "r", encoding="utf-8") as f:
@@ -31,6 +40,7 @@ with open("WOWY_ON_KEYS.json", "r", encoding="utf-8") as f:
 with open("BAD_TRACKING_KEYS.json", "r", encoding="utf-8") as f:
     BAD_TRACKING_KEYS = set(json.load(f))
 
+
 # ==== Helpers ====
 async def dump_pickle(path: str, obj) -> None:
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -38,25 +48,37 @@ async def dump_pickle(path: str, obj) -> None:
     async with aiofiles.open(path, "wb") as f:
         await f.write(data)
 
+
+async def dump_json(path: str, obj) -> None:
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    async with aiofiles.open(path, "w", encoding="utf-8") as f:
+        await f.write(json.dumps(obj, indent=2))
+
+
 def wayback_time(date: str) -> str:
     # date: "YYYY-MM-DD" -> "YYYYMMDDhhmmss" (00:00:00)
     date_object = datetime.strptime(date, "%Y-%m-%d")
     return date_object.strftime("%Y%m%d%H%M%S")
+
 
 def regular_time(waystamp: str) -> str:
     # wayback ts "YYYYMMDDhhmmss" -> "YYYY-MM-DD"
     date_object = datetime.strptime(waystamp, "%Y%m%d%H%M%S")
     return date_object.strftime("%Y-%m-%d")
 
+
 def inside_range(timestamp: str, end: str) -> bool:
     return timestamp < wayback_time(end)
+
 
 def remove_numbers_and_apostrophes(string: str) -> str:
     return re.sub(r'[\d\'\-.]+', '', string)
 
+
 def reformat_date(timestamp: str) -> str:
     date_object = datetime.strptime(timestamp, "%Y-%m-%d")
     return date_object.strftime("%m/%d/%Y")
+
 
 # Map each season to its (PlayoffsStart, PlayoffsEnd), inclusive
 PLAYOFF_WINDOWS = {
@@ -72,29 +94,9 @@ PLAYOFF_WINDOWS = {
     '2022-23': ('2023-04-15', '2023-06-12'),
 }
 
-def get_season(waystamp: str) -> Optional[str]:
-    if waystamp >= wayback_time("2013-10-29") and waystamp < wayback_time("2014-10-28"):
-        return '2013-14'
-    elif waystamp >= wayback_time("2014-10-28") and waystamp < wayback_time("2015-10-27"):
-        return '2014-15'
-    elif waystamp >= wayback_time("2015-10-27") and waystamp < wayback_time("2016-10-25"):
-        return '2015-16'
-    elif waystamp >= wayback_time("2016-10-25") and waystamp < wayback_time("2017-10-17"):
-        return '2016-17'
-    elif waystamp >= wayback_time("2017-10-17") and waystamp < wayback_time("2018-10-16"):
-        return '2017-18'
-    elif waystamp >= wayback_time("2019-10-22") and waystamp < wayback_time("2020-12-22"):
-        return '2019-20'
-    elif waystamp >= wayback_time("2020-12-22") and waystamp < wayback_time("2021-10-19"):
-        return '2020-21'
-    elif waystamp >= wayback_time("2021-10-19") and waystamp < wayback_time("2022-10-18"):
-        return '2021-22'
-    elif waystamp >= wayback_time("2022-10-18") and waystamp <= wayback_time("2023-06-12"):
-        return '2022-23'
-    return None
 
 def is_legit_playoff_timestamp(waystamp: str) -> bool:
-    season = get_season(waystamp)
+    season = utils.get_season(waystamp)
     if not season:
         return False
     window = PLAYOFF_WINDOWS.get(season)
@@ -103,62 +105,31 @@ def is_legit_playoff_timestamp(waystamp: str) -> bool:
     start_date, end_date = window
     return wayback_time(start_date) <= waystamp <= wayback_time(end_date)
 
+
 def playoff_window_for(waystamp: str):
-    season = get_season(waystamp)
+    season = utils.get_season(waystamp)
     if season in PLAYOFF_WINDOWS:
         start_date, end_date = PLAYOFF_WINDOWS[season]
         if wayback_time(start_date) <= waystamp <= wayback_time(end_date):
             return season, start_date, end_date
     return None
 
-def get_date_range(timestamp: str, season_type: str):
-    season = get_season(timestamp)
-
-    if season == '2020-21':
-        if season_type == "Playoffs":
-            if inside_range(timestamp, '2021-07-20'):
-                return ['2021-05-22', regular_time(timestamp)]
-        elif season_type == "Regular Season":
-            if inside_range(timestamp, '2021-05-22'):
-                return ['2020-12-22', regular_time(timestamp)]
-        else:
-            return ['2020-12-22', regular_time(timestamp)]
-
-    elif season == '2021-22':
-        if season_type == "Playoffs":
-            if inside_range(timestamp, '2022-06-16'):
-                return ['2022-04-16', regular_time(timestamp)]
-        elif season_type == "Regular season":
-            if inside_range(timestamp, '2022-04-16'):
-                return ['2021-10-19', regular_time(timestamp)]
-        else:
-            return ['2021-10-19', regular_time(timestamp)]
-
-    elif season == '2022-23':
-        if season_type == "Playoffs":
-            if inside_range(timestamp, '2023-06-12'):
-                return ['2023-04-15', regular_time(timestamp)]
-        elif season_type == "Regular season":
-            if inside_range(timestamp, '2023-04-15'):
-                return ['2022-10-18', regular_time(timestamp)]
-        else:
-            return ['2022-10-18', regular_time(timestamp)]
-
-    raise ValueError(f"No date-range rule for season={season} season_type={season_type}")
-
 
 # ==== Async DB/file ops ====
-async def fetch_538(season_type: str, timestamp: str, standard_name: str, *, projection: dict = None, sort: list = None):
+async def fetch_538(season_type: str, timestamp: str, standard_name: str, *, projection: dict = None,
+                    sort: list = None):
     query = {"source": "538", "standard_name": standard_name, "timestamp": timestamp, "season_type": season_type}
     data = await coll.find_one(query, projection=projection, sort=sort)
     if not data:
         return False
 
-    path = os.path.join("Data", season_type, timestamp, standard_name, "538")
+    path = os.path.join(OUTPUT_DIR, season_type, timestamp, standard_name, "538")
     await dump_pickle(os.path.join(path, "538.pkl"), data)
     return data
 
-async def collect_pbp(season_type: str, timestamp: str, name: str, *, projection: dict = None, sort: list = None, verbose=0):
+
+async def collect_pbp(season_type: str, timestamp: str, name: str, *, projection: dict = None, sort: list = None,
+                      verbose=0):
     BAD_KEYS = {"name", "timestamp", "season_type", "source", "standard_name", "_id", "data_type", "ShortName"}
     LABEL_FIELDS = {"source", "standard_name", "season_type", "timestamp"}
 
@@ -185,11 +156,15 @@ async def collect_pbp(season_type: str, timestamp: str, name: str, *, projection
             d.pop(k, None)
     full_stats = list(d.values())
 
-    path = os.path.join("Data", season_type, timestamp, name, "pbp")
+    path = os.path.join(OUTPUT_DIR, season_type, timestamp, name, "pbp")
     await dump_pickle(os.path.join(path, "pbp.pkl"), full_stats)
     return full_stats
 
-async def collect_wowy_off(season_type: str, timestamp: str, name: str, *, projection: dict = None, sort: list = None, verbose=0):
+
+async def collect_wowy_off(season_type: str, timestamp: str, name: str, *, projection: dict = None, sort: list = None,
+                           verbose=0, key_lock: asyncio.Lock = None):
+    global current_wowy_off_keys, wowy_off_key_changes
+
     BAD_KEYS = {"name", "timestamp", "season_type", "source", "standard_name", "_id", "data_type"}
     LABEL_FIELDS = {"on_or_off", "source", "standard_name", "season_type", "timestamp"}
 
@@ -212,16 +187,48 @@ async def collect_wowy_off(season_type: str, timestamp: str, name: str, *, proje
         return False
 
     d = docs[0]
+
+    # Count keys before filtering
+    num_keys = len([k for k in d.keys() if k not in LABEL_FIELDS])
+
+    # Track key count changes
+    if key_lock:
+        async with key_lock:
+            if current_wowy_off_keys is None:
+                current_wowy_off_keys = num_keys
+                wowy_off_key_changes.append({
+                    "timestamp": timestamp,
+                    "season_type": season_type,
+                    "player": name,
+                    "num_keys": num_keys,
+                    "previous_keys": None,
+                    "change": "initial"
+                })
+            elif num_keys != current_wowy_off_keys:
+                wowy_off_key_changes.append({
+                    "timestamp": timestamp,
+                    "season_type": season_type,
+                    "player": name,
+                    "num_keys": num_keys,
+                    "previous_keys": current_wowy_off_keys,
+                    "change": num_keys - current_wowy_off_keys
+                })
+                current_wowy_off_keys = num_keys
+
     for k in list(d.keys()):
         if (k in LABEL_FIELDS) or (k not in WOWY_OFF_KEYS):
             d.pop(k, None)
     full_stats = list(d.values())
 
-    path = os.path.join("Data", season_type, timestamp, name, "wowy_off")
+    path = os.path.join(OUTPUT_DIR, season_type, timestamp, name, "wowy_off")
     await dump_pickle(os.path.join(path, "wowy_off.pkl"), full_stats)
     return True
 
-async def collect_wowy_on(season_type: str, timestamp: str, name: str, *, projection: dict = None, sort: list = None, verbose=0):
+
+async def collect_wowy_on(season_type: str, timestamp: str, name: str, *, projection: dict = None, sort: list = None,
+                          verbose=0, key_lock: asyncio.Lock = None):
+    global current_wowy_on_keys, wowy_on_key_changes
+
     BAD_KEYS = {"name", "timestamp", "season_type", "source", "standard_name", "_id", "data_type"}
     LABEL_FIELDS = {"on_or_off", "source", "standard_name", "season_type", "timestamp"}
 
@@ -244,20 +251,49 @@ async def collect_wowy_on(season_type: str, timestamp: str, name: str, *, projec
         return False
 
     d = docs[0]
+
+    # Count keys before filtering
+    num_keys = len([k for k in d.keys() if k not in LABEL_FIELDS])
+
+    # Track key count changes
+    if key_lock:
+        async with key_lock:
+            if current_wowy_on_keys is None:
+                current_wowy_on_keys = num_keys
+                wowy_on_key_changes.append({
+                    "timestamp": timestamp,
+                    "season_type": season_type,
+                    "player": name,
+                    "num_keys": num_keys,
+                    "previous_keys": None,
+                    "change": "initial"
+                })
+            elif num_keys != current_wowy_on_keys:
+                wowy_on_key_changes.append({
+                    "timestamp": timestamp,
+                    "season_type": season_type,
+                    "player": name,
+                    "num_keys": num_keys,
+                    "previous_keys": current_wowy_on_keys,
+                    "change": num_keys - current_wowy_on_keys
+                })
+                current_wowy_on_keys = num_keys
+
     for k in list(d.keys()):
-        if k in LABEL_FIELDS:
+        if (k in LABEL_FIELDS) or (k not in WOWY_ON_KEYS):
             d.pop(k, None)
     full_stats = list(d.values())
 
-    path = os.path.join("Data", season_type, timestamp, name, "wowy_on")
+    path = os.path.join(OUTPUT_DIR, season_type, timestamp, name, "wowy_on")
     await dump_pickle(os.path.join(path, "wowy_on.pkl"), full_stats)
     return True
 
+
 async def collect_tracking(season_type: str, timestamp: str, name: str, *, projection: dict = None, sort: list = None):
     TRACK_TYPES = [
-        'catch-shoot','defensive-impact','defensive-rebounding','drives',
-        'elbow-touch','offensive-rebounding','paint-touch','passing','pullup',
-        'rebounding','shooting-efficiency','speed-distance','touches','tracking-post-ups'
+        'catch-shoot', 'defensive-impact', 'defensive-rebounding', 'drives',
+        'elbow-touch', 'offensive-rebounding', 'paint-touch', 'passing', 'pullup',
+        'rebounding', 'shooting-efficiency', 'speed-distance', 'touches', 'tracking-post-ups'
     ]
     LABEL_FIELDS = {"data_type", "source", "standard_name", "season_type", "timestamp"}
 
@@ -298,113 +334,232 @@ async def collect_tracking(season_type: str, timestamp: str, name: str, *, proje
     if missing:
         return False
 
-    path = os.path.join("Data", season_type, timestamp, name, "tracking")
-    await dump_pickle(os.path.join(path, "nba-tracking.pkl"), full_stats)
+    path = os.path.join(OUTPUT_DIR, season_type, timestamp, name, "tracking")
+    await dump_pickle(os.path.join(path, "tracking.pkl"), full_stats)
     return True
+
 
 # ==== Distinct helpers ====
 async def get_timestamps(source: str):
     return await coll.distinct('timestamp', {"source": source})
 
+
 async def get_names(timestamp: str):
     return await coll.distinct('standard_name', {"timestamp": timestamp, "source": '538'})
+
 
 # ==== Orchestration ====
 MAX_CONCURRENCY = 20  # tune as you like
 
-async def process_player(ts: str, player: str, LOG: dict, log_lock: asyncio.Lock):
+
+async def process_player(ts: str, player: str, LOG: dict, log_lock: asyncio.Lock, key_lock: asyncio.Lock):
     season_types = ['Regular season', 'Playoffs', 'Full']
 
-    MP_REGULAR = 0
-    MP_PLAYOFFS = 0
-    TRACKING_REG = ""
-    TRACKING_PLAYOFFS = ""
+    # First, collect what we can for Regular and Playoffs
+    reg_data = {}
+    playoff_data = {}
 
-    for season in season_types:
-        # if season == "Playoffs":
-        #     if not is_legit_playoff_timestamp(ts):
-        #         # Not a playoff timestamp; skip this season
-        #         continue
-        if season == "Full":
-            # Depends on reg + playoffs existing; logic kept as in original
-            if MP_PLAYOFFS:
-                WEIGHT = MP_REGULAR + MP_PLAYOFFS
-                # Note: original code mixes lists/booleans here; left unchanged
-                _tracking = MP_REGULAR/WEIGHT*TRACKING_REG + MP_PLAYOFFS/WEIGHT*TRACKING_PLAYOFFS  # noqa: F841
-            else:
-                continue
+    # Process Regular season
+    season = 'Regular season'
+    core_info = await fetch_538(season, ts, player)
+    if core_info:
+        reg_data['538'] = core_info
+        # Convert mp to float, defaulting to 0 if not present or not convertible
+        try:
+            reg_data['mp'] = float(core_info.get('mp', 0))
+        except (ValueError, TypeError):
+            reg_data['mp'] = 0
+
+        # Try to collect other data types, but don't stop if one fails
+        pbp = await collect_pbp(season, ts, player)
+        if pbp:
+            reg_data['pbp'] = pbp
+        else:
+            async with log_lock:
+                LOG['pbp'].append(ts + '-' + season + '-' + 'pbp' + '-' + player)
+
+        wowy_on = await collect_wowy_on(season, ts, player, key_lock=key_lock)
+        if wowy_on:
+            reg_data['wowy_on'] = wowy_on
+        else:
+            async with log_lock:
+                LOG['wowy_on'].append(ts + '-' + season + '-' + 'wowy_on' + '-' + player)
+
+        wowy_off = await collect_wowy_off(season, ts, player, key_lock=key_lock)
+        if wowy_off:
+            reg_data['wowy_off'] = wowy_off
+        else:
+            async with log_lock:
+                LOG['wowy_off'].append(ts + '-' + season + '-' + 'wowy_off' + '-' + player)
+
+        tracking = await collect_tracking(season, ts, player)
+        if tracking:
+            reg_data['tracking'] = tracking
+        else:
+            async with log_lock:
+                LOG['track'].append(ts + '-' + season + '-' + 'tracking' + '-' + player)
+    else:
+        async with log_lock:
+            LOG['538'].append(ts + '-' + season + '-' + '538' + '-' + player)
+
+    # Process Playoffs
+    season = 'Playoffs'
+    core_info = await fetch_538(season, ts, player)
+    if core_info:
+        playoff_data['538'] = core_info
+        # Convert mp to float, defaulting to 0 if not present or not convertible
+        try:
+            playoff_data['mp'] = float(core_info.get('mp', 0))
+        except (ValueError, TypeError):
+            playoff_data['mp'] = 0
+
+        # Collect other data types similarly
+        pbp = await collect_pbp(season, ts, player)
+        if pbp:
+            playoff_data['pbp'] = pbp
+        else:
+            async with log_lock:
+                LOG['pbp'].append(ts + '-' + season + '-' + 'pbp' + '-' + player)
+
+        wowy_on = await collect_wowy_on(season, ts, player, key_lock=key_lock)
+        if wowy_on:
+            playoff_data['wowy_on'] = wowy_on
+        else:
+            async with log_lock:
+                LOG['wowy_on'].append(ts + '-' + season + '-' + 'wowy_on' + '-' + player)
+
+        wowy_off = await collect_wowy_off(season, ts, player, key_lock=key_lock)
+        if wowy_off:
+            playoff_data['wowy_off'] = wowy_off
+        else:
+            async with log_lock:
+                LOG['wowy_off'].append(ts + '-' + season + '-' + 'wowy_off' + '-' + player)
+
+        tracking = await collect_tracking(season, ts, player)
+        if tracking:
+            playoff_data['tracking'] = tracking
+        else:
+            async with log_lock:
+                LOG['track'].append(ts + '-' + season + '-' + 'tracking' + '-' + player)
+    else:
+        async with log_lock:
+            LOG['538'].append(ts + '-' + season + '-' + '538' + '-' + player)
+
+    # Process Full season if we have both regular and playoff data
+    season = 'Full'
+    if reg_data.get('mp', 0) > 0 and playoff_data.get('mp', 0) > 0:
+        # For Full season, you need to decide how to combine the data
+        # Currently, the code just fetches Full season data separately
+        # which might be the intended behavior
 
         core_info = await fetch_538(season, ts, player)
         if core_info:
-            if season == 'Regular season':
-                MP_REGULAR = core_info.get('mp', 0)
-            elif season == 'Playoffs':
-                MP_PLAYOFFS = core_info.get('mp', 0)
+            pbp = await collect_pbp(season, ts, player)
+            if not pbp:
+                async with log_lock:
+                    LOG['pbp'].append(ts + '-' + season + '-' + 'pbp' + '-' + player)
+
+            wowy_on = await collect_wowy_on(season, ts, player, key_lock=key_lock)
+            if not wowy_on:
+                async with log_lock:
+                    LOG['wowy_on'].append(ts + '-' + season + '-' + 'wowy_on' + '-' + player)
+
+            wowy_off = await collect_wowy_off(season, ts, player, key_lock=key_lock)
+            if not wowy_off:
+                async with log_lock:
+                    LOG['wowy_off'].append(ts + '-' + season + '-' + 'wowy_off' + '-' + player)
+
+            # Note: Original code skips tracking for Full season
         else:
             async with log_lock:
-                LOG['538'].append(ts+'-'+season+'-'+'538'+'-'+player)
-            continue
+                LOG['538'].append(ts + '-' + season + '-' + '538' + '-' + player)
 
-        ok_pbp = await collect_pbp(season, ts, player)
-        if not ok_pbp:
-            async with log_lock:
-                LOG['pbp'].append(ts+'-'+season+'-'+'pbp'+'-'+player)
-            continue
 
-        ok_on = await collect_wowy_on(season, ts, player)
-        if not ok_on:
-            async with log_lock:
-                LOG['wowy_on'].append(ts+'-'+season+'-'+'wowy_on'+'-'+player)
-            continue
+async def process_timestamp(ts: str, LOG: dict, log_lock: asyncio.Lock, key_lock: asyncio.Lock, sem: asyncio.Semaphore):
+    ts_start_time = time.time()
 
-        ok_off = await collect_wowy_off(season, ts, player)
-        if not ok_off:
-            async with log_lock:
-                LOG['wowy_off'].append(ts+'-'+season+'-'+'wowy_off'+'-'+player)
-            continue
-
-        if season == "Full":
-            # Special handling: no tracking for Full
-            continue
-        else:
-            tracking = await collect_tracking(season, ts, player)
-
-        if tracking:
-            if season == "Regular season":
-                TRACKING_REG = tracking
-            elif season == "Playoffs":
-                TRACKING_PLAYOFFS = tracking
-        else:
-            async with log_lock:
-                LOG['track'].append(ts+'-'+season+'-'+'tracking'+'-'+player)
-            continue
-
-async def process_timestamp(ts: str, LOG: dict, log_lock: asyncio.Lock, sem: asyncio.Semaphore):
     # Persist LOG periodically like original
-    os.makedirs("Data", exist_ok=True)
-    await dump_pickle(os.path.join("Data", "LOG.pkl"), LOG)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    await dump_pickle(os.path.join(OUTPUT_DIR, "LOG.pkl"), LOG)
 
     names = await get_names(ts)
-    print(f"Trying to process {ts}...")
+    print(f"Trying to process {ts} ({len(names)} players)...")
 
     async def run_player(p):
         async with sem:
-            await process_player(ts, p, LOG, log_lock)
+            await process_player(ts, p, LOG, log_lock, key_lock)
 
     await asyncio.gather(*(run_player(p) for p in names))
-    print(ts, " complete!")
+
+    ts_elapsed = time.time() - ts_start_time
+    print(f"{ts} complete! ({ts_elapsed:.2f} seconds)")
+
+
+def format_duration(seconds):
+    """Convert seconds to human-readable format"""
+    if seconds < 60:
+        return f"{seconds:.2f} seconds"
+    elif seconds < 3600:
+        minutes = seconds / 60
+        return f"{minutes:.2f} minutes"
+    else:
+        hours = seconds / 3600
+        return f"{hours:.2f} hours"
+
 
 async def process_data():
+    print("=== NBA Data Collection Started ===")
+    start_time = time.time()
+
     LOG = {'538': [], 'pbp': [], 'wowy_on': [], 'wowy_off': [], 'track': []}
     sem = asyncio.Semaphore(MAX_CONCURRENCY)
     log_lock = asyncio.Lock()
+    key_lock = asyncio.Lock()  # New lock for key tracking
 
+    print("Getting timestamp list...")
+    timestamp_fetch_start = time.time()
     TS_LIST = await get_timestamps('538')
-    for ts in TS_LIST:
-        await process_timestamp(ts, LOG, log_lock, sem)
+    # print(TS_LIST)
+    # raise Exception('hello')
+    timestamp_fetch_elapsed = time.time() - timestamp_fetch_start
+    print(f"Found {len(TS_LIST)} timestamps to process ({timestamp_fetch_elapsed:.2f} seconds)")
+
+    processing_start_time = time.time()
+    for i, ts in enumerate(TS_LIST, 1):
+        print(f"\n--- Processing timestamp {i}/{len(TS_LIST)} ---")
+        await process_timestamp(ts, LOG, log_lock, key_lock, sem)
+
+    processing_elapsed = time.time() - processing_start_time
+    print(f"\nAll timestamps processed in {format_duration(processing_elapsed)}")
 
     # final writeout of LOG
-    await dump_pickle(os.path.join("Data", "LOG.pkl"), LOG)
+    final_log_start = time.time()
+    await dump_pickle(os.path.join(OUTPUT_DIR, "LOG.pkl"), LOG)
+
+    # Write out the key change tracking files
+    await dump_json(os.path.join(OUTPUT_DIR, "wowy_on_key_changes.json"), wowy_on_key_changes)
+    await dump_json(os.path.join(OUTPUT_DIR, "wowy_off_key_changes.json"), wowy_off_key_changes)
+
+    final_log_elapsed = time.time() - final_log_start
+
+    total_elapsed = time.time() - start_time
+
+    print("\n=== NBA Data Collection Complete ===")
+    print(f"Total execution time: {format_duration(total_elapsed)}")
+    print(f"Final log save: {final_log_elapsed:.2f} seconds")
+    print(f"Timestamps processed: {len(TS_LIST)}")
+    print(f"WOWY ON key changes detected: {len(wowy_on_key_changes)}")
+    print(f"WOWY OFF key changes detected: {len(wowy_off_key_changes)}")
+
+    # Show error summary from LOG
+    total_errors = sum(len(v) for v in LOG.values())
+    if total_errors > 0:
+        print(f"Total errors encountered: {total_errors}")
+        for error_type, errors in LOG.items():
+            if errors:
+                print(f"  {error_type}: {len(errors)} errors")
+
 
 if __name__ == "__main__":
+    print("Starting NBA data collection with timing...")
     asyncio.run(process_data())
