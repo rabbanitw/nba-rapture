@@ -3,6 +3,14 @@ import re
 import asyncio, functools, os
 from time import sleep
 from utils import get_date_range_extended
+import os
+import asyncio
+import csv
+import time
+import random
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 _failed_log_lock = asyncio.Lock()  # one lock for the whole module
 
@@ -98,15 +106,53 @@ def remove_numbers_and_apostrophes(string: str) -> str:
 
 # PBP API caller
 
-import requests
-import csv
-import os
-import asyncio
-import glob
 
+# --- One-time session setup (reuse this session across all calls) ---
+session = requests.Session()
 
-# timestamp = utils.get_timestamp()
-def scrape_and_save_without_async(date_str, season_type_key, season_type_value, output_path):
+# Browser-like headers; tweak Referer/Origin if you actually load from pbpstats.com
+DEFAULT_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    ),
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Origin": "https://pbpstats.com",
+    "Referer": "https://pbpstats.com/",
+}
+
+# Retry on transient HTTP errors *including* 429
+retry = Retry(
+    total=5,                     # total retry attempts
+    backoff_factor=1.5,          # exponential backoff base
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["GET"],     # urllib3 >= 1.26 uses allowed_methods
+    raise_on_status=False,       # don't raise inside urllib3; we'll handle below
+)
+
+adapter = HTTPAdapter(max_retries=retry, pool_connections=20, pool_maxsize=50)
+session.mount("https://", adapter)
+session.mount("http://", adapter)
+
+# --- Your function with headers, retry-after, jitter, and a stable CSV header order ---
+def scrape_and_save_without_async(
+    date_str,
+    season_type_key,
+    season_type_value,
+    output_path,
+    min_interval_sec=1.1,   # client-side rate limit between *successful* calls
+    max_delay=600,          # cap for our manual exponential backoff
+    timeout_sec=30,         # network timeout per request
+    extra_headers=None      # allow per-call header overrides if you want
+):
+    """
+    Fetches data from PBP Stats API and writes to CSV.
+    Adds browser-like headers, uses a shared Session with retries,
+    respects 429 Retry-After, and applies client-side jitter/backoff.
+    """
     print(f"now processing {output_path}")
     url = "https://api.pbpstats.com/get-totals/nba"
     try:
@@ -124,40 +170,67 @@ def scrape_and_save_without_async(date_str, season_type_key, season_type_value, 
         "StartType": "All",
         "StatType": "Per100Possessions"
     }
+
     attempt = 0
-    max_delay = 600  # 10 minutes in seconds
+    headers = dict(DEFAULT_HEADERS)
+    if extra_headers:
+        headers.update(extra_headers)
 
     while True:
         try:
-            response = requests.get(url, params=params)
-            response.raise_for_status()
+            resp = session.get(url, params=params, headers=headers, timeout=timeout_sec)
 
-            response_json = response.json()
-            player_stats = response_json["multi_row_table_data"]
+            # Handle throttling explicitly if retries didn't already succeed
+            if resp.status_code == 429:
+                attempt += 1
+                retry_after = resp.headers.get("Retry-After")
+                if retry_after:
+                    try:
+                        delay = min(int(retry_after), max_delay)
+                    except ValueError:
+                        delay = min(2 ** (attempt - 1), max_delay)
+                else:
+                    delay = min(2 ** (attempt - 1), max_delay)
 
-            # Collect all fieldnames
+                print(
+                    f"[Attempt {attempt}] Throttled (429). "
+                    f"Retrying in {delay} seconds (Retry-After={retry_after})..."
+                )
+                time.sleep(delay + random.random())  # slight jitter
+                continue
+
+            resp.raise_for_status()
+            response_json = resp.json()
+            player_stats = response_json.get("multi_row_table_data", [])
+
+            # Collect all fieldnames (stable order: sorted keys)
             all_keys = set()
             for row in player_stats:
                 all_keys.update(row.keys())
+            fieldnames = sorted(all_keys)
 
             # Write to CSV
             with open(output_path, mode='w', newline='', encoding='utf-8') as csvfile:
-                writer = csv.DictWriter(csvfile, fieldnames=all_keys)
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames, extrasaction="ignore")
                 writer.writeheader()
                 writer.writerows(player_stats)
 
             print(f"Data has been written to {output_path}")
-            return  # Exit the function if successful
+
+            # polite rate limit after a successful call
+            delay = min_interval_sec + random.random() * 0.7  # add jitter
+            time.sleep(delay)
+            return
 
         except requests.exceptions.RequestException as e:
             attempt += 1
-            # Exponential backoff: 2^(attempt-1), but capped at 600 seconds
-            delay = min(2 ** (attempt - 1), max_delay)
+            delay = min(2 ** (attempt - 1), max_delay)  # exponential backoff
             print(
                 f"[Attempt {attempt}] Failed to write {output_path}: {e}\n"
                 f"Retrying in {delay} seconds..."
             )
-            sleep(delay)
+            time.sleep(delay + random.random())  # jitter
+
 
 
 def get_final_timestamp_for_season(checkbox_id):

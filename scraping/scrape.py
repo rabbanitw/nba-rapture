@@ -43,7 +43,7 @@ OUTPUT_DIR = "missing_data_finder"  # Where scraped data will be saved
 DEFAULT_INTERVAL = 2.0  # seconds between API calls
 WOWY_INTERVAL = 3.0  # selenium needs more time
 TRACKING_INTERVAL = 1.0
-PBP_INTERVAL = 1.0
+PBP_INTERVAL = 3.0
 
 # Logging configuration
 logging.basicConfig(
