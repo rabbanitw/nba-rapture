@@ -14,7 +14,7 @@ from selenium.webdriver.support.ui import Select
 import os
 import utils
 from datetime import datetime
-from typing import Any
+from typing import Any, Optional
 import re
 import tempfile
 import shutil
@@ -22,16 +22,74 @@ import traceback
 from data import nba_player_ids, historical_checkbox_ids, get_final_timestamp_for_season
 import csv
 import sys
+import atexit
 
-ROOT_DIR = Path("nba_api")  # ← Output directory for NBA API data
-SOURCE_DIR = Path("538")  # ← Source directory to read timestamps from
+ROOT_DIR = Path("nba_api")
+SOURCE_DIR = Path("538")
 SUBFOLDERS = ["Playoffs", "Regular season", "Full season"]
 HISTORICAL_YEARS = ['filter-2014', 'filter-2015', 'filter-2016', 'filter-2017', 'filter-2018', 'filter-2019']
 
-# Increase the connection and read timeouts (in seconds)
 os.environ['NBA_API_CONNECTION_TIMEOUT'] = '60'
 os.environ['NBA_API_READ_TIMEOUT'] = '60'
 Path.mkdir(ROOT_DIR, exist_ok=True)
+
+# Global browser instance
+_global_driver = None
+_tmp_profile = None
+
+
+def _cleanup_driver():
+    """Clean up the global driver on exit"""
+    global _global_driver, _tmp_profile
+    if _global_driver:
+        try:
+            _global_driver.quit()
+        except:
+            pass
+        _global_driver = None
+    if _tmp_profile and os.path.exists(_tmp_profile):
+        try:
+            shutil.rmtree(_tmp_profile, ignore_errors=True)
+        except:
+            pass
+        _tmp_profile = None
+
+
+# Register cleanup function
+atexit.register(_cleanup_driver)
+
+
+def _get_or_create_driver():
+    """Get existing driver or create a new one"""
+    global _global_driver, _tmp_profile
+
+    if _global_driver is not None:
+        try:
+            # Test if driver is still alive
+            _ = _global_driver.current_url
+            return _global_driver
+        except:
+            # Driver is dead, clean it up
+            _cleanup_driver()
+
+    # Create new driver
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--disable-software-rasterizer')
+    chrome_options.add_argument('--disable-extensions')
+    chrome_options.add_argument('--disable-logging')
+    chrome_options.add_argument('--log-level=3')
+    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/530.36")
+
+    _tmp_profile = tempfile.mkdtemp(prefix="chrome-scrape-")
+    chrome_options.add_argument(f"--user-data-dir={_tmp_profile}")
+
+    _global_driver = webdriver.Chrome(options=chrome_options)
+    return _global_driver
 
 
 def get_number_or_zero(value):
@@ -55,7 +113,7 @@ def convert_to_nba_api_season(season_type_value):
         'Regular season': 'Regular Season',
         'Playoffs': 'Playoffs',
         'Play in': 'PlayIn',
-        'Full season': 'Full Season'  # Default to Regular Season for full season
+        'Full season': 'Full Season'
     }.get(season_type_value)
 
 
@@ -76,25 +134,21 @@ _num = re.compile(r"""
 
 
 def to_float_if_num(value) -> Any:
-    """
-    Convert the incoming value to float when it looks numeric,
-    otherwise return it unchanged.
-    """
+    """Convert the incoming value to float when it looks numeric"""
     if isinstance(value, str) and _num.match(value):
-        # strip commas and trailing percent, then cast
         clean = value.replace(",", "").rstrip("%").strip()
-        # empty string after stripping? -> leave unchanged
         if clean:
             try:
                 return float(clean)
             except ValueError:
-                pass  # fall through to return original
+                pass
     return value
 
 
-def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str, player_name: str = None, custom_root_dir: str = None) -> None:
+def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str, player_name: str = None,
+                          custom_root_dir: str = None) -> None:
     """
-    Modified to optionally filter for a specific player and save to a unique filename.
+    Modified to reuse a single Chrome instance for all requests.
     """
     url = f"https://www.nba.com/stats/players/{stat_type}"
     date_range = utils.get_date_range_extended(timestamp, season_type)
@@ -122,161 +176,196 @@ def retrieve_from_nba_api(timestamp: str, season_type: str, stat_type: str, play
         "PlayerOrTeam": "Player",
         "DateFrom": start_date,
         "DateTo": end_date,
-        # "MeasureType": "SpeedDistance",
         "SeasonType": nba_api_season,
         "PerMode": "Totals"
     }
 
-    # Create filename based on player name if provided
+    if custom_root_dir:
+        base_dir = Path(custom_root_dir)
+    else:
+        base_dir = ROOT_DIR
+
     if player_name:
-        # Sanitize player name for filename
         safe_player_name = re.sub(r'[^\w\s-]', '', player_name).strip().replace(' ', '_')
-        output_file = f"nba_api_{stat_type}_{timestamp}_{safe_player_name}.json"
+        output_dir = base_dir / season_type / timestamp / player_name / "tracking"
+        output_file = f"{stat_type}.csv"
     else:
         output_file = f"nba_api_{stat_type}_{timestamp}.json"
+        year = timestamp[:4]
+        filter_folder = f"filter-{year}"
+        output_dir = base_dir / season_type / filter_folder
 
-    # Determine filter folder from timestamp (year-based)
-    year = timestamp[:4]
-    filter_folder = f"filter-{year}"
-
-    # Create directory structure: nba_api/season_type/filter_folder/file
-    output_dir = (custom_root_dir or ROOT_DIR) / season_type / filter_folder
     output_path = output_dir / output_file
-
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     if output_path.exists():
         print(f"{output_path} already exists – skipping.")
         return
 
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/530.36")
+    print(f"Fetching {player_name or 'all players'}, {stat_type}, {timestamp}...")
 
-    tmp_profile = tempfile.mkdtemp(prefix="chrome-scrape-")
-    chrome_options.add_argument(f"--user-data-dir={tmp_profile}")
-
-    print(f"Starting Selenium for {player_name or 'all players'}, {stat_type}, {timestamp}...")
-
-    driver = webdriver.Chrome(options=chrome_options)
+    # Use shared driver instead of creating a new one
+    driver = _get_or_create_driver()
     final_url = f"{url}?{urlencode(params)}"
 
-    try:
-        print("Getting page...")
-        print(f"final url? {final_url}")
+    max_retries = 3
+    retry_count = 0
 
-        driver.get(final_url)
-        time.sleep(5)
+    while retry_count < max_retries:
+        try:
+            driver.get(final_url)
+            time.sleep(5)
 
-        wait = WebDriverWait(driver, 30)
+            wait = WebDriverWait(driver, 30)
 
-        settings_div = wait.until(
-            EC.presence_of_element_located((By.CSS_SELECTOR,
-                                            "div.Crom_cromSettings__ak6Hd"))
-        )
-        page_select = settings_div.find_element(By.CSS_SELECTOR,
-                                                "select.DropDown_select__4pIg9")
-        Select(page_select).select_by_index(0)
+            settings_div = wait.until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "div.Crom_cromSettings__ak6Hd"))
+            )
+            page_select = settings_div.find_element(By.CSS_SELECTOR, "select.DropDown_select__4pIg9")
+            Select(page_select).select_by_index(0)
 
-        time.sleep(5)  # naive approach
+            time.sleep(5)
 
-        WebDriverWait(driver, 60).until(
-            EC.presence_of_element_located((By.XPATH, "//table[contains(@class, 'Crom_table__')]"))
-        )
-        table = driver.find_element(By.XPATH, "//table[contains(@class, 'Crom_table')]")
+            WebDriverWait(driver, 60).until(
+                EC.presence_of_element_located((By.XPATH, "//table[contains(@class, 'Crom_table__')]"))
+            )
 
-        raw_headers = [th.text.strip() for th in table.find_elements(By.CSS_SELECTOR, "thead tr th")]
-        # the first header is blank/"#"; insert PLAYER after it
-        if raw_headers[0] in ("", "#"):
-            raw_headers[0] = "RANK"  # or "#" if you want the rank
-            raw_headers.insert(1, "PLAYER")  # now PLAYER is in the list
-        headers = raw_headers
+            # Wait for table to stabilize
+            time.sleep(3)
 
-        rows = table.find_elements(By.CSS_SELECTOR, "tbody tr")
+            # Extract headers
+            table = driver.find_element(By.XPATH, "//table[contains(@class, 'Crom_table')]")
+            raw_headers = [th.text.strip() for th in table.find_elements(By.CSS_SELECTOR, "thead tr th")]
+            if raw_headers[0] in ("", "#"):
+                raw_headers[0] = "RANK"
+                raw_headers.insert(1, "PLAYER")
+            headers = raw_headers
 
-        data = {}
-        for row in rows:
-            cells = [td.text.strip() for td in row.find_elements(By.TAG_NAME, "td")]
-            record = dict(zip(headers, cells))
-            record = {k: to_float_if_num(v) for k, v in record.items()}
-            player = record["PLAYER"]  # use the PLAYER field
+            # NEW APPROACH: Use JavaScript to extract all data at once
+            # This avoids stale element issues by getting everything in one shot
+            script = """
+            const table = document.querySelector('table.Crom_table__p1iZz, table[class*="Crom_table"]');
+            if (!table) return [];
 
-            # If we're looking for a specific player, only add them
-            if player_name:
-                # Check if this is the player we're looking for
-                # Handle cases where player name might have team abbreviation
-                if player_name in player or player in player_name:
+            const rows = table.querySelectorAll('tbody tr');
+            const data = [];
+
+            rows.forEach(row => {
+                const cells = Array.from(row.querySelectorAll('td')).map(td => td.innerText.trim());
+                if (cells.length > 0) {
+                    data.push(cells);
+                }
+            });
+
+            return data;
+            """
+
+            all_rows_data = driver.execute_script(script)
+
+            if not all_rows_data:
+                print("Warning: No data extracted from table")
+                retry_count += 1
+                if retry_count >= max_retries:
+                    print(f"Failed after {max_retries} retries")
+                    return
+                time.sleep(2)
+                continue
+
+            # Process the extracted data
+            data = {}
+            for cells in all_rows_data:
+                if len(cells) != len(headers):
+                    # Handle header mismatch
+                    continue
+
+                record = dict(zip(headers, cells))
+                record = {k: to_float_if_num(v) for k, v in record.items()}
+
+                if "PLAYER" not in record:
+                    continue
+
+                player = record["PLAYER"]
+
+                if not player:  # Skip empty player names
+                    continue
+
+                if player_name:
+                    if player_name in player or player in player_name:
+                        data[player] = record
+                        break
+                else:
                     data[player] = record
-                    break  # Found the player, no need to continue
+
+            if player_name and not data:
+                print(f"Warning: Player {player_name} not found in the data")
+
+            if player_name:
+                if data:
+                    player_data = list(data.values())[0]
+                    with open(output_path, 'w', newline='', encoding='utf-8') as csvfile:
+                        writer = csv.DictWriter(csvfile, fieldnames=player_data.keys())
+                        writer.writeheader()
+                        writer.writerow(player_data)
+                    print(f"Successfully saved player data to {output_path}")
+                else:
+                    print(f"No data found for player {player_name}")
             else:
-                data[player] = record  # key the dict by name
+                write_to_file(data, output_path)
+                print(f"Successfully saved {len(data)} players to {output_path}")
 
-        if player_name and not data:
-            print(f"Warning: Player {player_name} not found in the data")
+            # Success - break out of retry loop
+            break
 
-        write_to_file(data, output_path)
-        print(f"Successfully saved {len(data)} players to {output_path}")
-
-    except TimeoutException:
-        print("Timeout! Table element could not be located.")
-        with open("debug_page.html", "w", encoding="utf-8") as f:
-            f.write(driver.page_source)
-
-        driver.save_screenshot("debug_screen.png")
-        return
-    except requests.exceptions.RequestException as e:
-        print(f"Failed to write {output_path}: {e}")
-        return
-    except requests.exceptions.ReadTimeout as e:
-        print(f"Failed to write {output_path} due to timeout: {e}")
-        return
-    except NoSuchElementException as e:
-        print(f"Could not find element: {e}")
-        return
-    except Exception as e:
-        print(f"Unknown exception: {e}")
-        traceback.print_exc()
-        return
-    finally:
-        driver.quit()
-        shutil.rmtree(tmp_profile, ignore_errors=True)
+        except TimeoutException:
+            print("Timeout! Table element could not be located.")
+            with open("debug_page.html", "w", encoding="utf-8") as f:
+                f.write(driver.page_source)
+            driver.save_screenshot("debug_screen.png")
+            return
+        except requests.exceptions.RequestException as e:
+            print(f"Failed to write {output_path}: {e}")
+            return
+        except requests.exceptions.ReadTimeout as e:
+            print(f"Failed to write {output_path} due to timeout: {e}")
+            return
+        except NoSuchElementException as e:
+            print(f"Could not find element: {e}")
+            retry_count += 1
+            if retry_count >= max_retries:
+                print(f"Failed after {max_retries} retries")
+                return
+            print(f"Retrying... ({retry_count}/{max_retries})")
+            time.sleep(2)
+        except Exception as e:
+            print(f"Unknown exception: {e}")
+            traceback.print_exc()
+            retry_count += 1
+            if retry_count >= max_retries:
+                print(f"Failed after {max_retries} retries")
+                return
+            print(f"Retrying... ({retry_count}/{max_retries})")
+            time.sleep(2)
 
 
 def process_csv_file(csv_path: str, season_types: list = None):
-    """
-    Process a CSV file with columns: timestamp, standard_name, data_type
-
-    Args:
-        csv_path: Path to the CSV file
-        season_types: List of season types to process (default: ['Regular season', 'Playoffs'])
-    """
+    """Process a CSV file with columns: timestamp, standard_name, data_type"""
     if season_types is None:
         season_types = ['Regular season', 'Playoffs']
 
-    # Read the CSV file
     with open(csv_path, 'r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
-
-        # Group by timestamp and data_type for efficiency
         requests_to_process = {}
 
         for row in reader:
             timestamp = row['timestamp'].strip()
             player_name = row['standard_name'].strip()
             data_type = row['data_type'].strip()
-
-            # Create a key for grouping
             key = (timestamp, data_type)
 
             if key not in requests_to_process:
                 requests_to_process[key] = []
-
             requests_to_process[key].append(player_name)
 
-    # Process each unique combination
     total_requests = len(requests_to_process)
     current = 0
 
@@ -285,120 +374,86 @@ def process_csv_file(csv_path: str, season_types: list = None):
         print(f"\n[{current}/{total_requests}] Processing timestamp: {timestamp}, data_type: {data_type}")
         print(f"  Players to fetch: {', '.join(players)}")
 
-        # Process for each season type
         for season_type in season_types:
             print(f"  Season type: {season_type}")
-
-            # Since we want data for specific players, we might want to fetch all data once
-            # and then filter, or fetch individually. For efficiency, let's fetch once per
-            # timestamp/data_type/season_type combination
-
-            # Fetch the data once for all players at this timestamp
             try:
-                # We'll modify the function to return data instead of just saving
-                # For now, let's call it once without a player filter
                 retrieve_from_nba_api(timestamp, season_type, data_type)
-
-                # Note: If you want individual files per player, uncomment below:
-                # for player_name in players:
-                #     retrieve_from_nba_api(timestamp, season_type, data_type, player_name)
-
             except Exception as e:
                 print(f"    Error processing: {e}")
                 continue
 
 
-def main(csv_file = None) -> None:
-    """
-    Main function that can either process from CSV or use the original folder-based approach
-    """
-
-
-    # Check if a CSV file was provided as command-line argument
-    if csv_file:
-        if Path(csv_file).exists():
-            print(f"Processing from CSV file: {csv_file}")
-            process_csv_file(csv_file)
+def main(csv_file=None) -> None:
+    """Main function that can either process from CSV or use the original folder-based approach"""
+    try:
+        if csv_file:
+            if Path(csv_file).exists():
+                print(f"Processing from CSV file: {csv_file}")
+                process_csv_file(csv_file)
+            else:
+                print(f"CSV file not found: {csv_file}")
+                return
         else:
-            print(f"CSV file not found: {csv_file}")
-            return
-    else:
-        # Fall back to the original behavior
-        print("No CSV file provided. Using original folder-based processing...")
+            print("No CSV file provided. Using original folder-based processing...")
 
-        stat_types = [
-            "drives",
-            "defensive-impact",
-            "catch-shoot",
-            "passing",
-            "touches",
-            "pullup",
-            "rebounding",
-            "offensive-rebounding",
-            "defensive-rebounding",
-            "shooting-efficiency",
-            "speed-distance",
-            "elbow-touch",
-            "tracking-post-ups",
-            "paint-touch"
-        ]
+            stat_types = [
+                "drives", "defensive-impact", "catch-shoot", "passing", "touches",
+                "pullup", "rebounding", "offensive-rebounding", "defensive-rebounding",
+                "shooting-efficiency", "speed-distance", "elbow-touch", "tracking-post-ups",
+                "paint-touch"
+            ]
 
-        # Check if source directory exists
-        if not SOURCE_DIR.exists():
-            print(f"Source directory {SOURCE_DIR} does not exist!")
-            return
+            if not SOURCE_DIR.exists():
+                print(f"Source directory {SOURCE_DIR} does not exist!")
+                return
 
-        # Iterate through season type folders in the 538 directory
-        for season_type_folder in SOURCE_DIR.iterdir():
-            if not season_type_folder.is_dir():
-                continue
-
-            season_type = season_type_folder.name
-            if season_type not in SUBFOLDERS:
-                continue
-
-            print(f"Processing season type: {season_type}")
-
-            # Skip Full season to avoid duplication (as mentioned in original script)
-            if season_type == 'Full season':
-                print(f"Skipping {season_type} to avoid duplication")
-                continue
-
-            # Iterate through filter folders (filter-2014, filter-2015, etc.)
-            for filter_folder in season_type_folder.iterdir():
-                if not filter_folder.is_dir() or not filter_folder.name.startswith('filter-'):
-                    continue
-                if filter_folder.name not in HISTORICAL_YEARS:
+            for season_type_folder in SOURCE_DIR.iterdir():
+                if not season_type_folder.is_dir():
                     continue
 
-                filter_name = filter_folder.name
-                print(f"  Processing filter: {filter_name}")
+                season_type = season_type_folder.name
+                if season_type not in SUBFOLDERS:
+                    continue
 
-                # Look for timestamp files in this filter folder
-                for item in filter_folder.iterdir():
-                    if item.is_file() and item.stem.isnumeric():
-                        timestamp = item.stem
+                print(f"Processing season type: {season_type}")
 
-                        if filter_folder in historical_checkbox_ids:
-                            old_timestamp = timestamp
-                            timestamp = get_final_timestamp_for_season(filter_folder)
-                            print(f"Changed {old_timestamp} to {timestamp}")
-                        else:
-                            print(f"We're keeping {timestamp} as it is!")
+                if season_type == 'Full season':
+                    print(f"Skipping {season_type} to avoid duplication")
+                    continue
 
-                        print(f"    Processing timestamp: {timestamp}")
+                for filter_folder in season_type_folder.iterdir():
+                    if not filter_folder.is_dir() or not filter_folder.name.startswith('filter-'):
+                        continue
+                    if filter_folder.name not in HISTORICAL_YEARS:
+                        continue
 
-                        # Process each stat type for this timestamp
-                        for stat_type in stat_types:
-                            try:
-                                # FIX: Don't pass filter_name as player_name
-                                # Just call with the 3 required parameters
-                                retrieve_from_nba_api(timestamp, season_type, stat_type)
-                            except Exception as e:
-                                print(f"    Error processing {stat_type} for {timestamp}: {e}")
-                                continue
+                    filter_name = filter_folder.name
+                    print(f"  Processing filter: {filter_name}")
 
-    print("Finished processing all NBA API data!")
+                    for item in filter_folder.iterdir():
+                        if item.is_file() and item.stem.isnumeric():
+                            timestamp = item.stem
+
+                            if filter_folder in historical_checkbox_ids:
+                                old_timestamp = timestamp
+                                timestamp = get_final_timestamp_for_season(filter_folder)
+                                print(f"Changed {old_timestamp} to {timestamp}")
+                            else:
+                                print(f"We're keeping {timestamp} as it is!")
+
+                            print(f"    Processing timestamp: {timestamp}")
+
+                            for stat_type in stat_types:
+                                try:
+                                    retrieve_from_nba_api(timestamp, season_type, stat_type)
+                                except Exception as e:
+                                    print(f"    Error processing {stat_type} for {timestamp}: {e}")
+                                    continue
+
+        print("Finished processing all NBA API data!")
+    finally:
+        # Clean up driver when done
+        _cleanup_driver()
 
 
 if __name__ == "__main__":

@@ -35,6 +35,9 @@ import nba_tracking_scrape
 # CONFIGURATION
 # ============================================================================
 
+# Timestamp cutoff - do not process timestamps after this
+MAX_TIMESTAMP = "20230614000000"
+
 # Directories
 INPUT_DIR = "missing_data_csvs"  # Where missing_*.csv files are located
 OUTPUT_DIR = "missing_data_finder"  # Where scraped data will be saved
@@ -42,7 +45,7 @@ OUTPUT_DIR = "missing_data_finder"  # Where scraped data will be saved
 # Rate limiting
 DEFAULT_INTERVAL = 2.0  # seconds between API calls
 WOWY_INTERVAL = 3.0  # selenium needs more time
-TRACKING_INTERVAL = 1.0
+TRACKING_INTERVAL = 3.0
 PBP_INTERVAL = 3.0
 
 # Logging configuration
@@ -50,11 +53,20 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('data_fetcher.log'),
+        logging.FileHandler('data_fetcher.log', encoding='utf-8'),  # Add UTF-8 encoding
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
+
+# Fix console handler encoding for Windows
+for handler in logger.handlers:
+    if isinstance(handler, logging.StreamHandler):
+        # Force UTF-8 encoding for console output
+        import sys
+        if sys.platform == 'win32':
+            handler.stream = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+
 
 # Error tracking files
 ERROR_LOGS = {
@@ -138,6 +150,11 @@ harden_nba_api(timeout=60, max_retries=5)
 # ============================================================================
 # UTILITY FUNCTIONS
 # ============================================================================
+
+def is_timestamp_valid(timestamp: str) -> bool:
+    """Check if timestamp is on or before MAX_TIMESTAMP"""
+    return timestamp <= MAX_TIMESTAMP
+
 
 def load_skip_list(source: str) -> set:
     """Load list of entries to skip for a given source"""
@@ -254,6 +271,11 @@ def get_team_at_timestamp(player_name: str, timestamp: str, max_retries: int = 5
 
 async def handle_pbp_batch(timestamp: str, season_type_csv: str, player_names: List[str], skip_set: set) -> bool:
     """Handle PBP data fetching for a batch of players with the same timestamp"""
+    # Check timestamp validity first
+    if not is_timestamp_valid(timestamp):
+        logger.info(f"Skipping timestamp {timestamp} (after {MAX_TIMESTAMP})")
+        return True
+
     output_file = f"pbp_stats_{timestamp}.csv"
     output_path = os.path.join(OUTPUT_DIR, season_type_csv, timestamp, output_file)
 
@@ -300,6 +322,12 @@ async def handle_pbp_batch(timestamp: str, season_type_csv: str, player_names: L
 async def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -> bool:
     """Handle tracking data fetching"""
     timestamp = row["timestamp"]
+
+    # Check timestamp validity first
+    if not is_timestamp_valid(timestamp):
+        logger.info(f"Skipping timestamp {timestamp} (after {MAX_TIMESTAMP})")
+        return True
+
     player_name = row["standard_name"]
     season_type_csv = row["season_type"]
     data_type = row["data_type"]
@@ -313,12 +341,12 @@ async def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -
     # Check if file already exists first - before any other processing
     if os.path.exists(output_path):
         logger.info(f"File already exists, skipping: {output_path}")
-        cache_key = f"{timestamp}-{season_type_csv}-{data_type}"
+        cache_key = f"{timestamp}-{season_type_csv}-{data_type}-{player_name}"
         completed_timestamps.add(cache_key)
         return True
 
     # Check if already completed for this timestamp
-    cache_key = f"{timestamp}-{season_type_csv}-{data_type}"
+    cache_key = f"{timestamp}-{season_type_csv}-{data_type}-{player_name}"
     if cache_key in completed_timestamps:
         logger.info(f"Already fetched tracking: {cache_key}")
         return True
@@ -329,7 +357,7 @@ async def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -
         return True
 
     try:
-        # Run blocking scrape in thread
+        # Run blocking scrape in thread with better error handling
         await asyncio.to_thread(
             nba_tracking_scrape.retrieve_from_nba_api,
             timestamp=timestamp,
@@ -343,6 +371,19 @@ async def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -
         logger.info(f"✅ Tracking fetched: {player_name} @ {timestamp} ({data_type})")
         return True
 
+    except TypeError as e:
+        # This catches the string division error specifically
+        error_msg = f"Type error (likely string/numeric conversion): {str(e)}"
+        logger.error(f"Failed to fetch tracking for {player_name} @ {timestamp} ({data_type}): {error_msg}")
+        log_error('tracking', {
+            'timestamp': timestamp,
+            'player_name': player_name,
+            'season_type': season_type_csv,
+            'data_type': data_type,
+            'output_path': output_path,
+            'error': error_msg
+        })
+        return False
     except Exception as e:
         logger.error(f"Failed to fetch tracking for {player_name} @ {timestamp} ({data_type}): {e}")
         log_error('tracking', {
@@ -359,6 +400,12 @@ async def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -
 async def handle_wowy(row: dict, skip_set: set, is_on: bool) -> bool:
     """Handle WOWY data fetching (on or off)"""
     timestamp = row["timestamp"]
+
+    # Check timestamp validity first
+    if not is_timestamp_valid(timestamp):
+        logger.info(f"Skipping timestamp {timestamp} (after {MAX_TIMESTAMP})")
+        return True
+
     player_name = row["standard_name"]
     season_type_csv = row["season_type"]
 
@@ -436,13 +483,20 @@ async def process_pbp_csv(csv_path: Path, interval: float):
         reader = csv.DictReader(f)
         rows = list(reader)
 
-    # Group rows by (timestamp, season_type)
+    # Filter rows by timestamp and group by (timestamp, season_type)
     grouped_rows = defaultdict(list)
+    skipped_count = 0
     for row in rows:
-        key = (row["timestamp"], row["season_type"])
+        timestamp = row["timestamp"]
+        if not is_timestamp_valid(timestamp):
+            skipped_count += 1
+            continue
+        key = (timestamp, row["season_type"])
         grouped_rows[key].append(row["standard_name"])
 
-    logger.info(f"Processing {len(rows)} rows from {csv_path.name}, grouped into {len(grouped_rows)} unique timestamp/season_type combinations")
+    logger.info(f"Processing {len(rows)} rows from {csv_path.name}")
+    logger.info(f"Skipped {skipped_count} rows with timestamps after {MAX_TIMESTAMP}")
+    logger.info(f"Grouped into {len(grouped_rows)} unique timestamp/season_type combinations")
 
     # Process each unique timestamp/season_type combination
     tasks = []
@@ -484,11 +538,22 @@ async def process_csv_file(csv_path: Path, source: str, interval: float):
         reader = csv.DictReader(f)
         rows = list(reader)
 
+    # Filter rows by timestamp
+    valid_rows = []
+    skipped_count = 0
+    for row in rows:
+        if is_timestamp_valid(row["timestamp"]):
+            valid_rows.append(row)
+        else:
+            skipped_count += 1
+
     logger.info(f"Processing {len(rows)} rows from {csv_path.name}")
+    logger.info(f"Skipped {skipped_count} rows with timestamps after {MAX_TIMESTAMP}")
+    logger.info(f"Processing {len(valid_rows)} valid rows")
 
     # Process rows with rate limiting
     tasks = []
-    for i, row in enumerate(rows):
+    for i, row in enumerate(valid_rows):
         # Create appropriate task based on source
         if source == 'tracking':
             task = asyncio.create_task(handle_tracking(row, skip_set, completed_timestamps))
@@ -503,12 +568,12 @@ async def process_csv_file(csv_path: Path, source: str, interval: float):
         tasks.append(task)
 
         # Rate limiting
-        if i < len(rows) - 1:  # Don't wait after last item
+        if i < len(valid_rows) - 1:  # Don't wait after last item
             await asyncio.sleep(interval)
 
         # Log progress every 100 rows
         if (i + 1) % 100 == 0:
-            logger.info(f"Progress: {i + 1}/{len(rows)} rows scheduled")
+            logger.info(f"Progress: {i + 1}/{len(valid_rows)} rows scheduled")
 
     # Wait for all tasks to complete
     if tasks:
@@ -522,18 +587,19 @@ async def main():
     """Main entry point"""
     logger.info("=" * 60)
     logger.info("NBA Data Fetcher Started")
+    logger.info(f"Maximum timestamp: {MAX_TIMESTAMP}")
     logger.info("=" * 60)
 
     # Create output directory
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     # Process PBP CSV with special batching logic
-    pbp_csv_path = Path(INPUT_DIR) / "missing_pbp.csv"
-    if pbp_csv_path.exists():
-        logger.info(f"\n📂 Processing missing_pbp.csv with {PBP_INTERVAL}s interval (batched by timestamp)")
-        await process_pbp_csv(pbp_csv_path, PBP_INTERVAL)
-    else:
-        logger.warning(f"⚠️  missing_pbp.csv not found in {INPUT_DIR}")
+    # pbp_csv_path = Path(INPUT_DIR) / "missing_pbp.csv"
+    # if pbp_csv_path.exists():
+    #     logger.info(f"\n📂 Processing missing_pbp.csv with {PBP_INTERVAL}s interval (batched by timestamp)")
+    #     await process_pbp_csv(pbp_csv_path, PBP_INTERVAL)
+    # else:
+    #     logger.warning(f"⚠️  missing_pbp.csv not found in {INPUT_DIR}")
 
     # Process other CSV files normally
     other_csv_configs = [
