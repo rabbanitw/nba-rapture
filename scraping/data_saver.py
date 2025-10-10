@@ -95,6 +95,54 @@ def process_nba(timestamp: str, file_path: str, season_type: str, data_type: str
         print(f"File not found: {file_path}")
 
 
+def process_nba_tracking_with_player(timestamp: str, file_path: str, season_type: str, data_type: str,
+                                     player_name: str):
+    """Process NBA tracking data for a single player from the new directory structure."""
+    if os.path.isfile(file_path):
+        player_name_clean = utils.remove_numbers_and_apostrophes(player_name)
+        if not already_processed(player_name_clean, timestamp, season_type, "nba-tracking", data_type):
+            print(
+                f"Now processing {player_name_clean}, timestamp {timestamp}, and data_type {data_type} from nba tracking data")
+
+            with open(file_path, "r", encoding='utf-8') as file:
+                # Read the CSV file - it's not JSON, it's CSV format
+                reader = csv.DictReader(file)
+
+                # Find the row for this specific player
+                for row_dict in reader:
+                    row_player_name = row_dict.get("PLAYER", "")
+                    row_player_clean = utils.remove_numbers_and_apostrophes(row_player_name)
+
+                    # Check if this row matches our player
+                    if row_player_clean == player_name_clean:
+                        # Clean up column names - remove newlines and extra whitespace
+                        cleaned_row = {}
+                        for key, value in row_dict.items():
+                            # Replace newlines with spaces and strip whitespace
+                            clean_key = ' '.join(key.split())
+                            cleaned_row[clean_key] = value
+
+                        # Coerce numeric values
+                        for key in cleaned_row:
+                            if key != "PLAYER" and key != "TEAM":
+                                cleaned_row[key] = _coerce_number(cleaned_row[key])
+
+                        cleaned_row["name"] = player_name_clean
+                        cleaned_row["timestamp"] = timestamp
+                        cleaned_row["season_type"] = season_type
+                        cleaned_row["data_type"] = data_type
+                        cleaned_row["source"] = "nba-tracking"
+                        print("row_dict?", cleaned_row)
+                        database.create_document(db, cleaned_row)
+                        break
+                else:
+                    print(f"Warning: Could not find player {player_name_clean} in {file_path}")
+        else:
+            print(f"Skipping {player_name_clean}, {timestamp}, {data_type} - already processed")
+    else:
+        print(f"File not found: {file_path}")
+
+
 def _coerce_number(s: str):
     """Best-effort numeric coercion: int if clean int, else float, else raw string/None."""
     if s is None:
@@ -168,7 +216,8 @@ def get_season_type_from_folder(folder_name: str) -> str:
     folder_mapping = {
         'Regular season': 'Regular season',
         'Playoffs': 'Playoffs',
-        'Full season': 'Full season'
+        'Full season': 'Full season',
+        'Full': 'Full season'
     }
     return folder_mapping.get(folder_name, folder_name)
 
@@ -183,6 +232,9 @@ def process_data_source_folder(base_folder: str, source_name: str):
 
     NEW for PBP:
       missing_data_finder/{season_type}/{timestamp}/pbp_stats_YYYYMMDDHHMMSS.csv
+
+    NEW for tracking:
+      missing_data_finder/{season_type}/{timestamp}/tracking/{stat-type}.csv
     """
     print(f"Processing {source_name} folder...")
 
@@ -218,7 +270,7 @@ def process_data_source_folder(base_folder: str, source_name: str):
                         print(f"      Skipping non-numeric file: {filename}")
 
     elif source_name == "pbp":
-        # NEW STRUCTURE: season_type / timestamp / pbp_stats_YYYYMMDDHHMMSS.csv
+        # STRUCTURE: season_type / timestamp / pbp_stats_YYYYMMDDHHMMSS.csv
         for season_type_folder in os.listdir(base_folder):
             season_type_path = os.path.join(base_folder, season_type_folder)
             if not os.path.isdir(season_type_path):
@@ -250,7 +302,8 @@ def process_data_source_folder(base_folder: str, source_name: str):
                     name_no_ext = os.path.splitext(filename)[0]
                     fn_ts_match = re.fullmatch(r"pbp_stats_(\d{14})", name_no_ext)
                     if fn_ts_match and fn_ts_match.group(1) != timestamp:
-                        print(f"      Warning: filename ts {fn_ts_match.group(1)} != folder ts {timestamp}; using folder ts.")
+                        print(
+                            f"      Warning: filename ts {fn_ts_match.group(1)} != folder ts {timestamp}; using folder ts.")
 
                     file_path = os.path.join(ts_path, filename)
                     try:
@@ -258,8 +311,58 @@ def process_data_source_folder(base_folder: str, source_name: str):
                     except Exception as e:
                         print(f"      Error processing {filename}: {e}")
 
-    elif source_name in ["wowy", "nba_api"]:
-        # (unchanged) legacy structure for these sources
+    elif source_name == "tracking":
+        # NEW STRUCTURE: season_type / timestamp / player_name / tracking / {stat-type}.csv
+        for season_type_folder in os.listdir(base_folder):
+            season_type_path = os.path.join(base_folder, season_type_folder)
+            if not os.path.isdir(season_type_path):
+                continue
+
+            season_type = get_season_type_from_folder(season_type_folder)
+            print(f"  Processing {season_type_folder} season...")
+
+            for ts_folder in os.listdir(season_type_path):
+                ts_path = os.path.join(season_type_path, ts_folder)
+                if not os.path.isdir(ts_path):
+                    continue
+                if not _looks_like_ts_folder(ts_folder):
+                    print(f"    Skipping non-timestamp folder: {ts_folder}")
+                    continue
+
+                timestamp = ts_folder
+                print(f"    Processing timestamp {timestamp}...")
+
+                # Iterate through player folders
+                for player_folder in os.listdir(ts_path):
+                    player_path = os.path.join(ts_path, player_folder)
+                    if not os.path.isdir(player_path):
+                        continue
+
+                    player_name = player_folder
+                    print(f"      Processing player {player_name}...")
+
+                    # Look for tracking subfolder
+                    tracking_path = os.path.join(player_path, "tracking")
+                    if not os.path.isdir(tracking_path):
+                        print(f"        No tracking folder found for {player_name}")
+                        continue
+
+                    # Process all CSV files in tracking folder
+                    for filename in os.listdir(tracking_path):
+                        if not filename.endswith(".csv"):
+                            continue
+
+                        # Use filename (without .csv) as the data_type
+                        data_type = os.path.splitext(filename)[0]
+                        file_path = os.path.join(tracking_path, filename)
+
+                        try:
+                            process_nba_tracking_with_player(timestamp, file_path, season_type, data_type, player_name)
+                        except Exception as e:
+                            print(f"        Error processing {filename}: {e}")
+
+    elif source_name == "wowy":
+        # (unchanged) legacy structure for wowy
         for season_type_folder in os.listdir(base_folder):
             season_type_path = os.path.join(base_folder, season_type_folder)
             if not os.path.isdir(season_type_path):
@@ -279,12 +382,9 @@ def process_data_source_folder(base_folder: str, source_name: str):
                     file_path = os.path.join(filter_path, filename)
                     name = os.path.splitext(filename)[0]
                     try:
-                        if source_name == "wowy" and name.startswith('wowy_'):
+                        if name.startswith('wowy_'):
                             source, timestamp, player, on_or_off = extract_parts_wowy(name)
                             process_wowy(timestamp, file_path, season_type, on_or_off, player)
-                        elif source_name == "nba_api" and name.startswith('nba_api_'):
-                            data_type, timestamp = extract_parts_nba_api(name)
-                            process_nba(timestamp, file_path, season_type, data_type)
                         else:
                             print(f"      Skipping file: {filename}")
                     except Exception as e:
@@ -293,8 +393,7 @@ def process_data_source_folder(base_folder: str, source_name: str):
 
 def save_data():
     """Main function to process all data source folders."""
-    # Adjust as needed; you mentioned pbp with the new layout.
-    data_sources = ["pbp"]
+    data_sources = ["tracking"]
     base_folder = "missing_data_finder"
 
     for source in data_sources:

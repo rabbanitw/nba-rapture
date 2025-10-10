@@ -8,7 +8,6 @@ import os
 import time
 import random
 import traceback
-import asyncio
 from datetime import datetime
 from pathlib import Path
 from functools import lru_cache
@@ -53,7 +52,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('data_fetcher.log', encoding='utf-8'),  # Add UTF-8 encoding
+        logging.FileHandler('data_fetcher.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
@@ -62,7 +61,6 @@ logger = logging.getLogger(__name__)
 # Fix console handler encoding for Windows
 for handler in logger.handlers:
     if isinstance(handler, logging.StreamHandler):
-        # Force UTF-8 encoding for console output
         import sys
         if sys.platform == 'win32':
             handler.stream = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
@@ -269,7 +267,7 @@ def get_team_at_timestamp(player_name: str, timestamp: str, max_retries: int = 5
 # DATA HANDLERS
 # ============================================================================
 
-async def handle_pbp_batch(timestamp: str, season_type_csv: str, player_names: List[str], skip_set: set) -> bool:
+def handle_pbp_batch(timestamp: str, season_type_csv: str, player_names: List[str], skip_set: set) -> bool:
     """Handle PBP data fetching for a batch of players with the same timestamp"""
     # Check timestamp validity first
     if not is_timestamp_valid(timestamp):
@@ -297,9 +295,8 @@ async def handle_pbp_batch(timestamp: str, season_type_csv: str, player_names: L
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     try:
-        # Run blocking scrape in thread - only once for all players with this timestamp
-        await asyncio.to_thread(
-            pbp_scrape.scrape_and_save_without_async,
+        # Run scrape directly (synchronously)
+        pbp_scrape.scrape_and_save_without_async(
             timestamp, season_type_api, season_type_csv, output_path
         )
         logger.info(f"✅ PBP fetched: {timestamp} ({season_type_csv}) for {len(player_names)} players: {', '.join(player_names[:3])}{'...' if len(player_names) > 3 else ''}")
@@ -319,7 +316,7 @@ async def handle_pbp_batch(timestamp: str, season_type_csv: str, player_names: L
         return False
 
 
-async def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -> bool:
+def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -> bool:
     """Handle tracking data fetching"""
     timestamp = row["timestamp"]
 
@@ -357,9 +354,8 @@ async def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -
         return True
 
     try:
-        # Run blocking scrape in thread with better error handling
-        await asyncio.to_thread(
-            nba_tracking_scrape.retrieve_from_nba_api,
+        # Run scrape directly (synchronously)
+        nba_tracking_scrape.retrieve_from_nba_api(
             timestamp=timestamp,
             season_type=season_type_csv,
             stat_type=data_type,
@@ -397,7 +393,7 @@ async def handle_tracking(row: dict, skip_set: set, completed_timestamps: set) -
         return False
 
 
-async def handle_wowy(row: dict, skip_set: set, is_on: bool) -> bool:
+def handle_wowy(row: dict, skip_set: set, is_on: bool) -> bool:
     """Handle WOWY data fetching (on or off)"""
     timestamp = row["timestamp"]
 
@@ -434,9 +430,8 @@ async def handle_wowy(row: dict, skip_set: set, is_on: bool) -> bool:
         # Get team info
         team_id, team_name = get_team_at_timestamp(player_name, timestamp)
 
-        # Run selenium scrape in thread (blocking)
-        await asyncio.to_thread(
-            wowy_scrape.retrieve_from_wowy_via_selenium,
+        # Run selenium scrape directly (synchronously)
+        wowy_scrape.retrieve_from_wowy_via_selenium(
             player_name=player_name,
             team_name=team_name,
             date_str=timestamp,
@@ -468,7 +463,7 @@ async def handle_wowy(row: dict, skip_set: set, is_on: bool) -> bool:
 # MAIN PROCESSING
 # ============================================================================
 
-async def process_pbp_csv(csv_path: Path, interval: float):
+def process_pbp_csv(csv_path: Path, interval: float):
     """Process PBP CSV file with batching by timestamp"""
     if not csv_path.exists():
         logger.warning(f"File not found: {csv_path}")
@@ -499,28 +494,29 @@ async def process_pbp_csv(csv_path: Path, interval: float):
     logger.info(f"Grouped into {len(grouped_rows)} unique timestamp/season_type combinations")
 
     # Process each unique timestamp/season_type combination
-    tasks = []
+    success_count = 0
+    error_count = 0
+
     for i, ((timestamp, season_type), player_names) in enumerate(grouped_rows.items()):
-        task = asyncio.create_task(handle_pbp_batch(timestamp, season_type, player_names, skip_set))
-        tasks.append(task)
+        result = handle_pbp_batch(timestamp, season_type, player_names, skip_set)
+
+        if result:
+            success_count += 1
+        else:
+            error_count += 1
 
         # Rate limiting between different timestamp requests
         if i < len(grouped_rows) - 1:
-            await asyncio.sleep(interval)
+            time.sleep(interval)
 
         # Log progress
         if (i + 1) % 10 == 0:
-            logger.info(f"Progress: {i + 1}/{len(grouped_rows)} timestamp groups scheduled")
+            logger.info(f"Progress: {i + 1}/{len(grouped_rows)} timestamp groups processed")
 
-    # Wait for all tasks to complete
-    if tasks:
-        results = await asyncio.gather(*tasks, return_exceptions=True)
-        success_count = sum(1 for r in results if r is True)
-        error_count = sum(1 for r in results if isinstance(r, Exception) or r is False)
-        logger.info(f"Completed {csv_path.name}: {success_count} success, {error_count} errors")
+    logger.info(f"Completed {csv_path.name}: {success_count} success, {error_count} errors")
 
 
-async def process_csv_file(csv_path: Path, source: str, interval: float):
+def process_csv_file(csv_path: Path, source: str, interval: float):
     """Process a single CSV file with rate limiting (for non-PBP sources)"""
     if not csv_path.exists():
         logger.warning(f"File not found: {csv_path}")
@@ -552,38 +548,38 @@ async def process_csv_file(csv_path: Path, source: str, interval: float):
     logger.info(f"Processing {len(valid_rows)} valid rows")
 
     # Process rows with rate limiting
-    tasks = []
+    success_count = 0
+    error_count = 0
+
     for i, row in enumerate(valid_rows):
-        # Create appropriate task based on source
+        # Process based on source
         if source == 'tracking':
-            task = asyncio.create_task(handle_tracking(row, skip_set, completed_timestamps))
+            result = handle_tracking(row, skip_set, completed_timestamps)
         elif source == 'wowy_on':
-            task = asyncio.create_task(handle_wowy(row, skip_set, is_on=True))
+            result = handle_wowy(row, skip_set, is_on=True)
         elif source == 'wowy_off':
-            task = asyncio.create_task(handle_wowy(row, skip_set, is_on=False))
+            result = handle_wowy(row, skip_set, is_on=False)
         else:
             logger.warning(f"Unknown source: {source}")
             continue
 
-        tasks.append(task)
+        if result:
+            success_count += 1
+        else:
+            error_count += 1
 
         # Rate limiting
         if i < len(valid_rows) - 1:  # Don't wait after last item
-            await asyncio.sleep(interval)
+            time.sleep(interval)
 
         # Log progress every 100 rows
         if (i + 1) % 100 == 0:
-            logger.info(f"Progress: {i + 1}/{len(valid_rows)} rows scheduled")
+            logger.info(f"Progress: {i + 1}/{len(valid_rows)} rows processed")
 
-    # Wait for all tasks to complete
-    if tasks:
-        results = await asyncio.gather(*tasks, return_exceptions=True)
-        success_count = sum(1 for r in results if r is True)
-        error_count = sum(1 for r in results if isinstance(r, Exception) or r is False)
-        logger.info(f"Completed {csv_path.name}: {success_count} success, {error_count} errors")
+    logger.info(f"Completed {csv_path.name}: {success_count} success, {error_count} errors")
 
 
-async def main():
+def main():
     """Main entry point"""
     logger.info("=" * 60)
     logger.info("NBA Data Fetcher Started")
@@ -597,7 +593,7 @@ async def main():
     # pbp_csv_path = Path(INPUT_DIR) / "missing_pbp.csv"
     # if pbp_csv_path.exists():
     #     logger.info(f"\n📂 Processing missing_pbp.csv with {PBP_INTERVAL}s interval (batched by timestamp)")
-    #     await process_pbp_csv(pbp_csv_path, PBP_INTERVAL)
+    #     process_pbp_csv(pbp_csv_path, PBP_INTERVAL)
     # else:
     #     logger.warning(f"⚠️  missing_pbp.csv not found in {INPUT_DIR}")
 
@@ -612,7 +608,7 @@ async def main():
         csv_path = Path(INPUT_DIR) / csv_name
         if csv_path.exists():
             logger.info(f"\n📂 Processing {csv_name} with {interval}s interval")
-            await process_csv_file(csv_path, source, interval)
+            process_csv_file(csv_path, source, interval)
         else:
             logger.warning(f"⚠️  {csv_name} not found in {INPUT_DIR}")
 
@@ -623,7 +619,7 @@ async def main():
 
 if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        main()
     except KeyboardInterrupt:
         logger.info("\n⚠️  Process interrupted by user")
     except Exception as e:
