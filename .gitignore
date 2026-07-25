@@ -1,2 +1,8 @@
 .devcontainer/devcontainer.json
 .devcontainer/devcontainer-lock.json
+credentials.txt
+training/data/
+training/models/
+training/_ts_by_source.json
+training/schema_report.json
+training/__pycache__/
