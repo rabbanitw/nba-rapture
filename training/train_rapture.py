@@ -36,6 +36,18 @@ POS_COLS = ["PG", "SG", "SF", "PF", "C"]
 # hyperparameters and row filters -- the test seasons are never looked at.
 VAL_SEASONS = ("2015-16", "2016-17", "2017-18", "2019-20")
 
+# Minimum minutes for a *training* row, by split. A whole playoff run is ~300
+# minutes so the thresholds cannot be flat. These are deliberately token values:
+# mp_sweep.py shows accuracy falls monotonically above them (see training/README).
+# They only drop degenerate rows -- a 20-minute season carries no signal -- and
+# leave every validation and test row in place.
+MIN_MP = {"Regular season": 50, "Playoffs": 10}
+
+# 538 splits each component into offense and defense. The total is o + d up to
+# the scrape's 1-decimal rounding, so "sum the two part models" is a real
+# alternative to modelling the total directly -- main() reports both.
+TARGETS = {"total": "y", "offense": "y_off", "defense": "y_def"}
+
 # Candidate training-row filters. Modern snapshots are season-to-date, so an early
 # January row pairs a tiny sample with a wild RAPTOR value; these ask whether
 # dropping that noise helps. Chosen on validation.
@@ -47,6 +59,10 @@ ROW_FILTERS = {
     "mp>=500 & progress>=0.5": lambda d: (d["mp"] >= 500) & np.array(
         [season_progress(t) >= 0.5 for t in d["timestamp"]]),
 }
+
+LGB_PARAMS = dict(objective="l2", learning_rate=0.03, num_leaves=31,
+                  min_data_in_leaf=40, feature_fraction=0.5, bagging_fraction=0.8,
+                  bagging_freq=1, lambda_l2=5.0, verbose=-1, seed=42, num_threads=0)
 
 # Per-block denominator used to turn counting stats into rates.
 ANCHORS = {"pbp": "TotalPoss", "wowy_on": "TotalPoss", "wowy_off": "TotalPoss"}
@@ -145,7 +161,8 @@ def add_context(X, feat_names, d, model):
     extra += [mp, prog, playoffs]
     extra_names += ["ctx|mp", "ctx|season_progress", "ctx|is_playoffs"]
 
-    if model == "onoff":
+    # on-minus-off differentials whenever both wowy blocks are present
+    if any(block_of(n) == "wowy_on" for n in feat_names):
         idx = {n: i for i, n in enumerate(feat_names)}
         on = [n for n in feat_names if block_of(n) == "wowy_on"]
         diff, diff_names = [], []
@@ -193,10 +210,10 @@ def metrics(y, p):
             "spearman": sp}
 
 
-def run(model, datadir, outdir, seed=42):
-    print(f"\n{'='*78}\n{model.upper()}\n{'='*78}")
+def run(model, datadir, outdir, target="total", seed=42):
+    print(f"\n{'='*78}\n{model.upper()}  target={target}\n{'='*78}")
     d = load(model, datadir)
-    X, y = d["X"], d["y"]
+    X, y = d["X"], d[TARGETS[target]]
     feat_names = list(d["feat_names"])
     print(f"  loaded X={X.shape}")
 
@@ -205,7 +222,7 @@ def run(model, datadir, outdir, seed=42):
                         log_path=Path(outdir) / f"{model}_normalization.json")
     X, feat_names = add_context(X, feat_names, d, model)
 
-    keep = dedupe(X, y, d)
+    keep = dedupe(X, d["y"], d)
     X, y = X[keep], y[keep]
     d = {k: (v[keep] if isinstance(v, np.ndarray) and v.shape[:1] == is_test.shape else v)
          for k, v in d.items()}
@@ -215,7 +232,11 @@ def run(model, datadir, outdir, seed=42):
     # shape. Everything else (modern season-to-date snapshots) is the fit pool.
     is_val = np.array([s in VAL_SEASONS and t in FULL_SEASON_SNAPSHOTS
                        for s, t in zip(d["season"], d["timestamp"])])
-    is_fit = (~is_test) & (~is_val)
+    min_mp = np.array([MIN_MP.get(s, 0) for s in d["season_type"]], dtype=np.float32)
+    enough_mp = d["mp"] >= min_mp
+    is_fit = (~is_test) & (~is_val) & enough_mp
+    print(f"  min-minutes filter on training rows {MIN_MP}: dropped "
+          f"{int(((~is_test) & (~is_val) & ~enough_mp).sum())} rows")
     Xva, yva = X[is_val], y[is_val]
     Xte, yte = X[is_test], y[is_test]
     print(f"  fit={int(is_fit.sum())}  val={len(yva)} {sorted(set(d['season'][is_val]))}"
@@ -223,10 +244,7 @@ def run(model, datadir, outdir, seed=42):
     print(f"  label {model}: fit sd={y[is_fit].std():.2f}  val sd={yva.std():.2f}  "
           f"test sd={yte.std():.2f}")
 
-    params = dict(objective="l2", learning_rate=0.03, num_leaves=31,
-                  min_data_in_leaf=40, feature_fraction=0.5, bagging_fraction=0.8,
-                  bagging_freq=1, lambda_l2=5.0, verbose=-1, seed=seed,
-                  num_threads=0)
+    params = dict(LGB_PARAMS, seed=seed)
 
     # --- pick the training-row filter and round count on validation only ----
     print("  selecting training-row filter on validation:")
@@ -294,23 +312,51 @@ def run(model, datadir, outdir, seed=42):
               f"spearman={v['spearman']:+.3f}")
 
     Path(outdir).mkdir(parents=True, exist_ok=True)
-    final.save_model(str(Path(outdir) / f"{model}_lgbm.txt"))
+    tag = model if target == "total" else f"{model}_{target}"
+    final.save_model(str(Path(outdir) / f"{tag}_lgbm.txt"))
     json.dump({"results": results, "slices": slices, "n_rounds": n_rounds, "row_filter": chosen,
                "n_train": int(len(ytr)), "n_test": int(len(yte)),
                "top_features": [[n, float(g)] for n, g in imp[:60]]},
-              open(Path(outdir) / f"{model}_results.json", "w"), indent=2)
-    return results
+              open(Path(outdir) / f"{tag}_results.json", "w"), indent=2)
+    return {"results": results, "pred": pred, "blend": 0.75 * pred + 0.25 * ridge_pred,
+            "yte": yte, "season": d["season"][is_test],
+            "season_type": d["season_type"][is_test]}
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", choices=["box", "onoff", "both"], default="both")
+    ap.add_argument("--model", choices=["box", "onoff", "combined", "both", "all"],
+                    default="both")
     ap.add_argument("--datadir", default=str(REPO_ROOT / "training" / "data"))
     ap.add_argument("--outdir", default=str(REPO_ROOT / "training" / "models"))
+    ap.add_argument("--targets", nargs="+", default=["total", "offense", "defense"],
+                    choices=["total", "offense", "defense"])
     args = ap.parse_args()
     Path(args.outdir).mkdir(parents=True, exist_ok=True)
-    for m in (["box", "onoff"] if args.model == "both" else [args.model]):
-        run(m, args.datadir, args.outdir)
+    models = {"both": ["box", "onoff"],
+              "all": ["box", "onoff", "combined"]}.get(args.model, [args.model])
+    for m in models:
+        out = {t: run(m, args.datadir, args.outdir, target=t) for t in args.targets}
+        if {"total", "offense", "defense"} <= set(out):
+            compare_sum_vs_total(m, out, args.outdir)
+
+
+def compare_sum_vs_total(model, out, outdir):
+    """Does predicting offense and defense separately beat predicting the total?"""
+    yt = out["total"]["yte"]
+    print(f"\n{'='*78}\n{model.upper()}  offense + defense  vs  direct total\n{'='*78}")
+    rows = {}
+    for kind in ("pred", "blend"):
+        direct = metrics(yt, out["total"][kind])
+        summed = metrics(yt, out["offense"][kind] + out["defense"][kind])
+        rows[f"direct_total_{kind}"] = direct
+        rows[f"sum_of_parts_{kind}"] = summed
+        label = "LightGBM" if kind == "pred" else "blend"
+        print(f"  {label}:")
+        for name, v in (("direct total", direct), ("offense+defense", summed)):
+            print(f"    {name:<18} rmse={v['rmse']:.3f}  mae={v['mae']:.3f}  "
+                  f"r2={v['r2']:+.3f}  spearman={v['spearman']:+.3f}")
+    json.dump(rows, open(Path(outdir) / f"{model}_target_comparison.json", "w"), indent=2)
 
 
 if __name__ == "__main__":
