@@ -15,3 +15,5 @@ training/RESULTS_starters.json
 training/RESULTS_top100.json
 training/RESULTS_top20_nofilter.json
 training/RESULTS_top100_nofilter.json
+training/data_full/
+training/RESULTS_stride.json

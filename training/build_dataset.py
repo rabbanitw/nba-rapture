@@ -150,8 +150,10 @@ def build(model, coll, report, timestamps, min_blocks_frac=0.8):
                 for b in blocks:
                     doc = got.get(b, {})
                     vec.extend(as_float(doc.get(f)) for f in fields[b])
-                vec = [np.nan if v is None else v for v in vec]
-                rows.append(vec)
+                # convert per row: a Python list-of-lists for a full-stride build
+                # would peak around 2.7 GB before np.asarray gets to it
+                rows.append(np.array([np.nan if v is None else v for v in vec],
+                                     dtype=np.float32))
                 ys.append(y)
                 ys_off.append(y_off)
                 ys_def.append(y_def)
@@ -161,7 +163,8 @@ def build(model, coll, report, timestamps, min_blocks_frac=0.8):
             print(f"  [{i+1}/{len(timestamps)}] {ts} {st:<15} 538={len(labels):<4} "
                   f"rows+={len(rows)-n_before}")
 
-    X = np.asarray(rows, dtype=np.float32)
+    X = (np.vstack(rows) if rows
+         else np.zeros((0, sum(len(v) for v in fields.values())), dtype=np.float32))
     y = np.asarray(ys, dtype=np.float32)
     y_off = np.asarray(ys_off, dtype=np.float32)
     y_def = np.asarray(ys_def, dtype=np.float32)
