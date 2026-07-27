@@ -29,7 +29,8 @@ from compare_estimated_raptor import our_predictions
 from db import REPO_ROOT
 from estimated_raptor import metrics, norm_name
 
-TOP_N = 20
+TOP_N = 20          # default; main() overrides from --top-n
+HITS_AT = (10, 25, 50, 100)
 SEASONS = ["2013-14", "2014-15"]
 SPLITS = ["Regular season", "Playoffs"]
 
@@ -67,13 +68,18 @@ def main():
     ap.add_argument("--datadir", default=str(REPO_ROOT / "training" / "data"))
     ap.add_argument("--paine", default=str(REPO_ROOT / "training"
                                            / "RESULTS_estimated_raptor.csv"))
-    ap.add_argument("--out", default=str(REPO_ROOT / "training" / "RESULTS_top20.md"))
+    ap.add_argument("--out", default=None)
+    ap.add_argument("--top-n", type=int, default=20)
     args = ap.parse_args()
+
+    global TOP_N
+    TOP_N = args.top_n
+    out = args.out or str(REPO_ROOT / "training" / f"RESULTS_top{TOP_N}.md")
 
     paine = pd.read_csv(args.paine)
     paine["key"] = paine.player.map(norm_name)
     thresholds, detail = derive_thresholds(paine)
-    print("thresholds derived from true top-20 minutes:", thresholds)
+    print(f"thresholds derived from true top-{TOP_N} minutes:", thresholds)
 
     print("refitting the combined model (total, offense, defense) ...")
     ours = our_predictions(args.datadir)
@@ -87,7 +93,7 @@ def main():
     print(f"  merged rows: {len(df)}; with our predictions: "
           f"{df.ours_total.notna().sum()}; with Paine's: {df.eRT.notna().sum()}")
 
-    report, summary, overall = [], [], {}
+    report, summary, overall, skipped = [], [], {}, []
     for target, truth in TRUTH.items():
         sysl = SYSTEMS[target]
         pooled = []
@@ -98,6 +104,12 @@ def main():
                 pool = cell[cell.mp >= thr].dropna(
                     subset=[truth] + [c for _, c in sysl]).copy()
                 pooled.append(pool)
+                if len(pool) < TOP_N * 1.2:
+                    # a top-N over a pool barely bigger than N is trivially
+                    # near-perfect for every system and says nothing
+                    skipped.append({"season": season, "split": split,
+                                    "target": target, "pool_n": int(len(pool))})
+                    continue
                 true_lb = pool.nlargest(TOP_N, truth).reset_index(drop=True)
                 true_set = set(true_lb.player)
                 pool["true_rank"] = pool[truth].rank(ascending=False,
@@ -114,6 +126,11 @@ def main():
                     row[f"hits::{name}"] = len(set(lb.player) & true_set)
                     row[f"rho::{name}"] = float(
                         spearmanr(pool[truth], pool[col]).statistic)
+                    for k in HITS_AT:
+                        if k <= TOP_N and k <= len(pool):
+                            tk = set(pool.nlargest(k, truth).player)
+                            pk = set(pool.nlargest(k, col).player)
+                            row[f"hits{k}::{name}"] = len(tk & pk)
                 # how contested is the rank-20 cutoff?
                 vals = np.sort(pool[truth].to_numpy())[::-1]
                 if len(vals) > TOP_N:
@@ -132,19 +149,31 @@ def main():
         overall[target] = {name: metrics(allrows[truth], allrows[col])
                            for name, col in sysl}
 
-    write_report(args.out, report, summary, overall, thresholds, detail)
-    json.dump({"thresholds": thresholds, "threshold_detail": detail,
-               "summary": summary, "overall_regression": overall},
-              open(Path(args.out).with_suffix(".json"), "w"), indent=2)
-    print(f"\nwrote {args.out}")
+    for sk in skipped:
+        print(f"  SKIPPED {sk['target']} {sk['season']} {sk['split']}: "
+              f"pool={sk['pool_n']} too small for a top-{TOP_N}")
+    write_report(out, report, summary, overall, thresholds, detail, skipped)
+    json.dump({"top_n": TOP_N, "thresholds": thresholds,
+               "threshold_detail": detail, "summary": summary,
+               "skipped": skipped, "overall_regression": overall},
+              open(Path(out).with_suffix(".json"), "w"), indent=2)
+    print(f"\nwrote {out}")
 
 
-def write_report(path, report, summary, overall, thresholds, detail):
+def write_report(path, report, summary, overall, thresholds, detail, skipped=()):
     L = []
     A = L.append
-    A("# Top-20 leaderboards on the held-out seasons\n")
+    A(f"# Top-{TOP_N} leaderboards on the held-out seasons\n")
     A("True 538 RAPTOR vs. our models vs. Neil Paine's Estimated RAPTOR, for")
-    A("2013-14 and 2014-15. Total, offense and defense are ranked separately.\n")
+    A("2013-14 and 2014-15. Total, offense and defense are ranked separately.")
+    A("These are the models trained on **all** data points — no starter or")
+    A("near-zero filtering (see RESULTS_starters.md for why those filters lose).\n")
+    if skipped:
+        cells = sorted({(s_["season"], s_["split"], s_["pool_n"]) for s_ in skipped})
+        A("> Skipped as degenerate: "
+          + "; ".join(f"{a} {b} (pool {c})" for a, b, c in cells)
+          + f". A top-{TOP_N} over a pool of that size is nearly the whole field,")
+        A("> so every system scores near-perfectly and the comparison says nothing.\n")
     A("> Paine's weights were fit on 2014-2023 full RAPTOR, which includes both of")
     A("> these seasons — his predictions are in-sample, ours are not.\n")
 
@@ -187,7 +216,7 @@ def write_report(path, report, summary, overall, thresholds, detail):
               f"{v['pearson']:+.3f} | {v['spearman']:+.3f} |")
         A("")
 
-    A("## Summary — true top-20 members recovered (hits@20)\n")
+    A(f"## Summary — true top-{TOP_N} members recovered (hits@{TOP_N})\n")
     for target in TRUTH:
         rows = [s for s in summary if s["target"] == target]
         names = [n for n in rows[0] if n.startswith("hits::")]
@@ -197,19 +226,30 @@ def write_report(path, report, summary, overall, thresholds, detail):
         A("|---" * (3 + 2 * len(names)) + "|")
         for s in rows:
             A(f"| {s['season']} | {s['split']} | {s['pool_n']} | "
-              + " | ".join(f"{s[n]}/20" for n in names) + " | "
+              + " | ".join(f"{s[n]}/{TOP_N}" for n in names) + " | "
               + " | ".join(f"{s['rho::' + n[6:]]:+.3f}" for n in names) + " |")
         tot = {n: sum(s[n] for s in rows) for n in names}
         A("| **all** | | | "
           + " | ".join(f"**{tot[n]}/{len(rows)*TOP_N}**" for n in names)
           + " | " + " | ".join("" for _ in names) + " |")
         A("")
+        ks = [k for k in HITS_AT if k <= TOP_N
+              and any(f"hits{k}::{n[6:]}" in rows[0] for n in names)]
+        if len(ks) > 1:
+            A(f"Precision@K for {target}, summed over {len(rows)} cells:\n")
+            A("| K | " + " | ".join(n[6:] for n in names) + " |")
+            A("|---" * (1 + len(names)) + "|")
+            for k in ks:
+                A(f"| {k} | " + " | ".join(
+                    f"{sum(s.get(f'hits{k}::' + n[6:], 0) for s in rows)}/"
+                    f"{len(rows)*k}" for n in names) + " |")
+            A("")
 
-    A("## Why the total is harder to rank than offense\n")
-    A("Hits@20 only asks whether a player lands on the correct side of an arbitrary")
-    A("cutoff, and for the total that cutoff is crowded. Players within ±0.25 RAPTOR")
-    A("of the rank-20 value, per cell:\n")
-    A("| season | split | target | rank-20 value | gap to rank 21 | players within ±0.25 |")
+    A("## How contested is the cutoff\n")
+    A(f"Hits@{TOP_N} only asks whether a player lands on the correct side of an")
+    A("arbitrary cutoff. Players within ±0.25 RAPTOR of the boundary value, per cell:\n")
+    A(f"| season | split | target | rank-{TOP_N} value | gap to rank {TOP_N+1} | "
+      "players within ±0.25 |")
     A("|---|---|---|---|---|---|")
     for s_ in summary:
         if "cut_value" not in s_:
@@ -224,30 +264,50 @@ def write_report(path, report, summary, overall, thresholds, detail):
     A("more reliable read.\n")
 
     A("## Conclusions\n")
-    ot = overall["total"]
-    direct = ot["ours (direct total)"]
-    summed = ot["ours (offense+defense)"]
-    paine_t = ot["Paine (eRO+eRD)"]
-    A(f"**Direct total vs. summing the halves — our model.** Predicting `rap`")
-    A(f"directly edges summing our two part-models: R² {direct['r2']:+.3f} vs")
-    A(f"{summed['r2']:+.3f}, ρ {direct['spearman']:+.3f} vs {summed['spearman']:+.3f},")
-    A("and 53/80 top-20 hits each. The two are close to interchangeable; the direct")
-    A("model wins narrowly and consistently on the continuous metrics.\n")
-    A(f"**Against Paine.** On every continuous measure our total model is clearly")
-    A(f"ahead — R² {direct['r2']:+.3f} vs {paine_t['r2']:+.3f}, RMSE")
-    A(f"{direct['rmse']:.3f} vs {paine_t['rmse']:.3f}, ρ {direct['spearman']:+.3f} vs")
-    A(f"{paine_t['spearman']:+.3f} — and it leads the per-cell rank correlation in")
-    A("all four cells. But he recovers **55/80** top-20 members to our 53/80.\n")
-    A("Those two facts are not in conflict. A 2-slot difference out of 80 is inside")
-    A("the noise of a metric decided by hundredths of a point at a crowded cutoff,")
-    A("while the correlation gap is consistent across every cell. The fair summary:")
-    A("**we rank the whole field better; at the top-20 boundary for the total the")
-    A("two systems are indistinguishable.** On offense and defense separately our")
-    A("advantage does show up in hits@20 too (63/80 vs 59/80, 55/80 vs 47/80).\n")
+    hits = {}
+    for target in TRUTH:
+        rows = [x for x in summary if x["target"] == target]
+        if not rows:
+            continue
+        names = [k[6:] for k in rows[0] if k.startswith("hits::")]
+        hits[target] = {n: (sum(x[f"hits::{n}"] for x in rows), len(rows) * TOP_N)
+                        for n in names}
+
+    if "total" in hits:
+        ot = overall["total"]
+        direct = ot["ours (direct total)"]
+        summed = ot["ours (offense+defense)"]
+        paine_t = ot["Paine (eRO+eRD)"]
+        hd = hits["total"]["ours (direct total)"]
+        hs = hits["total"]["ours (offense+defense)"]
+        hp = hits["total"]["Paine (eRO+eRD)"]
+        A("**Direct total vs. summing the halves.** Predicting `rap` directly and")
+        A("summing our two part-models are near-interchangeable: R² "
+          f"{direct['r2']:+.3f} vs {summed['r2']:+.3f}, ρ {direct['spearman']:+.3f} "
+          f"vs {summed['spearman']:+.3f}, hits@{TOP_N} {hd[0]}/{hd[1]} vs "
+          f"{hs[0]}/{hs[1]}.\n")
+        A(f"**Against Paine on the total.** R² {direct['r2']:+.3f} vs "
+          f"{paine_t['r2']:+.3f}, RMSE {direct['rmse']:.3f} vs {paine_t['rmse']:.3f}, "
+          f"ρ {direct['spearman']:+.3f} vs {paine_t['spearman']:+.3f}; "
+          f"hits@{TOP_N} {hd[0]}/{hd[1]} vs {hp[0]}/{hp[1]}.\n")
+    for target in ("offense", "defense"):
+        if target not in hits:
+            continue
+        o = overall[target]
+        oname = [n for n in o if n.startswith("ours")][0]
+        pname = [n for n in o if n.startswith("Paine")][0]
+        ho, hp2 = hits[target][oname], hits[target][pname]
+        A(f"**{target.capitalize()}.** ours R² {o[oname]['r2']:+.3f} / ρ "
+          f"{o[oname]['spearman']:+.3f} / hits@{TOP_N} {ho[0]}/{ho[1]}; "
+          f"Paine R² {o[pname]['r2']:+.3f} / ρ {o[pname]['spearman']:+.3f} / "
+          f"hits@{TOP_N} {hp2[0]}/{hp2[1]}.\n")
+    A("Read the precision@K tables above rather than a single cutoff: they show")
+    A("where each system's advantage actually lives, and a hits count at one")
+    A("arbitrary K is decided by hundredths of a point among near-tied players.\n")
 
     A("## Leaderboards\n")
     A("`[n]` after a predicted name is that player's *true* rank; ✓ means they are")
-    A("genuinely in the true top 20.\n")
+    A(f"genuinely in the true top {TOP_N}.\n")
     for r in report:
         A(f"### {r['season']} — {r['split']} — {r['target']}\n")
         true_lb, boards, rank_of = r["true"], r["boards"], r["rank_of"]

@@ -1,0 +1,371 @@
+{
+  "top_n": 100,
+  "thresholds": {
+    "Regular season": 1072.0,
+    "Playoffs": 131.0
+  },
+  "threshold_detail": [
+    {
+      "season": "2013-14",
+      "split": "Regular season",
+      "target": "total",
+      "min_mp_in_true_top20": 1143.0,
+      "median_mp_in_true_top20": 2249.5,
+      "pool_n": 250,
+      "pool_min_mp": 1065.0
+    },
+    {
+      "season": "2013-14",
+      "split": "Regular season",
+      "target": "offense",
+      "min_mp_in_true_top20": 1077.0,
+      "median_mp_in_true_top20": 2335.5,
+      "pool_n": 250,
+      "pool_min_mp": 1065.0
+    },
+    {
+      "season": "2013-14",
+      "split": "Regular season",
+      "target": "defense",
+      "min_mp_in_true_top20": 1072.0,
+      "median_mp_in_true_top20": 1967.0,
+      "pool_n": 250,
+      "pool_min_mp": 1065.0
+    },
+    {
+      "season": "2014-15",
+      "split": "Regular season",
+      "target": "total",
+      "min_mp_in_true_top20": 1173.0,
+      "median_mp_in_true_top20": 2103.5,
+      "pool_n": 250,
+      "pool_min_mp": 1148.0
+    },
+    {
+      "season": "2014-15",
+      "split": "Regular season",
+      "target": "offense",
+      "min_mp_in_true_top20": 1173.0,
+      "median_mp_in_true_top20": 2116.5,
+      "pool_n": 250,
+      "pool_min_mp": 1148.0
+    },
+    {
+      "season": "2014-15",
+      "split": "Regular season",
+      "target": "defense",
+      "min_mp_in_true_top20": 1148.0,
+      "median_mp_in_true_top20": 2018.5,
+      "pool_n": 250,
+      "pool_min_mp": 1148.0
+    },
+    {
+      "season": "2013-14",
+      "split": "Playoffs",
+      "target": "total",
+      "min_mp_in_true_top20": 167.0,
+      "median_mp_in_true_top20": 306.0,
+      "pool_n": 100,
+      "pool_min_mp": 167.0
+    },
+    {
+      "season": "2013-14",
+      "split": "Playoffs",
+      "target": "offense",
+      "min_mp_in_true_top20": 167.0,
+      "median_mp_in_true_top20": 306.0,
+      "pool_n": 100,
+      "pool_min_mp": 167.0
+    },
+    {
+      "season": "2013-14",
+      "split": "Playoffs",
+      "target": "defense",
+      "min_mp_in_true_top20": 167.0,
+      "median_mp_in_true_top20": 306.0,
+      "pool_n": 100,
+      "pool_min_mp": 167.0
+    },
+    {
+      "season": "2014-15",
+      "split": "Playoffs",
+      "target": "total",
+      "min_mp_in_true_top20": 131.0,
+      "median_mp_in_true_top20": 277.5,
+      "pool_n": 100,
+      "pool_min_mp": 131.0
+    },
+    {
+      "season": "2014-15",
+      "split": "Playoffs",
+      "target": "offense",
+      "min_mp_in_true_top20": 131.0,
+      "median_mp_in_true_top20": 277.5,
+      "pool_n": 100,
+      "pool_min_mp": 131.0
+    },
+    {
+      "season": "2014-15",
+      "split": "Playoffs",
+      "target": "defense",
+      "min_mp_in_true_top20": 131.0,
+      "median_mp_in_true_top20": 277.5,
+      "pool_n": 100,
+      "pool_min_mp": 131.0
+    }
+  ],
+  "summary": [
+    {
+      "season": "2013-14",
+      "split": "Regular season",
+      "target": "total",
+      "threshold_mp": 1072.0,
+      "pool_n": 245,
+      "dropped_by_threshold": 5,
+      "hits::ours (direct total)": 84,
+      "rho::ours (direct total)": 0.8960721108870524,
+      "hits10::ours (direct total)": 8,
+      "hits25::ours (direct total)": 18,
+      "hits50::ours (direct total)": 37,
+      "hits100::ours (direct total)": 84,
+      "hits::ours (offense+defense)": 85,
+      "rho::ours (offense+defense)": 0.897238746586833,
+      "hits10::ours (offense+defense)": 8,
+      "hits25::ours (offense+defense)": 18,
+      "hits50::ours (offense+defense)": 39,
+      "hits100::ours (offense+defense)": 85,
+      "hits::Paine (eRO+eRD)": 80,
+      "rho::Paine (eRO+eRD)": 0.8885377416807746,
+      "hits10::Paine (eRO+eRD)": 8,
+      "hits25::Paine (eRO+eRD)": 19,
+      "hits50::Paine (eRO+eRD)": 35,
+      "hits100::Paine (eRO+eRD)": 80,
+      "cut_value": 0.6,
+      "gap_20_21": 0.0,
+      "within_0.25_of_cut": 19
+    },
+    {
+      "season": "2014-15",
+      "split": "Regular season",
+      "target": "total",
+      "threshold_mp": 1072.0,
+      "pool_n": 246,
+      "dropped_by_threshold": 4,
+      "hits::ours (direct total)": 84,
+      "rho::ours (direct total)": 0.9020581971219663,
+      "hits10::ours (direct total)": 7,
+      "hits25::ours (direct total)": 18,
+      "hits50::ours (direct total)": 41,
+      "hits100::ours (direct total)": 84,
+      "hits::ours (offense+defense)": 84,
+      "rho::ours (offense+defense)": 0.9001752820837846,
+      "hits10::ours (offense+defense)": 7,
+      "hits25::ours (offense+defense)": 18,
+      "hits50::ours (offense+defense)": 40,
+      "hits100::ours (offense+defense)": 84,
+      "hits::Paine (eRO+eRD)": 85,
+      "rho::Paine (eRO+eRD)": 0.9012838276532558,
+      "hits10::Paine (eRO+eRD)": 7,
+      "hits25::Paine (eRO+eRD)": 16,
+      "hits50::Paine (eRO+eRD)": 40,
+      "hits100::Paine (eRO+eRD)": 85,
+      "cut_value": 0.8,
+      "gap_20_21": 0.0,
+      "within_0.25_of_cut": 17
+    },
+    {
+      "season": "2013-14",
+      "split": "Regular season",
+      "target": "offense",
+      "threshold_mp": 1072.0,
+      "pool_n": 245,
+      "dropped_by_threshold": 5,
+      "hits::ours": 83,
+      "rho::ours": 0.9235898323952013,
+      "hits10::ours": 8,
+      "hits25::ours": 20,
+      "hits50::ours": 42,
+      "hits100::ours": 83,
+      "hits::Paine (eRO)": 80,
+      "rho::Paine (eRO)": 0.8658882192633106,
+      "hits10::Paine (eRO)": 9,
+      "hits25::Paine (eRO)": 20,
+      "hits50::Paine (eRO)": 37,
+      "hits100::Paine (eRO)": 80,
+      "cut_value": 0.5,
+      "gap_20_21": 0.0,
+      "within_0.25_of_cut": 38
+    },
+    {
+      "season": "2014-15",
+      "split": "Regular season",
+      "target": "offense",
+      "threshold_mp": 1072.0,
+      "pool_n": 246,
+      "dropped_by_threshold": 4,
+      "hits::ours": 88,
+      "rho::ours": 0.925347623443264,
+      "hits10::ours": 8,
+      "hits25::ours": 20,
+      "hits50::ours": 41,
+      "hits100::ours": 88,
+      "hits::Paine (eRO)": 80,
+      "rho::Paine (eRO)": 0.8583214112943927,
+      "hits10::Paine (eRO)": 8,
+      "hits25::Paine (eRO)": 20,
+      "hits50::Paine (eRO)": 39,
+      "hits100::Paine (eRO)": 80,
+      "cut_value": 0.3,
+      "gap_20_21": 0.0,
+      "within_0.25_of_cut": 32
+    },
+    {
+      "season": "2013-14",
+      "split": "Regular season",
+      "target": "defense",
+      "threshold_mp": 1072.0,
+      "pool_n": 245,
+      "dropped_by_threshold": 5,
+      "hits::ours": 83,
+      "rho::ours": 0.8708303709564217,
+      "hits10::ours": 5,
+      "hits25::ours": 16,
+      "hits50::ours": 38,
+      "hits100::ours": 83,
+      "hits::Paine (eRD)": 76,
+      "rho::Paine (eRD)": 0.793768755611804,
+      "hits10::Paine (eRD)": 5,
+      "hits25::Paine (eRD)": 15,
+      "hits50::Paine (eRD)": 35,
+      "hits100::Paine (eRD)": 76,
+      "cut_value": 0.4,
+      "gap_20_21": 0.0,
+      "within_0.25_of_cut": 29
+    },
+    {
+      "season": "2014-15",
+      "split": "Regular season",
+      "target": "defense",
+      "threshold_mp": 1072.0,
+      "pool_n": 246,
+      "dropped_by_threshold": 4,
+      "hits::ours": 82,
+      "rho::ours": 0.8710706032052218,
+      "hits10::ours": 7,
+      "hits25::ours": 20,
+      "hits50::ours": 37,
+      "hits100::ours": 82,
+      "hits::Paine (eRD)": 73,
+      "rho::Paine (eRD)": 0.8011575054770603,
+      "hits10::Paine (eRD)": 6,
+      "hits25::Paine (eRD)": 16,
+      "hits50::Paine (eRD)": 33,
+      "hits100::Paine (eRD)": 73,
+      "cut_value": 0.4,
+      "gap_20_21": 0.0,
+      "within_0.25_of_cut": 39
+    }
+  ],
+  "skipped": [
+    {
+      "season": "2013-14",
+      "split": "Playoffs",
+      "target": "total",
+      "pool_n": 99
+    },
+    {
+      "season": "2014-15",
+      "split": "Playoffs",
+      "target": "total",
+      "pool_n": 98
+    },
+    {
+      "season": "2013-14",
+      "split": "Playoffs",
+      "target": "offense",
+      "pool_n": 99
+    },
+    {
+      "season": "2014-15",
+      "split": "Playoffs",
+      "target": "offense",
+      "pool_n": 98
+    },
+    {
+      "season": "2013-14",
+      "split": "Playoffs",
+      "target": "defense",
+      "pool_n": 99
+    },
+    {
+      "season": "2014-15",
+      "split": "Playoffs",
+      "target": "defense",
+      "pool_n": 98
+    }
+  ],
+  "overall_regression": {
+    "total": {
+      "ours (direct total)": {
+        "n": 688,
+        "rmse": 1.7191865058872875,
+        "mae": 1.2831589448893606,
+        "r2": 0.7507781774259639,
+        "pearson": 0.8833438867909285,
+        "spearman": 0.8860992990441541
+      },
+      "ours (offense+defense)": {
+        "n": 688,
+        "rmse": 1.7419344496266922,
+        "mae": 1.2868525543904423,
+        "r2": 0.7441392334668862,
+        "pearson": 0.879706317936331,
+        "spearman": 0.8781882830001738
+      },
+      "Paine (eRO+eRD)": {
+        "n": 688,
+        "rmse": 1.937588142359315,
+        "mae": 1.380302777624182,
+        "r2": 0.6834349128064433,
+        "pearson": 0.8408400521746707,
+        "spearman": 0.8459473111935963
+      }
+    },
+    "offense": {
+      "ours": {
+        "n": 688,
+        "rmse": 1.0222887042534161,
+        "mae": 0.780359317121638,
+        "r2": 0.8212044392325418,
+        "pearson": 0.9230988097213464,
+        "spearman": 0.9077779656267836
+      },
+      "Paine (eRO)": {
+        "n": 688,
+        "rmse": 1.3089029477911396,
+        "mae": 0.9598187571212653,
+        "r2": 0.7068941414887593,
+        "pearson": 0.8472102968163715,
+        "spearman": 0.8248883258983133
+      }
+    },
+    "defense": {
+      "ours": {
+        "n": 688,
+        "rmse": 1.4093742298617764,
+        "mae": 1.040569844809542,
+        "r2": 0.6345768455518104,
+        "pearson": 0.8163770678215272,
+        "spearman": 0.8177483648113891
+      },
+      "Paine (eRD)": {
+        "n": 688,
+        "rmse": 1.642416146304273,
+        "mae": 1.195625347503199,
+        "r2": 0.5037393712100608,
+        "pearson": 0.7262598449879539,
+        "spearman": 0.7272935050301454
+      }
+    }
+  }
+}

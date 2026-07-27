@@ -2,6 +2,8 @@
 
 True 538 RAPTOR vs. our models vs. Neil Paine's Estimated RAPTOR, for
 2013-14 and 2014-15. Total, offense and defense are ranked separately.
+These are the models trained on **all** data points — no starter or
+near-zero filtering (see RESULTS_starters.md for why those filters lose).
 
 > Paine's weights were fit on 2014-2023 full RAPTOR, which includes both of
 > these seasons — his predictions are in-sample, ours are not.
@@ -104,11 +106,10 @@ matter far more against an unfiltered universe — Paine's own CSV has a
 | 2014-15 | Playoffs | 98 | 13/20 | 10/20 | +0.780 | +0.633 |
 | **all** | | | **55/80** | **47/80** |  |  |
 
-## Why the total is harder to rank than offense
+## How contested is the cutoff
 
-Hits@20 only asks whether a player lands on the correct side of an arbitrary
-cutoff, and for the total that cutoff is crowded. Players within ±0.25 RAPTOR
-of the rank-20 value, per cell:
+Hits@20 only asks whether a player lands on the correct side of an
+arbitrary cutoff. Players within ±0.25 RAPTOR of the boundary value, per cell:
 
 | season | split | target | rank-20 value | gap to rank 21 | players within ±0.25 |
 |---|---|---|---|---|---|
@@ -132,24 +133,18 @@ more reliable read.
 
 ## Conclusions
 
-**Direct total vs. summing the halves — our model.** Predicting `rap`
-directly edges summing our two part-models: R² +0.750 vs
-+0.744, ρ +0.885 vs +0.878,
-and 53/80 top-20 hits each. The two are close to interchangeable; the direct
-model wins narrowly and consistently on the continuous metrics.
+**Direct total vs. summing the halves.** Predicting `rap` directly and
+summing our two part-models are near-interchangeable: R² +0.750 vs +0.744, ρ +0.885 vs +0.878, hits@20 53/80 vs 53/80.
 
-**Against Paine.** On every continuous measure our total model is clearly
-ahead — R² +0.750 vs +0.683, RMSE
-1.723 vs 1.939, ρ +0.885 vs
-+0.846 — and it leads the per-cell rank correlation in
-all four cells. But he recovers **55/80** top-20 members to our 53/80.
+**Against Paine on the total.** R² +0.750 vs +0.683, RMSE 1.723 vs 1.939, ρ +0.885 vs +0.846; hits@20 53/80 vs 55/80.
 
-Those two facts are not in conflict. A 2-slot difference out of 80 is inside
-the noise of a metric decided by hundredths of a point at a crowded cutoff,
-while the correlation gap is consistent across every cell. The fair summary:
-**we rank the whole field better; at the top-20 boundary for the total the
-two systems are indistinguishable.** On offense and defense separately our
-advantage does show up in hits@20 too (63/80 vs 59/80, 55/80 vs 47/80).
+**Offense.** ours R² +0.820 / ρ +0.907 / hits@20 63/80; Paine R² +0.706 / ρ +0.823 / hits@20 59/80.
+
+**Defense.** ours R² +0.636 / ρ +0.819 / hits@20 55/80; Paine R² +0.504 / ρ +0.727 / hits@20 47/80.
+
+Read the precision@K tables above rather than a single cutoff: they show
+where each system's advantage actually lives, and a hits count at one
+arbitrary K is decided by hundredths of a point among near-tied players.
 
 ## Leaderboards
 
