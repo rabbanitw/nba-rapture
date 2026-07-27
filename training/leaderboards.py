@@ -70,6 +70,11 @@ def main():
                                            / "RESULTS_estimated_raptor.csv"))
     ap.add_argument("--out", default=None)
     ap.add_argument("--top-n", type=int, default=20)
+    ap.add_argument("--stride-tuned", action="store_true",
+                    help="use per-target best strides from RESULTS_stride.md, "
+                         "trained off the full stride-1 build")
+    ap.add_argument("--stride-datadir",
+                    default=str(REPO_ROOT / "training" / "data_full"))
     ap.add_argument("--no-min-mp", action="store_true",
                     help="rank every player: no eligibility threshold and no "
                          "minimum-minutes filter on training rows either")
@@ -77,7 +82,8 @@ def main():
 
     global TOP_N
     TOP_N = args.top_n
-    suffix = "_nofilter" if args.no_min_mp else ""
+    suffix = ("_stride" if args.stride_tuned else "") + \
+             ("_nofilter" if args.no_min_mp else "")
     out = args.out or str(REPO_ROOT / "training"
                           / f"RESULTS_top{TOP_N}{suffix}.md")
 
@@ -89,10 +95,15 @@ def main():
         thresholds = {k: 0.0 for k in thresholds}
         print("  --no-min-mp: eligibility threshold and training MIN_MP both off")
 
-    print("refitting the combined model (total, offense, defense) ...")
-    ours = our_predictions(args.datadir,
-                           rs_min=0 if args.no_min_mp else None,
-                           po_min=0 if args.no_min_mp else None)
+    if args.stride_tuned:
+        from stride_ablation import BEST_STRIDE, tuned_predictions
+        print(f"refitting with per-target best strides {BEST_STRIDE} ...")
+        ours = tuned_predictions(args.stride_datadir)
+    else:
+        print("refitting the combined model (total, offense, defense) ...")
+        ours = our_predictions(args.datadir,
+                               rs_min=0 if args.no_min_mp else None,
+                               po_min=0 if args.no_min_mp else None)
     ours["key"] = ours.player.map(norm_name)
     ours["ours_sum"] = ours.ours_offense + ours.ours_defense
 

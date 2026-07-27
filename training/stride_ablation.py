@@ -2,8 +2,16 @@
 
 Stride-k selection keeps every kth modern snapshot within each season, so every
 stride is a subset of the stride-1 timestamp list. Building once at stride 1 and
-subsetting in memory is exactly equivalent to rebuilding per stride, and avoids
-about two hours of repeated Mongo pulls.
+subsetting in memory avoids about two hours of repeated Mongo pulls.
+
+CAVEAT: this is NOT identical to rebuilding per stride. dedupe() runs over the
+whole stride-1 set here, before the stride subset is taken; in the production
+pipeline it runs after, over only the selected timestamps. Dedupe keeps the
+latest of each byte-identical group, so pre-deduping a denser snapshot set drops
+rows a direct build would have kept -- the stride-6 subset here has 10,933 fit
+rows against 14,235 for a direct stride-6 build. Rankings WITHIN this sweep are
+valid (one pipeline throughout); absolute numbers are not comparable to reports
+built the production way.
 
 Training rows are also filtered to MPG >= MPG_FLOOR. That is deliberately a low
 floor: earlier work showed MPG >= 20 and >= 28 both cost accuracy, while removing
@@ -22,6 +30,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import lightgbm as lgb
 from sklearn.linear_model import RidgeCV
 
@@ -35,6 +44,9 @@ MODEL = "combined"
 STRIDES = [1, 2, 3, 4, 6, 8, 12, 20]
 MPG_FLOOR = 5.0
 TARGETS_RUN = ["total", "offense", "defense"]
+
+# Validation-selected in this ablation; see RESULTS_stride.md.
+BEST_STRIDE = {"total": 3, "offense": 12, "defense": 3}
 
 
 def stride_timestamps(all_ts, stride):
@@ -86,8 +98,37 @@ def fit_eval(X, y, fit, val, test):
     sd[sd == 0] = 1.0
     ridge = RidgeCV(alphas=np.logspace(-2, 4, 25)).fit((A - mu) / sd, y[tr])
     rp = ridge.predict((B - mu) / sd)
+    blend = 0.75 * pred + 0.25 * rp
     return vm, rounds, {"lgbm": metrics(y[test], pred),
-                        "blend": metrics(y[test], 0.75 * pred + 0.25 * rp)}
+                        "blend": metrics(y[test], blend)}, blend
+
+
+def tuned_predictions(datadir=None, strides=None, mpg_floor=MPG_FLOOR):
+    """Predictions for the held-out rows using each target's best stride.
+
+    Shape matches compare_estimated_raptor.our_predictions so the leaderboard
+    machinery can consume either.
+    """
+    datadir = datadir or (REPO_ROOT / "training" / "data_full")
+    strides = strides or BEST_STRIDE
+    X, feat, d, mpg = prepare(datadir)
+    is_test = d["test"].astype(bool)
+    is_val = np.array([s in VAL_SEASONS and t in FULL_SEASON_SNAPSHOTS
+                       for s, t in zip(d["season"], d["timestamp"])])
+    base_fit = ((~is_test) & (~is_val)
+                & np.isfinite(mpg) & (mpg >= mpg_floor))
+    all_ts = set(d["timestamp"])
+
+    out = pd.DataFrame({"player": d["player"][is_test], "season": d["season"][is_test],
+                        "split": d["season_type"][is_test], "mp": d["mp"][is_test]})
+    for target, stride in strides.items():
+        keep_ts = stride_timestamps(all_ts, stride)
+        fit = base_fit & np.array([t in keep_ts for t in d["timestamp"]])
+        _, rounds, _, blend = fit_eval(X, d[TARGETS[target]], fit, is_val, is_test)
+        out[f"ours_{target}"] = blend
+        out[f"truth_{target}"] = d[TARGETS[target]][is_test]
+        print(f"  {target:<8} stride={stride:<3} fit={fit.sum():>6,} rounds={rounds}")
+    return out
 
 
 def main():
@@ -118,7 +159,7 @@ def main():
                "fit_rows": int(fit.sum())}
         for target in TARGETS_RUN:
             y = d[TARGETS[target]]
-            vm, rounds, tm = fit_eval(X, y, fit, is_val, is_test)
+            vm, rounds, tm, _ = fit_eval(X, y, fit, is_val, is_test)
             rec[target] = {"val": vm, "rounds": rounds, **tm}
         results.append(rec)
         print(f"  stride {stride:>2}  ts={n_modern_ts:>3}  fit={fit.sum():>6,}  "
@@ -144,8 +185,11 @@ def write_report(path, results, n_val, n_test, n_dropped):
     A(f"drops {n_dropped:,} garbage-time rows. That floor is deliberately low:")
     A("MPG ≥ 20 and ≥ 28 both cost accuracy in earlier runs, and so did removing the")
     A("minutes filter altogether, so only near-zero rows are excluded here.\n")
-    A("Built once at stride 1 and subset in memory — stride-k is a strict subset of")
-    A("stride-1, so this is equivalent to rebuilding per stride.\n")
+    A("Built once at stride 1 and subset in memory. **This is not identical to")
+    A("rebuilding per stride**: dedupe runs over the whole stride-1 set here but")
+    A("after timestamp selection in the production pipeline, so these rows are a")
+    A("little sparser than a direct build at the same stride. Rankings within this")
+    A("table are valid; absolute values are not comparable to other reports.\n")
 
     for target in TARGETS_RUN:
         A(f"## {target}\n")

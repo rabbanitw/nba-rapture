@@ -309,6 +309,7 @@ best-looking number in the table — while the same model scores 3.974 on the fu
 | [RESULTS_top100.md](RESULTS_top100.md) | top-100 leaderboards with precision@K (regular season only) |
 | [RESULTS_top20_nofilter.md](RESULTS_top20_nofilter.md), [RESULTS_top100_nofilter.md](RESULTS_top100_nofilter.md) | same, with every minutes filter removed |
 | [RESULTS_stride.md](RESULTS_stride.md) | ablation over `--modern-stride`, MPG ≥ 5 training floor |
+| [RESULTS_stride_transfer.md](RESULTS_stride_transfer.md) | why the sweep's stride-3 pick does not transfer; stride 6 stays |
 | [RESULTS_starters.md](RESULTS_starters.md) | training only on rotation players, near-zero labels dropped |
 
 ## Known limitations
@@ -325,6 +326,9 @@ best-looking number in the table — while the same model scores 3.974 on the fu
 - `--modern-stride` was swept in [RESULTS_stride.md](RESULTS_stride.md). **Stride 1
   is the worst setting tested**, not the best: more near-duplicate modern snapshots
   re-weight the loss toward the in-season distribution and away from the
-  full-season one the test set is drawn from. Validation picks **stride 3**.
+  full-season one the test set is drawn from. The sweep's finer recommendation
+  (stride 3) does **not** transfer to the production pipeline — see
+  [RESULTS_stride_transfer.md](RESULTS_stride_transfer.md). **Stride 6 stays the
+  default.**
 - Traded players get one team's row rather than a minutes-weighted combination.
   Validation says this is right ~94% of the time; the remainder is unfixed.
