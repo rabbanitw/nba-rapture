@@ -10,6 +10,7 @@ python training/build_dataset.py --model all   # -> training/data/{box,onoff,com
 python training/train_rapture.py --model all   # -> training/models/ (total, offense, defense)
 python training/mp_sweep.py            # minimum-minutes threshold sweep
 python training/experiment_combined.py # -> training/RESULTS_combined.md
+python training/estimated_raptor.py && python training/compare_estimated_raptor.py  # external baseline
 ```
 
 Credentials go in `credentials.txt` at the repo root (username line 1, password

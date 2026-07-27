@@ -7,3 +7,6 @@ training/_ts_by_source.json
 training/schema_report.json
 training/__pycache__/
 training/RESULTS_combined.json
+training/RESULTS_estimated_raptor.csv
+training/RESULTS_estimated_raptor.json
+training/RESULTS_estimated_raptor.compare.json
