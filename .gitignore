@@ -11,3 +11,4 @@ training/RESULTS_estimated_raptor.csv
 training/RESULTS_estimated_raptor.json
 training/RESULTS_estimated_raptor.compare.json
 training/RESULTS_top20.json
+training/RESULTS_starters.json

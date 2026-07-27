@@ -12,6 +12,7 @@ python training/mp_sweep.py            # minimum-minutes threshold sweep
 python training/experiment_combined.py # -> training/RESULTS_combined.md
 python training/estimated_raptor.py && python training/compare_estimated_raptor.py  # external baseline
 python training/leaderboards.py        # -> training/RESULTS_top20.md
+python training/starter_models.py      # -> training/RESULTS_starters.md
 ```
 
 Credentials go in `credentials.txt` at the repo root (username line 1, password
@@ -303,7 +304,8 @@ best-looking number in the table — while the same model scores 3.974 on the fu
 |---|---|
 | [RESULTS_combined.md](RESULTS_combined.md) | position one-hot × minimum-minutes threshold for the combined model |
 | [RESULTS_estimated_raptor.md](RESULTS_estimated_raptor.md) | Neil Paine's Estimated RAPTOR recreated and scored head-to-head |
-| [RESULTS_top20.md](RESULTS_top20.md) | top-20 offense/defense leaderboards, predicted vs true |
+| [RESULTS_top20.md](RESULTS_top20.md) | top-20 total/offense/defense leaderboards, predicted vs true |
+| [RESULTS_starters.md](RESULTS_starters.md) | training only on rotation players, near-zero labels dropped |
 
 ## Known limitations
 
