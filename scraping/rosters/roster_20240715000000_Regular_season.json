@@ -1,0 +1,6727 @@
+{
+  "season": "2023-24",
+  "api_type": "Regular Season",
+  "season_type": "Regular season",
+  "timestamp": "20240715000000",
+  "from": "2023-10-24",
+  "to": "2024-04-14",
+  "players": {
+    "101108": {
+      "name": "Chris Paul",
+      "minutes": 1531,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1531
+        }
+      ]
+    },
+    "1626145": {
+      "name": "Tyus Jones",
+      "minutes": 1933,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 1933
+        }
+      ]
+    },
+    "1626153": {
+      "name": "Delon Wright",
+      "minutes": 742,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 456
+        },
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 286
+        }
+      ]
+    },
+    "1626156": {
+      "name": "D'Angelo Russell",
+      "minutes": 2484,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 2484
+        }
+      ]
+    },
+    "1626157": {
+      "name": "Karl-Anthony Towns",
+      "minutes": 2026,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 2026
+        }
+      ]
+    },
+    "1626158": {
+      "name": "Richaun Holmes",
+      "minutes": 554,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 318
+        },
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 237
+        }
+      ]
+    },
+    "1626162": {
+      "name": "Kelly Oubre Jr.",
+      "minutes": 2055,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 2055
+        }
+      ]
+    },
+    "1626164": {
+      "name": "Devin Booker",
+      "minutes": 2447,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 2447
+        }
+      ]
+    },
+    "1626166": {
+      "name": "Cameron Payne",
+      "minutes": 1304,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 702
+        },
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 602
+        }
+      ]
+    },
+    "1626167": {
+      "name": "Myles Turner",
+      "minutes": 2077,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 2077
+        }
+      ]
+    },
+    "1626168": {
+      "name": "Trey Lyles",
+      "minutes": 1158,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 1158
+        }
+      ]
+    },
+    "1626171": {
+      "name": "Bobby Portis",
+      "minutes": 2008,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 2008
+        }
+      ]
+    },
+    "1626172": {
+      "name": "Kevon Looney",
+      "minutes": 1195,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1195
+        }
+      ]
+    },
+    "1626174": {
+      "name": "Christian Wood",
+      "minutes": 872,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 872
+        }
+      ]
+    },
+    "1626179": {
+      "name": "Terry Rozier",
+      "minutes": 2040,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 1065
+        },
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 975
+        }
+      ]
+    },
+    "1626181": {
+      "name": "Norman Powell",
+      "minutes": 1990,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 1990
+        }
+      ]
+    },
+    "1626192": {
+      "name": "Pat Connaughton",
+      "minutes": 1676,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 1676
+        }
+      ]
+    },
+    "1626196": {
+      "name": "Josh Richardson",
+      "minutes": 1103,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 1103
+        }
+      ]
+    },
+    "1626204": {
+      "name": "Larry Nance Jr.",
+      "minutes": 1216,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 1216
+        }
+      ]
+    },
+    "1626220": {
+      "name": "Royce O'Neale",
+      "minutes": 1954,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 1202
+        },
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 752
+        }
+      ]
+    },
+    "1626224": {
+      "name": "Cedi Osman",
+      "minutes": 1269,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 1269
+        }
+      ]
+    },
+    "1626246": {
+      "name": "Boban Marjanovic",
+      "minutes": 71,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 71
+        }
+      ]
+    },
+    "1627732": {
+      "name": "Ben Simmons",
+      "minutes": 359,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 359
+        }
+      ]
+    },
+    "1627734": {
+      "name": "Domantas Sabonis",
+      "minutes": 2928,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 2928
+        }
+      ]
+    },
+    "1627736": {
+      "name": "Malik Beasley",
+      "minutes": 2337,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 2337
+        }
+      ]
+    },
+    "1627739": {
+      "name": "Kris Dunn",
+      "minutes": 1249,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1249
+        }
+      ]
+    },
+    "1627741": {
+      "name": "Buddy Hield",
+      "minutes": 2160,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 1336
+        },
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 824
+        }
+      ]
+    },
+    "1627742": {
+      "name": "Brandon Ingram",
+      "minutes": 2103,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 2103
+        }
+      ]
+    },
+    "1627745": {
+      "name": "Damian Jones",
+      "minutes": 270,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 270
+        }
+      ]
+    },
+    "1627747": {
+      "name": "Caris LeVert",
+      "minutes": 1958,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 1958
+        }
+      ]
+    },
+    "1627749": {
+      "name": "Dejounte Murray",
+      "minutes": 2783,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 2783
+        }
+      ]
+    },
+    "1627750": {
+      "name": "Jamal Murray",
+      "minutes": 1861,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 1861
+        }
+      ]
+    },
+    "1627751": {
+      "name": "Jakob Poeltl",
+      "minutes": 1319,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 1319
+        }
+      ]
+    },
+    "1627752": {
+      "name": "Taurean Prince",
+      "minutes": 2108,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 2108
+        }
+      ]
+    },
+    "1627759": {
+      "name": "Jaylen Brown",
+      "minutes": 2343,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 2343
+        }
+      ]
+    },
+    "1627763": {
+      "name": "Malcolm Brogdon",
+      "minutes": 1121,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1121
+        }
+      ]
+    },
+    "1627777": {
+      "name": "Georges Niang",
+      "minutes": 1831,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 1831
+        }
+      ]
+    },
+    "1627780": {
+      "name": "Gary Payton II",
+      "minutes": 680,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 680
+        }
+      ]
+    },
+    "1627783": {
+      "name": "Pascal Siakam",
+      "minutes": 2658,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 1354
+        },
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 1303
+        }
+      ]
+    },
+    "1627788": {
+      "name": "Furkan Korkmaz",
+      "minutes": 300,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 300
+        }
+      ]
+    },
+    "1627826": {
+      "name": "Ivica Zubac",
+      "minutes": 1795,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 1795
+        }
+      ]
+    },
+    "1627827": {
+      "name": "Dorian Finney-Smith",
+      "minutes": 1934,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 1934
+        }
+      ]
+    },
+    "1627832": {
+      "name": "Fred VanVleet",
+      "minutes": 2684,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 2684
+        }
+      ]
+    },
+    "1627853": {
+      "name": "Ryan Arcidiacono",
+      "minutes": 45,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 45
+        }
+      ]
+    },
+    "1627863": {
+      "name": "Danuel House Jr.",
+      "minutes": 509,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 509
+        }
+      ]
+    },
+    "1627884": {
+      "name": "Derrick Jones Jr.",
+      "minutes": 1783,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 1783
+        }
+      ]
+    },
+    "1627885": {
+      "name": "Shaquille Harrison",
+      "minutes": 6,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 6
+        }
+      ]
+    },
+    "1627936": {
+      "name": "Alex Caruso",
+      "minutes": 2040,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 2040
+        }
+      ]
+    },
+    "1628365": {
+      "name": "Markelle Fultz",
+      "minutes": 910,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 910
+        }
+      ]
+    },
+    "1628368": {
+      "name": "De'Aaron Fox",
+      "minutes": 2659,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 2659
+        }
+      ]
+    },
+    "1628369": {
+      "name": "Jayson Tatum",
+      "minutes": 2645,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 2645
+        }
+      ]
+    },
+    "1628370": {
+      "name": "Malik Monk",
+      "minutes": 1872,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 1872
+        }
+      ]
+    },
+    "1628371": {
+      "name": "Jonathan Isaac",
+      "minutes": 914,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 914
+        }
+      ]
+    },
+    "1628372": {
+      "name": "Dennis Smith Jr.",
+      "minutes": 1059,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 1059
+        }
+      ]
+    },
+    "1628373": {
+      "name": "Frank Ntilikina",
+      "minutes": 43,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 43
+        }
+      ]
+    },
+    "1628374": {
+      "name": "Lauri Markkanen",
+      "minutes": 1820,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1820
+        }
+      ]
+    },
+    "1628378": {
+      "name": "Donovan Mitchell",
+      "minutes": 1943,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 1943
+        }
+      ]
+    },
+    "1628379": {
+      "name": "Luke Kennard",
+      "minutes": 999,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 999
+        }
+      ]
+    },
+    "1628380": {
+      "name": "Zach Collins",
+      "minutes": 1526,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 1526
+        }
+      ]
+    },
+    "1628381": {
+      "name": "John Collins",
+      "minutes": 1901,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1901
+        }
+      ]
+    },
+    "1628382": {
+      "name": "Justin Jackson",
+      "minutes": 1,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 1
+        }
+      ]
+    },
+    "1628384": {
+      "name": "OG Anunoby",
+      "minutes": 1702,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 900
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 802
+        }
+      ]
+    },
+    "1628385": {
+      "name": "Harry Giles III",
+      "minutes": 100,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 81
+        },
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 19
+        }
+      ]
+    },
+    "1628386": {
+      "name": "Jarrett Allen",
+      "minutes": 2442,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 2442
+        }
+      ]
+    },
+    "1628389": {
+      "name": "Bam Adebayo",
+      "minutes": 2416,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 2416
+        }
+      ]
+    },
+    "1628391": {
+      "name": "D.J. Wilson",
+      "minutes": 15,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 15
+        }
+      ]
+    },
+    "1628392": {
+      "name": "Isaiah Hartenstein",
+      "minutes": 1896,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 1896
+        }
+      ]
+    },
+    "1628398": {
+      "name": "Kyle Kuzma",
+      "minutes": 2281,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 2281
+        }
+      ]
+    },
+    "1628401": {
+      "name": "Derrick White",
+      "minutes": 2381,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 2381
+        }
+      ]
+    },
+    "1628404": {
+      "name": "Josh Hart",
+      "minutes": 2707,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 2707
+        }
+      ]
+    },
+    "1628415": {
+      "name": "Dillon Brooks",
+      "minutes": 2227,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 2227
+        }
+      ]
+    },
+    "1628418": {
+      "name": "Thomas Bryant",
+      "minutes": 441,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 441
+        }
+      ]
+    },
+    "1628420": {
+      "name": "Monte Morris",
+      "minutes": 476,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 408
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 68
+        }
+      ]
+    },
+    "1628424": {
+      "name": "Kobi Simmons",
+      "minutes": 67,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 67
+        }
+      ]
+    },
+    "1628426": {
+      "name": "Sasha Vezenkov",
+      "minutes": 511,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 511
+        }
+      ]
+    },
+    "1628436": {
+      "name": "Luke Kornet",
+      "minutes": 983,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 983
+        }
+      ]
+    },
+    "1628449": {
+      "name": "Chris Boucher",
+      "minutes": 705,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 705
+        }
+      ]
+    },
+    "1628464": {
+      "name": "Daniel Theis",
+      "minutes": 1015,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 1007
+        },
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 8
+        }
+      ]
+    },
+    "1628467": {
+      "name": "Maxi Kleber",
+      "minutes": 871,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 871
+        }
+      ]
+    },
+    "1628470": {
+      "name": "Torrey Craig",
+      "minutes": 1049,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 1049
+        }
+      ]
+    },
+    "1628960": {
+      "name": "Grayson Allen",
+      "minutes": 2513,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 2513
+        }
+      ]
+    },
+    "1628962": {
+      "name": "Udoka Azubuike",
+      "minutes": 113,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 113
+        }
+      ]
+    },
+    "1628963": {
+      "name": "Marvin Bagley III",
+      "minutes": 1053,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 575
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 478
+        }
+      ]
+    },
+    "1628964": {
+      "name": "Mo Bamba",
+      "minutes": 740,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 740
+        }
+      ]
+    },
+    "1628966": {
+      "name": "Keita Bates-Diop",
+      "minutes": 665,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 597
+        },
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 68
+        }
+      ]
+    },
+    "1628969": {
+      "name": "Mikal Bridges",
+      "minutes": 2854,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 2854
+        }
+      ]
+    },
+    "1628970": {
+      "name": "Miles Bridges",
+      "minutes": 2581,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 2581
+        }
+      ]
+    },
+    "1628971": {
+      "name": "Bruce Brown",
+      "minutes": 1865,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 981
+        },
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 885
+        }
+      ]
+    },
+    "1628972": {
+      "name": "Troy Brown Jr.",
+      "minutes": 827,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 417
+        },
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 410
+        }
+      ]
+    },
+    "1628973": {
+      "name": "Jalen Brunson",
+      "minutes": 2726,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 2726
+        }
+      ]
+    },
+    "1628975": {
+      "name": "Jevon Carter",
+      "minutes": 1004,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 1004
+        }
+      ]
+    },
+    "1628976": {
+      "name": "Wendell Carter Jr.",
+      "minutes": 1406,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 1406
+        }
+      ]
+    },
+    "1628977": {
+      "name": "Hamidou Diallo",
+      "minutes": 5,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 5
+        }
+      ]
+    },
+    "1628978": {
+      "name": "Donte DiVincenzo",
+      "minutes": 2360,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 2360
+        }
+      ]
+    },
+    "1628981": {
+      "name": "Bruno Fernando",
+      "minutes": 682,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 682
+        }
+      ]
+    },
+    "1628983": {
+      "name": "Shai Gilgeous-Alexander",
+      "minutes": 2553,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 2553
+        }
+      ]
+    },
+    "1628984": {
+      "name": "Devonte' Graham",
+      "minutes": 313,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 313
+        }
+      ]
+    },
+    "1628988": {
+      "name": "Aaron Holiday",
+      "minutes": 1269,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 1269
+        }
+      ]
+    },
+    "1628989": {
+      "name": "Kevin Huerter",
+      "minutes": 1562,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 1562
+        }
+      ]
+    },
+    "1628991": {
+      "name": "Jaren Jackson Jr.",
+      "minutes": 2124,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 2124
+        }
+      ]
+    },
+    "1628995": {
+      "name": "Kevin Knox II",
+      "minutes": 560,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 560
+        }
+      ]
+    },
+    "1628997": {
+      "name": "Caleb Martin",
+      "minutes": 1756,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 1756
+        }
+      ]
+    },
+    "1628998": {
+      "name": "Cody Martin",
+      "minutes": 753,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 753
+        }
+      ]
+    },
+    "1629001": {
+      "name": "De'Anthony Melton",
+      "minutes": 1023,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 1023
+        }
+      ]
+    },
+    "1629002": {
+      "name": "Chimezie Metu",
+      "minutes": 859,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 448
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 411
+        }
+      ]
+    },
+    "1629003": {
+      "name": "Shake Milton",
+      "minutes": 581,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 491
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 63
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 27
+        }
+      ]
+    },
+    "1629004": {
+      "name": "Svi Mykhailiuk",
+      "minutes": 413,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 413
+        }
+      ]
+    },
+    "1629006": {
+      "name": "Josh Okogie",
+      "minutes": 960,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 960
+        }
+      ]
+    },
+    "1629007": {
+      "name": "Jontay Porter",
+      "minutes": 360,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 360
+        }
+      ]
+    },
+    "1629008": {
+      "name": "Michael Porter Jr.",
+      "minutes": 2565,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 2565
+        }
+      ]
+    },
+    "1629010": {
+      "name": "Jerome Robinson",
+      "minutes": 81,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 81
+        }
+      ]
+    },
+    "1629011": {
+      "name": "Mitchell Robinson",
+      "minutes": 768,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 768
+        }
+      ]
+    },
+    "1629012": {
+      "name": "Collin Sexton",
+      "minutes": 2075,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 2075
+        }
+      ]
+    },
+    "1629013": {
+      "name": "Landry Shamet",
+      "minutes": 726,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 726
+        }
+      ]
+    },
+    "1629014": {
+      "name": "Anfernee Simons",
+      "minutes": 1582,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1582
+        }
+      ]
+    },
+    "1629018": {
+      "name": "Gary Trent Jr.",
+      "minutes": 1994,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 1994
+        }
+      ]
+    },
+    "1629020": {
+      "name": "Jarred Vanderbilt",
+      "minutes": 581,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 581
+        }
+      ]
+    },
+    "1629021": {
+      "name": "Moritz Wagner",
+      "minutes": 1415,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 1415
+        }
+      ]
+    },
+    "1629022": {
+      "name": "Lonnie Walker IV",
+      "minutes": 1011,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 1011
+        }
+      ]
+    },
+    "1629023": {
+      "name": "P.J. Washington",
+      "minutes": 2221,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 1286
+        },
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 935
+        }
+      ]
+    },
+    "1629026": {
+      "name": "Kenrich Williams",
+      "minutes": 1029,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 1029
+        }
+      ]
+    },
+    "1629027": {
+      "name": "Trae Young",
+      "minutes": 1942,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 1942
+        }
+      ]
+    },
+    "1629028": {
+      "name": "Deandre Ayton",
+      "minutes": 1784,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1784
+        }
+      ]
+    },
+    "1629029": {
+      "name": "Luka Doncic",
+      "minutes": 2624,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 2624
+        }
+      ]
+    },
+    "1629048": {
+      "name": "Goga Bitadze",
+      "minutes": 957,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 957
+        }
+      ]
+    },
+    "1629052": {
+      "name": "Oshae Brissett",
+      "minutes": 630,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 630
+        }
+      ]
+    },
+    "1629057": {
+      "name": "Robert Williams III",
+      "minutes": 119,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 119
+        }
+      ]
+    },
+    "1629060": {
+      "name": "Rui Hachimura",
+      "minutes": 1826,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 1826
+        }
+      ]
+    },
+    "1629111": {
+      "name": "Jock Landale",
+      "minutes": 764,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 764
+        }
+      ]
+    },
+    "1629117": {
+      "name": "Wenyen Gabriel",
+      "minutes": 81,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 81
+        }
+      ]
+    },
+    "1629130": {
+      "name": "Duncan Robinson",
+      "minutes": 1906,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 1906
+        }
+      ]
+    },
+    "1629139": {
+      "name": "Yuta Watanabe",
+      "minutes": 464,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 382
+        },
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 82
+        }
+      ]
+    },
+    "1629162": {
+      "name": "Jordan McLaughlin",
+      "minutes": 626,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 626
+        }
+      ]
+    },
+    "1629216": {
+      "name": "Gabe Vincent",
+      "minutes": 218,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 218
+        }
+      ]
+    },
+    "1629232": {
+      "name": "Kaiser Gates",
+      "minutes": 7,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 7
+        }
+      ]
+    },
+    "1629234": {
+      "name": "Drew Eubanks",
+      "minutes": 1169,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 1169
+        }
+      ]
+    },
+    "1629308": {
+      "name": "Juan Toscano-Anderson",
+      "minutes": 53,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 53
+        }
+      ]
+    },
+    "1629312": {
+      "name": "Haywood Highsmith",
+      "minutes": 1366,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 1366
+        }
+      ]
+    },
+    "1629599": {
+      "name": "Amir Coffey",
+      "minutes": 1460,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 1460
+        }
+      ]
+    },
+    "1629603": {
+      "name": "Mamadi Diakite",
+      "minutes": 16,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 16
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 8
+        }
+      ]
+    },
+    "1629610": {
+      "name": "DaQuan Jeffries",
+      "minutes": 46,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 46
+        }
+      ]
+    },
+    "1629611": {
+      "name": "Terance Mann",
+      "minutes": 1873,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 1873
+        }
+      ]
+    },
+    "1629614": {
+      "name": "Andrew Nembhard",
+      "minutes": 1697,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 1697
+        }
+      ]
+    },
+    "1629618": {
+      "name": "Jalen Pickett",
+      "minutes": 122,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 122
+        }
+      ]
+    },
+    "1629622": {
+      "name": "Max Strus",
+      "minutes": 2239,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 2239
+        }
+      ]
+    },
+    "1629623": {
+      "name": "Lindell Wigginton",
+      "minutes": 8,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 8
+        }
+      ]
+    },
+    "1629626": {
+      "name": "Bol Bol",
+      "minutes": 469,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 469
+        }
+      ]
+    },
+    "1629627": {
+      "name": "Zion Williamson",
+      "minutes": 2207,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 2207
+        }
+      ]
+    },
+    "1629628": {
+      "name": "RJ Barrett",
+      "minutes": 1838,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 1072
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 766
+        }
+      ]
+    },
+    "1629629": {
+      "name": "Cam Reddish",
+      "minutes": 984,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 984
+        }
+      ]
+    },
+    "1629630": {
+      "name": "Ja Morant",
+      "minutes": 318,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 318
+        }
+      ]
+    },
+    "1629631": {
+      "name": "De'Andre Hunter",
+      "minutes": 1681,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 1681
+        }
+      ]
+    },
+    "1629632": {
+      "name": "Coby White",
+      "minutes": 2881,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 2881
+        }
+      ]
+    },
+    "1629634": {
+      "name": "Brandon Clarke",
+      "minutes": 134,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 134
+        }
+      ]
+    },
+    "1629636": {
+      "name": "Darius Garland",
+      "minutes": 1901,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 1901
+        }
+      ]
+    },
+    "1629637": {
+      "name": "Jaxson Hayes",
+      "minutes": 877,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 877
+        }
+      ]
+    },
+    "1629638": {
+      "name": "Nickeil Alexander-Walker",
+      "minutes": 1921,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 1921
+        }
+      ]
+    },
+    "1629639": {
+      "name": "Tyler Herro",
+      "minutes": 1407,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 1407
+        }
+      ]
+    },
+    "1629640": {
+      "name": "Keldon Johnson",
+      "minutes": 2038,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 2038
+        }
+      ]
+    },
+    "1629642": {
+      "name": "Nassir Little",
+      "minutes": 458,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 458
+        }
+      ]
+    },
+    "1629643": {
+      "name": "Chuma Okeke",
+      "minutes": 432,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 432
+        }
+      ]
+    },
+    "1629646": {
+      "name": "Charles Bassey",
+      "minutes": 205,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 205
+        }
+      ]
+    },
+    "1629647": {
+      "name": "Darius Bazley",
+      "minutes": 152,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 142
+        },
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 10
+        }
+      ]
+    },
+    "1629650": {
+      "name": "Moses Brown",
+      "minutes": 200,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 200
+        }
+      ]
+    },
+    "1629651": {
+      "name": "Nic Claxton",
+      "minutes": 2116,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 2116
+        }
+      ]
+    },
+    "1629652": {
+      "name": "Luguentz Dort",
+      "minutes": 2246,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 2246
+        }
+      ]
+    },
+    "1629655": {
+      "name": "Daniel Gafford",
+      "minutes": 1814,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 1192
+        },
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 623
+        }
+      ]
+    },
+    "1629656": {
+      "name": "Quentin Grimes",
+      "minutes": 1025,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 910
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 115
+        }
+      ]
+    },
+    "1629659": {
+      "name": "Talen Horton-Tucker",
+      "minutes": 1009,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1009
+        }
+      ]
+    },
+    "1629660": {
+      "name": "Ty Jerome",
+      "minutes": 15,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 15
+        }
+      ]
+    },
+    "1629661": {
+      "name": "Cameron Johnson",
+      "minutes": 1599,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 1599
+        }
+      ]
+    },
+    "1629667": {
+      "name": "Jalen McDaniels",
+      "minutes": 538,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 538
+        }
+      ]
+    },
+    "1629669": {
+      "name": "Jaylen Nowell",
+      "minutes": 214,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 156
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 58
+        }
+      ]
+    },
+    "1629670": {
+      "name": "Jordan Nwora",
+      "minutes": 711,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 529
+        },
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 182
+        }
+      ]
+    },
+    "1629673": {
+      "name": "Jordan Poole",
+      "minutes": 2346,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 2346
+        }
+      ]
+    },
+    "1629674": {
+      "name": "Neemias Queta",
+      "minutes": 333,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 333
+        }
+      ]
+    },
+    "1629675": {
+      "name": "Naz Reid",
+      "minutes": 1964,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 1964
+        }
+      ]
+    },
+    "1629677": {
+      "name": "Luka Samanic",
+      "minutes": 404,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 404
+        }
+      ]
+    },
+    "1629678": {
+      "name": "Admiral Schofield",
+      "minutes": 84,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 84
+        }
+      ]
+    },
+    "1629680": {
+      "name": "Matisse Thybulle",
+      "minutes": 1487,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1487
+        }
+      ]
+    },
+    "1629684": {
+      "name": "Grant Williams",
+      "minutes": 2130,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 1242
+        },
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 888
+        }
+      ]
+    },
+    "1629685": {
+      "name": "Dylan Windler",
+      "minutes": 108,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 73
+        },
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 28
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 7
+        }
+      ]
+    },
+    "1629716": {
+      "name": "Marques Bolden",
+      "minutes": 121,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 118
+        },
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 3
+        }
+      ]
+    },
+    "1629717": {
+      "name": "Armoni Brooks",
+      "minutes": 104,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 104
+        }
+      ]
+    },
+    "1629718": {
+      "name": "Charlie Brown Jr.",
+      "minutes": 37,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 37
+        }
+      ]
+    },
+    "1629723": {
+      "name": "John Konchar",
+      "minutes": 1173,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 1173
+        }
+      ]
+    },
+    "1629726": {
+      "name": "Garrison Mathews",
+      "minutes": 992,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 992
+        }
+      ]
+    },
+    "1629731": {
+      "name": "Dean Wade",
+      "minutes": 1108,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 1108
+        }
+      ]
+    },
+    "1629750": {
+      "name": "Javonte Green",
+      "minutes": 230,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 230
+        }
+      ]
+    },
+    "1629875": {
+      "name": "Xavier Moon",
+      "minutes": 119,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 119
+        }
+      ]
+    },
+    "1630162": {
+      "name": "Anthony Edwards",
+      "minutes": 2770,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 2770
+        }
+      ]
+    },
+    "1630163": {
+      "name": "LaMelo Ball",
+      "minutes": 711,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 711
+        }
+      ]
+    },
+    "1630164": {
+      "name": "James Wiseman",
+      "minutes": 1091,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 1091
+        }
+      ]
+    },
+    "1630165": {
+      "name": "Killian Hayes",
+      "minutes": 1008,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 1008
+        }
+      ]
+    },
+    "1630166": {
+      "name": "Deni Avdija",
+      "minutes": 2257,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 2257
+        }
+      ]
+    },
+    "1630167": {
+      "name": "Obi Toppin",
+      "minutes": 1730,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 1730
+        }
+      ]
+    },
+    "1630168": {
+      "name": "Onyeka Okongwu",
+      "minutes": 1405,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 1405
+        }
+      ]
+    },
+    "1630169": {
+      "name": "Tyrese Haliburton",
+      "minutes": 2224,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 2224
+        }
+      ]
+    },
+    "1630170": {
+      "name": "Devin Vassell",
+      "minutes": 2248,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 2248
+        }
+      ]
+    },
+    "1630171": {
+      "name": "Isaac Okoro",
+      "minutes": 1887,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 1887
+        }
+      ]
+    },
+    "1630172": {
+      "name": "Patrick Williams",
+      "minutes": 1174,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 1174
+        }
+      ]
+    },
+    "1630173": {
+      "name": "Precious Achiuwa",
+      "minutes": 1624,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 1187
+        },
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 437
+        }
+      ]
+    },
+    "1630174": {
+      "name": "Aaron Nesmith",
+      "minutes": 1995,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 1995
+        }
+      ]
+    },
+    "1630175": {
+      "name": "Cole Anthony",
+      "minutes": 1817,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 1817
+        }
+      ]
+    },
+    "1630177": {
+      "name": "Theo Maledon",
+      "minutes": 213,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 200
+        },
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 13
+        }
+      ]
+    },
+    "1630178": {
+      "name": "Tyrese Maxey",
+      "minutes": 2626,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 2626
+        }
+      ]
+    },
+    "1630180": {
+      "name": "Saddiq Bey",
+      "minutes": 2062,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 2062
+        }
+      ]
+    },
+    "1630181": {
+      "name": "R.J. Hampton",
+      "minutes": 76,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 76
+        }
+      ]
+    },
+    "1630182": {
+      "name": "Josh Green",
+      "minutes": 1505,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 1505
+        }
+      ]
+    },
+    "1630183": {
+      "name": "Jaden McDaniels",
+      "minutes": 2105,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 2105
+        }
+      ]
+    },
+    "1630184": {
+      "name": "Kira Lewis Jr.",
+      "minutes": 264,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 144
+        },
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 119
+        },
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 2
+        }
+      ]
+    },
+    "1630186": {
+      "name": "Jahmi'us Ramsey",
+      "minutes": 121,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 121
+        }
+      ]
+    },
+    "1630188": {
+      "name": "Jalen Smith",
+      "minutes": 1047,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 1047
+        }
+      ]
+    },
+    "1630191": {
+      "name": "Isaiah Stewart",
+      "minutes": 1423,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 1423
+        }
+      ]
+    },
+    "1630192": {
+      "name": "Zeke Nnaji",
+      "minutes": 576,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 576
+        }
+      ]
+    },
+    "1630193": {
+      "name": "Immanuel Quickley",
+      "minutes": 1985,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 1265
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 720
+        }
+      ]
+    },
+    "1630194": {
+      "name": "Paul Reed",
+      "minutes": 1590,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 1590
+        }
+      ]
+    },
+    "1630196": {
+      "name": "Filip Petrusev",
+      "minutes": 7,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 7
+        },
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 3
+        }
+      ]
+    },
+    "1630197": {
+      "name": "Aleksej Pokusevski",
+      "minutes": 405,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 345
+        },
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 60
+        }
+      ]
+    },
+    "1630198": {
+      "name": "Isaiah Joe",
+      "minutes": 1445,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 1445
+        }
+      ]
+    },
+    "1630200": {
+      "name": "Tre Jones",
+      "minutes": 2138,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 2138
+        }
+      ]
+    },
+    "1630201": {
+      "name": "Malachi Flynn",
+      "minutes": 877,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 474
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 342
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 60
+        }
+      ]
+    },
+    "1630202": {
+      "name": "Payton Pritchard",
+      "minutes": 1826,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 1826
+        }
+      ]
+    },
+    "1630204": {
+      "name": "Ashton Hagans",
+      "minutes": 316,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 316
+        }
+      ]
+    },
+    "1630205": {
+      "name": "Lamar Stevens",
+      "minutes": 559,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 437
+        },
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 122
+        }
+      ]
+    },
+    "1630207": {
+      "name": "Nate Hinton",
+      "minutes": 75,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 75
+        }
+      ]
+    },
+    "1630208": {
+      "name": "Nick Richards",
+      "minutes": 1759,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 1759
+        }
+      ]
+    },
+    "1630209": {
+      "name": "Omer Yurtseven",
+      "minutes": 545,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 545
+        }
+      ]
+    },
+    "1630214": {
+      "name": "Xavier Tillman",
+      "minutes": 974,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 700
+        },
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 274
+        }
+      ]
+    },
+    "1630215": {
+      "name": "Jared Butler",
+      "minutes": 566,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 566
+        }
+      ]
+    },
+    "1630217": {
+      "name": "Desmond Bane",
+      "minutes": 1443,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 1443
+        }
+      ]
+    },
+    "1630219": {
+      "name": "Skylar Mays",
+      "minutes": 433,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 356
+        },
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 77
+        }
+      ]
+    },
+    "1630222": {
+      "name": "Mason Jones",
+      "minutes": 28,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 28
+        }
+      ]
+    },
+    "1630224": {
+      "name": "Jalen Green",
+      "minutes": 2602,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 2602
+        }
+      ]
+    },
+    "1630227": {
+      "name": "Daishen Nix",
+      "minutes": 50,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 50
+        }
+      ]
+    },
+    "1630228": {
+      "name": "Jonathan Kuminga",
+      "minutes": 1950,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1950
+        }
+      ]
+    },
+    "1630230": {
+      "name": "Naji Marshall",
+      "minutes": 1257,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 1257
+        }
+      ]
+    },
+    "1630231": {
+      "name": "KJ Martin",
+      "minutes": 747,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 715
+        },
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 31
+        }
+      ]
+    },
+    "1630235": {
+      "name": "Trent Forrest",
+      "minutes": 414,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 414
+        }
+      ]
+    },
+    "1630240": {
+      "name": "Saben Lee",
+      "minutes": 185,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 185
+        }
+      ]
+    },
+    "1630241": {
+      "name": "Sam Merrill",
+      "minutes": 1069,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 1069
+        }
+      ]
+    },
+    "1630243": {
+      "name": "Trevelin Queen",
+      "minutes": 165,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 165
+        }
+      ]
+    },
+    "1630245": {
+      "name": "Ayo Dosunmu",
+      "minutes": 2212,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 2212
+        }
+      ]
+    },
+    "1630249": {
+      "name": "Vit Krejci",
+      "minutes": 541,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 541
+        }
+      ]
+    },
+    "1630256": {
+      "name": "Jae'Sean Tate",
+      "minutes": 1031,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 1031
+        }
+      ]
+    },
+    "1630259": {
+      "name": "Jordan Ford",
+      "minutes": 22,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 22
+        }
+      ]
+    },
+    "1630264": {
+      "name": "Anthony Gill",
+      "minutes": 466,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 466
+        }
+      ]
+    },
+    "1630284": {
+      "name": "Kevon Harris",
+      "minutes": 6,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 6
+        }
+      ]
+    },
+    "1630285": {
+      "name": "Zavier Simpson",
+      "minutes": 161,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 161
+        }
+      ]
+    },
+    "1630288": {
+      "name": "Jeff Dowtin Jr.",
+      "minutes": 142,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 142
+        }
+      ]
+    },
+    "1630296": {
+      "name": "Braxton Key",
+      "minutes": 60,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 60
+        }
+      ]
+    },
+    "1630311": {
+      "name": "Pat Spencer",
+      "minutes": 26,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 26
+        }
+      ]
+    },
+    "1630314": {
+      "name": "Brandon Williams",
+      "minutes": 113,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 113
+        }
+      ]
+    },
+    "1630322": {
+      "name": "Lindy Waters III",
+      "minutes": 280,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 280
+        }
+      ]
+    },
+    "1630346": {
+      "name": "Matt Ryan",
+      "minutes": 390,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 390
+        }
+      ]
+    },
+    "1630526": {
+      "name": "Jeremiah Robinson-Earl",
+      "minutes": 334,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 334
+        }
+      ]
+    },
+    "1630527": {
+      "name": "Brandon Boston Jr.",
+      "minutes": 345,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 345
+        }
+      ]
+    },
+    "1630529": {
+      "name": "Herbert Jones",
+      "minutes": 2321,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 2321
+        }
+      ]
+    },
+    "1630530": {
+      "name": "Trey Murphy III",
+      "minutes": 1690,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 1690
+        }
+      ]
+    },
+    "1630531": {
+      "name": "Jaden Springer",
+      "minutes": 507,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 377
+        },
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 130
+        }
+      ]
+    },
+    "1630532": {
+      "name": "Franz Wagner",
+      "minutes": 2337,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 2337
+        }
+      ]
+    },
+    "1630533": {
+      "name": "Ziaire Williams",
+      "minutes": 1038,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 1038
+        }
+      ]
+    },
+    "1630534": {
+      "name": "Ochai Agbaji",
+      "minutes": 1642,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1003
+        },
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 638
+        }
+      ]
+    },
+    "1630535": {
+      "name": "Greg Brown III",
+      "minutes": 40,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 40
+        }
+      ]
+    },
+    "1630537": {
+      "name": "Chris Duarte",
+      "minutes": 719,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 719
+        }
+      ]
+    },
+    "1630538": {
+      "name": "Bones Hyland",
+      "minutes": 540,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 540
+        }
+      ]
+    },
+    "1630540": {
+      "name": "Miles McBride",
+      "minutes": 1328,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 1328
+        }
+      ]
+    },
+    "1630541": {
+      "name": "Moses Moody",
+      "minutes": 1156,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1156
+        }
+      ]
+    },
+    "1630543": {
+      "name": "Isaiah Jackson",
+      "minutes": 771,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 771
+        }
+      ]
+    },
+    "1630544": {
+      "name": "Tre Mann",
+      "minutes": 987,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 868
+        },
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 119
+        }
+      ]
+    },
+    "1630547": {
+      "name": "James Bouknight",
+      "minutes": 81,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 81
+        }
+      ]
+    },
+    "1630548": {
+      "name": "Johnny Juzang",
+      "minutes": 372,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 372
+        }
+      ]
+    },
+    "1630549": {
+      "name": "Day'Ron Sharpe",
+      "minutes": 921,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 921
+        }
+      ]
+    },
+    "1630550": {
+      "name": "JT Thor",
+      "minutes": 781,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 781
+        }
+      ]
+    },
+    "1630551": {
+      "name": "Justin Champagnie",
+      "minutes": 235,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 235
+        }
+      ]
+    },
+    "1630552": {
+      "name": "Jalen Johnson",
+      "minutes": 1889,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 1889
+        }
+      ]
+    },
+    "1630553": {
+      "name": "Keon Johnson",
+      "minutes": 61,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 61
+        }
+      ]
+    },
+    "1630554": {
+      "name": "Jason Preston",
+      "minutes": 71,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 71
+        }
+      ]
+    },
+    "1630556": {
+      "name": "Kessler Edwards",
+      "minutes": 275,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 275
+        }
+      ]
+    },
+    "1630557": {
+      "name": "Corey Kispert",
+      "minutes": 2067,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 2067
+        }
+      ]
+    },
+    "1630558": {
+      "name": "Davion Mitchell",
+      "minutes": 1101,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 1101
+        }
+      ]
+    },
+    "1630559": {
+      "name": "Austin Reaves",
+      "minutes": 2629,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 2629
+        }
+      ]
+    },
+    "1630560": {
+      "name": "Cam Thomas",
+      "minutes": 2075,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 2075
+        }
+      ]
+    },
+    "1630561": {
+      "name": "David Duke Jr.",
+      "minutes": 51,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 51
+        }
+      ]
+    },
+    "1630562": {
+      "name": "Matt Hurt",
+      "minutes": 113,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 113
+        }
+      ]
+    },
+    "1630563": {
+      "name": "Joshua Primo",
+      "minutes": 10,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 10
+        }
+      ]
+    },
+    "1630564": {
+      "name": "RaiQuan Gray",
+      "minutes": 39,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 39
+        }
+      ]
+    },
+    "1630567": {
+      "name": "Scottie Barnes",
+      "minutes": 2094,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 2094
+        }
+      ]
+    },
+    "1630568": {
+      "name": "Luka Garza",
+      "minutes": 122,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 122
+        }
+      ]
+    },
+    "1630570": {
+      "name": "Trendon Watford",
+      "minutes": 857,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 857
+        }
+      ]
+    },
+    "1630572": {
+      "name": "Sandro Mamukelashvili",
+      "minutes": 451,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 451
+        }
+      ]
+    },
+    "1630573": {
+      "name": "Sam Hauser",
+      "minutes": 1741,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 1741
+        }
+      ]
+    },
+    "1630577": {
+      "name": "Julian Champagnie",
+      "minutes": 1468,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 1468
+        }
+      ]
+    },
+    "1630578": {
+      "name": "Alperen Sengun",
+      "minutes": 2046,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 2046
+        }
+      ]
+    },
+    "1630579": {
+      "name": "Jericho Sims",
+      "minutes": 585,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 585
+        }
+      ]
+    },
+    "1630581": {
+      "name": "Josh Giddey",
+      "minutes": 2012,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 2012
+        }
+      ]
+    },
+    "1630583": {
+      "name": "Santi Aldama",
+      "minutes": 1618,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 1618
+        }
+      ]
+    },
+    "1630586": {
+      "name": "Usman Garuba",
+      "minutes": 18,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 18
+        }
+      ]
+    },
+    "1630587": {
+      "name": "Isaiah Livers",
+      "minutes": 469,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 469
+        }
+      ]
+    },
+    "1630590": {
+      "name": "Scotty Pippen Jr.",
+      "minutes": 527,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 527
+        }
+      ]
+    },
+    "1630591": {
+      "name": "Jalen Suggs",
+      "minutes": 2025,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 2025
+        }
+      ]
+    },
+    "1630592": {
+      "name": "Jalen Wilson",
+      "minutes": 664,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 664
+        }
+      ]
+    },
+    "1630595": {
+      "name": "Cade Cunningham",
+      "minutes": 2074,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 2074
+        }
+      ]
+    },
+    "1630596": {
+      "name": "Evan Mobley",
+      "minutes": 1532,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 1532
+        }
+      ]
+    },
+    "1630598": {
+      "name": "Aaron Wiggins",
+      "minutes": 1228,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 1228
+        }
+      ]
+    },
+    "1630600": {
+      "name": "Isaiah Mobley",
+      "minutes": 72,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 72
+        }
+      ]
+    },
+    "1630604": {
+      "name": "E.J. Liddell",
+      "minutes": 23,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 23
+        }
+      ]
+    },
+    "1630606": {
+      "name": "Javonte Smart",
+      "minutes": 1,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 1
+        }
+      ]
+    },
+    "1630608": {
+      "name": "Malcolm Cazalon",
+      "minutes": 3,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 3
+        }
+      ]
+    },
+    "1630610": {
+      "name": "DeJon Jarreau",
+      "minutes": 150,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 150
+        }
+      ]
+    },
+    "1630611": {
+      "name": "Gui Santos",
+      "minutes": 192,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 192
+        }
+      ]
+    },
+    "1630618": {
+      "name": "D.J. Carton",
+      "minutes": 36,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 36
+        }
+      ]
+    },
+    "1630622": {
+      "name": "Jalen Crutcher",
+      "minutes": 3,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 3
+        }
+      ]
+    },
+    "1630625": {
+      "name": "Dalano Banton",
+      "minutes": 1047,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 876
+        },
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 171
+        }
+      ]
+    },
+    "1630631": {
+      "name": "Jose Alvarado",
+      "minutes": 1028,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 1028
+        }
+      ]
+    },
+    "1630639": {
+      "name": "A.J. Lawson",
+      "minutes": 311,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 311
+        }
+      ]
+    },
+    "1630641": {
+      "name": "Ibou Badji",
+      "minutes": 226,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 226
+        }
+      ]
+    },
+    "1630643": {
+      "name": "Jay Huff",
+      "minutes": 49,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 49
+        }
+      ]
+    },
+    "1630647": {
+      "name": "Eugene Omoruyi",
+      "minutes": 393,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 393
+        }
+      ]
+    },
+    "1630649": {
+      "name": "Stanley Umude",
+      "minutes": 307,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 307
+        }
+      ]
+    },
+    "1630658": {
+      "name": "Colin Castleton",
+      "minutes": 59,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 59
+        }
+      ]
+    },
+    "1630678": {
+      "name": "Terry Taylor",
+      "minutes": 188,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 188
+        }
+      ]
+    },
+    "1630688": {
+      "name": "Ish Wainright",
+      "minutes": 46,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 46
+        },
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 16
+        }
+      ]
+    },
+    "1630692": {
+      "name": "Jordan Goodwin",
+      "minutes": 1056,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 558
+        },
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 497
+        }
+      ]
+    },
+    "1630695": {
+      "name": "Micah Potter",
+      "minutes": 186,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 186
+        }
+      ]
+    },
+    "1630696": {
+      "name": "Dru Smith",
+      "minutes": 131,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 131
+        }
+      ]
+    },
+    "1630699": {
+      "name": "MarJon Beauchamp",
+      "minutes": 608,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 608
+        }
+      ]
+    },
+    "1630700": {
+      "name": "Dyson Daniels",
+      "minutes": 1358,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 1358
+        }
+      ]
+    },
+    "1630702": {
+      "name": "Jaden Hardy",
+      "minutes": 989,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 989
+        }
+      ]
+    },
+    "1630703": {
+      "name": "Scoot Henderson",
+      "minutes": 1765,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1765
+        }
+      ]
+    },
+    "1630846": {
+      "name": "Olivier Sarr",
+      "minutes": 98,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 98
+        }
+      ]
+    },
+    "1630929": {
+      "name": "Henri Drell",
+      "minutes": 30,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 30
+        }
+      ]
+    },
+    "1631093": {
+      "name": "Jaden Ivey",
+      "minutes": 2218,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 2218
+        }
+      ]
+    },
+    "1631094": {
+      "name": "Paolo Banchero",
+      "minutes": 2799,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 2799
+        }
+      ]
+    },
+    "1631095": {
+      "name": "Jabari Smith Jr.",
+      "minutes": 2424,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 2424
+        }
+      ]
+    },
+    "1631096": {
+      "name": "Chet Holmgren",
+      "minutes": 2413,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 2413
+        }
+      ]
+    },
+    "1631097": {
+      "name": "Bennedict Mathurin",
+      "minutes": 1538,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 1538
+        }
+      ]
+    },
+    "1631098": {
+      "name": "Johnny Davis",
+      "minutes": 613,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 613
+        }
+      ]
+    },
+    "1631099": {
+      "name": "Keegan Murray",
+      "minutes": 2589,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 2589
+        }
+      ]
+    },
+    "1631100": {
+      "name": "AJ Griffin",
+      "minutes": 171,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 171
+        }
+      ]
+    },
+    "1631101": {
+      "name": "Shaedon Sharpe",
+      "minutes": 1059,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1059
+        }
+      ]
+    },
+    "1631102": {
+      "name": "TyTy Washington Jr.",
+      "minutes": 56,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 56
+        }
+      ]
+    },
+    "1631103": {
+      "name": "Malaki Branham",
+      "minutes": 1594,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 1594
+        }
+      ]
+    },
+    "1631104": {
+      "name": "Blake Wesley",
+      "minutes": 876,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 876
+        }
+      ]
+    },
+    "1631105": {
+      "name": "Jalen Duren",
+      "minutes": 1778,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 1778
+        }
+      ]
+    },
+    "1631106": {
+      "name": "Tari Eason",
+      "minutes": 480,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 480
+        }
+      ]
+    },
+    "1631107": {
+      "name": "Nikola Jovic",
+      "minutes": 896,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 896
+        }
+      ]
+    },
+    "1631108": {
+      "name": "Max Christie",
+      "minutes": 944,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 944
+        }
+      ]
+    },
+    "1631109": {
+      "name": "Mark Williams",
+      "minutes": 508,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 508
+        }
+      ]
+    },
+    "1631110": {
+      "name": "Jeremy Sochan",
+      "minutes": 2193,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 2193
+        }
+      ]
+    },
+    "1631111": {
+      "name": "Wendell Moore Jr.",
+      "minutes": 75,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 75
+        }
+      ]
+    },
+    "1631112": {
+      "name": "Kendall Brown",
+      "minutes": 62,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 62
+        }
+      ]
+    },
+    "1631114": {
+      "name": "Jalen Williams",
+      "minutes": 2223,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 2223
+        }
+      ]
+    },
+    "1631115": {
+      "name": "Orlando Robinson",
+      "minutes": 304,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 304
+        }
+      ]
+    },
+    "1631116": {
+      "name": "Patrick Baldwin Jr.",
+      "minutes": 494,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 494
+        }
+      ]
+    },
+    "1631117": {
+      "name": "Walker Kessler",
+      "minutes": 1493,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1493
+        }
+      ]
+    },
+    "1631119": {
+      "name": "Jaylin Williams",
+      "minutes": 897,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 897
+        }
+      ]
+    },
+    "1631120": {
+      "name": "JD Davison",
+      "minutes": 39,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 39
+        }
+      ]
+    },
+    "1631121": {
+      "name": "Bryce McGowens",
+      "minutes": 882,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 882
+        }
+      ]
+    },
+    "1631123": {
+      "name": "Jamaree Bouyea",
+      "minutes": 95,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 57
+        },
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 38
+        }
+      ]
+    },
+    "1631124": {
+      "name": "Julian Strawther",
+      "minutes": 545,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 545
+        }
+      ]
+    },
+    "1631128": {
+      "name": "Christian Braun",
+      "minutes": 1656,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 1656
+        }
+      ]
+    },
+    "1631131": {
+      "name": "Oscar Tshiebwe",
+      "minutes": 42,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 42
+        }
+      ]
+    },
+    "1631133": {
+      "name": "Jabari Walker",
+      "minutes": 1701,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1701
+        }
+      ]
+    },
+    "1631157": {
+      "name": "Ryan Rollins",
+      "minutes": 78,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 66
+        },
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 12
+        }
+      ]
+    },
+    "1631159": {
+      "name": "Leonard Miller",
+      "minutes": 52,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 52
+        }
+      ]
+    },
+    "1631165": {
+      "name": "Keon Ellis",
+      "minutes": 978,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 978
+        }
+      ]
+    },
+    "1631167": {
+      "name": "Izaiah Brockington",
+      "minutes": 3,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 3
+        }
+      ]
+    },
+    "1631169": {
+      "name": "Josh Minott",
+      "minutes": 91,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 91
+        }
+      ]
+    },
+    "1631170": {
+      "name": "Jaime Jaquez Jr.",
+      "minutes": 2113,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 2113
+        }
+      ]
+    },
+    "1631172": {
+      "name": "Ousmane Dieng",
+      "minutes": 365,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 365
+        }
+      ]
+    },
+    "1631173": {
+      "name": "Terquavion Smith",
+      "minutes": 84,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 84
+        }
+      ]
+    },
+    "1631197": {
+      "name": "Jared Rhoden",
+      "minutes": 245,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 245
+        }
+      ]
+    },
+    "1631199": {
+      "name": "Ron Harper Jr.",
+      "minutes": 4,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 4
+        }
+      ]
+    },
+    "1631200": {
+      "name": "Kris Murray",
+      "minutes": 1348,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1348
+        }
+      ]
+    },
+    "1631204": {
+      "name": "Marcus Sasser",
+      "minutes": 1351,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 1351
+        }
+      ]
+    },
+    "1631205": {
+      "name": "Buddy Boeheim",
+      "minutes": 84,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 84
+        }
+      ]
+    },
+    "1631207": {
+      "name": "Dalen Terry",
+      "minutes": 681,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 681
+        }
+      ]
+    },
+    "1631209": {
+      "name": "Isaiah Wong",
+      "minutes": 4,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 4
+        }
+      ]
+    },
+    "1631210": {
+      "name": "Jacob Toppin",
+      "minutes": 38,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 38
+        }
+      ]
+    },
+    "1631212": {
+      "name": "Peyton Watson",
+      "minutes": 1488,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 1488
+        }
+      ]
+    },
+    "1631214": {
+      "name": "Alondes Williams",
+      "minutes": 16,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 16
+        }
+      ]
+    },
+    "1631216": {
+      "name": "Caleb Houstan",
+      "minutes": 815,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 815
+        }
+      ]
+    },
+    "1631217": {
+      "name": "Moussa Diabate",
+      "minutes": 64,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 64
+        }
+      ]
+    },
+    "1631218": {
+      "name": "Trayce Jackson-Davis",
+      "minutes": 1130,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1130
+        }
+      ]
+    },
+    "1631220": {
+      "name": "Dereon Seabron",
+      "minutes": 55,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 55
+        }
+      ]
+    },
+    "1631221": {
+      "name": "Collin Gillespie",
+      "minutes": 225,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 225
+        }
+      ]
+    },
+    "1631222": {
+      "name": "Jake LaRavia",
+      "minutes": 806,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 806
+        }
+      ]
+    },
+    "1631223": {
+      "name": "David Roddy",
+      "minutes": 1177,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 1114
+        },
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 63
+        }
+      ]
+    },
+    "1631230": {
+      "name": "Dominick Barlow",
+      "minutes": 420,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 420
+        }
+      ]
+    },
+    "1631241": {
+      "name": "Javon Freeman-Liberty",
+      "minutes": 403,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 403
+        }
+      ]
+    },
+    "1631243": {
+      "name": "Mouhamed Gueye",
+      "minutes": 73,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 73
+        }
+      ]
+    },
+    "1631245": {
+      "name": "Quenton Jackson",
+      "minutes": 11,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 11
+        }
+      ]
+    },
+    "1631246": {
+      "name": "Vince Williams Jr.",
+      "minutes": 1436,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 1436
+        }
+      ]
+    },
+    "1631250": {
+      "name": "Pete Nance",
+      "minutes": 27,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 27
+        }
+      ]
+    },
+    "1631254": {
+      "name": "Kenneth Lofton Jr.",
+      "minutes": 198,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 99
+        },
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 91
+        },
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 9
+        }
+      ]
+    },
+    "1631257": {
+      "name": "Jermaine Samuels Jr.",
+      "minutes": 60,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 60
+        }
+      ]
+    },
+    "1631260": {
+      "name": "AJ Green",
+      "minutes": 614,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 614
+        }
+      ]
+    },
+    "1631262": {
+      "name": "Jules Bernard",
+      "minutes": 149,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 149
+        }
+      ]
+    },
+    "1631288": {
+      "name": "Jamal Cain",
+      "minutes": 259,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 259
+        }
+      ]
+    },
+    "1631298": {
+      "name": "Jack White",
+      "minutes": 64,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 64
+        }
+      ]
+    },
+    "1631303": {
+      "name": "Justin Minaya",
+      "minutes": 381,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 381
+        }
+      ]
+    },
+    "1631306": {
+      "name": "Cole Swider",
+      "minutes": 87,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 87
+        }
+      ]
+    },
+    "1631311": {
+      "name": "Lester Quinones",
+      "minutes": 394,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 394
+        }
+      ]
+    },
+    "1631321": {
+      "name": "Sidy Cissoko",
+      "minutes": 141,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 141
+        }
+      ]
+    },
+    "1631323": {
+      "name": "Simone Fontecchio",
+      "minutes": 1644,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1160
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 484
+        }
+      ]
+    },
+    "1631338": {
+      "name": "Mouhamadou Gueye",
+      "minutes": 120,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 120
+        }
+      ]
+    },
+    "1631367": {
+      "name": "Jacob Gilyard",
+      "minutes": 698,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 654
+        },
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 45
+        }
+      ]
+    },
+    "1631376": {
+      "name": "Dmytro Skapintsev",
+      "minutes": 2,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 2
+        }
+      ]
+    },
+    "1631386": {
+      "name": "Taze Moore",
+      "minutes": 40,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 40
+        }
+      ]
+    },
+    "1631466": {
+      "name": "Nate Williams",
+      "minutes": 129,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 129
+        }
+      ]
+    },
+    "1641705": {
+      "name": "Victor Wembanyama",
+      "minutes": 2106,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 2106
+        }
+      ]
+    },
+    "1641706": {
+      "name": "Brandon Miller",
+      "minutes": 2383,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 2383
+        }
+      ]
+    },
+    "1641707": {
+      "name": "Taylor Hendricks",
+      "minutes": 856,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 856
+        }
+      ]
+    },
+    "1641708": {
+      "name": "Amen Thompson",
+      "minutes": 1388,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 1388
+        }
+      ]
+    },
+    "1641709": {
+      "name": "Ausar Thompson",
+      "minutes": 1583,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 1583
+        }
+      ]
+    },
+    "1641710": {
+      "name": "Anthony Black",
+      "minutes": 1164,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 1164
+        }
+      ]
+    },
+    "1641711": {
+      "name": "Gradey Dick",
+      "minutes": 1268,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 1268
+        }
+      ]
+    },
+    "1641712": {
+      "name": "Rayan Rupert",
+      "minutes": 633,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 633
+        }
+      ]
+    },
+    "1641713": {
+      "name": "GG Jackson",
+      "minutes": 1233,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 1233
+        }
+      ]
+    },
+    "1641715": {
+      "name": "Cam Whitmore",
+      "minutes": 880,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 880
+        }
+      ]
+    },
+    "1641716": {
+      "name": "Jarace Walker",
+      "minutes": 340,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 340
+        }
+      ]
+    },
+    "1641717": {
+      "name": "Cason Wallace",
+      "minutes": 1692,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 1692
+        }
+      ]
+    },
+    "1641718": {
+      "name": "Keyonte George",
+      "minutes": 2023,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 2023
+        }
+      ]
+    },
+    "1641720": {
+      "name": "Jalen Hood-Schifino",
+      "minutes": 109,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 109
+        }
+      ]
+    },
+    "1641721": {
+      "name": "Maxwell Lewis",
+      "minutes": 103,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 103
+        }
+      ]
+    },
+    "1641722": {
+      "name": "Jordan Hawkins",
+      "minutes": 1161,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 1161
+        }
+      ]
+    },
+    "1641723": {
+      "name": "Kobe Bufkin",
+      "minutes": 196,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 196
+        }
+      ]
+    },
+    "1641724": {
+      "name": "Jett Howard",
+      "minutes": 67,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 67
+        }
+      ]
+    },
+    "1641726": {
+      "name": "Dereck Lively II",
+      "minutes": 1294,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 1294
+        }
+      ]
+    },
+    "1641727": {
+      "name": "Dariq Whitehead",
+      "minutes": 24,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 24
+        }
+      ]
+    },
+    "1641729": {
+      "name": "Brice Sensabaugh",
+      "minutes": 584,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 584
+        }
+      ]
+    },
+    "1641730": {
+      "name": "Noah Clowney",
+      "minutes": 370,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 370
+        }
+      ]
+    },
+    "1641731": {
+      "name": "Bilal Coulibaly",
+      "minutes": 1715,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 1715
+        }
+      ]
+    },
+    "1641732": {
+      "name": "Colby Jones",
+      "minutes": 192,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 192
+        }
+      ]
+    },
+    "1641733": {
+      "name": "Nick Smith Jr.",
+      "minutes": 729,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 729
+        }
+      ]
+    },
+    "1641734": {
+      "name": "Emoni Bates",
+      "minutes": 133,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 133
+        }
+      ]
+    },
+    "1641735": {
+      "name": "Amari Bailey",
+      "minutes": 65,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 65
+        }
+      ]
+    },
+    "1641738": {
+      "name": "Kobe Brown",
+      "minutes": 394,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 394
+        }
+      ]
+    },
+    "1641739": {
+      "name": "Toumani Camara",
+      "minutes": 1739,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1739
+        }
+      ]
+    },
+    "1641741": {
+      "name": "Ricky Council IV",
+      "minutes": 289,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 289
+        }
+      ]
+    },
+    "1641745": {
+      "name": "Adam Flagler",
+      "minutes": 14,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 14
+        }
+      ]
+    },
+    "1641748": {
+      "name": "Andre Jackson Jr.",
+      "minutes": 572,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 572
+        }
+      ]
+    },
+    "1641749": {
+      "name": "Keyontae Johnson",
+      "minutes": 66,
+      "stints": [
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 66
+        }
+      ]
+    },
+    "1641753": {
+      "name": "Chris Livingston",
+      "minutes": 90,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 90
+        }
+      ]
+    },
+    "1641754": {
+      "name": "Seth Lundy",
+      "minutes": 52,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 52
+        }
+      ]
+    },
+    "1641757": {
+      "name": "Jordan Miller",
+      "minutes": 28,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 28
+        }
+      ]
+    },
+    "1641763": {
+      "name": "Julian Phillips",
+      "minutes": 323,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 323
+        }
+      ]
+    },
+    "1641764": {
+      "name": "Brandin Podziemski",
+      "minutes": 1968,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1968
+        }
+      ]
+    },
+    "1641765": {
+      "name": "Olivier-Maxence Prosper",
+      "minutes": 336,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 336
+        }
+      ]
+    },
+    "1641766": {
+      "name": "Adama Sanogo",
+      "minutes": 66,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 66
+        }
+      ]
+    },
+    "1641767": {
+      "name": "Ben Sheppard",
+      "minutes": 814,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 814
+        }
+      ]
+    },
+    "1641771": {
+      "name": "Jalen Slawson",
+      "minutes": 37,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 37
+        }
+      ]
+    },
+    "1641774": {
+      "name": "Tristan Vukcevic",
+      "minutes": 153,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 153
+        }
+      ]
+    },
+    "1641775": {
+      "name": "Jordan Walsh",
+      "minutes": 83,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 83
+        }
+      ]
+    },
+    "1641778": {
+      "name": "Leaky Black",
+      "minutes": 284,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 284
+        }
+      ]
+    },
+    "1641787": {
+      "name": "Tosan Evbuomwan",
+      "minutes": 367,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 293
+        },
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 74
+        }
+      ]
+    },
+    "1641788": {
+      "name": "Alex Fudge",
+      "minutes": 26,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 26
+        },
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 14
+        }
+      ]
+    },
+    "1641793": {
+      "name": "D'Moi Hodge",
+      "minutes": 41,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 41
+        }
+      ]
+    },
+    "1641806": {
+      "name": "Markquis Nowell",
+      "minutes": 4,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 4
+        }
+      ]
+    },
+    "1641809": {
+      "name": "Drew Peterson",
+      "minutes": 23,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 23
+        }
+      ]
+    },
+    "1641816": {
+      "name": "Hunter Tyson",
+      "minutes": 48,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 48
+        }
+      ]
+    },
+    "1641847": {
+      "name": "Andrew Funk",
+      "minutes": 13,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 13
+        }
+      ]
+    },
+    "1641851": {
+      "name": "Timmy Allen",
+      "minutes": 125,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 125
+        }
+      ]
+    },
+    "1641854": {
+      "name": "Craig Porter Jr.",
+      "minutes": 649,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 649
+        }
+      ]
+    },
+    "1641871": {
+      "name": "Duop Reath",
+      "minutes": 1214,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1214
+        }
+      ]
+    },
+    "1641877": {
+      "name": "Nathan Mensah",
+      "minutes": 307,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 307
+        }
+      ]
+    },
+    "1641926": {
+      "name": "Dexter Dennis",
+      "minutes": 30,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 30
+        }
+      ]
+    },
+    "1641931": {
+      "name": "Onuralp Bitim",
+      "minutes": 268,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 268
+        }
+      ]
+    },
+    "1641970": {
+      "name": "Maozinha Pereira",
+      "minutes": 122,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 122
+        }
+      ]
+    },
+    "1641998": {
+      "name": "Trey Jemison",
+      "minutes": 574,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 573
+        },
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 1
+        }
+      ]
+    },
+    "1642013": {
+      "name": "Malik Williams",
+      "minutes": 107,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 107
+        }
+      ]
+    },
+    "200768": {
+      "name": "Kyle Lowry",
+      "minutes": 1690,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 1037
+        },
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 653
+        }
+      ]
+    },
+    "200782": {
+      "name": "P.J. Tucker",
+      "minutes": 486,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 420
+        },
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 66
+        }
+      ]
+    },
+    "201142": {
+      "name": "Kevin Durant",
+      "minutes": 2791,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 2791
+        }
+      ]
+    },
+    "201143": {
+      "name": "Al Horford",
+      "minutes": 1740,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 1740
+        }
+      ]
+    },
+    "201144": {
+      "name": "Mike Conley",
+      "minutes": 2193,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 2193
+        }
+      ]
+    },
+    "201145": {
+      "name": "Jeff Green",
+      "minutes": 1307,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 1307
+        }
+      ]
+    },
+    "201152": {
+      "name": "Thaddeus Young",
+      "minutes": 440,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 350
+        },
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 89
+        }
+      ]
+    },
+    "201565": {
+      "name": "Derrick Rose",
+      "minutes": 399,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 399
+        }
+      ]
+    },
+    "201566": {
+      "name": "Russell Westbrook",
+      "minutes": 1529,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 1529
+        }
+      ]
+    },
+    "201567": {
+      "name": "Kevin Love",
+      "minutes": 924,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 924
+        }
+      ]
+    },
+    "201568": {
+      "name": "Danilo Gallinari",
+      "minutes": 629,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 385
+        },
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 155
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 90
+        }
+      ]
+    },
+    "201569": {
+      "name": "Eric Gordon",
+      "minutes": 1893,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 1893
+        }
+      ]
+    },
+    "201572": {
+      "name": "Brook Lopez",
+      "minutes": 2411,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 2411
+        }
+      ]
+    },
+    "201577": {
+      "name": "Robin Lopez",
+      "minutes": 65,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 65
+        }
+      ]
+    },
+    "201580": {
+      "name": "JaVale McGee",
+      "minutes": 339,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 339
+        }
+      ]
+    },
+    "201587": {
+      "name": "Nicolas Batum",
+      "minutes": 1529,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 1475
+        },
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 54
+        }
+      ]
+    },
+    "201599": {
+      "name": "DeAndre Jordan",
+      "minutes": 396,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 396
+        }
+      ]
+    },
+    "201935": {
+      "name": "James Harden",
+      "minutes": 2470,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 2470
+        }
+      ]
+    },
+    "201939": {
+      "name": "Stephen Curry",
+      "minutes": 2421,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 2421
+        }
+      ]
+    },
+    "201942": {
+      "name": "DeMar DeRozan",
+      "minutes": 2989,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 2989
+        }
+      ]
+    },
+    "201949": {
+      "name": "James Johnson",
+      "minutes": 47,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 47
+        }
+      ]
+    },
+    "201950": {
+      "name": "Jrue Holiday",
+      "minutes": 2263,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 2263
+        }
+      ]
+    },
+    "201959": {
+      "name": "Taj Gibson",
+      "minutes": 204,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 165
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 39
+        }
+      ]
+    },
+    "201976": {
+      "name": "Patrick Beverley",
+      "minutes": 1463,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 919
+        },
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 543
+        }
+      ]
+    },
+    "201980": {
+      "name": "Danny Green",
+      "minutes": 18,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 18
+        }
+      ]
+    },
+    "201988": {
+      "name": "Patty Mills",
+      "minutes": 415,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 213
+        },
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 202
+        }
+      ]
+    },
+    "202066": {
+      "name": "Garrett Temple",
+      "minutes": 289,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 289
+        }
+      ]
+    },
+    "202083": {
+      "name": "Wesley Matthews",
+      "minutes": 413,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 413
+        }
+      ]
+    },
+    "202330": {
+      "name": "Gordon Hayward",
+      "minutes": 1245,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 798
+        },
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 447
+        }
+      ]
+    },
+    "202331": {
+      "name": "Paul George",
+      "minutes": 2502,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 2502
+        }
+      ]
+    },
+    "202397": {
+      "name": "Ish Smith",
+      "minutes": 741,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 741
+        }
+      ]
+    },
+    "202681": {
+      "name": "Kyrie Irving",
+      "minutes": 2030,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 2030
+        }
+      ]
+    },
+    "202684": {
+      "name": "Tristan Thompson",
+      "minutes": 549,
+      "stints": [
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 549
+        }
+      ]
+    },
+    "202685": {
+      "name": "Jonas Valanciunas",
+      "minutes": 1925,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 1925
+        }
+      ]
+    },
+    "202687": {
+      "name": "Bismack Biyombo",
+      "minutes": 792,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 718
+        },
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 73
+        }
+      ]
+    },
+    "202691": {
+      "name": "Klay Thompson",
+      "minutes": 2284,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 2284
+        }
+      ]
+    },
+    "202692": {
+      "name": "Alec Burks",
+      "minutes": 1211,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 901
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 311
+        }
+      ]
+    },
+    "202693": {
+      "name": "Markieff Morris",
+      "minutes": 216,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 216
+        }
+      ]
+    },
+    "202694": {
+      "name": "Marcus Morris Sr.",
+      "minutes": 817,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 637
+        },
+        {
+          "team_id": 1610612739,
+          "team": "CLE",
+          "minutes": 180
+        }
+      ]
+    },
+    "202695": {
+      "name": "Kawhi Leonard",
+      "minutes": 2330,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 2330
+        }
+      ]
+    },
+    "202696": {
+      "name": "Nikola Vucevic",
+      "minutes": 2610,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 2610
+        }
+      ]
+    },
+    "202699": {
+      "name": "Tobias Harris",
+      "minutes": 2368,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 2368
+        }
+      ]
+    },
+    "202704": {
+      "name": "Reggie Jackson",
+      "minutes": 1817,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 1817
+        }
+      ]
+    },
+    "202709": {
+      "name": "Cory Joseph",
+      "minutes": 296,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 296
+        }
+      ]
+    },
+    "202710": {
+      "name": "Jimmy Butler",
+      "minutes": 2042,
+      "stints": [
+        {
+          "team_id": 1610612748,
+          "team": "MIA",
+          "minutes": 2042
+        }
+      ]
+    },
+    "202711": {
+      "name": "Bojan Bogdanovic",
+      "minutes": 1478,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 921
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 557
+        }
+      ]
+    },
+    "202722": {
+      "name": "Davis Bertans",
+      "minutes": 674,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 583
+        },
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 91
+        }
+      ]
+    },
+    "202738": {
+      "name": "Isaiah Thomas",
+      "minutes": 19,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 19
+        }
+      ]
+    },
+    "203076": {
+      "name": "Anthony Davis",
+      "minutes": 2700,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 2700
+        }
+      ]
+    },
+    "203078": {
+      "name": "Bradley Beal",
+      "minutes": 1767,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 1767
+        }
+      ]
+    },
+    "203081": {
+      "name": "Damian Lillard",
+      "minutes": 2579,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 2579
+        }
+      ]
+    },
+    "203083": {
+      "name": "Andre Drummond",
+      "minutes": 1351,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 1351
+        }
+      ]
+    },
+    "203084": {
+      "name": "Harrison Barnes",
+      "minutes": 2381,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 2381
+        }
+      ]
+    },
+    "203095": {
+      "name": "Evan Fournier",
+      "minutes": 580,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 541
+        },
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 39
+        }
+      ]
+    },
+    "203109": {
+      "name": "Jae Crowder",
+      "minutes": 1156,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 1156
+        }
+      ]
+    },
+    "203110": {
+      "name": "Draymond Green",
+      "minutes": 1490,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1490
+        }
+      ]
+    },
+    "203114": {
+      "name": "Khris Middleton",
+      "minutes": 1487,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 1487
+        }
+      ]
+    },
+    "203200": {
+      "name": "Justin Holiday",
+      "minutes": 862,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 862
+        }
+      ]
+    },
+    "203458": {
+      "name": "Alex Len",
+      "minutes": 444,
+      "stints": [
+        {
+          "team_id": 1610612758,
+          "team": "SAC",
+          "minutes": 444
+        }
+      ]
+    },
+    "203468": {
+      "name": "CJ McCollum",
+      "minutes": 2159,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 2159
+        }
+      ]
+    },
+    "203469": {
+      "name": "Cody Zeller",
+      "minutes": 320,
+      "stints": [
+        {
+          "team_id": 1610612740,
+          "team": "NOP",
+          "minutes": 320
+        }
+      ]
+    },
+    "203471": {
+      "name": "Dennis Schroder",
+      "minutes": 2486,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 1559
+        },
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 927
+        }
+      ]
+    },
+    "203482": {
+      "name": "Kelly Olynyk",
+      "minutes": 1759,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1019
+        },
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 740
+        }
+      ]
+    },
+    "203484": {
+      "name": "Kentavious Caldwell-Pope",
+      "minutes": 2402,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 2402
+        }
+      ]
+    },
+    "203486": {
+      "name": "Mason Plumlee",
+      "minutes": 674,
+      "stints": [
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 674
+        }
+      ]
+    },
+    "203488": {
+      "name": "Mike Muscala",
+      "minutes": 600,
+      "stints": [
+        {
+          "team_id": 1610612764,
+          "team": "WAS",
+          "minutes": 338
+        },
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 171
+        },
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 91
+        }
+      ]
+    },
+    "203490": {
+      "name": "Otto Porter Jr.",
+      "minutes": 174,
+      "stints": [
+        {
+          "team_id": 1610612761,
+          "team": "TOR",
+          "minutes": 174
+        }
+      ]
+    },
+    "203493": {
+      "name": "Reggie Bullock Jr.",
+      "minutes": 418,
+      "stints": [
+        {
+          "team_id": 1610612745,
+          "team": "HOU",
+          "minutes": 418
+        }
+      ]
+    },
+    "203496": {
+      "name": "Robert Covington",
+      "minutes": 488,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 419
+        },
+        {
+          "team_id": 1610612746,
+          "team": "LAC",
+          "minutes": 69
+        }
+      ]
+    },
+    "203497": {
+      "name": "Rudy Gobert",
+      "minutes": 2593,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 2593
+        }
+      ]
+    },
+    "203501": {
+      "name": "Tim Hardaway Jr.",
+      "minutes": 2120,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 2120
+        }
+      ]
+    },
+    "203507": {
+      "name": "Giannis Antetokounmpo",
+      "minutes": 2567,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 2567
+        }
+      ]
+    },
+    "203552": {
+      "name": "Seth Curry",
+      "minutes": 615,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 457
+        },
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 159
+        }
+      ]
+    },
+    "203648": {
+      "name": "Thanasis Antetokounmpo",
+      "minutes": 155,
+      "stints": [
+        {
+          "team_id": 1610612749,
+          "team": "MIL",
+          "minutes": 155
+        }
+      ]
+    },
+    "203897": {
+      "name": "Zach LaVine",
+      "minutes": 872,
+      "stints": [
+        {
+          "team_id": 1610612741,
+          "team": "CHI",
+          "minutes": 872
+        }
+      ]
+    },
+    "203903": {
+      "name": "Jordan Clarkson",
+      "minutes": 1682,
+      "stints": [
+        {
+          "team_id": 1610612762,
+          "team": "UTA",
+          "minutes": 1682
+        }
+      ]
+    },
+    "203914": {
+      "name": "Gary Harris",
+      "minutes": 1297,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 1297
+        }
+      ]
+    },
+    "203915": {
+      "name": "Spencer Dinwiddie",
+      "minutes": 2152,
+      "stints": [
+        {
+          "team_id": 1610612751,
+          "team": "BKN",
+          "minutes": 1474
+        },
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 678
+        }
+      ]
+    },
+    "203924": {
+      "name": "Jerami Grant",
+      "minutes": 1830,
+      "stints": [
+        {
+          "team_id": 1610612757,
+          "team": "POR",
+          "minutes": 1830
+        }
+      ]
+    },
+    "203925": {
+      "name": "Joe Harris",
+      "minutes": 170,
+      "stints": [
+        {
+          "team_id": 1610612765,
+          "team": "DET",
+          "minutes": 170
+        }
+      ]
+    },
+    "203926": {
+      "name": "Doug McDermott",
+      "minutes": 904,
+      "stints": [
+        {
+          "team_id": 1610612759,
+          "team": "SAS",
+          "minutes": 700
+        },
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 204
+        }
+      ]
+    },
+    "203932": {
+      "name": "Aaron Gordon",
+      "minutes": 2297,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 2297
+        }
+      ]
+    },
+    "203933": {
+      "name": "T.J. Warren",
+      "minutes": 125,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 125
+        }
+      ]
+    },
+    "203935": {
+      "name": "Marcus Smart",
+      "minutes": 605,
+      "stints": [
+        {
+          "team_id": 1610612763,
+          "team": "MEM",
+          "minutes": 605
+        }
+      ]
+    },
+    "203937": {
+      "name": "Kyle Anderson",
+      "minutes": 1782,
+      "stints": [
+        {
+          "team_id": 1610612750,
+          "team": "MIN",
+          "minutes": 1782
+        }
+      ]
+    },
+    "203939": {
+      "name": "Dwight Powell",
+      "minutes": 836,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 836
+        }
+      ]
+    },
+    "203944": {
+      "name": "Julius Randle",
+      "minutes": 1630,
+      "stints": [
+        {
+          "team_id": 1610612752,
+          "team": "NYK",
+          "minutes": 1630
+        }
+      ]
+    },
+    "203952": {
+      "name": "Andrew Wiggins",
+      "minutes": 1920,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1920
+        }
+      ]
+    },
+    "203954": {
+      "name": "Joel Embiid",
+      "minutes": 1309,
+      "stints": [
+        {
+          "team_id": 1610612755,
+          "team": "PHI",
+          "minutes": 1309
+        }
+      ]
+    },
+    "203957": {
+      "name": "Dante Exum",
+      "minutes": 1088,
+      "stints": [
+        {
+          "team_id": 1610612742,
+          "team": "DAL",
+          "minutes": 1088
+        }
+      ]
+    },
+    "203967": {
+      "name": "Dario Saric",
+      "minutes": 1098,
+      "stints": [
+        {
+          "team_id": 1610612744,
+          "team": "GSW",
+          "minutes": 1098
+        }
+      ]
+    },
+    "203991": {
+      "name": "Clint Capela",
+      "minutes": 1883,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 1883
+        }
+      ]
+    },
+    "203992": {
+      "name": "Bogdan Bogdanovic",
+      "minutes": 2401,
+      "stints": [
+        {
+          "team_id": 1610612737,
+          "team": "ATL",
+          "minutes": 2401
+        }
+      ]
+    },
+    "203994": {
+      "name": "Jusuf Nurkic",
+      "minutes": 2078,
+      "stints": [
+        {
+          "team_id": 1610612756,
+          "team": "PHX",
+          "minutes": 2078
+        }
+      ]
+    },
+    "203995": {
+      "name": "Vasilije Micic",
+      "minutes": 1176,
+      "stints": [
+        {
+          "team_id": 1610612766,
+          "team": "CHA",
+          "minutes": 815
+        },
+        {
+          "team_id": 1610612760,
+          "team": "OKC",
+          "minutes": 361
+        }
+      ]
+    },
+    "203999": {
+      "name": "Nikola Jokic",
+      "minutes": 2737,
+      "stints": [
+        {
+          "team_id": 1610612743,
+          "team": "DEN",
+          "minutes": 2737
+        }
+      ]
+    },
+    "204001": {
+      "name": "Kristaps Porzingis",
+      "minutes": 1690,
+      "stints": [
+        {
+          "team_id": 1610612738,
+          "team": "BOS",
+          "minutes": 1690
+        }
+      ]
+    },
+    "204060": {
+      "name": "Joe Ingles",
+      "minutes": 1169,
+      "stints": [
+        {
+          "team_id": 1610612753,
+          "team": "ORL",
+          "minutes": 1169
+        }
+      ]
+    },
+    "204456": {
+      "name": "T.J. McConnell",
+      "minutes": 1291,
+      "stints": [
+        {
+          "team_id": 1610612754,
+          "team": "IND",
+          "minutes": 1291
+        }
+      ]
+    },
+    "2544": {
+      "name": "LeBron James",
+      "minutes": 2504,
+      "stints": [
+        {
+          "team_id": 1610612747,
+          "team": "LAL",
+          "minutes": 2504
+        }
+      ]
+    }
+  }
+}

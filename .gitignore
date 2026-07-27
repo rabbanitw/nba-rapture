@@ -20,3 +20,6 @@ training/RESULTS_stride.json
 training/data_stride3/
 training/RESULTS_top100_stride.json
 training/RESULTS_top100_stride3.json
+
+__pycache__/
+scraping/__pycache__/

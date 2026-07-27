@@ -19,11 +19,15 @@ SEASONS = [
     ("2022-23", "2022-10-18", "2023-04-15", "2023-06-12"),
     ("2023-24", "2023-10-24", "2024-04-20", "2024-06-17"),
     ("2024-25", "2024-10-22", "2025-04-19", "2025-06-22"),
+    ("2025-26", "2025-10-21", "2026-04-18", "2026-06-13"),
 ]
 
 TEST_SEASONS = ("2013-14", "2014-15")
 
-# The six synthetic full-season snapshots (one row per player for a whole season).
+# Synthetic full-season snapshots (one row per player for a whole season). The last
+# three have stats but no RAPTOR label -- 538 shut down, so they are inference cells,
+# not training cells. build_dataset.py keys every row off a 538 document and will
+# skip them; leaderboards.py and estimated_raptor.py are what read them.
 FULL_SEASON_SNAPSHOTS = {
     "20140715000000": "2013-14",
     "20150715000000": "2014-15",
@@ -31,7 +35,14 @@ FULL_SEASON_SNAPSHOTS = {
     "20170715000000": "2016-17",
     "20180715000000": "2017-18",
     "20201101000000": "2019-20",
+    "20240715000000": "2023-24",
+    "20250715000000": "2024-25",
+    "20260715000000": "2025-26",
 }
+
+# The cells with features but no label, kept separate so a caller can ask for
+# "everything trainable" or "everything scoreable" without hardcoding stamps.
+UNLABELED_SNAPSHOTS = ("20240715000000", "20250715000000", "20260715000000")
 
 
 def ws(date):
