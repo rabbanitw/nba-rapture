@@ -70,19 +70,29 @@ def main():
                                            / "RESULTS_estimated_raptor.csv"))
     ap.add_argument("--out", default=None)
     ap.add_argument("--top-n", type=int, default=20)
+    ap.add_argument("--no-min-mp", action="store_true",
+                    help="rank every player: no eligibility threshold and no "
+                         "minimum-minutes filter on training rows either")
     args = ap.parse_args()
 
     global TOP_N
     TOP_N = args.top_n
-    out = args.out or str(REPO_ROOT / "training" / f"RESULTS_top{TOP_N}.md")
+    suffix = "_nofilter" if args.no_min_mp else ""
+    out = args.out or str(REPO_ROOT / "training"
+                          / f"RESULTS_top{TOP_N}{suffix}.md")
 
     paine = pd.read_csv(args.paine)
     paine["key"] = paine.player.map(norm_name)
     thresholds, detail = derive_thresholds(paine)
     print(f"thresholds derived from true top-{TOP_N} minutes:", thresholds)
+    if args.no_min_mp:
+        thresholds = {k: 0.0 for k in thresholds}
+        print("  --no-min-mp: eligibility threshold and training MIN_MP both off")
 
     print("refitting the combined model (total, offense, defense) ...")
-    ours = our_predictions(args.datadir)
+    ours = our_predictions(args.datadir,
+                           rs_min=0 if args.no_min_mp else None,
+                           po_min=0 if args.no_min_mp else None)
     ours["key"] = ours.player.map(norm_name)
     ours["ours_sum"] = ours.ours_offense + ours.ours_defense
 
@@ -152,7 +162,8 @@ def main():
     for sk in skipped:
         print(f"  SKIPPED {sk['target']} {sk['season']} {sk['split']}: "
               f"pool={sk['pool_n']} too small for a top-{TOP_N}")
-    write_report(out, report, summary, overall, thresholds, detail, skipped)
+    write_report(out, report, summary, overall, thresholds, detail, skipped,
+                 no_min_mp=args.no_min_mp)
     json.dump({"top_n": TOP_N, "thresholds": thresholds,
                "threshold_detail": detail, "summary": summary,
                "skipped": skipped, "overall_regression": overall},
@@ -160,7 +171,8 @@ def main():
     print(f"\nwrote {out}")
 
 
-def write_report(path, report, summary, overall, thresholds, detail, skipped=()):
+def write_report(path, report, summary, overall, thresholds, detail, skipped=(),
+                 no_min_mp=False):
     L = []
     A = L.append
     A(f"# Top-{TOP_N} leaderboards on the held-out seasons\n")
@@ -188,7 +200,12 @@ def write_report(path, report, summary, overall, thresholds, detail, skipped=())
     A("| Paine (eRO+eRD) | his two part-models, summed — his only option |\n")
 
     A("## Minutes threshold\n")
-    A("Derived, not chosen: the **lowest minutes total among any true top-20**")
+    if no_min_mp:
+        A("**No minutes filter is applied in this run** — every rated player is")
+        A("ranked, and the training rows carry no minimum-minutes filter either.")
+        A("The table below is retained for reference: it shows what a derived")
+        A("threshold *would* have been.\n")
+    A(f"Derived, not chosen: the **lowest minutes total among any true top-{TOP_N}**")
     A("player, taken across every season, split and target, so no genuine leader is")
     A("ruled ineligible.\n")
     A("| season | split | target | min mp in true top 20 | median mp | pool n | pool min mp |")
@@ -197,8 +214,11 @@ def write_report(path, report, summary, overall, thresholds, detail, skipped=())
         A(f"| {d['season']} | {d['split']} | {d['target']} | "
           f"{d['min_mp_in_true_top20']:.0f} | {d['median_mp_in_true_top20']:.0f} | "
           f"{d['pool_n']} | {d['pool_min_mp']:.0f} |")
-    A(f"\n**Regular season → ≥ {thresholds['Regular season']:.0f} minutes. "
-      f"Playoffs → ≥ {thresholds['Playoffs']:.0f} minutes.**\n")
+    if no_min_mp:
+        A("\n**Applied here: no threshold (0 minutes, both splits).**\n")
+    else:
+        A(f"\n**Regular season → ≥ {thresholds['Regular season']:.0f} minutes. "
+          f"Playoffs → ≥ {thresholds['Playoffs']:.0f} minutes.**\n")
     A("This barely bites: 538 only rated ~250 players per historical season and all")
     A("of them already clear 1,065 regular-season minutes. In the playoffs the true")
     A("top 20 reaches the very bottom of the pool (a 131-minute player makes it), so")

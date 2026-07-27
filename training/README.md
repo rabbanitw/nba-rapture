@@ -11,7 +11,8 @@ python training/train_rapture.py --model all   # -> training/models/ (total, off
 python training/mp_sweep.py            # minimum-minutes threshold sweep
 python training/experiment_combined.py # -> training/RESULTS_combined.md
 python training/estimated_raptor.py && python training/compare_estimated_raptor.py  # external baseline
-python training/leaderboards.py        # -> training/RESULTS_top20.md
+python training/leaderboards.py --top-n 100              # -> training/RESULTS_top100.md
+python training/leaderboards.py --top-n 100 --no-min-mp # -> ..._nofilter.md
 python training/starter_models.py      # -> training/RESULTS_starters.md
 ```
 
@@ -305,6 +306,8 @@ best-looking number in the table — while the same model scores 3.974 on the fu
 | [RESULTS_combined.md](RESULTS_combined.md) | position one-hot × minimum-minutes threshold for the combined model |
 | [RESULTS_estimated_raptor.md](RESULTS_estimated_raptor.md) | Neil Paine's Estimated RAPTOR recreated and scored head-to-head |
 | [RESULTS_top20.md](RESULTS_top20.md) | top-20 total/offense/defense leaderboards, predicted vs true |
+| [RESULTS_top100.md](RESULTS_top100.md) | top-100 leaderboards with precision@K (regular season only) |
+| [RESULTS_top20_nofilter.md](RESULTS_top20_nofilter.md), [RESULTS_top100_nofilter.md](RESULTS_top100_nofilter.md) | same, with every minutes filter removed |
 | [RESULTS_starters.md](RESULTS_starters.md) | training only on rotation players, near-zero labels dropped |
 
 ## Known limitations

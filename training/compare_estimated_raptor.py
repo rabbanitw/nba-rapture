@@ -26,10 +26,12 @@ TRUTH = {"total": "rap", "offense": "rap_o", "defense": "rap_d"}
 RS_MIN, PO_MIN = 50, 10
 
 
-def our_predictions(datadir):
+def our_predictions(datadir, rs_min=None, po_min=None):
     """Refit the combined model per target and predict the held-out rows."""
     X, feat, d = prepare(datadir)
-    fit, val, test = splits(d, RS_MIN, PO_MIN)
+    fit, val, test = splits(d,
+                            RS_MIN if rs_min is None else rs_min,
+                            PO_MIN if po_min is None else po_min)
     tr = fit | val
     out = pd.DataFrame({
         "player": d["player"][test], "season": d["season"][test],
