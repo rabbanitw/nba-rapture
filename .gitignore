@@ -6,3 +6,4 @@ training/models/
 training/_ts_by_source.json
 training/schema_report.json
 training/__pycache__/
+training/RESULTS_combined.json
