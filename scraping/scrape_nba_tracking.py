@@ -105,8 +105,14 @@ FIELD_MAP = {
         **COMMON, "STL": "STL", "BLK": "BLK", "DREB": "DREB",
         "DEF_RIM_FGM": "DFGM", "DEF_RIM_FGA": "DFGA", "DEF_RIM_FG_PCT": "DFG%",
     },
+    # DREB_UNCONTEST is one of three uncontested-rebound columns the API now returns
+    # that the rendered table never showed, so no document in the collection has a
+    # slot for it. Dropped rather than stored: usable_fields() only keeps a field
+    # present in both the historical and modern eras, so it could never become a
+    # feature, and adding it would put the new cells out of schema with the old ones.
     "defensive-rebounding": {
-        **COMMON, "DREB": "DREB", "DREB_CONTEST": "CONTESTED\nDREB",
+        **COMMON, "DREB_UNCONTEST": None,
+        "DREB": "DREB", "DREB_CONTEST": "CONTESTED\nDREB",
         "DREB_CONTEST_PCT": "CONTESTED\nDREB%", "DREB_CHANCES": "DREB\nCHANCES",
         "DREB_CHANCE_PCT": "DREB\nCHANCE%",
         "DREB_CHANCE_DEFER": "DEFERRED\nDREB CHANCES",
@@ -133,7 +139,8 @@ FIELD_MAP = {
         "ELBOW_TOUCH_FOULS": "PF", "ELBOW_TOUCH_FOULS_PCT": "PF%",
     },
     "offensive-rebounding": {
-        **COMMON, "OREB": "OREB", "OREB_CONTEST": "CONTESTED\nOREB",
+        **COMMON, "OREB_UNCONTEST": None,
+        "OREB": "OREB", "OREB_CONTEST": "CONTESTED\nOREB",
         "OREB_CONTEST_PCT": "CONTESTED\nOREB%", "OREB_CHANCES": "OREB\nCHANCES",
         "OREB_CHANCE_PCT": "OREB\nCHANCE%",
         "OREB_CHANCE_DEFER": "DEFERRED\nOREB CHANCES",
@@ -160,6 +167,9 @@ FIELD_MAP = {
         # between AST PTS CREATED and AST ADJ, which is where FT_AST renders.
         "FT_AST": "",
         "AST_ADJ": "AST\nADJ", "AST_TO_PASS_PCT": "AST TO\nPASS%",
+        # Same story as the uncontested-rebound columns: newer than the scrape that
+        # built this collection, so there is no legacy slot to put it in.
+        "AST_TO_PASS_PCT_ADJ": None,
     },
     "pullup": {
         **COMMON, "PULL_UP_PTS": "PTS", "PULL_UP_FGM": "FGM", "PULL_UP_FGA": "FGA",
@@ -167,15 +177,18 @@ FIELD_MAP = {
         "PULL_UP_FG3_PCT": "3P%", "PULL_UP_EFG_PCT": "EFG%",
     },
     "rebounding": {
-        **COMMON, "REB": "REB", "REB_CONTEST": "CONTESTED\nREB",
+        **COMMON, "REB_UNCONTEST": None,
+        "REB": "REB", "REB_CONTEST": "CONTESTED\nREB",
         "REB_CONTEST_PCT": "CONTESTED\nREB%", "REB_CHANCES": "REB\nCHANCES",
         "REB_CHANCE_PCT": "REB\nCHANCE%",
         "REB_CHANCE_DEFER": "DEFERRED\nREB CHANCES",
         "REB_CHANCE_PCT_ADJ": "ADJUSTED\nREB CHANCE%",
         "AVG_REB_DIST": "AVG REB\nDISTANCE",
     },
+    # The efficiency and possessions tables spell it POINTS, not PTS, and this one
+    # spells effective FG% EFF_FG_PCT rather than the EFG_PCT used elsewhere.
     "shooting-efficiency": {
-        **COMMON, "PTS": "PTS", "DRIVE_PTS": "DRIVE\nPTS",
+        **COMMON, "POINTS": "PTS", "DRIVE_PTS": "DRIVE\nPTS",
         "DRIVE_FG_PCT": "DRIVE\nFG%", "CATCH_SHOOT_PTS": "C&S\nPTS",
         "CATCH_SHOOT_FG_PCT": "C&S\nFG%", "PULL_UP_PTS": "PULL UP\nPTS",
         "PULL_UP_FG_PCT": "PULL UP\nFG%", "PAINT_TOUCH_PTS": "PAINT\nTOUCH PTS",
@@ -183,7 +196,7 @@ FIELD_MAP = {
         "POST_TOUCH_PTS": "POST\nTOUCH PTS",
         "POST_TOUCH_FG_PCT": "POST\nTOUCH FG%",
         "ELBOW_TOUCH_PTS": "ELBOW\nTOUCH PTS",
-        "ELBOW_TOUCH_FG_PCT": "ELBOW\nTOUCH FG%", "EFG_PCT": "EFG%",
+        "ELBOW_TOUCH_FG_PCT": "ELBOW\nTOUCH FG%", "EFF_FG_PCT": "EFG%",
     },
     "speed-distance": {
         **COMMON, "DIST_FEET": "DIST. FEET", "DIST_MILES": "DIST. MILES",
@@ -192,7 +205,7 @@ FIELD_MAP = {
         "AVG_SPEED_DEF": "AVG SPEED DEF",
     },
     "touches": {
-        **COMMON, "PTS": "PTS", "TOUCHES": "TOUCHES",
+        **COMMON, "POINTS": "PTS", "TOUCHES": "TOUCHES",
         "FRONT_CT_TOUCHES": "FRONT CT\nTOUCHES", "TIME_OF_POSS": "TIME OF\nPOSS",
         "AVG_SEC_PER_TOUCH": "AVG SEC PER\nTOUCH",
         "AVG_DRIB_PER_TOUCH": "AVG DRIB PER\nTOUCH",

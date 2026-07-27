@@ -84,9 +84,19 @@ pbpstats' `EntityId` is the NBA player id, so the new scrapers join on it exactl
 
 **Tracking column names are display labels, not API fields.** The original scraper read
 them out of the rendered HTML table, so the collection stores `CONTESTED\nDREB` — with
-a real newline — and `passing` has one column whose name is the empty string.
-`coverage.py` matches fields by exact name, so `scrape_nba_tracking.py` translates API
-columns back to those labels and refuses to write a table it cannot fully map.
+a real newline — and `passing` has one column whose name is the empty string (it is
+`FT_AST`, which rendered with a blank header). `coverage.py` matches fields by exact
+name, so `scrape_nba_tracking.py` translates API columns back to those labels and
+refuses to write a table it cannot fully map.
+
+The API is also no longer quite what it was when the collection was built. The
+efficiency and possessions tables send `POINTS` where every other table sends `PTS`,
+efficiency sends `EFF_FG_PCT` rather than `EFG_PCT`, and four columns exist now that
+the rendered table never showed: `REB_UNCONTEST`, `OREB_UNCONTEST`, `DREB_UNCONTEST`
+and `AST_TO_PASS_PCT_ADJ`. Those four are mapped to `None`, meaning deliberately
+dropped — no document in the collection has a slot for them, and `usable_fields()`
+only keeps a field present in both the historical and modern eras, so storing them
+could not produce a feature but would put the new cells out of schema with the old.
 
 ## Superseded files
 
