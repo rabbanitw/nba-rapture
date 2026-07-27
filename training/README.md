@@ -11,6 +11,7 @@ python training/train_rapture.py --model all   # -> training/models/ (total, off
 python training/mp_sweep.py            # minimum-minutes threshold sweep
 python training/experiment_combined.py # -> training/RESULTS_combined.md
 python training/estimated_raptor.py && python training/compare_estimated_raptor.py  # external baseline
+python training/leaderboards.py        # -> training/RESULTS_top20.md
 ```
 
 Credentials go in `credentials.txt` at the repo root (username line 1, password
@@ -295,6 +296,14 @@ The sweep also prints a `kept-test` column, which is a trap worth naming: at
 1500/250 the on/off model scores RMSE 3.031 on the 492 surviving test rows — the
 best-looking number in the table — while the same model scores 3.974 on the full
 696. Filtering the evaluation set makes the task easier, not the model better.
+
+## Reports
+
+| file | what it covers |
+|---|---|
+| [RESULTS_combined.md](RESULTS_combined.md) | position one-hot × minimum-minutes threshold for the combined model |
+| [RESULTS_estimated_raptor.md](RESULTS_estimated_raptor.md) | Neil Paine's Estimated RAPTOR recreated and scored head-to-head |
+| [RESULTS_top20.md](RESULTS_top20.md) | top-20 offense/defense leaderboards, predicted vs true |
 
 ## Known limitations
 
