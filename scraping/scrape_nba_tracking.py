@@ -158,18 +158,23 @@ FIELD_MAP = {
         "PAINT_TOUCH_TOV": "TO", "PAINT_TOUCH_TOV_PCT": "TOV%",
         "PAINT_TOUCH_FOULS": "PF", "PAINT_TOUCH_FOULS_PCT": "PF%",
     },
+    # The passing table's last three legacy columns are shifted one place left
+    # against their headers, because the rendered table had a header cell missing.
+    # Verified arithmetically on the 2018 regular season, exactly on every player
+    # checked: the blank-named column holds AST_ADJ (AST + FT_AST + SECONDARY_AST --
+    # JJ Barea 434 + 18 + 53 = 505), the column headed "AST ADJ" holds
+    # AST / PASSES_MADE as a percentage (434/3344 = 12.98 vs 13.0 stored), and the
+    # one headed "AST TO PASS%" holds AST_ADJ / PASSES_MADE (505/3344 = 15.10 vs
+    # 15.1 stored). FT_AST itself was never stored.
     "passing": {
         **COMMON, "PASSES_MADE": "PASSES\nMADE",
         "PASSES_RECEIVED": "PASSES\nRECEIVED", "AST": "AST",
         "SECONDARY_AST": "SECONDARY\nAST", "POTENTIAL_AST": "POTENTIAL\nAST",
         "AST_PTS_CREATED": "AST PTS\nCREATED",
-        # The old HTML scrape produced one column with an empty header. It sits
-        # between AST PTS CREATED and AST ADJ, which is where FT_AST renders.
-        "FT_AST": "",
-        "AST_ADJ": "AST\nADJ", "AST_TO_PASS_PCT": "AST TO\nPASS%",
-        # Same story as the uncontested-rebound columns: newer than the scrape that
-        # built this collection, so there is no legacy slot to put it in.
-        "AST_TO_PASS_PCT_ADJ": None,
+        "FT_AST": None,
+        "AST_ADJ": "",
+        "AST_TO_PASS_PCT": "AST\nADJ",
+        "AST_TO_PASS_PCT_ADJ": "AST TO\nPASS%",
     },
     "pullup": {
         **COMMON, "PULL_UP_PTS": "PTS", "PULL_UP_FGM": "FGM", "PULL_UP_FGA": "FGA",
@@ -289,11 +294,23 @@ def translate(headers, row, data_type):
         if h in IDENTITY:
             continue
         if h in fmap:
-            if fmap[h] is not None:
-                out[fmap[h]] = v
+            label = fmap[h]
+            if label is not None:
+                out[label] = as_percent(v) if "%" in label else v
         elif h not in sibling:
             unmapped.append(h)
     return out, unmapped
+
+
+def as_percent(v):
+    """The API returns 0.358; the collection stores 35.8.
+
+    Every stored percentage came off a rendered HTML table, so it is on a 0-100
+    scale. Checked across all 14 tables: the two differ by exactly 100x on every
+    column whose label contains '%' -- catch-shoot FG% 35.3 against 0.353,
+    defensive-impact DFG% 66.5 against 0.674, and so on.
+    """
+    return v * 100.0 if isinstance(v, (int, float)) and not isinstance(v, bool) else v
 
 
 def scrape_cell(coll, cell, roster, report_only, problems):
@@ -332,6 +349,10 @@ def scrape_cell(coll, cell, roster, report_only, problems):
                 "data_type": data_type,
                 "timestamp": cell["timestamp"],
                 "season_type": cell["season_type"],
+                # Marks percentages as 0-100 and the passing columns as unshifted.
+                # migrate_tracking_v2.py keys off its absence; a string so
+                # coverage.as_float ignores it rather than making it a feature.
+                "tracking_schema": "v2",
             }))
 
         missing = expected - set().union(*(set(d) for d in docs)) if docs else expected
