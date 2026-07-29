@@ -25,7 +25,7 @@ import utils
 
 from coverage import ID_FIELDS, TRACK_TYPES, as_float, pick_doc
 from db import REPO_ROOT, get_collection
-from labels import labels_for
+from labels import SEASON_WIDE, labels_for
 from seasons import FULL_SEASON_SNAPSHOTS, is_test, season_of, season_progress
 
 SEASON_TYPES = ["Regular season", "Playoffs"]
@@ -93,7 +93,14 @@ def timestamps_with_sources(coll, cache=REPO_ROOT / "training" / "_ts_by_source.
 
 def select_timestamps(ts_by_src, model, modern_stride):
     """Full-season snapshots always; modern snapshots subsampled to cut redundancy."""
-    ok = set.intersection(*[ts_by_src[s] for s in SOURCES_NEEDED[model]])
+    # A whole-season cell need not have any 538 document of its own -- 538 published
+    # the finished season on a page archived later, so the labels sit under a
+    # different timestamp and labels.py goes and gets them. 2018-19 is the clearest
+    # case: its features are at 20190715000000 and its labels at 20201101000000, and
+    # requiring both at one timestamp is what kept the season out of the build.
+    feature_srcs = [s for s in SOURCES_NEEDED[model] if s != "538"]
+    ok = set.intersection(*[ts_by_src[s] for s in feature_srcs])
+    ok = {t for t in ok if t in ts_by_src["538"] or t in SEASON_WIDE}
     hist = sorted(t for t in ok if t in FULL_SEASON_SNAPSHOTS)
     modern = sorted(t for t in ok if t not in FULL_SEASON_SNAPSHOTS)
     by_season = defaultdict(list)
