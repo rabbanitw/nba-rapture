@@ -159,9 +159,11 @@ def main():
     ap.add_argument("--limit", type=int, help="only the top N players by minutes")
     ap.add_argument("--force", action="store_true", help="re-fetch rows already stored")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--raw-dir", help="write rows to JSONL files here instead of Mongo, for when this network cannot reach Atlas (see load_raw.py)")
     args = ap.parse_args()
 
-    coll = None if args.dry_run else mongo_sink.check_connection()
+    coll = (mongo_sink.RawSink(args.raw_dir) if args.raw_dir
+            else None if args.dry_run else mongo_sink.check_connection())
     print(f"[wowy] {len(args.seasons)} season(s): {', '.join(args.seasons)}")
     for cell in season_dates.cells(tuple(args.seasons)):
         scrape_cell(coll, cell, args.limit, args.dry_run, args.force)

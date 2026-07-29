@@ -392,9 +392,11 @@ def main():
     ap.add_argument("--report", action="store_true",
                     help="fetch and check the column mapping, write nothing")
     ap.add_argument("--out", default="tracking_mapping_report.json")
+    ap.add_argument("--raw-dir", help="write rows to JSONL files here instead of Mongo, for when this network cannot reach Atlas (see load_raw.py)")
     args = ap.parse_args()
 
-    coll = None if args.report else mongo_sink.check_connection()
+    coll = (mongo_sink.RawSink(args.raw_dir) if args.raw_dir
+            else None if args.report else mongo_sink.check_connection())
     problems = []
     print(f"[nba-tracking] {len(args.seasons)} season(s): {', '.join(args.seasons)}")
     for cell in season_dates.cells(tuple(args.seasons)):

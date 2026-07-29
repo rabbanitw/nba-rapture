@@ -20,9 +20,11 @@ The upsert filter rides the existing timestamp_1_standard_name_1 index, so nothi
 new has to be built on a 4.2M document collection.
 """
 
+import json
 import os
 import sys
 import urllib.parse
+from collections import defaultdict
 from pathlib import Path
 
 import pymongo
@@ -62,6 +64,56 @@ def get_collection(**kwargs):
     return client[DB_NAME][COLL_NAME]
 
 
+class RawSink:
+    """Somewhere to put scraped rows when Mongo is not reachable from here.
+
+    pbpstats blocks some networks and MongoDB Atlas rejects others, so there are
+    setups where no single network reaches both -- a VPN gets you pbpstats and
+    loses Atlas. Scraping and loading then have to happen at different times, which
+    is what the original CSV-then-data_saver.py pipeline did by accident.
+
+    Rows go to raw/<source>/<timestamp>_<season_type>.jsonl, one JSON object per
+    line, appended as they arrive. A killed run keeps everything already written,
+    and a resumed run reads the file back to see what it can skip. load_raw.py
+    upserts the files into Mongo later, from a network that can see it.
+    """
+
+    def __init__(self, root):
+        self.root = Path(root)
+
+    def path(self, source, timestamp, season_type):
+        d = self.root / source
+        d.mkdir(parents=True, exist_ok=True)
+        return d / f"{timestamp}_{season_type.replace(' ', '_')}.jsonl"
+
+    def append(self, rows, source):
+        by_cell = defaultdict(list)
+        for r in rows:
+            by_cell[(r["timestamp"], r["season_type"])].append(r)
+        for (ts, st), group in by_cell.items():
+            with self.path(source, ts, st).open("a", encoding="utf-8") as f:
+                for r in group:
+                    f.write(json.dumps(r, ensure_ascii=False) + "\n")
+        return len(rows)
+
+    def keys(self, source, timestamp, season_type, fields):
+        p = self.path(source, timestamp, season_type)
+        if not p.exists():
+            return set()
+        out = set()
+        with p.open(encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    d = json.loads(line)
+                except json.JSONDecodeError:
+                    continue          # a torn final line from a killed run
+                out.add(tuple(d.get(k) for k in fields))
+        return out
+
+
 def write_rows(coll, rows, source, dry_run=False):
     """Bulk-upsert rows for one source. -> (n_inserted, n_modified, n_matched).
 
@@ -70,6 +122,9 @@ def write_rows(coll, rows, source, dry_run=False):
     """
     if not rows:
         return 0, 0, 0
+    if isinstance(coll, RawSink):
+        n = coll.append(rows, source)
+        return n, 0, 0
     keys = KEY_FIELDS[source]
 
     ops = []
@@ -95,6 +150,8 @@ def existing_keys(coll, source, timestamp, season_type, extra=None):
     q = {"source": source, "timestamp": timestamp, "season_type": season_type}
     q.update(extra or {})
     keys = [k for k in KEY_FIELDS[source] if k not in q]
+    if isinstance(coll, RawSink):
+        return coll.keys(source, timestamp, season_type, keys)
     proj = {k: 1 for k in keys}
     proj["_id"] = 0
     return {tuple(d.get(k) for k in keys) for d in coll.find(q, proj)}

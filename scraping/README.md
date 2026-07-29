@@ -40,6 +40,36 @@ which is how the other two learn who played and what each player's NBA id is.
 Useful flags: `--seasons 2025-26`, `--dry-run`, `--limit N` (wowy, top N by minutes),
 `--force` (wowy, re-fetch rows already stored).
 
+## When one network can't reach both
+
+pbpstats blocks some addresses and MongoDB Atlas rejects others, and they need not
+be the same set. A VPN gets past a pbpstats block, and then Atlas drops the TLS
+handshake — `WinError 10054`, connection forcibly closed mid-handshake — because the
+VPN's exit address is not on the cluster's access list. Three ways out:
+
+1. **Allowlist the VPN exit address.** Atlas → Network Access → Add IP Address, with
+   the VPN up. The proper fix, and it survives as long as the exit address is stable.
+   Avoid `0.0.0.0/0` — that opens the cluster to the whole internet, and the password
+   is the only thing left protecting it.
+2. **Split tunneling.** Tell the VPN client to route `*.mongodb.net` (or port 27017)
+   outside the tunnel. Both work at once and nothing else changes.
+3. **Scrape now, load later.** Works regardless of what either service allows:
+
+```bash
+# VPN up — reaches pbpstats, writes nothing to the network
+python scrape_pbp_totals.py --seasons 2018-19 --raw-dir raw
+python scrape_wowy.py      --seasons 2018-19 --raw-dir raw
+
+# VPN down — reaches Atlas
+python load_raw.py raw
+```
+
+`--raw-dir` writes `raw/<source>/<timestamp>_<season_type>.jsonl`, one row per line,
+appended as they arrive. A killed run keeps everything already written and a resumed
+run reads the file back to see what it can skip, so resume works with no database.
+`load_raw.py` upserts on the same key fields as a direct write, so loading twice is
+harmless. `--raw-dir` works on all three scrapers.
+
 Everything upserts on the document's key fields, so re-running is safe and skips work
 already done. A killed run resumes by being run again.
 
