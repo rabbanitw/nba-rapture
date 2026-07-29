@@ -46,8 +46,25 @@ TIMEOUT = 90
 TRANSIENT = (urllib.error.URLError, http.client.HTTPException, socket.timeout,
              TimeoutError, ConnectionError, json.JSONDecodeError, OSError)
 
+# Politeness throttle. The 2023-26 wowy scrape made 10,158 calls in a few hours and
+# api.pbpstats.com then began answering 403 from nginx for every path including "/",
+# while www.pbpstats.com still served normally -- an IP block, not a rate limiter.
+# MIN_INTERVAL is a floor on the gap between requests across all threads, so a run
+# has a bounded request rate no matter how many workers call in.
+MIN_INTERVAL = 0.35
+_pace_lock = threading.Lock()
+_last_call = [0.0]
+
 _stats_lock = threading.Lock()
 _stats = {"calls": 0, "retries": 0, "failures": 0}
+
+
+def _pace():
+    with _pace_lock:
+        wait = _last_call[0] + MIN_INTERVAL - time.monotonic()
+        if wait > 0:
+            time.sleep(wait)
+        _last_call[0] = time.monotonic()
 
 
 def stats():
@@ -73,11 +90,21 @@ def get_json(path, params, max_attempts=MAX_ATTEMPTS):
         req = urllib.request.Request(url, headers={"User-Agent": UA,
                                                    "Accept": "application/json"})
         try:
+            _pace()
             _bump("calls")
             with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
                 return json.loads(r.read())
         except urllib.error.HTTPError as e:
             last = f"HTTP {e.code}"
+            if e.code == 403:
+                _bump("failures")
+                raise RuntimeError(
+                    "api.pbpstats.com returned 403 Forbidden. If every request is "
+                    "doing this, including https://api.pbpstats.com/ itself, this IP "
+                    "is blocked -- it is not a per-season or per-endpoint permission. "
+                    "Wait it out or run from a different connection; do not paper over "
+                    "it by rotating user agents."
+                ) from e
             if e.code not in RETRY_STATUS:
                 _bump("failures")
                 raise RuntimeError(f"{last} (not retryable) for {url}") from e

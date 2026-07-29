@@ -28,13 +28,22 @@ TEST_SEASONS = ("2013-14", "2014-15")
 # three have stats but no RAPTOR label -- 538 shut down, so they are inference cells,
 # not training cells. build_dataset.py keys every row off a 538 document and will
 # skip them; leaderboards.py and estimated_raptor.py are what read them.
+# Keyed by the season the FEATURES at that timestamp cover, which is what the row
+# actually is. The labels for the last three of the labeled cells live under other
+# timestamps entirely -- labels.py resolves that.
 FULL_SEASON_SNAPSHOTS = {
     "20140715000000": "2013-14",
     "20150715000000": "2014-15",
     "20160715000000": "2015-16",
     "20170715000000": "2016-17",
     "20180715000000": "2017-18",
+    # 2018-19 was absent from the collection entirely. Its 538 labels turned out to
+    # be sitting at 20201101000000; the features are scraped under this stamp.
+    "20190715000000": "2018-19",
     "20201101000000": "2019-20",
+    # A seventh whole-season cell that was never registered here: 2020-21 features,
+    # with 2019-20 labels wrongly attached to them.
+    "20210801000000": "2020-21",
     "20240715000000": "2023-24",
     "20250715000000": "2024-25",
     "20260715000000": "2025-26",

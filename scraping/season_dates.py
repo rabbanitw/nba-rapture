@@ -28,9 +28,20 @@ SEASON_TYPES = {"Regular Season": "Regular season", "Playoffs": "Playoffs"}
 # whole-season row is a synthetic YYYY0715000000 offseason stamp (see
 # training/seasons.py FULL_SEASON_SNAPSHOTS); one stamp carries both splits.
 SNAPSHOTS = {
+    # 2018-19 is the gap in the middle of the collection: no timestamp anywhere in
+    # its window carries any source. Its snapshot stamp follows the YYYY0715
+    # convention of the other whole-season cells (training/seasons.py).
+    "2018-19": "20190715000000",
     "2023-24": "20240715000000",
     "2024-25": "20250715000000",
     "2025-26": "20260715000000",
+}
+
+# Fallback boundaries for seasons whose schedule could not be fetched. Only used
+# when the API is unreachable; a successful fetch always wins and is cached.
+KNOWN_BOUNDS = {
+    "2018-19": {"Regular Season": {"from": "2018-10-16", "to": "2019-04-10"},
+                "Playoffs": {"from": "2019-04-13", "to": "2019-06-13"}},
 }
 
 
@@ -55,10 +66,19 @@ def load(seasons=tuple(SNAPSHOTS), refresh=False):
         for api_type in SEASON_TYPES:
             if cache.get(season, {}).get(api_type):
                 continue
-            start, end, n = fetch_bounds(season, api_type)
-            cache.setdefault(season, {})[api_type] = {"from": start, "to": end, "games": n}
+            try:
+                start, end, n = fetch_bounds(season, api_type)
+                src = f"{n} games"
+            except RuntimeError:
+                known = KNOWN_BOUNDS.get(season, {}).get(api_type)
+                if not known:
+                    raise
+                start, end, n = known["from"], known["to"], None
+                src = "UNVERIFIED fallback -- schedule not fetched"
+            cache.setdefault(season, {})[api_type] = {"from": start, "to": end,
+                                                      "games": n}
             changed = True
-            print(f"  {season} {api_type:<15} {start} .. {end}  ({n} games)")
+            print(f"  {season} {api_type:<15} {start} .. {end}  ({src})")
 
     if changed:
         CACHE.write_text(json.dumps(cache, indent=2, sort_keys=True))

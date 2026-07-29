@@ -19,8 +19,13 @@ from pathlib import Path
 
 import numpy as np
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import utils
+
 from coverage import ID_FIELDS, TRACK_TYPES, as_float, pick_doc
 from db import REPO_ROOT, get_collection
+from labels import labels_for
 from seasons import FULL_SEASON_SNAPSHOTS, is_test, season_of, season_progress
 
 SEASON_TYPES = ["Regular season", "Playoffs"]
@@ -102,9 +107,10 @@ def select_timestamps(ts_by_src, model, modern_stride):
 
 def fetch_cell(coll, ts, season_type, blocks, fields):
     """-> {player: {block: doc}} for the players 538 rates in this cell, plus label docs."""
-    labels = {}
-    for d in coll.find({"timestamp": ts, "source": "538", "season_type": season_type}):
-        labels.setdefault(d["standard_name"], d)
+    # Not "every 538 document at this timestamp" -- see labels.py. A capture often
+    # shows a different season than the stats were scraped for, and 174 of them show
+    # two seasons at once.
+    labels = labels_for(coll, ts, season_type, utils.get_season(ts))
     if not labels:
         return {}, {}
 
