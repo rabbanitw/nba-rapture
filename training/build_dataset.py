@@ -25,7 +25,7 @@ import utils
 
 from coverage import ID_FIELDS, TRACK_TYPES, as_float, pick_doc
 from db import REPO_ROOT, get_collection
-from labels import SEASON_WIDE, labels_for
+from labels import SEASON_WIDE, aligned_timestamps, labels_for
 from seasons import FULL_SEASON_SNAPSHOTS, is_test, season_of, season_progress
 
 SEASON_TYPES = ["Regular season", "Playoffs"]
@@ -91,7 +91,7 @@ def timestamps_with_sources(coll, cache=REPO_ROOT / "training" / "_ts_by_source.
     return dict(out)
 
 
-def select_timestamps(ts_by_src, model, modern_stride):
+def select_timestamps(ts_by_src, model, modern_stride, aligned):
     """Full-season snapshots always; modern snapshots subsampled to cut redundancy."""
     # A whole-season cell need not have any 538 document of its own -- 538 published
     # the finished season on a page archived later, so the labels sit under a
@@ -100,7 +100,10 @@ def select_timestamps(ts_by_src, model, modern_stride):
     # requiring both at one timestamp is what kept the season out of the build.
     feature_srcs = [s for s in SOURCES_NEEDED[model] if s != "538"]
     ok = set.intersection(*[ts_by_src[s] for s in feature_srcs])
-    ok = {t for t in ok if t in ts_by_src["538"] or t in SEASON_WIDE}
+    # A 538 document at the timestamp is not enough -- it has to be showing this
+    # season. Filtering here rather than after the stride is what brings 2022-23
+    # back; see labels.aligned_timestamps.
+    ok = {t for t in ok if t in aligned or t in SEASON_WIDE}
     hist = sorted(t for t in ok if t in FULL_SEASON_SNAPSHOTS)
     modern = sorted(t for t in ok if t not in FULL_SEASON_SNAPSHOTS)
     by_season = defaultdict(list)
@@ -200,11 +203,13 @@ def main():
     report = json.load(open(REPO_ROOT / "training" / "coverage_report.json"))
     coll = get_collection()
     ts_by_src = timestamps_with_sources(coll)
+    aligned = aligned_timestamps(coll, season_of)
+    print(f"{len(aligned)} timestamps have a label table for their own season")
 
     models = {"both": ["box", "onoff"],
               "all": ["box", "onoff", "combined"]}.get(args.model, [args.model])
     for model in models:
-        tss = select_timestamps(ts_by_src, model, args.modern_stride)
+        tss = select_timestamps(ts_by_src, model, args.modern_stride, aligned)
         print(f"\n[{model}] {len(tss)} timestamps selected")
         X, y, y_off, y_def, feat_names, meta = build(model, coll, report, tss)
         np.savez_compressed(

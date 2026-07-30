@@ -44,6 +44,9 @@ FULL_SEASON_SNAPSHOTS = {
     # A seventh whole-season cell that was never registered here: 2020-21 features,
     # with 2019-20 labels wrongly attached to them.
     "20210801000000": "2020-21",
+    # 2021-22 and 2022-23 had no whole-season cell; every test row is one.
+    "20220715000000": "2021-22",
+    "20230715000000": "2022-23",
     "20240715000000": "2023-24",
     "20250715000000": "2024-25",
     "20260715000000": "2025-26",

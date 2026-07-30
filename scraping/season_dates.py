@@ -32,6 +32,18 @@ SNAPSHOTS = {
     # its window carries any source. Its snapshot stamp follows the YYYY0715
     # convention of the other whole-season cells (training/seasons.py).
     "2018-19": "20190715000000",
+    # 2020-21 already has a whole-season cell, on a stamp inherited from the original
+    # scrape. It has tracking but no wowy at all, no playoff pbp, and its regular
+    # season pbp is stuck at the undocumented 500-row cap, so it is rescraped here.
+    "2020-21": "20210801000000",
+    # 2021-22 and 2022-23 have plenty of in-season snapshots but no whole-season cell,
+    # and every test row is a whole-season cell. 2022-23 additionally contributes no
+    # training rows at all right now: the snapshots that carry its features and the
+    # snapshots whose 538 capture showed 2022-23 are disjoint sets, so no in-season
+    # cell survives the label-season filter. A whole-season cell sidesteps that --
+    # the finished-season label table exists and labels.py already knows how to find it.
+    "2021-22": "20220715000000",
+    "2022-23": "20230715000000",
     "2023-24": "20240715000000",
     "2024-25": "20250715000000",
     "2025-26": "20260715000000",

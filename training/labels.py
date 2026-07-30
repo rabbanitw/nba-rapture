@@ -39,6 +39,8 @@ SEASON_WIDE = {
     "20190715000000": "2018-19",
     "20201101000000": "2019-20",
     "20210801000000": "2020-21",
+    "20220715000000": "2021-22",
+    "20230715000000": "2022-23",
 }
 
 _cache = {}
@@ -79,6 +81,30 @@ def best_season_table(coll, season, season_type):
     best = max(by_ts.values(), key=lambda t: (total_minutes(t), len(t)))
     _cache[key] = best
     return best
+
+
+def aligned_timestamps(coll, season_of_ts):
+    """Timestamps whose 538 capture shows the same season the features cover.
+
+    build_dataset used to pick timestamps on feature availability alone and only
+    then ask for labels, so a snapshot with all four feeds but a 538 capture showing
+    a different season was selected and then produced nothing. For 2022-23 that
+    emptied the season: its feature-bearing snapshots and its correctly-captured
+    snapshots turn out to be disjoint sets, so every cell the stride picked was dead.
+    Filtering before the stride means the stride spends its budget on cells that can
+    actually yield rows.
+    """
+    pipe = [{"$match": {"source": "538"}},
+            {"$group": {"_id": {"ts": "$timestamp", "ls": "$label_season"}}}]
+    out = set()
+    for r in coll.aggregate(pipe, allowDiskUse=True):
+        ts, ls = r["_id"]["ts"], r["_id"]["ls"]
+        try:
+            if ls and season_of_ts(ts) == ls:
+                out.add(ts)
+        except Exception:
+            continue
+    return out
 
 
 def labels_for(coll, ts, season_type, feature_season):
