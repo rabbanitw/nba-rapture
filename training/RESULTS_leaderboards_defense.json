@@ -1,0 +1,3914 @@
+{
+ "labeled": {
+  "defense|2013-14|Playoffs": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Danny Green",
+     "est": 4.014201950910117,
+     "true": 3.5,
+     "true_rank": 19,
+     "drank": 18,
+     "actual_at_pos": "Draymond Green",
+     "actual_true": 8.0
+    },
+    {
+     "pos": 2,
+     "projected": "Pero Antic",
+     "est": 3.8733155893616735,
+     "true": 6.5,
+     "true_rank": 3,
+     "drank": 1,
+     "actual_at_pos": "Paul Millsap",
+     "actual_true": 7.599999904632568
+    },
+    {
+     "pos": 3,
+     "projected": "Joakim Noah",
+     "est": 3.7270249145518637,
+     "true": 5.300000190734863,
+     "true_rank": 8,
+     "drank": 5,
+     "actual_at_pos": "Pero Antic",
+     "actual_true": 6.5
+    },
+    {
+     "pos": 4,
+     "projected": "Greivis Vasquez",
+     "est": 3.6435487499522834,
+     "true": 6.0,
+     "true_rank": 6,
+     "drank": 2,
+     "actual_at_pos": "Nick Collison",
+     "actual_true": 6.099999904632568
+    },
+    {
+     "pos": 5,
+     "projected": "Kawhi Leonard",
+     "est": 3.4950026513896773,
+     "true": 4.400000095367432,
+     "true_rank": 12,
+     "drank": 7,
+     "actual_at_pos": "Andray Blatche",
+     "actual_true": 6.099999904632568
+    },
+    {
+     "pos": 6,
+     "projected": "Marcin Gortat",
+     "est": 3.4224008487966557,
+     "true": 3.5,
+     "true_rank": 20,
+     "drank": 14,
+     "actual_at_pos": "Greivis Vasquez",
+     "actual_true": 6.0
+    },
+    {
+     "pos": 7,
+     "projected": "Trevor Ariza",
+     "est": 3.2433568415143252,
+     "true": 2.4000000953674316,
+     "true_rank": 26,
+     "drank": 19,
+     "actual_at_pos": "Chris Andersen",
+     "actual_true": 5.400000095367432
+    },
+    {
+     "pos": 8,
+     "projected": "Paul Millsap",
+     "est": 2.9718212085844504,
+     "true": 7.599999904632568,
+     "true_rank": 2,
+     "drank": -6,
+     "actual_at_pos": "Joakim Noah",
+     "actual_true": 5.300000190734863
+    },
+    {
+     "pos": 9,
+     "projected": "Kyle Korver",
+     "est": 2.963579667943631,
+     "true": -0.4000000059604645,
+     "true_rank": 62,
+     "drank": 53,
+     "actual_at_pos": "Vince Carter",
+     "actual_true": 5.0
+    },
+    {
+     "pos": 10,
+     "projected": "Tiago Splitter",
+     "est": 2.898399995120657,
+     "true": 5.0,
+     "true_rank": 10,
+     "drank": 0,
+     "actual_at_pos": "Tiago Splitter",
+     "actual_true": 5.0
+    },
+    {
+     "pos": 11,
+     "projected": "Andray Blatche",
+     "est": 2.8066512522176508,
+     "true": 6.099999904632568,
+     "true_rank": 5,
+     "drank": -6,
+     "actual_at_pos": "Rashard Lewis",
+     "actual_true": 4.900000095367432
+    },
+    {
+     "pos": 12,
+     "projected": "John Wall",
+     "est": 2.749453747333641,
+     "true": 0.800000011920929,
+     "true_rank": 41,
+     "drank": 29,
+     "actual_at_pos": "Kawhi Leonard",
+     "actual_true": 4.400000095367432
+    },
+    {
+     "pos": 13,
+     "projected": "Paul Pierce",
+     "est": 2.6373517763580736,
+     "true": 1.5,
+     "true_rank": 34,
+     "drank": 21,
+     "actual_at_pos": "Serge Ibaka",
+     "actual_true": 4.199999809265137
+    },
+    {
+     "pos": 14,
+     "projected": "Mike Conley",
+     "est": 2.536076530572611,
+     "true": -1.2999999523162842,
+     "true_rank": 75,
+     "drank": 61,
+     "actual_at_pos": "Ian Mahinmi",
+     "actual_true": 4.199999809265137
+    },
+    {
+     "pos": 15,
+     "projected": "Serge Ibaka",
+     "est": 2.4494294688394334,
+     "true": 4.199999809265137,
+     "true_rank": 13,
+     "drank": -2,
+     "actual_at_pos": "Zach Randolph",
+     "actual_true": 4.199999809265137
+    },
+    {
+     "pos": 16,
+     "projected": "Kevin Garnett",
+     "est": 2.394580886673374,
+     "true": 0.4000000059604645,
+     "true_rank": 51,
+     "drank": 35,
+     "actual_at_pos": "Marc Gasol",
+     "actual_true": 4.099999904632568
+    },
+    {
+     "pos": 17,
+     "projected": "Manu Ginobili",
+     "est": 2.3638814140166513,
+     "true": 3.4000000953674316,
+     "true_rank": 21,
+     "drank": 4,
+     "actual_at_pos": "Deron Williams",
+     "actual_true": 3.799999952316284
+    },
+    {
+     "pos": 18,
+     "projected": "George Hill",
+     "est": 2.3443348456115687,
+     "true": 2.799999952316284,
+     "true_rank": 23,
+     "drank": 5,
+     "actual_at_pos": "Patty Mills",
+     "actual_true": 3.700000047683716
+    },
+    {
+     "pos": 19,
+     "projected": "David West",
+     "est": 2.3186404034891144,
+     "true": 1.0,
+     "true_rank": 39,
+     "drank": 20,
+     "actual_at_pos": "Danny Green",
+     "actual_true": 3.5
+    },
+    {
+     "pos": 20,
+     "projected": "Vince Carter",
+     "est": 2.27220728612739,
+     "true": 5.0,
+     "true_rank": 9,
+     "drank": -11,
+     "actual_at_pos": "Marcin Gortat",
+     "actual_true": 3.5
+    },
+    {
+     "pos": 21,
+     "projected": "LeBron James",
+     "est": 2.235263655007877,
+     "true": 0.800000011920929,
+     "true_rank": 42,
+     "drank": 21,
+     "actual_at_pos": "Manu Ginobili",
+     "actual_true": 3.4000000953674316
+    },
+    {
+     "pos": 22,
+     "projected": "Tony Allen",
+     "est": 2.202529583161623,
+     "true": 1.7999999523162842,
+     "true_rank": 31,
+     "drank": 9,
+     "actual_at_pos": "LaMarcus Aldridge",
+     "actual_true": 2.9000000953674316
+    },
+    {
+     "pos": 23,
+     "projected": "Chris Andersen",
+     "est": 2.1962953724071816,
+     "true": 5.400000095367432,
+     "true_rank": 7,
+     "drank": -16,
+     "actual_at_pos": "George Hill",
+     "actual_true": 2.799999952316284
+    },
+    {
+     "pos": 24,
+     "projected": "Zach Randolph",
+     "est": 2.1800172172530528,
+     "true": 4.199999809265137,
+     "true_rank": 15,
+     "drank": -9,
+     "actual_at_pos": "Chris Paul",
+     "actual_true": 2.700000047683716
+    },
+    {
+     "pos": 25,
+     "projected": "Patty Mills",
+     "est": 2.15716077342348,
+     "true": 3.700000047683716,
+     "true_rank": 18,
+     "drank": -7,
+     "actual_at_pos": "Bradley Beal",
+     "actual_true": 2.700000047683716
+    },
+    {
+     "pos": 26,
+     "projected": "Patrick Patterson",
+     "est": 2.0875359478627304,
+     "true": -0.800000011920929,
+     "true_rank": 64,
+     "drank": 38,
+     "actual_at_pos": "Trevor Ariza",
+     "actual_true": 2.4000000953674316
+    },
+    {
+     "pos": 27,
+     "projected": "Rashard Lewis",
+     "est": 1.9526116606050365,
+     "true": 4.900000095367432,
+     "true_rank": 11,
+     "drank": -16,
+     "actual_at_pos": "Nicolas Batum",
+     "actual_true": 2.200000047683716
+    },
+    {
+     "pos": 28,
+     "projected": "Kevin Durant",
+     "est": 1.948613677547237,
+     "true": 0.5,
+     "true_rank": 48,
+     "drank": 20,
+     "actual_at_pos": "James Harden",
+     "actual_true": 1.899999976158142
+    },
+    {
+     "pos": 29,
+     "projected": "Draymond Green",
+     "est": 1.86927900775189,
+     "true": 8.0,
+     "true_rank": 1,
+     "drank": -28,
+     "actual_at_pos": "Tim Duncan",
+     "actual_true": 1.899999976158142
+    },
+    {
+     "pos": 30,
+     "projected": "Nene",
+     "est": 1.7347766112589136,
+     "true": 1.7999999523162842,
+     "true_rank": 30,
+     "drank": 0,
+     "actual_at_pos": "Nene",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 31,
+     "projected": "Nick Collison",
+     "est": 1.702292547265384,
+     "true": 6.099999904632568,
+     "true_rank": 4,
+     "drank": -27,
+     "actual_at_pos": "Tony Allen",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 32,
+     "projected": "Chris Paul",
+     "est": 1.607989626989525,
+     "true": 2.700000047683716,
+     "true_rank": 24,
+     "drank": -8,
+     "actual_at_pos": "Kendrick Perkins",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 33,
+     "projected": "Alan Anderson",
+     "est": 1.6071881770797218,
+     "true": 0.5,
+     "true_rank": 47,
+     "drank": 14,
+     "actual_at_pos": "JJ Redick",
+     "actual_true": 1.7000000476837158
+    },
+    {
+     "pos": 34,
+     "projected": "Deron Williams",
+     "est": 1.4844603767850943,
+     "true": 3.799999952316284,
+     "true_rank": 17,
+     "drank": -17,
+     "actual_at_pos": "Paul Pierce",
+     "actual_true": 1.5
+    },
+    {
+     "pos": 35,
+     "projected": "David Lee",
+     "est": 1.441034009546521,
+     "true": -2.0,
+     "true_rank": 87,
+     "drank": 52,
+     "actual_at_pos": "Kirk Hinrich",
+     "actual_true": 1.399999976158142
+    },
+    {
+     "pos": 36,
+     "projected": "Bradley Beal",
+     "est": 1.2904797319913357,
+     "true": 2.700000047683716,
+     "true_rank": 25,
+     "drank": -11,
+     "actual_at_pos": "Roy Hibbert",
+     "actual_true": 1.2999999523162842
+    },
+    {
+     "pos": 37,
+     "projected": "DeMarre Carroll",
+     "est": 1.2776782715781965,
+     "true": -2.5,
+     "true_rank": 89,
+     "drank": 52,
+     "actual_at_pos": "Thabo Sefolosha",
+     "actual_true": 1.2999999523162842
+    },
+    {
+     "pos": 38,
+     "projected": "Jeremy Lin",
+     "est": 1.2647490738826321,
+     "true": -1.0,
+     "true_rank": 72,
+     "drank": 34,
+     "actual_at_pos": "Stephen Curry",
+     "actual_true": 1.2000000476837158
+    },
+    {
+     "pos": 39,
+     "projected": "Lance Stephenson",
+     "est": 1.2312324221085185,
+     "true": -0.800000011920929,
+     "true_rank": 66,
+     "drank": 27,
+     "actual_at_pos": "David West",
+     "actual_true": 1.0
+    },
+    {
+     "pos": 40,
+     "projected": "Dwyane Wade",
+     "est": 1.22830384095684,
+     "true": -1.7999999523162842,
+     "true_rank": 81,
+     "drank": 41,
+     "actual_at_pos": "DeAndre Jordan",
+     "actual_true": 0.8999999761581421
+    },
+    {
+     "pos": 41,
+     "projected": "Dwight Howard",
+     "est": 1.2178526644234413,
+     "true": 0.4000000059604645,
+     "true_rank": 49,
+     "drank": 8,
+     "actual_at_pos": "John Wall",
+     "actual_true": 0.800000011920929
+    },
+    {
+     "pos": 42,
+     "projected": "Derek Fisher",
+     "est": 1.2172462621742126,
+     "true": -1.2999999523162842,
+     "true_rank": 74,
+     "drank": 32,
+     "actual_at_pos": "LeBron James",
+     "actual_true": 0.800000011920929
+    },
+    {
+     "pos": 43,
+     "projected": "Tim Duncan",
+     "est": 1.1555642106078554,
+     "true": 1.899999976158142,
+     "true_rank": 29,
+     "drank": -14,
+     "actual_at_pos": "Boris Diaw",
+     "actual_true": 0.800000011920929
+    },
+    {
+     "pos": 44,
+     "projected": "Kendrick Perkins",
+     "est": 1.093107605068579,
+     "true": 1.7999999523162842,
+     "true_rank": 32,
+     "drank": -12,
+     "actual_at_pos": "Blake Griffin",
+     "actual_true": 0.800000011920929
+    },
+    {
+     "pos": 45,
+     "projected": "DeAndre Jordan",
+     "est": 1.0352264295257263,
+     "true": 0.8999999761581421,
+     "true_rank": 40,
+     "drank": -5,
+     "actual_at_pos": "Reggie Jackson",
+     "actual_true": 0.699999988079071
+    },
+    {
+     "pos": 46,
+     "projected": "Marc Gasol",
+     "est": 0.9316877994173104,
+     "true": 4.099999904632568,
+     "true_rank": 16,
+     "drank": -30,
+     "actual_at_pos": "Kyle Lowry",
+     "actual_true": 0.5
+    },
+    {
+     "pos": 47,
+     "projected": "Joe Johnson",
+     "est": 0.8604734754020018,
+     "true": 0.4000000059604645,
+     "true_rank": 50,
+     "drank": 3,
+     "actual_at_pos": "Alan Anderson",
+     "actual_true": 0.5
+    },
+    {
+     "pos": 48,
+     "projected": "Matt Barnes",
+     "est": 0.8553326725449504,
+     "true": -2.200000047683716,
+     "true_rank": 88,
+     "drank": 40,
+     "actual_at_pos": "Kevin Durant",
+     "actual_true": 0.5
+    },
+    {
+     "pos": 49,
+     "projected": "Mario Chalmers",
+     "est": 0.7213464093090002,
+     "true": -1.7999999523162842,
+     "true_rank": 82,
+     "drank": 33,
+     "actual_at_pos": "Dwight Howard",
+     "actual_true": 0.4000000059604645
+    },
+    {
+     "pos": 50,
+     "projected": "Kyle Lowry",
+     "est": 0.7091518623661714,
+     "true": 0.5,
+     "true_rank": 46,
+     "drank": -4,
+     "actual_at_pos": "Joe Johnson",
+     "actual_true": 0.4000000059604645
+    }
+   ],
+   "tau_true30": 0.3103448275862069,
+   "tau_union30": 0.10512820512820513,
+   "pool": 99,
+   "hits30": 20,
+   "mean_abs_drank": 18.94
+  },
+  "defense|2013-14|Regular season": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Andrew Bogut",
+     "est": 4.641782151273125,
+     "true": 4.400000095367432,
+     "true_rank": 4,
+     "drank": 3,
+     "actual_at_pos": "Kawhi Leonard",
+     "actual_true": 5.0
+    },
+    {
+     "pos": 2,
+     "projected": "Draymond Green",
+     "est": 4.095447101069982,
+     "true": 4.599999904632568,
+     "true_rank": 2,
+     "drank": 0,
+     "actual_at_pos": "Draymond Green",
+     "actual_true": 4.599999904632568
+    },
+    {
+     "pos": 3,
+     "projected": "Tiago Splitter",
+     "est": 3.869268976978018,
+     "true": 4.199999809265137,
+     "true_rank": 6,
+     "drank": 3,
+     "actual_at_pos": "Joakim Noah",
+     "actual_true": 4.5
+    },
+    {
+     "pos": 4,
+     "projected": "Kevin Garnett",
+     "est": 3.7895680444725572,
+     "true": 3.5,
+     "true_rank": 11,
+     "drank": 7,
+     "actual_at_pos": "Andrew Bogut",
+     "actual_true": 4.400000095367432
+    },
+    {
+     "pos": 5,
+     "projected": "Paul George",
+     "est": 3.76588363264194,
+     "true": 2.9000000953674316,
+     "true_rank": 21,
+     "drank": 16,
+     "actual_at_pos": "Michael KiddGilchrist",
+     "actual_true": 4.400000095367432
+    },
+    {
+     "pos": 6,
+     "projected": "Kawhi Leonard",
+     "est": 3.506800285360339,
+     "true": 5.0,
+     "true_rank": 1,
+     "drank": -5,
+     "actual_at_pos": "Tiago Splitter",
+     "actual_true": 4.199999809265137
+    },
+    {
+     "pos": 7,
+     "projected": "Nene",
+     "est": 3.4073983800657452,
+     "true": 3.799999952316284,
+     "true_rank": 9,
+     "drank": 2,
+     "actual_at_pos": "Danny Green",
+     "actual_true": 4.0
+    },
+    {
+     "pos": 8,
+     "projected": "Andre Iguodala",
+     "est": 3.0876565178967814,
+     "true": 2.5999999046325684,
+     "true_rank": 25,
+     "drank": 17,
+     "actual_at_pos": "Chris Paul",
+     "actual_true": 3.9000000953674316
+    },
+    {
+     "pos": 9,
+     "projected": "Anderson Varejao",
+     "est": 3.064949502953799,
+     "true": 3.5999999046325684,
+     "true_rank": 10,
+     "drank": 1,
+     "actual_at_pos": "Nene",
+     "actual_true": 3.799999952316284
+    },
+    {
+     "pos": 10,
+     "projected": "Joakim Noah",
+     "est": 3.0469846540588064,
+     "true": 4.5,
+     "true_rank": 3,
+     "drank": -7,
+     "actual_at_pos": "Anderson Varejao",
+     "actual_true": 3.5999999046325684
+    },
+    {
+     "pos": 11,
+     "projected": "Tony Allen",
+     "est": 3.0053880917713114,
+     "true": 2.4000000953674316,
+     "true_rank": 31,
+     "drank": 20,
+     "actual_at_pos": "Kevin Garnett",
+     "actual_true": 3.5
+    },
+    {
+     "pos": 12,
+     "projected": "Jae Crowder",
+     "est": 2.9923717735931383,
+     "true": 3.0,
+     "true_rank": 19,
+     "drank": 7,
+     "actual_at_pos": "Nick Calathes",
+     "actual_true": 3.5
+    },
+    {
+     "pos": 13,
+     "projected": "Danny Green",
+     "est": 2.9889215833428437,
+     "true": 4.0,
+     "true_rank": 7,
+     "drank": -6,
+     "actual_at_pos": "Ian Mahinmi",
+     "actual_true": 3.5
+    },
+    {
+     "pos": 14,
+     "projected": "Anthony Davis",
+     "est": 2.924937290308841,
+     "true": 2.299999952316284,
+     "true_rank": 34,
+     "drank": 20,
+     "actual_at_pos": "Jimmy Butler",
+     "actual_true": 3.4000000953674316
+    },
+    {
+     "pos": 15,
+     "projected": "CJ Watson",
+     "est": 2.922129400109993,
+     "true": 3.200000047683716,
+     "true_rank": 17,
+     "drank": 2,
+     "actual_at_pos": "Roy Hibbert",
+     "actual_true": 3.4000000953674316
+    },
+    {
+     "pos": 16,
+     "projected": "Paul Pierce",
+     "est": 2.871910690860834,
+     "true": 1.7999999523162842,
+     "true_rank": 50,
+     "drank": 34,
+     "actual_at_pos": "DeMarcus Cousins",
+     "actual_true": 3.299999952316284
+    },
+    {
+     "pos": 17,
+     "projected": "Ian Mahinmi",
+     "est": 2.7871667922571066,
+     "true": 3.5,
+     "true_rank": 13,
+     "drank": -4,
+     "actual_at_pos": "CJ Watson",
+     "actual_true": 3.200000047683716
+    },
+    {
+     "pos": 18,
+     "projected": "LaMarcus Aldridge",
+     "est": 2.7578274061874617,
+     "true": 2.200000047683716,
+     "true_rank": 37,
+     "drank": 19,
+     "actual_at_pos": "Tim Duncan",
+     "actual_true": 3.0
+    },
+    {
+     "pos": 19,
+     "projected": "Marcin Gortat",
+     "est": 2.7574019474204823,
+     "true": 2.5,
+     "true_rank": 29,
+     "drank": 10,
+     "actual_at_pos": "Jae Crowder",
+     "actual_true": 3.0
+    },
+    {
+     "pos": 20,
+     "projected": "Iman Shumpert",
+     "est": 2.6982337196030297,
+     "true": 1.0,
+     "true_rank": 73,
+     "drank": 53,
+     "actual_at_pos": "Kris Humphries",
+     "actual_true": 3.0
+    },
+    {
+     "pos": 21,
+     "projected": "Paul Millsap",
+     "est": 2.6755164036383317,
+     "true": 2.700000047683716,
+     "true_rank": 23,
+     "drank": 2,
+     "actual_at_pos": "Paul George",
+     "actual_true": 2.9000000953674316
+    },
+    {
+     "pos": 22,
+     "projected": "Michael KiddGilchrist",
+     "est": 2.6398004221704734,
+     "true": 4.400000095367432,
+     "true_rank": 5,
+     "drank": -17,
+     "actual_at_pos": "Marc Gasol",
+     "actual_true": 2.799999952316284
+    },
+    {
+     "pos": 23,
+     "projected": "Chris Bosh",
+     "est": 2.553850003189143,
+     "true": 1.0,
+     "true_rank": 75,
+     "drank": 52,
+     "actual_at_pos": "Paul Millsap",
+     "actual_true": 2.700000047683716
+    },
+    {
+     "pos": 24,
+     "projected": "Derek Fisher",
+     "est": 2.5265659851660125,
+     "true": 2.0,
+     "true_rank": 43,
+     "drank": 19,
+     "actual_at_pos": "Shane Battier",
+     "actual_true": 2.700000047683716
+    },
+    {
+     "pos": 25,
+     "projected": "DeMarcus Cousins",
+     "est": 2.4967853031127767,
+     "true": 3.299999952316284,
+     "true_rank": 16,
+     "drank": -9,
+     "actual_at_pos": "Andre Iguodala",
+     "actual_true": 2.5999999046325684
+    },
+    {
+     "pos": 26,
+     "projected": "Gerald Wallace",
+     "est": 2.3874719283182753,
+     "true": 1.600000023841858,
+     "true_rank": 52,
+     "drank": 26,
+     "actual_at_pos": "DeMarre Carroll",
+     "actual_true": 2.5999999046325684
+    },
+    {
+     "pos": 27,
+     "projected": "Tim Duncan",
+     "est": 2.3709232912707536,
+     "true": 3.0,
+     "true_rank": 18,
+     "drank": -9,
+     "actual_at_pos": "Mario Chalmers",
+     "actual_true": 2.5
+    },
+    {
+     "pos": 28,
+     "projected": "Darrell Arthur",
+     "est": 2.348848297593098,
+     "true": 1.899999976158142,
+     "true_rank": 45,
+     "drank": 17,
+     "actual_at_pos": "Samuel Dalembert",
+     "actual_true": 2.5
+    },
+    {
+     "pos": 29,
+     "projected": "David West",
+     "est": 2.341350725600153,
+     "true": 1.5,
+     "true_rank": 57,
+     "drank": 28,
+     "actual_at_pos": "Marcin Gortat",
+     "actual_true": 2.5
+    },
+    {
+     "pos": 30,
+     "projected": "DeAndre Jordan",
+     "est": 2.294440479724226,
+     "true": 1.100000023841858,
+     "true_rank": 65,
+     "drank": 35,
+     "actual_at_pos": "Victor Oladipo",
+     "actual_true": 2.4000000953674316
+    },
+    {
+     "pos": 31,
+     "projected": "DeMarre Carroll",
+     "est": 2.279028616324794,
+     "true": 2.5999999046325684,
+     "true_rank": 26,
+     "drank": -5,
+     "actual_at_pos": "Tony Allen",
+     "actual_true": 2.4000000953674316
+    },
+    {
+     "pos": 32,
+     "projected": "Jimmy Butler",
+     "est": 2.265780243686414,
+     "true": 3.4000000953674316,
+     "true_rank": 14,
+     "drank": -18,
+     "actual_at_pos": "Dwight Howard",
+     "actual_true": 2.4000000953674316
+    },
+    {
+     "pos": 33,
+     "projected": "Nicolas Batum",
+     "est": 2.1973939067794026,
+     "true": 0.0,
+     "true_rank": 128,
+     "drank": 95,
+     "actual_at_pos": "Serge Ibaka",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 34,
+     "projected": "Chris Andersen",
+     "est": 2.1782426906889905,
+     "true": 1.600000023841858,
+     "true_rank": 55,
+     "drank": 21,
+     "actual_at_pos": "Anthony Davis",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 35,
+     "projected": "Roy Hibbert",
+     "est": 2.147063605926373,
+     "true": 3.4000000953674316,
+     "true_rank": 15,
+     "drank": -20,
+     "actual_at_pos": "Kemba Walker",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 36,
+     "projected": "Kirk Hinrich",
+     "est": 2.113979717986913,
+     "true": 2.0999999046325684,
+     "true_rank": 42,
+     "drank": 6,
+     "actual_at_pos": "Thabo Sefolosha",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 37,
+     "projected": "Shaun Livingston",
+     "est": 2.1011273086030453,
+     "true": 0.8999999761581421,
+     "true_rank": 77,
+     "drank": 40,
+     "actual_at_pos": "LaMarcus Aldridge",
+     "actual_true": 2.200000047683716
+    },
+    {
+     "pos": 38,
+     "projected": "Al Jefferson",
+     "est": 2.089135111919213,
+     "true": 1.7999999523162842,
+     "true_rank": 47,
+     "drank": 9,
+     "actual_at_pos": "Nikola Pekovic",
+     "actual_true": 2.200000047683716
+    },
+    {
+     "pos": 39,
+     "projected": "Thabo Sefolosha",
+     "est": 2.051507725445317,
+     "true": 2.299999952316284,
+     "true_rank": 36,
+     "drank": -3,
+     "actual_at_pos": "Eric Bledsoe",
+     "actual_true": 2.200000047683716
+    },
+    {
+     "pos": 40,
+     "projected": "Shane Battier",
+     "est": 1.989298407343579,
+     "true": 2.700000047683716,
+     "true_rank": 24,
+     "drank": -16,
+     "actual_at_pos": "George Hill",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 41,
+     "projected": "Manu Ginobili",
+     "est": 1.9465554957908457,
+     "true": 1.100000023841858,
+     "true_rank": 64,
+     "drank": 23,
+     "actual_at_pos": "Kosta Koufos",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 42,
+     "projected": "Kemba Walker",
+     "est": 1.9330907302514042,
+     "true": 2.299999952316284,
+     "true_rank": 35,
+     "drank": -7,
+     "actual_at_pos": "Kirk Hinrich",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 43,
+     "projected": "Robin Lopez",
+     "est": 1.9327253198388008,
+     "true": 2.0,
+     "true_rank": 44,
+     "drank": 1,
+     "actual_at_pos": "Derek Fisher",
+     "actual_true": 2.0
+    },
+    {
+     "pos": 44,
+     "projected": "Chris Paul",
+     "est": 1.925945725233655,
+     "true": 3.9000000953674316,
+     "true_rank": 8,
+     "drank": -36,
+     "actual_at_pos": "Robin Lopez",
+     "actual_true": 2.0
+    },
+    {
+     "pos": 45,
+     "projected": "Marc Gasol",
+     "est": 1.8878224031061883,
+     "true": 2.799999952316284,
+     "true_rank": 22,
+     "drank": -23,
+     "actual_at_pos": "Darrell Arthur",
+     "actual_true": 1.899999976158142
+    },
+    {
+     "pos": 46,
+     "projected": "Amir Johnson",
+     "est": 1.8829660470319385,
+     "true": 1.2000000476837158,
+     "true_rank": 63,
+     "drank": 17,
+     "actual_at_pos": "Patrick Beverley",
+     "actual_true": 1.899999976158142
+    },
+    {
+     "pos": 47,
+     "projected": "Nick Collison",
+     "est": 1.8806969250434262,
+     "true": 0.699999988079071,
+     "true_rank": 88,
+     "drank": 41,
+     "actual_at_pos": "Al Jefferson",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 48,
+     "projected": "Mario Chalmers",
+     "est": 1.8658240614072732,
+     "true": 2.5,
+     "true_rank": 27,
+     "drank": -21,
+     "actual_at_pos": "Jeremy Lin",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 49,
+     "projected": "PJ Tucker",
+     "est": 1.8560268594593508,
+     "true": 0.8999999761581421,
+     "true_rank": 82,
+     "drank": 33,
+     "actual_at_pos": "Ricky Rubio",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 50,
+     "projected": "Ersan Ilyasova",
+     "est": 1.8549179807949465,
+     "true": 0.699999988079071,
+     "true_rank": 90,
+     "drank": 40,
+     "actual_at_pos": "Paul Pierce",
+     "actual_true": 1.7999999523162842
+    }
+   ],
+   "tau_true30": 0.40689655172413797,
+   "tau_union30": 0.2682926829268293,
+   "pool": 247,
+   "hits30": 19,
+   "mean_abs_drank": 18.5
+  },
+  "defense|2014-15|Playoffs": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "DeAndre Jordan",
+     "est": 5.228838040365573,
+     "true": 2.0999999046325684,
+     "true_rank": 29,
+     "drank": 28,
+     "actual_at_pos": "Jarrett Jack",
+     "actual_true": 7.5
+    },
+    {
+     "pos": 2,
+     "projected": "Jarrett Jack",
+     "est": 5.21965709397381,
+     "true": 7.5,
+     "true_rank": 1,
+     "drank": -1,
+     "actual_at_pos": "Anthony Davis",
+     "actual_true": 7.199999809265137
+    },
+    {
+     "pos": 3,
+     "projected": "Pau Gasol",
+     "est": 5.041893757418078,
+     "true": 3.5,
+     "true_rank": 16,
+     "drank": 13,
+     "actual_at_pos": "Timofey Mozgov",
+     "actual_true": 6.900000095367432
+    },
+    {
+     "pos": 4,
+     "projected": "Tony Allen",
+     "est": 4.442329033102373,
+     "true": 5.0,
+     "true_rank": 10,
+     "drank": 6,
+     "actual_at_pos": "Otto Porter Jr.",
+     "actual_true": 6.300000190734863
+    },
+    {
+     "pos": 5,
+     "projected": "Otto Porter Jr.",
+     "est": 4.081521332067831,
+     "true": 6.300000190734863,
+     "true_rank": 4,
+     "drank": -1,
+     "actual_at_pos": "Trevor Ariza",
+     "actual_true": 6.099999904632568
+    },
+    {
+     "pos": 6,
+     "projected": "Jimmy Butler",
+     "est": 3.925493191254665,
+     "true": 3.700000047683716,
+     "true_rank": 13,
+     "drank": 7,
+     "actual_at_pos": "AlFarouq Aminu",
+     "actual_true": 5.800000190734863
+    },
+    {
+     "pos": 7,
+     "projected": "Timofey Mozgov",
+     "est": 3.886198134614167,
+     "true": 6.900000095367432,
+     "true_rank": 3,
+     "drank": -4,
+     "actual_at_pos": "Dwight Howard",
+     "actual_true": 5.699999809265137
+    },
+    {
+     "pos": 8,
+     "projected": "Al Horford",
+     "est": 3.7879278671846777,
+     "true": 4.400000095367432,
+     "true_rank": 12,
+     "drank": 4,
+     "actual_at_pos": "Danny Green",
+     "actual_true": 5.5
+    },
+    {
+     "pos": 9,
+     "projected": "Dwight Howard",
+     "est": 3.692610888504063,
+     "true": 5.699999809265137,
+     "true_rank": 7,
+     "drank": -2,
+     "actual_at_pos": "Marc Gasol",
+     "actual_true": 5.300000190734863
+    },
+    {
+     "pos": 10,
+     "projected": "Tim Duncan",
+     "est": 3.689221310961011,
+     "true": 2.700000047683716,
+     "true_rank": 23,
+     "drank": 13,
+     "actual_at_pos": "Tony Allen",
+     "actual_true": 5.0
+    },
+    {
+     "pos": 11,
+     "projected": "Alan Anderson",
+     "est": 3.611041043224609,
+     "true": 2.799999952316284,
+     "true_rank": 20,
+     "drank": 9,
+     "actual_at_pos": "Nene",
+     "actual_true": 4.699999809265137
+    },
+    {
+     "pos": 12,
+     "projected": "Danny Green",
+     "est": 3.2537488927092775,
+     "true": 5.5,
+     "true_rank": 8,
+     "drank": -4,
+     "actual_at_pos": "Al Horford",
+     "actual_true": 4.400000095367432
+    },
+    {
+     "pos": 13,
+     "projected": "Kyle Korver",
+     "est": 3.1339641299183514,
+     "true": 1.100000023841858,
+     "true_rank": 42,
+     "drank": 29,
+     "actual_at_pos": "Jimmy Butler",
+     "actual_true": 3.700000047683716
+    },
+    {
+     "pos": 14,
+     "projected": "Nene",
+     "est": 3.064715880820245,
+     "true": 4.699999809265137,
+     "true_rank": 11,
+     "drank": -3,
+     "actual_at_pos": "Blake Griffin",
+     "actual_true": 3.700000047683716
+    },
+    {
+     "pos": 15,
+     "projected": "AlFarouq Aminu",
+     "est": 3.036776053636727,
+     "true": 5.800000190734863,
+     "true_rank": 6,
+     "drank": -9,
+     "actual_at_pos": "Ramon Sessions",
+     "actual_true": 3.5
+    },
+    {
+     "pos": 16,
+     "projected": "Andrew Bogut",
+     "est": 3.0063983728643193,
+     "true": 1.899999976158142,
+     "true_rank": 35,
+     "drank": 19,
+     "actual_at_pos": "Pau Gasol",
+     "actual_true": 3.5
+    },
+    {
+     "pos": 17,
+     "projected": "Brook Lopez",
+     "est": 2.9956029979186165,
+     "true": 2.0,
+     "true_rank": 34,
+     "drank": 17,
+     "actual_at_pos": "Matt Barnes",
+     "actual_true": 3.4000000953674316
+    },
+    {
+     "pos": 18,
+     "projected": "Anthony Davis",
+     "est": 2.9344094630837727,
+     "true": 7.199999809265137,
+     "true_rank": 2,
+     "drank": -16,
+     "actual_at_pos": "Stephen Curry",
+     "actual_true": 3.0
+    },
+    {
+     "pos": 19,
+     "projected": "Joakim Noah",
+     "est": 2.884140267572874,
+     "true": 2.0999999046325684,
+     "true_rank": 33,
+     "drank": 14,
+     "actual_at_pos": "Derrick Rose",
+     "actual_true": 3.0
+    },
+    {
+     "pos": 20,
+     "projected": "Harrison Barnes",
+     "est": 2.853757927276435,
+     "true": 1.0,
+     "true_rank": 43,
+     "drank": 23,
+     "actual_at_pos": "Alan Anderson",
+     "actual_true": 2.799999952316284
+    },
+    {
+     "pos": 21,
+     "projected": "Matt Barnes",
+     "est": 2.716956235792074,
+     "true": 3.4000000953674316,
+     "true_rank": 17,
+     "drank": -4,
+     "actual_at_pos": "Avery Bradley",
+     "actual_true": 2.799999952316284
+    },
+    {
+     "pos": 22,
+     "projected": "Marc Gasol",
+     "est": 2.6736641561543557,
+     "true": 5.300000190734863,
+     "true_rank": 9,
+     "drank": -13,
+     "actual_at_pos": "Manu Ginobili",
+     "actual_true": 2.700000047683716
+    },
+    {
+     "pos": 23,
+     "projected": "Stephen Curry",
+     "est": 2.581688944423408,
+     "true": 3.0,
+     "true_rank": 18,
+     "drank": -5,
+     "actual_at_pos": "Tim Duncan",
+     "actual_true": 2.700000047683716
+    },
+    {
+     "pos": 24,
+     "projected": "Mike Dunleavy",
+     "est": 2.456839487344995,
+     "true": 0.6000000238418579,
+     "true_rank": 49,
+     "drank": 25,
+     "actual_at_pos": "Matthew Dellavedova",
+     "actual_true": 2.5
+    },
+    {
+     "pos": 25,
+     "projected": "Mike Conley",
+     "est": 2.2204437765073983,
+     "true": 1.7000000476837158,
+     "true_rank": 39,
+     "drank": 14,
+     "actual_at_pos": "Tristan Thompson",
+     "actual_true": 2.5
+    },
+    {
+     "pos": 26,
+     "projected": "Marcin Gortat",
+     "est": 2.165011568889489,
+     "true": 0.30000001192092896,
+     "true_rank": 53,
+     "drank": 27,
+     "actual_at_pos": "Chris Paul",
+     "actual_true": 2.5
+    },
+    {
+     "pos": 27,
+     "projected": "Blake Griffin",
+     "est": 1.9135367791129139,
+     "true": 3.700000047683716,
+     "true_rank": 14,
+     "drank": -13,
+     "actual_at_pos": "Thaddeus Young",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 28,
+     "projected": "Iman Shumpert",
+     "est": 1.8765332046852454,
+     "true": 0.20000000298023224,
+     "true_rank": 55,
+     "drank": 27,
+     "actual_at_pos": "John Henson",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 29,
+     "projected": "DeMarre Carroll",
+     "est": 1.8659376421966498,
+     "true": -0.800000011920929,
+     "true_rank": 66,
+     "drank": 37,
+     "actual_at_pos": "DeAndre Jordan",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 30,
+     "projected": "Andre Iguodala",
+     "est": 1.864116029185742,
+     "true": 0.699999988079071,
+     "true_rank": 48,
+     "drank": 18,
+     "actual_at_pos": "Festus Ezeli",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 31,
+     "projected": "Paul Millsap",
+     "est": 1.6203083283928783,
+     "true": 2.0999999046325684,
+     "true_rank": 32,
+     "drank": 1,
+     "actual_at_pos": "JJ Barea",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 32,
+     "projected": "John Henson",
+     "est": 1.5993891703854606,
+     "true": 2.299999952316284,
+     "true_rank": 28,
+     "drank": -4,
+     "actual_at_pos": "Paul Millsap",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 33,
+     "projected": "Ramon Sessions",
+     "est": 1.586136868631501,
+     "true": 3.5,
+     "true_rank": 15,
+     "drank": -18,
+     "actual_at_pos": "Joakim Noah",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 34,
+     "projected": "LeBron James",
+     "est": 1.5610590600445873,
+     "true": 1.100000023841858,
+     "true_rank": 41,
+     "drank": 7,
+     "actual_at_pos": "Brook Lopez",
+     "actual_true": 2.0
+    },
+    {
+     "pos": 35,
+     "projected": "Drew Gooden",
+     "est": 1.546485080390934,
+     "true": -1.2999999523162842,
+     "true_rank": 72,
+     "drank": 37,
+     "actual_at_pos": "Andrew Bogut",
+     "actual_true": 1.899999976158142
+    },
+    {
+     "pos": 36,
+     "projected": "Tony Snell",
+     "est": 1.453887520471679,
+     "true": -2.799999952316284,
+     "true_rank": 83,
+     "drank": 47,
+     "actual_at_pos": "Pero Antic",
+     "actual_true": 1.899999976158142
+    },
+    {
+     "pos": 37,
+     "projected": "Pablo Prigioni",
+     "est": 1.4407649853975888,
+     "true": -1.600000023841858,
+     "true_rank": 75,
+     "drank": 38,
+     "actual_at_pos": "Kent Bazemore",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 38,
+     "projected": "Trevor Ariza",
+     "est": 1.2707059443710884,
+     "true": 6.099999904632568,
+     "true_rank": 5,
+     "drank": -33,
+     "actual_at_pos": "Bradley Beal",
+     "actual_true": 1.7000000476837158
+    },
+    {
+     "pos": 39,
+     "projected": "Kent Bazemore",
+     "est": 1.2146310698519094,
+     "true": 1.7999999523162842,
+     "true_rank": 37,
+     "drank": -2,
+     "actual_at_pos": "Mike Conley",
+     "actual_true": 1.7000000476837158
+    },
+    {
+     "pos": 40,
+     "projected": "JJ Barea",
+     "est": 1.1749661433742742,
+     "true": 2.0999999046325684,
+     "true_rank": 31,
+     "drank": -9,
+     "actual_at_pos": "Kawhi Leonard",
+     "actual_true": 1.399999976158142
+    },
+    {
+     "pos": 41,
+     "projected": "OJ Mayo",
+     "est": 1.1744903146126493,
+     "true": -0.8999999761581421,
+     "true_rank": 67,
+     "drank": 26,
+     "actual_at_pos": "LeBron James",
+     "actual_true": 1.100000023841858
+    },
+    {
+     "pos": 42,
+     "projected": "Nikola Mirotic",
+     "est": 1.1408024569490638,
+     "true": -2.0,
+     "true_rank": 78,
+     "drank": 36,
+     "actual_at_pos": "Kyle Korver",
+     "actual_true": 1.100000023841858
+    },
+    {
+     "pos": 43,
+     "projected": "Giannis Antetokounmpo",
+     "est": 1.1278527170566366,
+     "true": 0.6000000238418579,
+     "true_rank": 50,
+     "drank": 7,
+     "actual_at_pos": "Harrison Barnes",
+     "actual_true": 1.0
+    },
+    {
+     "pos": 44,
+     "projected": "Pero Antic",
+     "est": 0.9664166257006728,
+     "true": 1.899999976158142,
+     "true_rank": 36,
+     "drank": -8,
+     "actual_at_pos": "Shaun Livingston",
+     "actual_true": 0.8999999761581421
+    },
+    {
+     "pos": 45,
+     "projected": "Matthew Dellavedova",
+     "est": 0.9383614963792618,
+     "true": 2.5,
+     "true_rank": 24,
+     "drank": -21,
+     "actual_at_pos": "John Wall",
+     "actual_true": 0.8999999761581421
+    },
+    {
+     "pos": 46,
+     "projected": "Tristan Thompson",
+     "est": 0.8063657239521087,
+     "true": 2.5,
+     "true_rank": 25,
+     "drank": -21,
+     "actual_at_pos": "Nicolas Batum",
+     "actual_true": 0.800000011920929
+    },
+    {
+     "pos": 47,
+     "projected": "Derrick Rose",
+     "est": 0.7809178569017219,
+     "true": 3.0,
+     "true_rank": 19,
+     "drank": -28,
+     "actual_at_pos": "Bojan Bogdanovic",
+     "actual_true": 0.699999988079071
+    },
+    {
+     "pos": 48,
+     "projected": "Courtney Lee",
+     "est": 0.7781222121939524,
+     "true": -0.699999988079071,
+     "true_rank": 63,
+     "drank": 15,
+     "actual_at_pos": "Andre Iguodala",
+     "actual_true": 0.699999988079071
+    },
+    {
+     "pos": 49,
+     "projected": "JR Smith",
+     "est": 0.7697137627192407,
+     "true": -0.4000000059604645,
+     "true_rank": 61,
+     "drank": 12,
+     "actual_at_pos": "Mike Dunleavy",
+     "actual_true": 0.6000000238418579
+    },
+    {
+     "pos": 50,
+     "projected": "Thaddeus Young",
+     "est": 0.7435173223513373,
+     "true": 2.299999952316284,
+     "true_rank": 27,
+     "drank": -23,
+     "actual_at_pos": "Giannis Antetokounmpo",
+     "actual_true": 0.6000000238418579
+    }
+   ],
+   "tau_true30": 0.3563218390804598,
+   "tau_union30": 0.2634146341463415,
+   "pool": 99,
+   "hits30": 19,
+   "mean_abs_drank": 15.96
+  },
+  "defense|2014-15|Regular season": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Tony Allen",
+     "est": 4.955473282671185,
+     "true": 4.800000190734863,
+     "true_rank": 4,
+     "drank": 3,
+     "actual_at_pos": "Kawhi Leonard",
+     "actual_true": 5.199999809265137
+    },
+    {
+     "pos": 2,
+     "projected": "Draymond Green",
+     "est": 4.9117782057167885,
+     "true": 5.099999904632568,
+     "true_rank": 2,
+     "drank": 0,
+     "actual_at_pos": "Draymond Green",
+     "actual_true": 5.099999904632568
+    },
+    {
+     "pos": 3,
+     "projected": "Andrew Bogut",
+     "est": 4.682982883785682,
+     "true": 4.699999809265137,
+     "true_rank": 5,
+     "drank": 2,
+     "actual_at_pos": "Rudy Gobert",
+     "actual_true": 4.800000190734863
+    },
+    {
+     "pos": 4,
+     "projected": "Rudy Gobert",
+     "est": 4.199895309462249,
+     "true": 4.800000190734863,
+     "true_rank": 3,
+     "drank": -1,
+     "actual_at_pos": "Tony Allen",
+     "actual_true": 4.800000190734863
+    },
+    {
+     "pos": 5,
+     "projected": "Kawhi Leonard",
+     "est": 4.199513754487129,
+     "true": 5.199999809265137,
+     "true_rank": 1,
+     "drank": -4,
+     "actual_at_pos": "Andrew Bogut",
+     "actual_true": 4.699999809265137
+    },
+    {
+     "pos": 6,
+     "projected": "Anthony Davis",
+     "est": 3.63779196928195,
+     "true": 4.5,
+     "true_rank": 6,
+     "drank": 0,
+     "actual_at_pos": "Anthony Davis",
+     "actual_true": 4.5
+    },
+    {
+     "pos": 7,
+     "projected": "Andre Roberson",
+     "est": 3.406600472365257,
+     "true": 3.4000000953674316,
+     "true_rank": 10,
+     "drank": 3,
+     "actual_at_pos": "DeMarcus Cousins",
+     "actual_true": 4.400000095367432
+    },
+    {
+     "pos": 8,
+     "projected": "Nerlens Noel",
+     "est": 3.3673659044311055,
+     "true": 2.700000047683716,
+     "true_rank": 19,
+     "drank": 11,
+     "actual_at_pos": "Marcin Gortat",
+     "actual_true": 3.5999999046325684
+    },
+    {
+     "pos": 9,
+     "projected": "Nene",
+     "est": 3.2795308145787874,
+     "true": 2.799999952316284,
+     "true_rank": 18,
+     "drank": 9,
+     "actual_at_pos": "Tim Duncan",
+     "actual_true": 3.5
+    },
+    {
+     "pos": 10,
+     "projected": "Michael KiddGilchrist",
+     "est": 3.0848672473333973,
+     "true": 3.0,
+     "true_rank": 14,
+     "drank": 4,
+     "actual_at_pos": "Andre Roberson",
+     "actual_true": 3.4000000953674316
+    },
+    {
+     "pos": 11,
+     "projected": "DeMarcus Cousins",
+     "est": 3.060885376332721,
+     "true": 4.400000095367432,
+     "true_rank": 7,
+     "drank": -4,
+     "actual_at_pos": "Kosta Koufos",
+     "actual_true": 3.299999952316284
+    },
+    {
+     "pos": 12,
+     "projected": "Iman Shumpert",
+     "est": 2.9301047952178294,
+     "true": 2.299999952316284,
+     "true_rank": 32,
+     "drank": 20,
+     "actual_at_pos": "Zaza Pachulia",
+     "actual_true": 3.200000047683716
+    },
+    {
+     "pos": 13,
+     "projected": "Zaza Pachulia",
+     "est": 2.903209227635487,
+     "true": 3.200000047683716,
+     "true_rank": 12,
+     "drank": -1,
+     "actual_at_pos": "Khris Middleton",
+     "actual_true": 3.0999999046325684
+    },
+    {
+     "pos": 14,
+     "projected": "AlFarouq Aminu",
+     "est": 2.8966908866423395,
+     "true": 2.5999999046325684,
+     "true_rank": 24,
+     "drank": 10,
+     "actual_at_pos": "Michael KiddGilchrist",
+     "actual_true": 3.0
+    },
+    {
+     "pos": 15,
+     "projected": "Tim Duncan",
+     "est": 2.8954471609166017,
+     "true": 3.5,
+     "true_rank": 9,
+     "drank": -6,
+     "actual_at_pos": "Serge Ibaka",
+     "actual_true": 3.0
+    },
+    {
+     "pos": 16,
+     "projected": "Danny Green",
+     "est": 2.882577281781038,
+     "true": 3.0,
+     "true_rank": 16,
+     "drank": 0,
+     "actual_at_pos": "Danny Green",
+     "actual_true": 3.0
+    },
+    {
+     "pos": 17,
+     "projected": "Kosta Koufos",
+     "est": 2.8713317556362243,
+     "true": 3.299999952316284,
+     "true_rank": 11,
+     "drank": -6,
+     "actual_at_pos": "Jonas Jerebko",
+     "actual_true": 2.799999952316284
+    },
+    {
+     "pos": 18,
+     "projected": "Marcus Smart",
+     "est": 2.769577268239698,
+     "true": 1.7999999523162842,
+     "true_rank": 43,
+     "drank": 25,
+     "actual_at_pos": "Nene",
+     "actual_true": 2.799999952316284
+    },
+    {
+     "pos": 19,
+     "projected": "Tyson Chandler",
+     "est": 2.613916338256058,
+     "true": 2.5999999046325684,
+     "true_rank": 20,
+     "drank": 1,
+     "actual_at_pos": "Nerlens Noel",
+     "actual_true": 2.700000047683716
+    },
+    {
+     "pos": 20,
+     "projected": "Marcin Gortat",
+     "est": 2.5611161420885864,
+     "true": 3.5999999046325684,
+     "true_rank": 8,
+     "drank": -12,
+     "actual_at_pos": "Tyson Chandler",
+     "actual_true": 2.5999999046325684
+    },
+    {
+     "pos": 21,
+     "projected": "Jared Dudley",
+     "est": 2.5544754186905956,
+     "true": 1.7999999523162842,
+     "true_rank": 44,
+     "drank": 23,
+     "actual_at_pos": "Marc Gasol",
+     "actual_true": 2.5999999046325684
+    },
+    {
+     "pos": 22,
+     "projected": "Khris Middleton",
+     "est": 2.4642514428676336,
+     "true": 3.0999999046325684,
+     "true_rank": 13,
+     "drank": -9,
+     "actual_at_pos": "Joakim Noah",
+     "actual_true": 2.5999999046325684
+    },
+    {
+     "pos": 23,
+     "projected": "Nikola Mirotic",
+     "est": 2.4558837433873983,
+     "true": 2.200000047683716,
+     "true_rank": 33,
+     "drank": 10,
+     "actual_at_pos": "Josh Smith",
+     "actual_true": 2.5999999046325684
+    },
+    {
+     "pos": 24,
+     "projected": "Andre Iguodala",
+     "est": 2.433845443882725,
+     "true": 1.600000023841858,
+     "true_rank": 47,
+     "drank": 23,
+     "actual_at_pos": "AlFarouq Aminu",
+     "actual_true": 2.5999999046325684
+    },
+    {
+     "pos": 25,
+     "projected": "Josh Smith",
+     "est": 2.419087477734685,
+     "true": 2.5999999046325684,
+     "true_rank": 23,
+     "drank": -2,
+     "actual_at_pos": "Alex Len",
+     "actual_true": 2.5
+    },
+    {
+     "pos": 26,
+     "projected": "Jonas Jerebko",
+     "est": 2.391619091889044,
+     "true": 2.799999952316284,
+     "true_rank": 17,
+     "drank": -9,
+     "actual_at_pos": "Paul Millsap",
+     "actual_true": 2.4000000953674316
+    },
+    {
+     "pos": 27,
+     "projected": "Greg Monroe",
+     "est": 2.3786792300844444,
+     "true": 0.20000000298023224,
+     "true_rank": 111,
+     "drank": 84,
+     "actual_at_pos": "Omer Asik",
+     "actual_true": 2.4000000953674316
+    },
+    {
+     "pos": 28,
+     "projected": "Wesley Matthews",
+     "est": 2.316534581001195,
+     "true": 1.2999999523162842,
+     "true_rank": 56,
+     "drank": 28,
+     "actual_at_pos": "Timofey Mozgov",
+     "actual_true": 2.4000000953674316
+    },
+    {
+     "pos": 29,
+     "projected": "Derrick Favors",
+     "est": 2.209571344363653,
+     "true": 2.0999999046325684,
+     "true_rank": 34,
+     "drank": 5,
+     "actual_at_pos": "Darren Collison",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 30,
+     "projected": "Timofey Mozgov",
+     "est": 2.192020320715598,
+     "true": 2.4000000953674316,
+     "true_rank": 28,
+     "drank": -2,
+     "actual_at_pos": "Luc Mbah a Moute",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 31,
+     "projected": "Dwight Howard",
+     "est": 2.1257621473723227,
+     "true": 1.899999976158142,
+     "true_rank": 41,
+     "drank": 10,
+     "actual_at_pos": "Michael CarterWilliams",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 32,
+     "projected": "Michael CarterWilliams",
+     "est": 2.0249642552399036,
+     "true": 2.299999952316284,
+     "true_rank": 31,
+     "drank": -1,
+     "actual_at_pos": "Iman Shumpert",
+     "actual_true": 2.299999952316284
+    },
+    {
+     "pos": 33,
+     "projected": "Paul Millsap",
+     "est": 2.001563413411529,
+     "true": 2.4000000953674316,
+     "true_rank": 26,
+     "drank": -7,
+     "actual_at_pos": "Nikola Mirotic",
+     "actual_true": 2.200000047683716
+    },
+    {
+     "pos": 34,
+     "projected": "Kelly Olynyk",
+     "est": 1.992475808389902,
+     "true": 2.0999999046325684,
+     "true_rank": 36,
+     "drank": 2,
+     "actual_at_pos": "Derrick Favors",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 35,
+     "projected": "Manu Ginobili",
+     "est": 1.989183356101281,
+     "true": 1.399999976158142,
+     "true_rank": 52,
+     "drank": 17,
+     "actual_at_pos": "Chris Paul",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 36,
+     "projected": "Jimmy Butler",
+     "est": 1.9826296996953061,
+     "true": -0.20000000298023224,
+     "true_rank": 140,
+     "drank": 104,
+     "actual_at_pos": "Kelly Olynyk",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 37,
+     "projected": "DeAndre Jordan",
+     "est": 1.9075738142185779,
+     "true": 1.2000000476837158,
+     "true_rank": 63,
+     "drank": 26,
+     "actual_at_pos": "Cody Zeller",
+     "actual_true": 2.0999999046325684
+    },
+    {
+     "pos": 38,
+     "projected": "PJ Tucker",
+     "est": 1.8976185098261755,
+     "true": 1.2999999523162842,
+     "true_rank": 54,
+     "drank": 16,
+     "actual_at_pos": "Roy Hibbert",
+     "actual_true": 2.0
+    },
+    {
+     "pos": 39,
+     "projected": "Zach Randolph",
+     "est": 1.8831588719324979,
+     "true": 1.2999999523162842,
+     "true_rank": 59,
+     "drank": 20,
+     "actual_at_pos": "Steven Adams",
+     "actual_true": 2.0
+    },
+    {
+     "pos": 40,
+     "projected": "Omer Asik",
+     "est": 1.8364831622312734,
+     "true": 2.4000000953674316,
+     "true_rank": 27,
+     "drank": -13,
+     "actual_at_pos": "LaMarcus Aldridge",
+     "actual_true": 1.899999976158142
+    },
+    {
+     "pos": 41,
+     "projected": "Joakim Noah",
+     "est": 1.783497398611665,
+     "true": 2.5999999046325684,
+     "true_rank": 22,
+     "drank": -19,
+     "actual_at_pos": "Dwight Howard",
+     "actual_true": 1.899999976158142
+    },
+    {
+     "pos": 42,
+     "projected": "Cory Joseph",
+     "est": 1.7635886639855762,
+     "true": 0.5,
+     "true_rank": 85,
+     "drank": 43,
+     "actual_at_pos": "Pablo Prigioni",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 43,
+     "projected": "John Henson",
+     "est": 1.755850213820063,
+     "true": 0.5,
+     "true_rank": 88,
+     "drank": 45,
+     "actual_at_pos": "Marcus Smart",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 44,
+     "projected": "Ersan Ilyasova",
+     "est": 1.7489775867350632,
+     "true": 0.4000000059604645,
+     "true_rank": 100,
+     "drank": 56,
+     "actual_at_pos": "Jared Dudley",
+     "actual_true": 1.7999999523162842
+    },
+    {
+     "pos": 45,
+     "projected": "Monta Ellis",
+     "est": 1.741430563933732,
+     "true": 0.800000011920929,
+     "true_rank": 77,
+     "drank": 32,
+     "actual_at_pos": "George Hill",
+     "actual_true": 1.7000000476837158
+    },
+    {
+     "pos": 46,
+     "projected": "Pau Gasol",
+     "est": 1.7379214841985435,
+     "true": 0.5,
+     "true_rank": 90,
+     "drank": 44,
+     "actual_at_pos": "Al Horford",
+     "actual_true": 1.600000023841858
+    },
+    {
+     "pos": 47,
+     "projected": "Andre Drummond",
+     "est": 1.7371701747240955,
+     "true": 0.4000000059604645,
+     "true_rank": 98,
+     "drank": 51,
+     "actual_at_pos": "Andre Iguodala",
+     "actual_true": 1.600000023841858
+    },
+    {
+     "pos": 48,
+     "projected": "Brandan Wright",
+     "est": 1.7224428186842857,
+     "true": 1.2999999523162842,
+     "true_rank": 58,
+     "drank": 10,
+     "actual_at_pos": "Kevin Love",
+     "actual_true": 1.600000023841858
+    },
+    {
+     "pos": 49,
+     "projected": "Mario Chalmers",
+     "est": 1.7047839341610764,
+     "true": 1.5,
+     "true_rank": 49,
+     "drank": 0,
+     "actual_at_pos": "Mario Chalmers",
+     "actual_true": 1.5
+    },
+    {
+     "pos": 50,
+     "projected": "Al Horford",
+     "est": 1.6818971483458074,
+     "true": 1.600000023841858,
+     "true_rank": 46,
+     "drank": -4,
+     "actual_at_pos": "Kris Humphries",
+     "actual_true": 1.5
+    }
+   ],
+   "tau_true30": 0.6,
+   "tau_union30": 0.46230440967283076,
+   "pool": 247,
+   "hits30": 22,
+   "mean_abs_drank": 16.74
+  }
+ },
+ "unlabeled": {
+  "defense|2023-24|Regular season": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Rudy Gobert",
+     "est": 3.5286254366499206,
+     "mp": 2593.0
+    },
+    {
+     "pos": 2,
+     "projected": "Isaiah Hartenstein",
+     "est": 3.0649926913112866,
+     "mp": 1896.0
+    },
+    {
+     "pos": 3,
+     "projected": "Dean Wade",
+     "est": 3.049787472718074,
+     "mp": 1108.0
+    },
+    {
+     "pos": 4,
+     "projected": "Joel Embiid",
+     "est": 3.0474193959978693,
+     "mp": 1309.0
+    },
+    {
+     "pos": 5,
+     "projected": "Alex Caruso",
+     "est": 2.9955483581388282,
+     "mp": 2040.0
+    },
+    {
+     "pos": 6,
+     "projected": "Victor Wembanyama",
+     "est": 2.710924956785495,
+     "mp": 2106.0
+    },
+    {
+     "pos": 7,
+     "projected": "Kristaps Porzingis",
+     "est": 2.6623098762147324,
+     "mp": 1690.0
+    },
+    {
+     "pos": 8,
+     "projected": "Matisse Thybulle",
+     "est": 2.6549463494781507,
+     "mp": 1487.0
+    },
+    {
+     "pos": 9,
+     "projected": "Jusuf Nurkic",
+     "est": 2.5982171084430785,
+     "mp": 2078.0
+    },
+    {
+     "pos": 10,
+     "projected": "Brook Lopez",
+     "est": 2.5883043976628937,
+     "mp": 2411.0
+    },
+    {
+     "pos": 11,
+     "projected": "Nic Claxton",
+     "est": 2.41970710902174,
+     "mp": 2116.0
+    },
+    {
+     "pos": 12,
+     "projected": "Chet Holmgren",
+     "est": 2.218570638227138,
+     "mp": 2413.0
+    },
+    {
+     "pos": 13,
+     "projected": "Larry Nance Jr.",
+     "est": 2.1868508793810815,
+     "mp": 1216.0
+    },
+    {
+     "pos": 14,
+     "projected": "Andre Drummond",
+     "est": 2.1590360134043216,
+     "mp": 1351.0
+    },
+    {
+     "pos": 15,
+     "projected": "Draymond Green",
+     "est": 2.145847036541529,
+     "mp": 1490.0
+    },
+    {
+     "pos": 16,
+     "projected": "Nikola Jokic",
+     "est": 2.1290509143398664,
+     "mp": 2737.0
+    },
+    {
+     "pos": 17,
+     "projected": "Toumani Camara",
+     "est": 2.0463183867744883,
+     "mp": 1739.0
+    },
+    {
+     "pos": 18,
+     "projected": "Evan Mobley",
+     "est": 2.0418478759074006,
+     "mp": 1532.0
+    },
+    {
+     "pos": 19,
+     "projected": "Ausar Thompson",
+     "est": 1.9701878695538944,
+     "mp": 1583.0
+    },
+    {
+     "pos": 20,
+     "projected": "Amen Thompson",
+     "est": 1.9452716778972305,
+     "mp": 1388.0
+    },
+    {
+     "pos": 21,
+     "projected": "Anthony Davis",
+     "est": 1.941068999174088,
+     "mp": 2700.0
+    },
+    {
+     "pos": 22,
+     "projected": "Ivica Zubac",
+     "est": 1.9118566251583247,
+     "mp": 1795.0
+    },
+    {
+     "pos": 23,
+     "projected": "Paul Reed",
+     "est": 1.8865798912126255,
+     "mp": 1590.0
+    },
+    {
+     "pos": 24,
+     "projected": "Derrick White",
+     "est": 1.8545324816865694,
+     "mp": 2381.0
+    },
+    {
+     "pos": 25,
+     "projected": "Jarrett Allen",
+     "est": 1.8486681908154448,
+     "mp": 2442.0
+    },
+    {
+     "pos": 26,
+     "projected": "Clint Capela",
+     "est": 1.8341096085881181,
+     "mp": 1883.0
+    },
+    {
+     "pos": 27,
+     "projected": "Paul George",
+     "est": 1.708245706712387,
+     "mp": 2502.0
+    },
+    {
+     "pos": 28,
+     "projected": "Derrick Jones Jr.",
+     "est": 1.6577369907303385,
+     "mp": 1783.0
+    },
+    {
+     "pos": 29,
+     "projected": "Kawhi Leonard",
+     "est": 1.636368412809437,
+     "mp": 2330.0
+    },
+    {
+     "pos": 30,
+     "projected": "Franz Wagner",
+     "est": 1.6225737463490462,
+     "mp": 2337.0
+    },
+    {
+     "pos": 31,
+     "projected": "Walker Kessler",
+     "est": 1.6178276774656626,
+     "mp": 1493.0
+    },
+    {
+     "pos": 32,
+     "projected": "Vince Williams Jr.",
+     "est": 1.616135304312448,
+     "mp": 1436.0
+    },
+    {
+     "pos": 33,
+     "projected": "Aaron Nesmith",
+     "est": 1.613584009122906,
+     "mp": 1995.0
+    },
+    {
+     "pos": 34,
+     "projected": "Wendell Carter Jr.",
+     "est": 1.5901491430605161,
+     "mp": 1406.0
+    },
+    {
+     "pos": 35,
+     "projected": "Myles Turner",
+     "est": 1.5840265589044054,
+     "mp": 2077.0
+    },
+    {
+     "pos": 36,
+     "projected": "Jakob Poeltl",
+     "est": 1.5667624806129332,
+     "mp": 1319.0
+    },
+    {
+     "pos": 37,
+     "projected": "OG Anunoby",
+     "est": 1.5453291969876055,
+     "mp": 1702.0
+    },
+    {
+     "pos": 38,
+     "projected": "Nickeil Alexander-Walker",
+     "est": 1.5374407327375104,
+     "mp": 1921.0
+    },
+    {
+     "pos": 39,
+     "projected": "Naz Reid",
+     "est": 1.5153047776833697,
+     "mp": 1964.0
+    },
+    {
+     "pos": 40,
+     "projected": "Bam Adebayo",
+     "est": 1.4836506442598754,
+     "mp": 2416.0
+    },
+    {
+     "pos": 41,
+     "projected": "Isaiah Joe",
+     "est": 1.4665215857124683,
+     "mp": 1445.0
+    },
+    {
+     "pos": 42,
+     "projected": "Daniel Gafford",
+     "est": 1.456435804565242,
+     "mp": 1814.0
+    },
+    {
+     "pos": 43,
+     "projected": "Jalen Suggs",
+     "est": 1.404463971482136,
+     "mp": 2025.0
+    },
+    {
+     "pos": 44,
+     "projected": "Luguentz Dort",
+     "est": 1.3408349372027972,
+     "mp": 2246.0
+    },
+    {
+     "pos": 45,
+     "projected": "Dyson Daniels",
+     "est": 1.2919303250127148,
+     "mp": 1358.0
+    },
+    {
+     "pos": 46,
+     "projected": "John Konchar",
+     "est": 1.284062378491177,
+     "mp": 1173.0
+    },
+    {
+     "pos": 47,
+     "projected": "Peyton Watson",
+     "est": 1.2451590967534272,
+     "mp": 1488.0
+    },
+    {
+     "pos": 48,
+     "projected": "Herbert Jones",
+     "est": 1.1512137871489172,
+     "mp": 2321.0
+    },
+    {
+     "pos": 49,
+     "projected": "Moses Moody",
+     "est": 1.129334701592903,
+     "mp": 1156.0
+    },
+    {
+     "pos": 50,
+     "projected": "Jalen Johnson",
+     "est": 1.12027429390867,
+     "mp": 1889.0
+    }
+   ],
+   "pool": 248
+  },
+  "defense|2023-24|Playoffs": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Justin Holiday",
+     "est": 4.725116764288619,
+     "mp": 150.0
+    },
+    {
+     "pos": 2,
+     "projected": "Kristaps Porzingis",
+     "est": 4.717369108230052,
+     "mp": 165.0
+    },
+    {
+     "pos": 3,
+     "projected": "Chet Holmgren",
+     "est": 3.5945868090354525,
+     "mp": 345.0
+    },
+    {
+     "pos": 4,
+     "projected": "Paolo Banchero",
+     "est": 3.468951820878535,
+     "mp": 262.0
+    },
+    {
+     "pos": 5,
+     "projected": "Joel Embiid",
+     "est": 3.4581076280383694,
+     "mp": 248.0
+    },
+    {
+     "pos": 6,
+     "projected": "Dereck Lively II",
+     "est": 3.2342251821924295,
+     "mp": 462.0
+    },
+    {
+     "pos": 7,
+     "projected": "Aaron Wiggins",
+     "est": 3.0605227183294725,
+     "mp": 157.0
+    },
+    {
+     "pos": 8,
+     "projected": "Evan Mobley",
+     "est": 3.02661979896252,
+     "mp": 422.0
+    },
+    {
+     "pos": 9,
+     "projected": "Wendell Carter Jr.",
+     "est": 2.8018242802584217,
+     "mp": 185.0
+    },
+    {
+     "pos": 10,
+     "projected": "Al Horford",
+     "est": 2.667803900992344,
+     "mp": 575.0
+    },
+    {
+     "pos": 11,
+     "projected": "Cason Wallace",
+     "est": 2.3320623347395717,
+     "mp": 198.0
+    },
+    {
+     "pos": 12,
+     "projected": "Jonathan Isaac",
+     "est": 2.294842826390125,
+     "mp": 147.0
+    },
+    {
+     "pos": 13,
+     "projected": "Ivica Zubac",
+     "est": 2.2796435103437815,
+     "mp": 192.0
+    },
+    {
+     "pos": 14,
+     "projected": "Brandon Ingram",
+     "est": 2.2647948616809144,
+     "mp": 145.0
+    },
+    {
+     "pos": 15,
+     "projected": "Jalen Suggs",
+     "est": 2.2587393292318727,
+     "mp": 232.0
+    },
+    {
+     "pos": 16,
+     "projected": "Jalen Williams",
+     "est": 2.245897128252422,
+     "mp": 377.0
+    },
+    {
+     "pos": 17,
+     "projected": "Rudy Gobert",
+     "est": 2.235177689407984,
+     "mp": 512.0
+    },
+    {
+     "pos": 18,
+     "projected": "Franz Wagner",
+     "est": 1.9228664651401428,
+     "mp": 259.0
+    },
+    {
+     "pos": 19,
+     "projected": "Luka Doncic",
+     "est": 1.8953784590785487,
+     "mp": 900.0
+    },
+    {
+     "pos": 20,
+     "projected": "Luguentz Dort",
+     "est": 1.8523273888493512,
+     "mp": 350.0
+    },
+    {
+     "pos": 21,
+     "projected": "Isaac Okoro",
+     "est": 1.8366265645384487,
+     "mp": 263.0
+    },
+    {
+     "pos": 22,
+     "projected": "Derrick White",
+     "est": 1.6264006814981133,
+     "mp": 676.0
+    },
+    {
+     "pos": 23,
+     "projected": "Gary Harris",
+     "est": 1.6020479270956018,
+     "mp": 159.0
+    },
+    {
+     "pos": 24,
+     "projected": "Jrue Holiday",
+     "est": 1.5947408428359464,
+     "mp": 720.0
+    },
+    {
+     "pos": 25,
+     "projected": "Josh Giddey",
+     "est": 1.545747973962003,
+     "mp": 181.0
+    },
+    {
+     "pos": 26,
+     "projected": "Josh Green",
+     "est": 1.4005610087183022,
+     "mp": 399.0
+    },
+    {
+     "pos": 27,
+     "projected": "Kelly Oubre Jr.",
+     "est": 1.3039673096529334,
+     "mp": 224.0
+    },
+    {
+     "pos": 28,
+     "projected": "Sam Hauser",
+     "est": 1.2164349178548208,
+     "mp": 283.0
+    },
+    {
+     "pos": 29,
+     "projected": "Mike Conley",
+     "est": 1.1552250385322362,
+     "mp": 474.0
+    },
+    {
+     "pos": 30,
+     "projected": "Bobby Portis",
+     "est": 1.0889939819905092,
+     "mp": 187.0
+    },
+    {
+     "pos": 31,
+     "projected": "Christian Braun",
+     "est": 1.044265259618804,
+     "mp": 204.0
+    },
+    {
+     "pos": 32,
+     "projected": "Daniel Gafford",
+     "est": 1.0030372503563594,
+     "mp": 445.0
+    },
+    {
+     "pos": 33,
+     "projected": "Kentavious Caldwell-Pope",
+     "est": 0.9916417560488431,
+     "mp": 420.0
+    },
+    {
+     "pos": 34,
+     "projected": "Bam Adebayo",
+     "est": 0.8464235112637868,
+     "mp": 192.0
+    },
+    {
+     "pos": 35,
+     "projected": "Anthony Edwards",
+     "est": 0.6396324061328147,
+     "mp": 649.0
+    },
+    {
+     "pos": 36,
+     "projected": "Jayson Tatum",
+     "est": 0.5826884464224541,
+     "mp": 768.0
+    },
+    {
+     "pos": 37,
+     "projected": "Shai Gilgeous-Alexander",
+     "est": 0.5234525050264138,
+     "mp": 399.0
+    },
+    {
+     "pos": 38,
+     "projected": "Nikola Jokic",
+     "est": 0.47507004729482494,
+     "mp": 482.0
+    },
+    {
+     "pos": 39,
+     "projected": "Jaylen Brown",
+     "est": 0.4204720445625274,
+     "mp": 707.0
+    },
+    {
+     "pos": 40,
+     "projected": "Donovan Mitchell",
+     "est": 0.40840787896137754,
+     "mp": 382.0
+    },
+    {
+     "pos": 41,
+     "projected": "Isaiah Joe",
+     "est": 0.40752545241269417,
+     "mp": 173.0
+    },
+    {
+     "pos": 42,
+     "projected": "LeBron James",
+     "est": 0.35693922624693464,
+     "mp": 204.0
+    },
+    {
+     "pos": 43,
+     "projected": "Trey Murphy III",
+     "est": 0.344199654017796,
+     "mp": 168.0
+    },
+    {
+     "pos": 44,
+     "projected": "Tyrese Haliburton",
+     "est": 0.33075248525532036,
+     "mp": 522.0
+    },
+    {
+     "pos": 45,
+     "projected": "Jaden McDaniels",
+     "est": 0.24643165111111512,
+     "mp": 537.0
+    },
+    {
+     "pos": 46,
+     "projected": "OG Anunoby",
+     "est": 0.18336913758581458,
+     "mp": 324.0
+    },
+    {
+     "pos": 47,
+     "projected": "Isaiah Jackson",
+     "est": 0.16747429654177154,
+     "mp": 154.0
+    },
+    {
+     "pos": 48,
+     "projected": "Derrick Jones Jr.",
+     "est": 0.146332784107376,
+     "mp": 647.0
+    },
+    {
+     "pos": 49,
+     "projected": "P.J. Washington",
+     "est": 0.13213743605218936,
+     "mp": 785.0
+    },
+    {
+     "pos": 50,
+     "projected": "Paul George",
+     "est": 0.11565458729425349,
+     "mp": 222.0
+    }
+   ],
+   "pool": 103
+  },
+  "defense|2024-25|Regular season": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Rudy Gobert",
+     "est": 4.3908380073943825,
+     "mp": 2388.0
+    },
+    {
+     "pos": 2,
+     "projected": "Victor Wembanyama",
+     "est": 3.305255100375152,
+     "mp": 1527.0
+    },
+    {
+     "pos": 3,
+     "projected": "Luke Kornet",
+     "est": 3.2617478529205863,
+     "mp": 1361.0
+    },
+    {
+     "pos": 4,
+     "projected": "Alperen Sengun",
+     "est": 3.146257516479533,
+     "mp": 2394.0
+    },
+    {
+     "pos": 5,
+     "projected": "Ivica Zubac",
+     "est": 3.0090736323394083,
+     "mp": 2624.0
+    },
+    {
+     "pos": 6,
+     "projected": "Toumani Camara",
+     "est": 2.8877503077993554,
+     "mp": 2548.0
+    },
+    {
+     "pos": 7,
+     "projected": "Jaxson Hayes",
+     "est": 2.8235903378336973,
+     "mp": 1093.0
+    },
+    {
+     "pos": 8,
+     "projected": "Luguentz Dort",
+     "est": 2.645746221944113,
+     "mp": 2073.0
+    },
+    {
+     "pos": 9,
+     "projected": "Kris Dunn",
+     "est": 2.601491044378545,
+     "mp": 1783.0
+    },
+    {
+     "pos": 10,
+     "projected": "Jarrett Allen",
+     "est": 2.544391462251057,
+     "mp": 2296.0
+    },
+    {
+     "pos": 11,
+     "projected": "Ausar Thompson",
+     "est": 2.524833871513031,
+     "mp": 1328.0
+    },
+    {
+     "pos": 12,
+     "projected": "Donovan Clingan",
+     "est": 2.497594304995408,
+     "mp": 1324.0
+    },
+    {
+     "pos": 13,
+     "projected": "Kristaps Porzi\u0146\u0123is",
+     "est": 2.4973420544420977,
+     "mp": 1210.0
+    },
+    {
+     "pos": 14,
+     "projected": "Dyson Daniels",
+     "est": 2.376332226198026,
+     "mp": 2571.0
+    },
+    {
+     "pos": 15,
+     "projected": "Evan Mobley",
+     "est": 2.3627586422480125,
+     "mp": 2167.0
+    },
+    {
+     "pos": 16,
+     "projected": "Isaiah Hartenstein",
+     "est": 2.3609246674656887,
+     "mp": 1590.0
+    },
+    {
+     "pos": 17,
+     "projected": "Draymond Green",
+     "est": 2.3318994150372943,
+     "mp": 1983.0
+    },
+    {
+     "pos": 18,
+     "projected": "Brandin Podziemski",
+     "est": 2.106031102821202,
+     "mp": 1716.0
+    },
+    {
+     "pos": 19,
+     "projected": "Nicolas Batum",
+     "est": 2.08356025952816,
+     "mp": 1367.0
+    },
+    {
+     "pos": 20,
+     "projected": "Brandon Clarke",
+     "est": 2.058521834113599,
+     "mp": 1207.0
+    },
+    {
+     "pos": 21,
+     "projected": "Kevon Looney",
+     "est": 1.9034718408286653,
+     "mp": 1142.0
+    },
+    {
+     "pos": 22,
+     "projected": "Isaiah Stewart",
+     "est": 1.877220403229953,
+     "mp": 1434.0
+    },
+    {
+     "pos": 23,
+     "projected": "Amen Thompson",
+     "est": 1.8667685001843362,
+     "mp": 2225.0
+    },
+    {
+     "pos": 24,
+     "projected": "Jonathan Isaac",
+     "est": 1.8609667465768056,
+     "mp": 1090.0
+    },
+    {
+     "pos": 25,
+     "projected": "Jaden McDaniels",
+     "est": 1.8406152159062614,
+     "mp": 2614.0
+    },
+    {
+     "pos": 26,
+     "projected": "Walker Kessler",
+     "est": 1.6782166385467476,
+     "mp": 1740.0
+    },
+    {
+     "pos": 27,
+     "projected": "Daniel Gafford",
+     "est": 1.657734654662997,
+     "mp": 1226.0
+    },
+    {
+     "pos": 28,
+     "projected": "Keon Ellis",
+     "est": 1.6529979157075796,
+     "mp": 1948.0
+    },
+    {
+     "pos": 29,
+     "projected": "Jaren Jackson Jr.",
+     "est": 1.5841052792217445,
+     "mp": 2207.0
+    },
+    {
+     "pos": 30,
+     "projected": "Scotty Pippen Jr.",
+     "est": 1.5700032035205447,
+     "mp": 1683.0
+    },
+    {
+     "pos": 31,
+     "projected": "Cody Martin",
+     "est": 1.5652068784245552,
+     "mp": 1173.0
+    },
+    {
+     "pos": 32,
+     "projected": "Sam Merrill",
+     "est": 1.5630956605825554,
+     "mp": 1401.0
+    },
+    {
+     "pos": 33,
+     "projected": "Shai Gilgeous-Alexander",
+     "est": 1.534899590969924,
+     "mp": 2598.0
+    },
+    {
+     "pos": 34,
+     "projected": "Kentavious Caldwell-Pope",
+     "est": 1.531096490430219,
+     "mp": 2279.0
+    },
+    {
+     "pos": 35,
+     "projected": "Derrick White",
+     "est": 1.5086412424619144,
+     "mp": 2574.0
+    },
+    {
+     "pos": 36,
+     "projected": "Anthony Davis",
+     "est": 1.4865900891935921,
+     "mp": 1706.0
+    },
+    {
+     "pos": 37,
+     "projected": "Donte DiVincenzo",
+     "est": 1.482772134501247,
+     "mp": 1606.0
+    },
+    {
+     "pos": 38,
+     "projected": "Mike Conley",
+     "est": 1.476098736581553,
+     "mp": 1756.0
+    },
+    {
+     "pos": 39,
+     "projected": "Luka Don\u010di\u0107",
+     "est": 1.4661021301156745,
+     "mp": 1769.0
+    },
+    {
+     "pos": 40,
+     "projected": "Goga Bitadze",
+     "est": 1.456826077676204,
+     "mp": 1430.0
+    },
+    {
+     "pos": 41,
+     "projected": "Dean Wade",
+     "est": 1.380705867943138,
+     "mp": 1252.0
+    },
+    {
+     "pos": 42,
+     "projected": "Cason Wallace",
+     "est": 1.3670535091841183,
+     "mp": 1876.0
+    },
+    {
+     "pos": 43,
+     "projected": "Myles Turner",
+     "est": 1.358276711819408,
+     "mp": 2174.0
+    },
+    {
+     "pos": 44,
+     "projected": "Wendell Carter Jr.",
+     "est": 1.3473694940633356,
+     "mp": 1758.0
+    },
+    {
+     "pos": 45,
+     "projected": "P.J. Washington",
+     "est": 1.3435835345701637,
+     "mp": 1835.0
+    },
+    {
+     "pos": 46,
+     "projected": "Jalen Williams",
+     "est": 1.3247956809430812,
+     "mp": 2237.0
+    },
+    {
+     "pos": 47,
+     "projected": "Jrue Holiday",
+     "est": 1.272442467904898,
+     "mp": 1896.0
+    },
+    {
+     "pos": 48,
+     "projected": "Jalen Johnson",
+     "est": 1.2675874443407682,
+     "mp": 1284.0
+    },
+    {
+     "pos": 49,
+     "projected": "Paul George",
+     "est": 1.2566680408451085,
+     "mp": 1334.0
+    },
+    {
+     "pos": 50,
+     "projected": "Tari Eason",
+     "est": 1.2233849617876658,
+     "mp": 1420.0
+    }
+   ],
+   "pool": 257
+  },
+  "defense|2024-25|Playoffs": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Rudy Gobert",
+     "est": 4.402086870656354,
+     "mp": 411.0
+    },
+    {
+     "pos": 2,
+     "projected": "Steven Adams",
+     "est": 3.9859037291614183,
+     "mp": 155.0
+    },
+    {
+     "pos": 3,
+     "projected": "Kenrich Williams",
+     "est": 3.7726561517231105,
+     "mp": 137.0
+    },
+    {
+     "pos": 4,
+     "projected": "Alperen Sengun",
+     "est": 3.695817184855117,
+     "mp": 256.0
+    },
+    {
+     "pos": 5,
+     "projected": "Alex Caruso",
+     "est": 3.658169446183816,
+     "mp": 562.0
+    },
+    {
+     "pos": 6,
+     "projected": "Ausar Thompson",
+     "est": 3.60706983364884,
+     "mp": 135.0
+    },
+    {
+     "pos": 7,
+     "projected": "Draymond Green",
+     "est": 3.5776093695901885,
+     "mp": 389.0
+    },
+    {
+     "pos": 8,
+     "projected": "Jayson Tatum",
+     "est": 3.5366051162040026,
+     "mp": 322.0
+    },
+    {
+     "pos": 9,
+     "projected": "Nikola Joki\u0107",
+     "est": 3.4947706503632547,
+     "mp": 563.0
+    },
+    {
+     "pos": 10,
+     "projected": "Jarrett Allen",
+     "est": 3.3259445251860074,
+     "mp": 261.0
+    },
+    {
+     "pos": 11,
+     "projected": "Jaden McDaniels",
+     "est": 3.2448237193617677,
+     "mp": 497.0
+    },
+    {
+     "pos": 12,
+     "projected": "Jaylin Williams",
+     "est": 3.222744437855849,
+     "mp": 141.0
+    },
+    {
+     "pos": 13,
+     "projected": "Chet Holmgren",
+     "est": 3.2153414741763107,
+     "mp": 686.0
+    },
+    {
+     "pos": 14,
+     "projected": "Cason Wallace",
+     "est": 2.8014914861101525,
+     "mp": 516.0
+    },
+    {
+     "pos": 15,
+     "projected": "Luke Kornet",
+     "est": 2.7487395456474313,
+     "mp": 180.0
+    },
+    {
+     "pos": 16,
+     "projected": "Mitchell Robinson",
+     "est": 2.60269561341269,
+     "mp": 370.0
+    },
+    {
+     "pos": 17,
+     "projected": "Luguentz Dort",
+     "est": 2.567849073997502,
+     "mp": 666.0
+    },
+    {
+     "pos": 18,
+     "projected": "Gary Trent Jr.",
+     "est": 2.201480903093487,
+     "mp": 171.0
+    },
+    {
+     "pos": 19,
+     "projected": "Pascal Siakam",
+     "est": 2.194011116335592,
+     "mp": 771.0
+    },
+    {
+     "pos": 20,
+     "projected": "Brandin Podziemski",
+     "est": 2.1016645724919494,
+     "mp": 385.0
+    },
+    {
+     "pos": 21,
+     "projected": "Tari Eason",
+     "est": 2.100418298705762,
+     "mp": 132.0
+    },
+    {
+     "pos": 22,
+     "projected": "Aaron Nesmith",
+     "est": 2.084650182971091,
+     "mp": 650.0
+    },
+    {
+     "pos": 23,
+     "projected": "Cade Cunningham",
+     "est": 1.982569581456573,
+     "mp": 248.0
+    },
+    {
+     "pos": 24,
+     "projected": "Kentavious Caldwell-Pope",
+     "est": 1.7119114776721858,
+     "mp": 163.0
+    },
+    {
+     "pos": 25,
+     "projected": "OG Anunoby",
+     "est": 1.6834140525247974,
+     "mp": 705.0
+    },
+    {
+     "pos": 26,
+     "projected": "Aaron Wiggins",
+     "est": 1.5396969506251672,
+     "mp": 303.0
+    },
+    {
+     "pos": 27,
+     "projected": "Christian Braun",
+     "est": 1.524578281686804,
+     "mp": 544.0
+    },
+    {
+     "pos": 28,
+     "projected": "Isaiah Hartenstein",
+     "est": 1.4145638014331272,
+     "mp": 516.0
+    },
+    {
+     "pos": 29,
+     "projected": "Mike Conley",
+     "est": 1.207855433780617,
+     "mp": 356.0
+    },
+    {
+     "pos": 30,
+     "projected": "Bobby Portis",
+     "est": 1.2023696011408072,
+     "mp": 158.0
+    },
+    {
+     "pos": 31,
+     "projected": "Kristaps Porzi\u0146\u0123is",
+     "est": 1.1962730403823518,
+     "mp": 231.0
+    },
+    {
+     "pos": 32,
+     "projected": "Jaylen Brown",
+     "est": 1.1525001104994768,
+     "mp": 402.0
+    },
+    {
+     "pos": 33,
+     "projected": "Buddy Hield",
+     "est": 1.1212879590759788,
+     "mp": 327.0
+    },
+    {
+     "pos": 34,
+     "projected": "Al Horford",
+     "est": 1.0219297497332562,
+     "mp": 348.0
+    },
+    {
+     "pos": 35,
+     "projected": "Quinten Post",
+     "est": 0.979531359959107,
+     "mp": 146.0
+    },
+    {
+     "pos": 36,
+     "projected": "Jrue Holiday",
+     "est": 0.9361437401987796,
+     "mp": 264.0
+    },
+    {
+     "pos": 37,
+     "projected": "Andrew Nembhard",
+     "est": 0.8250072209598199,
+     "mp": 769.0
+    },
+    {
+     "pos": 38,
+     "projected": "Peyton Watson",
+     "est": 0.7501111861889999,
+     "mp": 199.0
+    },
+    {
+     "pos": 39,
+     "projected": "Jamal Murray",
+     "est": 0.7425818838219679,
+     "mp": 578.0
+    },
+    {
+     "pos": 40,
+     "projected": "Karl-Anthony Towns",
+     "est": 0.7291557938621063,
+     "mp": 639.0
+    },
+    {
+     "pos": 41,
+     "projected": "Anthony Edwards",
+     "est": 0.7137644696661216,
+     "mp": 585.0
+    },
+    {
+     "pos": 42,
+     "projected": "Jabari Smith Jr.",
+     "est": 0.6568988440668329,
+     "mp": 143.0
+    },
+    {
+     "pos": 43,
+     "projected": "Amen Thompson",
+     "est": 0.5366755096791328,
+     "mp": 231.0
+    },
+    {
+     "pos": 44,
+     "projected": "Shai Gilgeous-Alexander",
+     "est": 0.4838143819516394,
+     "mp": 851.0
+    },
+    {
+     "pos": 45,
+     "projected": "Nicolas Batum",
+     "est": 0.47646081430294784,
+     "mp": 172.0
+    },
+    {
+     "pos": 46,
+     "projected": "Josh Hart",
+     "est": 0.4725855447930087,
+     "mp": 642.0
+    },
+    {
+     "pos": 47,
+     "projected": "Franz Wagner",
+     "est": 0.46328070545197786,
+     "mp": 195.0
+    },
+    {
+     "pos": 48,
+     "projected": "Derrick White",
+     "est": 0.4289264346307652,
+     "mp": 415.0
+    },
+    {
+     "pos": 49,
+     "projected": "Isaiah Joe",
+     "est": 0.3133221701613027,
+     "mp": 211.0
+    },
+    {
+     "pos": 50,
+     "projected": "Ivica Zubac",
+     "est": 0.30843449875249485,
+     "mp": 256.0
+    }
+   ],
+   "pool": 109
+  },
+  "defense|2025-26|Regular season": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Victor Wembanyama",
+     "est": 5.4001430204721785,
+     "mp": 1866.0
+    },
+    {
+     "pos": 2,
+     "projected": "Neemias Queta",
+     "est": 4.017112901611506,
+     "mp": 1926.0
+    },
+    {
+     "pos": 3,
+     "projected": "Chet Holmgren",
+     "est": 3.9220283813318257,
+     "mp": 1997.0
+    },
+    {
+     "pos": 4,
+     "projected": "Isaiah Hartenstein",
+     "est": 3.5512745786092643,
+     "mp": 1137.0
+    },
+    {
+     "pos": 5,
+     "projected": "Rudy Gobert",
+     "est": 3.0879623671820644,
+     "mp": 2380.0
+    },
+    {
+     "pos": 6,
+     "projected": "Ausar Thompson",
+     "est": 3.013888203601156,
+     "mp": 1896.0
+    },
+    {
+     "pos": 7,
+     "projected": "Derrick White",
+     "est": 2.910583552257947,
+     "mp": 2625.0
+    },
+    {
+     "pos": 8,
+     "projected": "Hugo Gonz\u00e1lez",
+     "est": 2.90053538638962,
+     "mp": 1084.0
+    },
+    {
+     "pos": 9,
+     "projected": "Cason Wallace",
+     "est": 2.87936819538906,
+     "mp": 2046.0
+    },
+    {
+     "pos": 10,
+     "projected": "Dyson Daniels",
+     "est": 2.7628812928610795,
+     "mp": 2520.0
+    },
+    {
+     "pos": 11,
+     "projected": "Ronald Holland II",
+     "est": 2.6586073894314453,
+     "mp": 1550.0
+    },
+    {
+     "pos": 12,
+     "projected": "Ajay Mitchell",
+     "est": 2.4352596761224725,
+     "mp": 1473.0
+    },
+    {
+     "pos": 13,
+     "projected": "Javonte Green",
+     "est": 2.3007427231176116,
+     "mp": 1446.0
+    },
+    {
+     "pos": 14,
+     "projected": "Dru Smith",
+     "est": 2.1596852566247047,
+     "mp": 1141.0
+    },
+    {
+     "pos": 15,
+     "projected": "Toumani Camara",
+     "est": 2.1184784016415508,
+     "mp": 2731.0
+    },
+    {
+     "pos": 16,
+     "projected": "Jarrett Allen",
+     "est": 2.059634627386812,
+     "mp": 1519.0
+    },
+    {
+     "pos": 17,
+     "projected": "Baylor Scheierman",
+     "est": 2.0588029611855143,
+     "mp": 1429.0
+    },
+    {
+     "pos": 18,
+     "projected": "Ryan Kalkbrenner",
+     "est": 2.0205650223548974,
+     "mp": 1479.0
+    },
+    {
+     "pos": 19,
+     "projected": "Luke Kornet",
+     "est": 1.9470758076390988,
+     "mp": 1430.0
+    },
+    {
+     "pos": 20,
+     "projected": "Jordan Goodwin",
+     "est": 1.9378552217582068,
+     "mp": 1572.0
+    },
+    {
+     "pos": 21,
+     "projected": "Marcus Smart",
+     "est": 1.9348944280264035,
+     "mp": 1769.0
+    },
+    {
+     "pos": 22,
+     "projected": "Jamal Shead",
+     "est": 1.9137531503439558,
+     "mp": 1852.0
+    },
+    {
+     "pos": 23,
+     "projected": "John Konchar",
+     "est": 1.9109656175956329,
+     "mp": 1115.0
+    },
+    {
+     "pos": 24,
+     "projected": "Ryan Dunn",
+     "est": 1.9020484869149454,
+     "mp": 1355.0
+    },
+    {
+     "pos": 25,
+     "projected": "Jaylin Williams",
+     "est": 1.8864161363249776,
+     "mp": 1277.0
+    },
+    {
+     "pos": 26,
+     "projected": "Donte DiVincenzo",
+     "est": 1.8783770975978955,
+     "mp": 2494.0
+    },
+    {
+     "pos": 27,
+     "projected": "Sidy Cissoko",
+     "est": 1.8554486461522313,
+     "mp": 1435.0
+    },
+    {
+     "pos": 28,
+     "projected": "Paul George",
+     "est": 1.8341770537918158,
+     "mp": 1135.0
+    },
+    {
+     "pos": 29,
+     "projected": "Jalen Suggs",
+     "est": 1.8318122591934283,
+     "mp": 1574.0
+    },
+    {
+     "pos": 30,
+     "projected": "Evan Mobley",
+     "est": 1.8049362496251367,
+     "mp": 2074.0
+    },
+    {
+     "pos": 31,
+     "projected": "Wendell Carter Jr.",
+     "est": 1.8014746668695292,
+     "mp": 2288.0
+    },
+    {
+     "pos": 32,
+     "projected": "Jusuf Nurki\u0107",
+     "est": 1.6908164187611439,
+     "mp": 1083.0
+    },
+    {
+     "pos": 33,
+     "projected": "Keon Ellis",
+     "est": 1.664741374445577,
+     "mp": 1479.0
+    },
+    {
+     "pos": 34,
+     "projected": "Sion James",
+     "est": 1.602754383920565,
+     "mp": 1843.0
+    },
+    {
+     "pos": 35,
+     "projected": "Scottie Barnes",
+     "est": 1.5610203812558996,
+     "mp": 2681.0
+    },
+    {
+     "pos": 36,
+     "projected": "Collin Gillespie",
+     "est": 1.5460624543456711,
+     "mp": 2282.0
+    },
+    {
+     "pos": 37,
+     "projected": "Bam Adebayo",
+     "est": 1.4987581114538433,
+     "mp": 2365.0
+    },
+    {
+     "pos": 38,
+     "projected": "Mitchell Robinson",
+     "est": 1.4688868399386499,
+     "mp": 1175.0
+    },
+    {
+     "pos": 39,
+     "projected": "Kris Murray",
+     "est": 1.4551523102458717,
+     "mp": 1333.0
+    },
+    {
+     "pos": 40,
+     "projected": "Naz Reid",
+     "est": 1.449980496040903,
+     "mp": 2007.0
+    },
+    {
+     "pos": 41,
+     "projected": "Collin Murray-Boyles",
+     "est": 1.4335141758392966,
+     "mp": 1246.0
+    },
+    {
+     "pos": 42,
+     "projected": "Mouhamed Gueye",
+     "est": 1.4280553725457255,
+     "mp": 1179.0
+    },
+    {
+     "pos": 43,
+     "projected": "Josh Okogie",
+     "est": 1.4248963592314865,
+     "mp": 1354.0
+    },
+    {
+     "pos": 44,
+     "projected": "OG Anunoby",
+     "est": 1.422384789777508,
+     "mp": 2224.0
+    },
+    {
+     "pos": 45,
+     "projected": "Oso Ighodaro",
+     "est": 1.404206605902244,
+     "mp": 1808.0
+    },
+    {
+     "pos": 46,
+     "projected": "Luguentz Dort",
+     "est": 1.3868194209460767,
+     "mp": 1849.0
+    },
+    {
+     "pos": 47,
+     "projected": "Myles Turner",
+     "est": 1.3078909478204899,
+     "mp": 1912.0
+    },
+    {
+     "pos": 48,
+     "projected": "Ziaire Williams",
+     "est": 1.2497991773631594,
+     "mp": 1281.0
+    },
+    {
+     "pos": 49,
+     "projected": "Day'Ron Sharpe",
+     "est": 1.1951691926650716,
+     "mp": 1160.0
+    },
+    {
+     "pos": 50,
+     "projected": "Dominick Barlow",
+     "est": 1.1547488784538773,
+     "mp": 1689.0
+    }
+   ],
+   "pool": 269
+  },
+  "defense|2025-26|Playoffs": {
+   "rows": [
+    {
+     "pos": 1,
+     "projected": "Victor Wembanyama",
+     "est": 4.788466136111934,
+     "mp": 750.0
+    },
+    {
+     "pos": 2,
+     "projected": "Jose Alvarado",
+     "est": 4.361222666204538,
+     "mp": 170.0
+    },
+    {
+     "pos": 3,
+     "projected": "Neemias Queta",
+     "est": 4.205578960033902,
+     "mp": 152.0
+    },
+    {
+     "pos": 4,
+     "projected": "Tari Eason",
+     "est": 4.177995928649216,
+     "mp": 195.0
+    },
+    {
+     "pos": 5,
+     "projected": "Amen Thompson",
+     "est": 3.896477561231366,
+     "mp": 264.0
+    },
+    {
+     "pos": 6,
+     "projected": "Alex Caruso",
+     "est": 3.7449054279579546,
+     "mp": 353.0
+    },
+    {
+     "pos": 7,
+     "projected": "Karl-Anthony Towns",
+     "est": 3.7277381631787,
+     "mp": 578.0
+    },
+    {
+     "pos": 8,
+     "projected": "Ajay Mitchell",
+     "est": 3.5039100337126787,
+     "mp": 317.0
+    },
+    {
+     "pos": 9,
+     "projected": "Cason Wallace",
+     "est": 3.2717498676698242,
+     "mp": 374.0
+    },
+    {
+     "pos": 10,
+     "projected": "Alperen Sengun",
+     "est": 3.2672730408929582,
+     "mp": 232.0
+    },
+    {
+     "pos": 11,
+     "projected": "Ausar Thompson",
+     "est": 3.158860477108739,
+     "mp": 427.0
+    },
+    {
+     "pos": 12,
+     "projected": "Josh Hart",
+     "est": 2.830447624095515,
+     "mp": 614.0
+    },
+    {
+     "pos": 13,
+     "projected": "Toumani Camara",
+     "est": 2.626809033636381,
+     "mp": 165.0
+    },
+    {
+     "pos": 14,
+     "projected": "Javonte Green",
+     "est": 2.6209925498269797,
+     "mp": 132.0
+    },
+    {
+     "pos": 15,
+     "projected": "Jarrett Allen",
+     "est": 2.608094223115075,
+     "mp": 529.0
+    },
+    {
+     "pos": 16,
+     "projected": "Jaylin Williams",
+     "est": 2.1809582712240667,
+     "mp": 240.0
+    },
+    {
+     "pos": 17,
+     "projected": "Rudy Gobert",
+     "est": 2.1400191191143927,
+     "mp": 372.0
+    },
+    {
+     "pos": 18,
+     "projected": "OG Anunoby",
+     "est": 2.1115737852684466,
+     "mp": 586.0
+    },
+    {
+     "pos": 19,
+     "projected": "Isaiah Stewart",
+     "est": 2.0619151045786497,
+     "mp": 165.0
+    },
+    {
+     "pos": 20,
+     "projected": "Jakob Poeltl",
+     "est": 2.0217271164504713,
+     "mp": 134.0
+    },
+    {
+     "pos": 21,
+     "projected": "Dean Wade",
+     "est": 1.8671112577281768,
+     "mp": 407.0
+    },
+    {
+     "pos": 22,
+     "projected": "Anthony Black",
+     "est": 1.736735889455745,
+     "mp": 196.0
+    },
+    {
+     "pos": 23,
+     "projected": "Dylan Harper",
+     "est": 1.708228794811345,
+     "mp": 615.0
+    },
+    {
+     "pos": 24,
+     "projected": "Mikal Bridges",
+     "est": 1.6572069672997012,
+     "mp": 608.0
+    },
+    {
+     "pos": 25,
+     "projected": "Mitchell Robinson",
+     "est": 1.6165166231307904,
+     "mp": 251.0
+    },
+    {
+     "pos": 26,
+     "projected": "Devin Vassell",
+     "est": 1.6132269685818061,
+     "mp": 801.0
+    },
+    {
+     "pos": 27,
+     "projected": "Jaylen Brown",
+     "est": 1.47032443367899,
+     "mp": 249.0
+    },
+    {
+     "pos": 28,
+     "projected": "Christian Braun",
+     "est": 1.4060441394227776,
+     "mp": 187.0
+    },
+    {
+     "pos": 29,
+     "projected": "De'Aaron Fox",
+     "est": 1.331678273366386,
+     "mp": 704.0
+    },
+    {
+     "pos": 30,
+     "projected": "Chet Holmgren",
+     "est": 1.2808559154747836,
+     "mp": 459.0
+    },
+    {
+     "pos": 31,
+     "projected": "Marcus Smart",
+     "est": 1.268979136919798,
+     "mp": 345.0
+    },
+    {
+     "pos": 32,
+     "projected": "VJ Edgecombe",
+     "est": 1.2105526560260493,
+     "mp": 407.0
+    },
+    {
+     "pos": 33,
+     "projected": "Julian Champagnie",
+     "est": 1.1184548427941545,
+     "mp": 705.0
+    },
+    {
+     "pos": 34,
+     "projected": "Jabari Smith Jr.",
+     "est": 1.0305618973410646,
+     "mp": 252.0
+    },
+    {
+     "pos": 35,
+     "projected": "Ja'Kobe Walter",
+     "est": 0.9808702129932085,
+     "mp": 224.0
+    },
+    {
+     "pos": 36,
+     "projected": "Isaiah Hartenstein",
+     "est": 0.9696367960049643,
+     "mp": 350.0
+    },
+    {
+     "pos": 37,
+     "projected": "Paolo Banchero",
+     "est": 0.9507239393296526,
+     "mp": 273.0
+    },
+    {
+     "pos": 38,
+     "projected": "Jaxson Hayes",
+     "est": 0.9226078355735108,
+     "mp": 163.0
+    },
+    {
+     "pos": 39,
+     "projected": "Dyson Daniels",
+     "est": 0.8811286523090027,
+     "mp": 166.0
+    },
+    {
+     "pos": 40,
+     "projected": "Luke Kornet",
+     "est": 0.8250579425451492,
+     "mp": 296.0
+    },
+    {
+     "pos": 41,
+     "projected": "Jamal Shead",
+     "est": 0.6716237663116327,
+     "mp": 224.0
+    },
+    {
+     "pos": 42,
+     "projected": "Mike Conley",
+     "est": 0.6676018533566506,
+     "mp": 168.0
+    },
+    {
+     "pos": 43,
+     "projected": "Jaden McDaniels",
+     "est": 0.649587842529313,
+     "mp": 406.0
+    },
+    {
+     "pos": 44,
+     "projected": "Evan Mobley",
+     "est": 0.6148433968814393,
+     "mp": 640.0
+    },
+    {
+     "pos": 45,
+     "projected": "Derrick White",
+     "est": 0.5759421337209368,
+     "mp": 251.0
+    },
+    {
+     "pos": 46,
+     "projected": "Collin Murray-Boyles",
+     "est": 0.47621117505626864,
+     "mp": 191.0
+    },
+    {
+     "pos": 47,
+     "projected": "Jayson Tatum",
+     "est": 0.45841796534852,
+     "mp": 218.0
+    },
+    {
+     "pos": 48,
+     "projected": "James Harden",
+     "est": 0.3587273265287365,
+     "mp": 672.0
+    },
+    {
+     "pos": 49,
+     "projected": "Nikola Joki\u0107",
+     "est": 0.2727382125511162,
+     "mp": 237.0
+    },
+    {
+     "pos": 50,
+     "projected": "Reed Sheppard",
+     "est": 0.15464743899673025,
+     "mp": 192.0
+    }
+   ],
+   "pool": 112
+  }
+ },
+ "summary": [
+  {
+   "target": "defense",
+   "model": "stage2-0 / huber",
+   "chosen": "blend",
+   "rounds": 649,
+   "blend": {
+    "n": 692,
+    "rmse": 1.363438713021133,
+    "mae": 1.0077873837682043,
+    "r2": 0.6574074619751393,
+    "pearson": 0.8201071070539645,
+    "spearman": 0.81934359366617,
+    "hits@20": "53/80",
+    "hits@20_frac": 0.6625,
+    "hits@30": "80/120",
+    "hits@30_frac": 0.6666666666666666,
+    "rho@30": 0.5777416753147011,
+    "rmse+": 1.2955160104465666,
+    "n_pos": 361
+   },
+   "lightgbm": {
+    "n": 692,
+    "rmse": 1.41329024681803,
+    "mae": 1.0431298215607825,
+    "r2": 0.6318969795251608,
+    "pearson": 0.8056396871173586,
+    "spearman": 0.8046745038945567,
+    "hits@20": "56/80",
+    "hits@20_frac": 0.7,
+    "hits@30": "77/120",
+    "hits@30_frac": 0.6416666666666667,
+    "rho@30": 0.5694480953261657,
+    "rmse+": 1.3487148765804853,
+    "n_pos": 361
+   }
+  }
+ ],
+ "floors": {
+  "Regular season": 1065.0,
+  "Playoffs": 131.0
+ }
+}

@@ -1,0 +1,231 @@
+[
+ {
+  "stage": 1,
+  "cv_mae": 1.902372286225492,
+  "rounds": 1198,
+  "params": {
+   "objective": "l1",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 1,
+  "cv_mae": 1.8573198159456945,
+  "rounds": 1109,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.799421909139947,
+  "rounds": 1149,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 15,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.9023750629450218,
+  "rounds": 610,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 63,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.9570856512377175,
+  "rounds": 491,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 127,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.8437955873313758,
+  "rounds": 749,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 20,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.84401775481251,
+  "rounds": 885,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 80,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.8506174359232268,
+  "rounds": 776,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.3,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.8431978938210574,
+  "rounds": 869,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.7,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.8546630107690776,
+  "rounds": 531,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.05,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.8397900722981755,
+  "rounds": 932,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 20.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.8552874998018807,
+  "rounds": 716,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 1.0,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ }
+]

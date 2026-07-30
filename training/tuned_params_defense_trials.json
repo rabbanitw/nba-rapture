@@ -1,0 +1,241 @@
+[
+ {
+  "stage": 1,
+  "cv_mae": 1.3708041487700682,
+  "rounds": 1199,
+  "params": {
+   "objective": "l1",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  }
+ },
+ {
+  "stage": 1,
+  "cv_mae": 1.3489819068067155,
+  "rounds": 584,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3289536792716536,
+  "rounds": 649,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 15,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3712835257442009,
+  "rounds": 434,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 63,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3894473562303045,
+  "rounds": 422,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 127,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.34966364285009,
+  "rounds": 609,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 20,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3525833936862537,
+  "rounds": 511,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 80,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3502517396255154,
+  "rounds": 695,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.3,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3454497393467637,
+  "rounds": 412,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.7,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3564435312297476,
+  "rounds": 372,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.05,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3474086309286282,
+  "rounds": 656,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 20.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ },
+ {
+  "stage": 2,
+  "cv_mae": 1.3449537968704555,
+  "rounds": 612,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 31,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 1.0,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  }
+ }
+]

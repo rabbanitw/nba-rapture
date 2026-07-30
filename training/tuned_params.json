@@ -1,0 +1,60 @@
+{
+ "total": {
+  "cv_mae": 1.799421909139947,
+  "rounds": 1149,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 15,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  },
+  "tag": "stage2-0"
+ },
+ "offense": {
+  "cv_mae": 1.074874516809915,
+  "rounds": 1183,
+  "params": {
+   "objective": "l2",
+   "learning_rate": 0.03,
+   "num_leaves": 15,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1"
+  },
+  "tag": "stage2-0"
+ },
+ "defense": {
+  "cv_mae": 1.3289536792716536,
+  "rounds": 649,
+  "params": {
+   "objective": "huber",
+   "learning_rate": 0.03,
+   "num_leaves": 15,
+   "min_data_in_leaf": 40,
+   "feature_fraction": 0.5,
+   "bagging_fraction": 0.8,
+   "bagging_freq": 1,
+   "lambda_l2": 5.0,
+   "verbose": -1,
+   "seed": 42,
+   "num_threads": 0,
+   "metric": "l1",
+   "alpha": 2.0
+  },
+  "tag": "stage2-0"
+ }
+}
