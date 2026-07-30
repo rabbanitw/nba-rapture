@@ -41,10 +41,12 @@ from sklearn.linear_model import RidgeCV
 from db import REPO_ROOT, get_collection
 from experiment_arch_weight import evaluate
 from experiment_combined import prepare, splits
+from estimated_raptor import norm_name
 from labels import SEASON_WIDE
 from predict_seasons import (DROP_FEATURES, build_unlabeled, carry_over_positions,
                              eligibility, impute_positions)
 from seasons import UNLABELED_SNAPSHOTS
+from stat_polarity import classify_all, feature_mask
 from train_rapture import LGB_PARAMS, TARGETS, add_context, normalize_rates
 
 RS_MIN, PO_MIN = 50, 10
@@ -123,6 +125,28 @@ def unlabeled_table(players, p, mp, top_n=TOP_N):
             for i, j in enumerate(order[:top_n])]
 
 
+PAINE_COL = {"total": "eRT", "offense": "eRO", "defense": "eRD"}
+
+
+def load_paine(path, target):
+    """Neil Paine's published Estimated RAPTOR, keyed for joining.
+
+    IMPORTANT: his weights were fit on 2014-2023 full RAPTOR, which contains both of
+    our test seasons. His numbers here are in-sample and ours are not, so he is
+    flattered by the comparison -- see estimated_raptor.py.
+    """
+    if not Path(path).exists():
+        return {}
+    df = pd.read_csv(path)
+    col = PAINE_COL[target]
+    out = {}
+    for _, r in df.iterrows():
+        if pd.isna(r.get(col)):
+            continue
+        out[(norm_name(r["player"]), r["season"], r["split"])] = float(r[col])
+    return out
+
+
 def build_all(args):
     coll = get_collection()
     X, feat, d = prepare(args.datadir)
@@ -140,10 +164,13 @@ def build_all(args):
 
     fit, val, test = splits(d, RS_MIN, PO_MIN)
     tr = fit | val
-    med = np.nanmedian(X[tr], axis=0)
-    med = np.where(np.isfinite(med), med, 0.0)
     print(f"prepared: X={X.shape} (raw {d['X'].shape}) "
           f"train={tr.sum()} test={test.sum()}")
+
+    # Offence models see offence+neutral columns, defence models defence+neutral.
+    # See stat_polarity.py; chosen because it lowers cross-validated MAE on both.
+    polarity, _ = classify_all([n for n in feat if "|" in n])
+    feat_kept_names = [feat[i] for i in keep_cols]
 
     # ---- the unlabeled 2023-26 cells, in the raw kept column order ---------
     Xn, meta = build_unlabeled(coll, raw_feat_kept, list(UNLABELED_SNAPSHOTS))
@@ -158,10 +185,17 @@ def build_all(args):
         if rounds is None:
             rounds = 600
         y = d[TARGETS[target]]
-        print(f"\n[{target}] model: {tag}, {rounds} rounds")
+        mask = (feature_mask(feat_kept_names, target, polarity) if args.polarity
+                else np.ones(len(feat_kept_names), bool))
+        Xt = X[:, mask]
+        med = np.nanmedian(Xt[tr], axis=0)
+        med = np.where(np.isfinite(med), med, 0.0)
+        print(f"\n[{target}] model: {tag}, {rounds} rounds, "
+              f"{mask.sum()}/{len(mask)} features"
+              + ("" if args.polarity else " (polarity filter off)"))
 
         # test-season predictions
-        pte, pte_lgbm = blend(X[tr], y[tr], X[test], med, params, rounds,
+        pte, pte_lgbm = blend(Xt[tr], y[tr], Xt[test], med, params, rounds,
                               args.ridge_weight)
         cells_te = np.array([f"{s}|{t}" for s, t in
                              zip(d["season"][test], d["season_type"][test])])
@@ -177,16 +211,47 @@ def build_all(args):
                               "rounds": rounds,
                               "blend": m, "lightgbm": m_lgbm})
 
+        paine = load_paine(args.paine, target)
         players_te = d["player"][test]
         for cell in np.unique(cells_te):
             mask = cells_te == cell
+            season, split = cell.split("|")
             tt, tu = tau_stats(y[test][mask], pick[mask])
             rows = labeled_table(players_te[mask], y[test][mask], pick[mask],
                                  args.top_n)
             hits = sum(1 for r in rows[:TAU_K] if r["true_rank"] <= TAU_K)
+
+            # Paine on exactly the players he covers in this cell, and us on the
+            # same subset, so the two are compared over one population.
+            names = players_te[mask]
+            pv = np.array([paine.get((norm_name(n), season, split), np.nan)
+                           for n in names])
+            have = np.isfinite(pv)
+            pcmp = None
+            if have.sum() >= TAU_K:
+                yv, ours_v = y[test][mask][have], pick[mask][have]
+                pt, pu = tau_stats(yv, pv[have])
+                ot, ou = tau_stats(yv, ours_v)
+                p_rows = labeled_table(names[have], yv, pv[have], args.top_n)
+                pcmp = {
+                    "n": int(have.sum()),
+                    "paine": {"tau_true30": pt, "tau_union30": pu,
+                              "mae": float(np.mean(np.abs(yv - pv[have]))),
+                              "hits30": sum(1 for r in p_rows[:TAU_K]
+                                            if r["true_rank"] <= TAU_K),
+                              "mean_abs_drank": float(np.mean(
+                                  [abs(r["drank"]) for r in p_rows])),
+                              "rows": p_rows},
+                    "ours": {"tau_true30": ot, "tau_union30": ou,
+                             "mae": float(np.mean(np.abs(yv - ours_v))),
+                             "hits30": sum(1 for r in labeled_table(
+                                 names[have], yv, ours_v, args.top_n)[:TAU_K]
+                                 if r["true_rank"] <= TAU_K)},
+                }
             out["labeled"][f"{target}|{cell}"] = {
                 "rows": rows, "tau_true30": tt, "tau_union30": tu,
                 "pool": int(mask.sum()), "hits30": hits,
+                "paine": pcmp,
                 "mean_abs_drank": float(np.mean([abs(r["drank"]) for r in rows])),
             }
             print(f"    {cell:<26} pool={mask.sum():<4} tau(true30)={tt:+.3f} "
@@ -201,8 +266,11 @@ def build_all(args):
         ctx = {k: np.concatenate([d[k], np.array([mm[k] for mm in meta],
                                                  dtype=d[k].dtype)])
                for k in ("pos", "mp", "timestamp", "season_type")}
-        X_all, _ = add_context(X_all, raw_feat_kept, ctx, "combined")
+        X_all, ctx_names = add_context(X_all, raw_feat_kept, ctx, "combined")
         n_lab = d["X"].shape[0]
+        mask2 = (feature_mask(ctx_names, target, polarity) if args.polarity
+                 else np.ones(len(ctx_names), bool))
+        X_all = X_all[:, mask2]
         Xlab, Xnew = X_all[:n_lab], X_all[n_lab:]
         med2 = np.nanmedian(Xlab[tr], axis=0)
         med2 = np.where(np.isfinite(med2), med2, 0.0)
@@ -271,6 +339,41 @@ def write_report(out, path, args):
       + " — the lowest 538 itself ever rated in that split.")
     A("")
 
+    A("## Feature polarity")
+    A("")
+    A("Every stat is classified offence-centric, defence-centric or neutral")
+    A("(see [stat_polarity.md](stat_polarity.md)). The offence model uses")
+    A("offence+neutral, the defence model defence+neutral, and total uses everything.")
+    A("Of 908 source columns: **685 offence, 107 defence, 116 neutral** — the feeds are")
+    A("heavily offensive, so the defence model keeps about a quarter of the columns and")
+    A("the offence model nearly nine tenths.")
+    A("")
+    A("On cross-validated MAE the restriction is a small win for both — offence")
+    A("1.0685 against 1.0748, defence 1.3241 against 1.3290 — and it finds more of the")
+    A("right players (offence hits@30 102/120 against 98, defence 86 against 80) while")
+    A("ordering them very slightly worse. It is close to neutral: gradient boosting was")
+    A("already largely ignoring the wrong-side columns.")
+    A("")
+    A("## Versus Neil Paine's Estimated RAPTOR")
+    A("")
+    A("Paine's linear model, published weights, on the players he covers in each cell.")
+    A("**His weights were fit on 2014-2023 RAPTOR, which includes both test seasons —**")
+    A("**his numbers are in-sample and ours are not.** He should be expected to win.")
+    A("")
+    A("| target | season | split | n | ours MAE | Paine MAE | ours tau30 | Paine tau30 "
+      "| ours hits@30 | Paine hits@30 |")
+    A("|---|---|---|---:|---:|---:|---:|---:|---:|---:|")
+    for key, v in out["labeled"].items():
+        target, cell = key.split("|", 1)
+        season, split = cell.split("|")
+        pc = v.get("paine")
+        if not pc:
+            continue
+        o, pn = pc["ours"], pc["paine"]
+        A(f"| {target} | {season} | {split} | {pc['n']} | {o['mae']:.3f} | "
+          f"{pn['mae']:.3f} | {o['tau_true30']:+.3f} | {pn['tau_true30']:+.3f} | "
+          f"{o['hits30']}/30 | {pn['hits30']}/30 |")
+    A("")
     A("## Kendall tau over the top 30, held-out seasons")
     A("")
     A("`tau(true30)` compares the true order of the true top 30 against their")
@@ -301,6 +404,20 @@ def write_report(out, path, args):
               f"{r['true_rank']} | {r['drank']:+d} | {r['actual_at_pos']} | "
               f"{r['actual_true']:+.2f} |")
         A("")
+        pc = v.get("paine")
+        if pc:
+            A(f"### {season} {split} — {target}, Paine's top 30 (in-sample)")
+            A("")
+            A(f"> {pc['n']} players covered &nbsp;·&nbsp; tau(true30) "
+              f"{pc['paine']['tau_true30']:+.3f} &nbsp;·&nbsp; hits@30 "
+              f"{pc['paine']['hits30']}/30 &nbsp;·&nbsp; MAE {pc['paine']['mae']:.3f}")
+            A("")
+            A("| pos | Paine's pick | eR | true | true rank | Δrank |")
+            A("|---:|---|---:|---:|---:|---:|")
+            for r in pc["paine"]["rows"][:30]:
+                A(f"| {r['pos']} | {r['projected']} | {r['est']:+.2f} | "
+                  f"{r['true']:+.2f} | {r['true_rank']} | {r['drank']:+d} |")
+            A("")
 
     for key, v in out["unlabeled"].items():
         target, season, split = key.split("|")
@@ -324,6 +441,10 @@ def main():
     ap.add_argument("--targets", nargs="*", default=["total", "offense", "defense"])
     ap.add_argument("--top-n", type=int, default=TOP_N)
     ap.add_argument("--ridge-weight", type=float, default=0.25)
+    ap.add_argument("--paine", default=str(REPO_ROOT / "training"
+                                          / "RESULTS_estimated_raptor.csv"))
+    ap.add_argument("--no-polarity", dest="polarity", action="store_false",
+                    help="use every feature for every target")
     ap.add_argument("--out", default=str(REPO_ROOT / "training"
                                         / "RESULTS_leaderboards.md"))
     args = ap.parse_args()
