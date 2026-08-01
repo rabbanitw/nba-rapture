@@ -164,8 +164,17 @@ def build_all(args):
 
     fit, val, test = splits(d, RS_MIN, PO_MIN)
     tr = fit | val
+    if args.regular_season_only:
+        # A regular-season projection has no reason to learn from playoff rows: the
+        # samples are an order of magnitude shorter, RAPTOR is far noisier over them,
+        # and ctx|is_playoffs becomes a constant the model no longer has to condition
+        # on. It costs little -- playoff cells are only 580 of 14,465 training rows.
+        rs = d["season_type"] == "Regular season"
+        tr = tr & rs
+        test = test & rs
     print(f"prepared: X={X.shape} (raw {d['X'].shape}) "
-          f"train={tr.sum()} test={test.sum()}")
+          f"train={tr.sum()} test={test.sum()}"
+          + ("  [regular season only]" if args.regular_season_only else ""))
 
     # Offence models see offence+neutral columns, defence models defence+neutral.
     # See stat_polarity.py; chosen because it lowers cross-validated MAE on both.
@@ -281,7 +290,8 @@ def build_all(args):
         df = pd.DataFrame(meta)
         df["est"] = pn
         for season in sorted(df.season.unique()):
-            for st in ("Regular season", "Playoffs"):
+            for st in (("Regular season",) if args.regular_season_only
+                       else ("Regular season", "Playoffs")):
                 g = df[(df.season == season) & (df.season_type == st)]
                 g = g[g.mp >= floors[st]]
                 if g.empty:
@@ -445,6 +455,8 @@ def main():
                                           / "RESULTS_estimated_raptor.csv"))
     ap.add_argument("--no-polarity", dest="polarity", action="store_false",
                     help="use every feature for every target")
+    ap.add_argument("--regular-season-only", action="store_true",
+                    help="train and project on regular-season rows only")
     ap.add_argument("--out", default=str(REPO_ROOT / "training"
                                         / "RESULTS_leaderboards.md"))
     args = ap.parse_args()
