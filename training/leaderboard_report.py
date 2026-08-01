@@ -41,6 +41,7 @@ from sklearn.linear_model import RidgeCV
 from db import REPO_ROOT, get_collection
 from experiment_arch_weight import evaluate
 from experiment_combined import prepare, splits
+from experiment_labels import make_targets, to_raptor_units
 from estimated_raptor import norm_name
 from labels import SEASON_WIDE
 from predict_seasons import (DROP_FEATURES, build_unlabeled, carry_over_positions,
@@ -203,11 +204,22 @@ def build_all(args):
               f"{mask.sum()}/{len(mask)} features"
               + ("" if args.polarity else " (polarity filter off)"))
 
+        # The label the model is fitted on need not be RAPTOR. Any within-cell
+        # monotone transform leaves the ranking task unchanged; predictions are
+        # mapped back to RAPTOR units afterwards by within-cell rank through the
+        # training distribution, so every column downstream stays interpretable.
+        cells_tr = np.array([f"{t}|{st}" for t, st in
+                             zip(d["timestamp"][tr], d["season_type"][tr])])
+        ytr = make_targets(y[tr], cells_tr, y_train_for_clip=y[tr])[args.label]
+
         # test-season predictions
-        pte, pte_lgbm = blend(Xt[tr], y[tr], Xt[test], med, params, rounds,
+        pte, pte_lgbm = blend(Xt[tr], ytr, Xt[test], med, params, rounds,
                               args.ridge_weight)
         cells_te = np.array([f"{s}|{t}" for s, t in
                              zip(d["season"][test], d["season_type"][test])])
+        if args.label != "raptor":
+            pte = to_raptor_units(pte, cells_te, y[tr])
+            pte_lgbm = to_raptor_units(pte_lgbm, cells_te, y[tr])
         m = evaluate(y[test], pte, cells_te)
         m_lgbm = evaluate(y[test], pte_lgbm, cells_te)
         print(f"  blend  MAE={m['mae']:.3f} R2={m['r2']:+.3f} rho={m['spearman']:+.3f}")
@@ -283,7 +295,7 @@ def build_all(args):
         Xlab, Xnew = X_all[:n_lab], X_all[n_lab:]
         med2 = np.nanmedian(Xlab[tr], axis=0)
         med2 = np.where(np.isfinite(med2), med2, 0.0)
-        pn, pn_lgbm = blend(Xlab[tr], y[tr], Xnew, med2, params, rounds,
+        pn, pn_lgbm = blend(Xlab[tr], ytr, Xnew, med2, params, rounds,
                             args.ridge_weight)
         pn = pn if use_blend else pn_lgbm
 
@@ -296,6 +308,12 @@ def build_all(args):
                 g = g[g.mp >= floors[st]]
                 if g.empty:
                     continue
+                if args.label != "raptor":
+                    # Map inside the eligible pool, not the raw 582-player cell: the
+                    # training distribution is 538's ~250-player pool, so ranking the
+                    # full field against it would inflate everyone.
+                    one = np.full(len(g), "cell")
+                    g = g.assign(est=to_raptor_units(g.est.values, one, y[tr]))
                 out["unlabeled"][f"{target}|{season}|{st}"] = {
                     "rows": unlabeled_table(g.player.values, g.est.values,
                                             g.mp.values, args.top_n),
@@ -455,6 +473,10 @@ def main():
                                           / "RESULTS_estimated_raptor.csv"))
     ap.add_argument("--no-polarity", dest="polarity", action="store_false",
                     help="use every feature for every target")
+    ap.add_argument("--label", default="raptor",
+                    choices=["raptor", "cell_z", "cell_pct", "cell_rankit",
+                             "signed_sqrt", "winsor"],
+                    help="within-cell target transform; see experiment_labels.py")
     ap.add_argument("--regular-season-only", action="store_true",
                     help="train and project on regular-season rows only")
     ap.add_argument("--out", default=str(REPO_ROOT / "training"
