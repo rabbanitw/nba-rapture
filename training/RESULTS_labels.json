@@ -1,0 +1,182 @@
+[
+ {
+  "target": "total",
+  "label": "raptor",
+  "mae_mapped": 1.561847428804124,
+  "spearman": 0.9100118125833215,
+  "hits20": "30/40",
+  "hits30": "46/60",
+  "hits30_frac": 0.7666666666666667,
+  "tau30": 0.5747126436781609
+ },
+ {
+  "target": "total",
+  "label": "cell_z",
+  "mae_mapped": 1.5752077540599059,
+  "spearman": 0.9093219753669598,
+  "hits20": "28/40",
+  "hits30": "45/60",
+  "hits30_frac": 0.75,
+  "tau30": 0.5333333333333333
+ },
+ {
+  "target": "total",
+  "label": "cell_pct",
+  "mae_mapped": 1.58202642488303,
+  "spearman": 0.9048133199763819,
+  "hits20": "28/40",
+  "hits30": "46/60",
+  "hits30_frac": 0.7666666666666667,
+  "tau30": 0.5885057471264368
+ },
+ {
+  "target": "total",
+  "label": "cell_rankit",
+  "mae_mapped": 1.585563606021566,
+  "spearman": 0.908881463110318,
+  "hits20": "29/40",
+  "hits30": "44/60",
+  "hits30_frac": 0.7333333333333333,
+  "tau30": 0.5770114942528736
+ },
+ {
+  "target": "total",
+  "label": "signed_sqrt",
+  "mae_mapped": 1.5819838045884511,
+  "spearman": 0.9073124430703337,
+  "hits20": "28/40",
+  "hits30": "43/60",
+  "hits30_frac": 0.7166666666666667,
+  "tau30": 0.5839080459770115
+ },
+ {
+  "target": "total",
+  "label": "winsor",
+  "mae_mapped": 1.5686660942691195,
+  "spearman": 0.9102694500342116,
+  "hits20": "29/40",
+  "hits30": "47/60",
+  "hits30_frac": 0.7833333333333333,
+  "tau30": 0.5655172413793104
+ },
+ {
+  "target": "offense",
+  "label": "raptor",
+  "mae_mapped": 1.0802045588054339,
+  "spearman": 0.9390487566192233,
+  "hits20": "32/40",
+  "hits30": "48/60",
+  "hits30_frac": 0.8,
+  "tau30": 0.735632183908046
+ },
+ {
+  "target": "offense",
+  "label": "cell_z",
+  "mae_mapped": 1.086575751218864,
+  "spearman": 0.9403846621625761,
+  "hits20": "32/40",
+  "hits30": "45/60",
+  "hits30_frac": 0.75,
+  "tau30": 0.6804597701149425
+ },
+ {
+  "target": "offense",
+  "label": "cell_pct",
+  "mae_mapped": 1.0902194763013233,
+  "spearman": 0.9348286770048183,
+  "hits20": "31/40",
+  "hits30": "50/60",
+  "hits30_frac": 0.8333333333333334,
+  "tau30": 0.6896551724137931
+ },
+ {
+  "target": "offense",
+  "label": "cell_rankit",
+  "mae_mapped": 1.0748774750539607,
+  "spearman": 0.9409214437050553,
+  "hits20": "32/40",
+  "hits30": "50/60",
+  "hits30_frac": 0.8333333333333334,
+  "tau30": 0.7172413793103448
+ },
+ {
+  "target": "offense",
+  "label": "signed_sqrt",
+  "mae_mapped": 1.0886000410578036,
+  "spearman": 0.9333769823612332,
+  "hits20": "31/40",
+  "hits30": "51/60",
+  "hits30_frac": 0.85,
+  "tau30": 0.7287356321839081
+ },
+ {
+  "target": "offense",
+  "label": "winsor",
+  "mae_mapped": 1.0845514609877887,
+  "spearman": 0.9407223222945094,
+  "hits20": "31/40",
+  "hits30": "48/60",
+  "hits30_frac": 0.8,
+  "tau30": 0.6850574712643678
+ },
+ {
+  "target": "defense",
+  "label": "raptor",
+  "mae_mapped": 1.0683251654662964,
+  "spearman": 0.8709748038823403,
+  "hits20": "28/40",
+  "hits30": "43/60",
+  "hits30_frac": 0.7166666666666667,
+  "tau30": 0.48735632183908045
+ },
+ {
+  "target": "defense",
+  "label": "cell_z",
+  "mae_mapped": 1.05536970333608,
+  "spearman": 0.875686719480584,
+  "hits20": "28/40",
+  "hits30": "46/60",
+  "hits30_frac": 0.7666666666666667,
+  "tau30": 0.46896551724137936
+ },
+ {
+  "target": "defense",
+  "label": "cell_pct",
+  "mae_mapped": 1.0970701031750412,
+  "spearman": 0.8654762083529893,
+  "hits20": "26/40",
+  "hits30": "41/60",
+  "hits30_frac": 0.6833333333333333,
+  "tau30": 0.3770114942528736
+ },
+ {
+  "target": "defense",
+  "label": "cell_rankit",
+  "mae_mapped": 1.0610377167492642,
+  "spearman": 0.8755384733985211,
+  "hits20": "27/40",
+  "hits30": "43/60",
+  "hits30_frac": 0.7166666666666667,
+  "tau30": 0.4505747126436782
+ },
+ {
+  "target": "defense",
+  "label": "signed_sqrt",
+  "mae_mapped": 1.07763690438424,
+  "spearman": 0.8685529865914224,
+  "hits20": "27/40",
+  "hits30": "41/60",
+  "hits30_frac": 0.6833333333333333,
+  "tau30": 0.4528735632183908
+ },
+ {
+  "target": "defense",
+  "label": "winsor",
+  "mae_mapped": 1.068325165224982,
+  "spearman": 0.87196513549972,
+  "hits20": "27/40",
+  "hits30": "43/60",
+  "hits30_frac": 0.7166666666666667,
+  "tau30": 0.4689655172413793
+ }
+]
