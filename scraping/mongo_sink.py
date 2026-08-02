@@ -41,6 +41,9 @@ COLL_NAME = "nba_rapture"
 KEY_FIELDS = {
     "pbp": ["source", "timestamp", "season_type", "standard_name"],
     "wowy": ["source", "timestamp", "season_type", "standard_name", "on_or_off"],
+    # Opponent stats while the player is on/off the floor -- same wowy endpoint with
+    # Type=Opponent. Kept as its own source so the two never collide on upsert.
+    "wowy-opp": ["source", "timestamp", "season_type", "standard_name", "on_or_off"],
     "nba-tracking": ["source", "timestamp", "season_type", "standard_name", "data_type"],
 }
 

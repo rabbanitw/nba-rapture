@@ -48,28 +48,34 @@ def load_roster(cell):
     return json.loads(path.read_text())
 
 
-def fetch_split(cell, entity_id, team_id, on):
-    params = {"Season": cell["season"], "SeasonType": cell["api_type"], "Type": "Team",
+def fetch_split(cell, entity_id, team_id, on, wowy_type="Team"):
+    # Type=Team -> the team's own stats with the player on/off the floor.
+    # Type=Opponent -> the OPPONENT's stats over those same possessions: opponent rim
+    # accuracy, opponent 3P%, full shot-location splits -- the on-court defensive
+    # profile that Team-side wowy cannot see.
+    params = {"Season": cell["season"], "SeasonType": cell["api_type"],
+              "Type": wowy_type,
               "FromDate": cell["from"], "ToDate": cell["to"], "TeamId": team_id}
     # 0Exactly1OnFloor -> team possessions with him on; 0Exactly0OnFloor -> without.
     params["0Exactly1OnFloor" if on else "0Exactly0OnFloor"] = entity_id
     return get_json("get-wowy-stats/nba", params).get("single_row_table_data") or {}
 
 
-def build_doc(row, cell, player, entity_id, team_id, n_stints, on):
+def build_doc(row, cell, player, entity_id, team_id, n_stints, on, source=SOURCE):
     return dict(row, **{
         "name": player["name"],
         "standard_name": player["name"],
         "team": nba_teams.abbrev(team_id),
         "n_stints": n_stints,
-        "source": SOURCE,
+        "source": source,
         "timestamp": cell["timestamp"],
         "season_type": cell["season_type"],
         "on_or_off": "on" if on else "off",
     })
 
 
-def scrape_cell(coll, cell, limit=None, dry_run=False, force=False):
+def scrape_cell(coll, cell, limit=None, dry_run=False, force=False,
+                source=SOURCE, wowy_type="Team"):
     roster = load_roster(cell)
     players = list(roster["players"].items())
     players.sort(key=lambda kv: -(kv[1].get("minutes") or 0))
@@ -79,7 +85,7 @@ def scrape_cell(coll, cell, limit=None, dry_run=False, force=False):
     # (standard_name, on_or_off) pairs already in the collection for this cell.
     done = set()
     if coll is not None and not force:
-        done = mongo_sink.existing_keys(coll, SOURCE, cell["timestamp"],
+        done = mongo_sink.existing_keys(coll, source, cell["timestamp"],
                                         cell["season_type"])
 
     jobs = []
@@ -112,7 +118,7 @@ def scrape_cell(coll, cell, limit=None, dry_run=False, force=False):
         """
         eid, p, team_id, on = job
         try:
-            return job, fetch_split(cell, eid, team_id, on), None
+            return job, fetch_split(cell, eid, team_id, on, wowy_type), None
         except Exception as e:
             return job, None, f"{type(e).__name__}: {e}"
 
@@ -133,10 +139,10 @@ def scrape_cell(coll, cell, limit=None, dry_run=False, force=False):
                 empty += 1
             else:
                 docs.append(build_doc(row, cell, p, eid, team_id,
-                                      len(p["stints"]), on))
+                                      len(p["stints"]), on, source=source))
             # Flush often. Everything already written is work a resumed run skips.
             if len(docs) >= 25:
-                mongo_sink.write_rows(coll, docs, SOURCE, dry_run)
+                mongo_sink.write_rows(coll, docs, source, dry_run)
                 docs = []
             if i % 50 == 0:
                 rate = i / max(time.time() - t0, 1e-9)
@@ -145,7 +151,7 @@ def scrape_cell(coll, cell, limit=None, dry_run=False, force=False):
                       f"empty={empty} failed={len(failed)}", flush=True)
 
     if docs:
-        mongo_sink.write_rows(coll, docs, SOURCE, dry_run)
+        mongo_sink.write_rows(coll, docs, source, dry_run)
     print(f"    done in {(time.time()-t0)/60:.1f}m, {empty} empty, {len(failed)} failed")
     for name, side, err in failed[:10]:
         print(f"      FAILED {name} {side}: {err}")
@@ -160,14 +166,24 @@ def main():
     ap.add_argument("--force", action="store_true", help="re-fetch rows already stored")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--raw-dir", help="write rows to JSONL files here instead of Mongo, for when this network cannot reach Atlas (see load_raw.py)")
+    ap.add_argument("--opponent", action="store_true",
+                    help="scrape opponent stats (Type=Opponent) -> source wowy-opp")
+    ap.add_argument("--rs-only", action="store_true",
+                    help="regular-season cells only")
     args = ap.parse_args()
 
     coll = (mongo_sink.RawSink(args.raw_dir) if args.raw_dir
             else None if args.dry_run else mongo_sink.check_connection())
-    print(f"[wowy] {len(args.seasons)} season(s): {', '.join(args.seasons)}")
+    source = "wowy-opp" if args.opponent else SOURCE
+    wowy_type = "Opponent" if args.opponent else "Team"
+    print(f"[{source}] {len(args.seasons)} season(s): {', '.join(args.seasons)}"
+          + ("  [regular season only]" if args.rs_only else ""))
     for cell in season_dates.cells(tuple(args.seasons)):
-        scrape_cell(coll, cell, args.limit, args.dry_run, args.force)
-    print(f"[wowy] done. http: {stats()}")
+        if args.rs_only and cell["season_type"] != "Regular season":
+            continue
+        scrape_cell(coll, cell, args.limit, args.dry_run, args.force,
+                    source=source, wowy_type=wowy_type)
+    print(f"[{source}] done. http: {stats()}")
 
 
 if __name__ == "__main__":

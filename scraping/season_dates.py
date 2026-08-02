@@ -28,6 +28,17 @@ SEASON_TYPES = {"Regular Season": "Regular season", "Playoffs": "Playoffs"}
 # whole-season row is a synthetic YYYY0715000000 offseason stamp (see
 # training/seasons.py FULL_SEASON_SNAPSHOTS); one stamp carries both splits.
 SNAPSHOTS = {
+    # The historical whole-season cells, on their existing stamps. Listed here so
+    # roster generation and the opponent-wowy scrape can reach them. CAUTION: a bare
+    # `scrape_pbp_totals.py` run now covers these too and would upsert fresh pbp docs
+    # alongside the original pipeline's stripped-name docs -- use --seasons or
+    # --dry-run (rosters only) for the historical entries.
+    "2013-14": "20140715000000",
+    "2014-15": "20150715000000",
+    "2015-16": "20160715000000",
+    "2016-17": "20170715000000",
+    "2017-18": "20180715000000",
+    "2019-20": "20201101000000",
     # 2018-19 is the gap in the middle of the collection: no timestamp anywhere in
     # its window carries any source. Its snapshot stamp follows the YYYY0715
     # convention of the other whole-season cells (training/seasons.py).
