@@ -171,7 +171,12 @@ FIELD_MAP = {
         "PASSES_RECEIVED": "PASSES\nRECEIVED", "AST": "AST",
         "SECONDARY_AST": "SECONDARY\nAST", "POTENTIAL_AST": "POTENTIAL\nAST",
         "AST_PTS_CREATED": "AST PTS\nCREATED",
-        "FT_AST": None,
+        # Stored under its own name from now on. 538 explicitly credits free-throw
+        # assists in box RAPTOR offense; v2 used to drop this because the legacy
+        # schema had no slot. Legacy/v2 cells get it backfilled by
+        # migrate_ft_ast.py as ('' column) - AST - SECONDARY AST, since the blank
+        # column holds AST_ADJ = AST + FT_AST + SECONDARY_AST.
+        "FT_AST": "FT_AST",
         "AST_ADJ": "",
         "AST_TO_PASS_PCT": "AST\nADJ",
         "AST_TO_PASS_PCT_ADJ": "AST TO\nPASS%",

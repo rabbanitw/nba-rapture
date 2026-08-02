@@ -35,7 +35,10 @@ TRACK_TYPES = ['catch-shoot', 'defensive-impact', 'defensive-rebounding', 'drive
 # Identify the document; never a feature.
 ID_FIELDS = {"_id", "name", "ShortName", "standard_name", "timestamp", "season_type",
              "source", "data_type", "on_or_off", "team", "TEAM", "Team", "id",
-             "data_key", "row_num", "pos"}
+             "data_key", "row_num", "pos",
+             # provenance markers, never features
+             "ft_ast_derived", "tracking_schema", "n_stints", "pbp_row_scope",
+             "nba_player_id"}
 
 NUM_RE = re.compile(r"^-?[\d,]*\.?\d+$")
 
