@@ -181,8 +181,17 @@ def main():
     for cell in season_dates.cells(tuple(args.seasons)):
         if args.rs_only and cell["season_type"] != "Regular season":
             continue
-        scrape_cell(coll, cell, args.limit, args.dry_run, args.force,
-                    source=source, wowy_type=wowy_type)
+        # One cell's failure (missing roster, hard API error) must not abandon the
+        # rest of a multi-season run -- a missing 2018-19 roster once killed a
+        # 13-season scrape eight cells early.
+        try:
+            scrape_cell(coll, cell, args.limit, args.dry_run, args.force,
+                        source=source, wowy_type=wowy_type)
+        except SystemExit as e:
+            print(f"  SKIPPED {cell['season']} {cell['season_type']}: {e}")
+        except Exception as e:
+            print(f"  FAILED {cell['season']} {cell['season_type']}: "
+                  f"{type(e).__name__}: {e}")
     print(f"[{source}] done. http: {stats()}")
 
 
