@@ -100,7 +100,13 @@ def get_json(category, season, api_type, date_from, date_to):
 
 
 def load_roster(cell):
-    path = ROSTER_DIR / (f"roster_{cell['timestamp']}_"
+    ts = cell["timestamp"]
+    if cell.get("snapshot"):
+        # In-season snapshot cells have no roster of their own; the same season's
+        # whole-season roster is a superset of anyone who had played by the
+        # snapshot date, and the id->name mapping is what matters here.
+        ts = season_dates.SNAPSHOTS[cell["season"]]
+    path = ROSTER_DIR / (f"roster_{ts}_"
                          f"{cell['season_type'].replace(' ', '_')}.json")
     if not path.exists():
         raise SystemExit(f"missing {path} -- run scrape_pbp_totals.py first "
@@ -155,6 +161,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seasons", nargs="*", default=list(season_dates.SNAPSHOTS))
     ap.add_argument("--rs-only", action="store_true")
+    ap.add_argument("--snapshots", action="store_true",
+                    help="scrape the in-season snapshot cells listed in "
+                         "defend_snapshots.json (season start .. snapshot date), "
+                         "closing the training-coverage gap")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--raw-dir", help="write JSONL here instead of Mongo "
                                       "(load later with load_raw.py)")
@@ -162,8 +172,16 @@ def main():
 
     coll = (mongo_sink.RawSink(args.raw_dir) if args.raw_dir
             else None if args.dry_run else mongo_sink.check_connection())
-    print(f"[nba-defend] {len(args.seasons)} season(s)")
-    for cell in season_dates.cells(tuple(args.seasons)):
+    if args.snapshots:
+        cells = json.loads((Path(__file__).resolve().parent
+                            / "defend_snapshots.json").read_text())
+        for c in cells:
+            c["snapshot"] = True
+        print(f"[nba-defend] {len(cells)} in-season snapshot cells")
+    else:
+        cells = [c for c in season_dates.cells(tuple(args.seasons))]
+        print(f"[nba-defend] {len(args.seasons)} season(s)")
+    for cell in cells:
         if args.rs_only and cell["season_type"] != "Regular season":
             continue
         try:
