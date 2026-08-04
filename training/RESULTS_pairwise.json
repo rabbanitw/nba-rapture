@@ -1,0 +1,338 @@
+{
+ "metrics": [
+  {
+   "target": "offense",
+   "arm": "direct",
+   "dev@10": 1.4500000000000002,
+   "tau@10": 0.6666666666666665,
+   "hits@10": 17,
+   "dev@20": 3.375,
+   "tau@20": 0.736842105263158,
+   "hits@20": 32,
+   "dev@30": 6.300000000000001,
+   "tau@30": 0.7425287356321839,
+   "hits@30": 48,
+   "mae": 0.4880304275009188
+  },
+  {
+   "target": "offense",
+   "arm": "pairwise",
+   "dev@10": 1.5,
+   "tau@10": 0.7777777777777777,
+   "hits@10": 17,
+   "dev@20": 3.0999999999999996,
+   "tau@20": 0.7736842105263159,
+   "hits@20": 34,
+   "dev@30": 4.433333333333334,
+   "tau@30": 0.7379310344827588,
+   "hits@30": 51,
+   "mae": 1.4042364688944473
+  },
+  {
+   "target": "offense",
+   "arm": "rank-avg(d,p)",
+   "dev@10": 1.05,
+   "tau@10": 0.7333333333333332,
+   "hits@10": 17,
+   "dev@20": 3.375,
+   "tau@20": 0.7736842105263158,
+   "hits@20": 33,
+   "dev@30": 5.25,
+   "tau@30": 0.7471264367816093,
+   "hits@30": 49,
+   "mae": 123.11902834241268
+  },
+  {
+   "target": "defense",
+   "arm": "direct",
+   "dev@10": 3.3499999999999996,
+   "tau@10": 0.4888888888888888,
+   "hits@10": 15,
+   "dev@20": 7.575,
+   "tau@20": 0.5526315789473684,
+   "hits@20": 30,
+   "dev@30": 10.966666666666665,
+   "tau@30": 0.5770114942528737,
+   "hits@30": 41,
+   "mae": 0.6523091342335544
+  },
+  {
+   "target": "defense",
+   "arm": "pairwise",
+   "dev@10": 4.6,
+   "tau@10": 0.5333333333333332,
+   "hits@10": 14,
+   "dev@20": 6.324999999999999,
+   "tau@20": 0.4736842105263158,
+   "hits@20": 32,
+   "dev@30": 10.933333333333334,
+   "tau@30": 0.5241379310344828,
+   "hits@30": 43,
+   "mae": 1.3359166448659874
+  },
+  {
+   "target": "defense",
+   "arm": "rank-avg(d,p)",
+   "dev@10": 3.55,
+   "tau@10": 0.5111111111111111,
+   "hits@10": 14,
+   "dev@20": 5.975,
+   "tau@20": 0.5684210526315789,
+   "hits@20": 31,
+   "dev@30": 10.9,
+   "tau@30": 0.5816091954022988,
+   "hits@30": 42,
+   "mae": 123.08684210126337
+  }
+ ],
+ "boards": {
+  "offense|2013-14|Regular season": [
+   {
+    "pos": 1,
+    "player": "Kevin Durant",
+    "win_pct": 0.9926313534453526,
+    "true_rank_in_pool": 1
+   },
+   {
+    "pos": 2,
+    "player": "Chris Paul",
+    "win_pct": 0.9912036207256599,
+    "true_rank_in_pool": 2
+   },
+   {
+    "pos": 3,
+    "player": "LeBron James",
+    "win_pct": 0.9884480465365408,
+    "true_rank_in_pool": 4
+   },
+   {
+    "pos": 4,
+    "player": "James Harden",
+    "win_pct": 0.987913867280296,
+    "true_rank_in_pool": 3
+   },
+   {
+    "pos": 5,
+    "player": "Kevin Love",
+    "win_pct": 0.9790714786013724,
+    "true_rank_in_pool": 5
+   },
+   {
+    "pos": 6,
+    "player": "Goran Dragic",
+    "win_pct": 0.9729923341023992,
+    "true_rank_in_pool": 6
+   },
+   {
+    "pos": 7,
+    "player": "Kyle Lowry",
+    "win_pct": 0.9619106705138426,
+    "true_rank_in_pool": 7
+   },
+   {
+    "pos": 8,
+    "player": "Damian Lillard",
+    "win_pct": 0.9595734418714497,
+    "true_rank_in_pool": 12
+   },
+   {
+    "pos": 9,
+    "player": "Manu Ginobili",
+    "win_pct": 0.954342179101584,
+    "true_rank_in_pool": 10
+   },
+   {
+    "pos": 10,
+    "player": "Dirk Nowitzki",
+    "win_pct": 0.9464312645951151,
+    "true_rank_in_pool": 8
+   }
+  ],
+  "offense|2014-15|Regular season": [
+   {
+    "pos": 1,
+    "player": "Chris Paul",
+    "win_pct": 0.998762798582401,
+    "true_rank_in_pool": 1
+   },
+   {
+    "pos": 2,
+    "player": "James Harden",
+    "win_pct": 0.9935872004883851,
+    "true_rank_in_pool": 2
+   },
+   {
+    "pos": 3,
+    "player": "LeBron James",
+    "win_pct": 0.9832107335198527,
+    "true_rank_in_pool": 5
+   },
+   {
+    "pos": 4,
+    "player": "Kyrie Irving",
+    "win_pct": 0.9809647875255072,
+    "true_rank_in_pool": 4
+   },
+   {
+    "pos": 5,
+    "player": "Russell Westbrook",
+    "win_pct": 0.9795748284910477,
+    "true_rank_in_pool": 3
+   },
+   {
+    "pos": 6,
+    "player": "Lou Williams",
+    "win_pct": 0.9701465223631298,
+    "true_rank_in_pool": 6
+   },
+   {
+    "pos": 7,
+    "player": "Damian Lillard",
+    "win_pct": 0.9643259139891562,
+    "true_rank_in_pool": 11
+   },
+   {
+    "pos": 8,
+    "player": "Isaiah Thomas",
+    "win_pct": 0.9628395710442029,
+    "true_rank_in_pool": 8
+   },
+   {
+    "pos": 9,
+    "player": "Klay Thompson",
+    "win_pct": 0.9612668341175351,
+    "true_rank_in_pool": 10
+   },
+   {
+    "pos": 10,
+    "player": "Blake Griffin",
+    "win_pct": 0.9425186422394192,
+    "true_rank_in_pool": 22
+   }
+  ],
+  "defense|2013-14|Regular season": [
+   {
+    "pos": 1,
+    "player": "Draymond Green",
+    "win_pct": 0.9656118237612505,
+    "true_rank_in_pool": 2
+   },
+   {
+    "pos": 2,
+    "player": "Andrew Bogut",
+    "win_pct": 0.9654424319781519,
+    "true_rank_in_pool": 4
+   },
+   {
+    "pos": 3,
+    "player": "Joakim Noah",
+    "win_pct": 0.9430604093447152,
+    "true_rank_in_pool": 3
+   },
+   {
+    "pos": 4,
+    "player": "Kawhi Leonard",
+    "win_pct": 0.9374723423842203,
+    "true_rank_in_pool": 1
+   },
+   {
+    "pos": 5,
+    "player": "Tiago Splitter",
+    "win_pct": 0.9340440961989765,
+    "true_rank_in_pool": 6
+   },
+   {
+    "pos": 6,
+    "player": "Paul George",
+    "win_pct": 0.9311754552533762,
+    "true_rank_in_pool": 21
+   },
+   {
+    "pos": 7,
+    "player": "Nene",
+    "win_pct": 0.930257704615151,
+    "true_rank_in_pool": 9
+   },
+   {
+    "pos": 8,
+    "player": "Roy Hibbert",
+    "win_pct": 0.9241706052303312,
+    "true_rank_in_pool": 15
+   },
+   {
+    "pos": 9,
+    "player": "Marcin Gortat",
+    "win_pct": 0.9183498495028892,
+    "true_rank_in_pool": 29
+   },
+   {
+    "pos": 10,
+    "player": "Ian Mahinmi",
+    "win_pct": 0.9119755458081472,
+    "true_rank_in_pool": 13
+   }
+  ],
+  "defense|2014-15|Regular season": [
+   {
+    "pos": 1,
+    "player": "Draymond Green",
+    "win_pct": 0.983981685563935,
+    "true_rank_in_pool": 2
+   },
+   {
+    "pos": 2,
+    "player": "Andrew Bogut",
+    "win_pct": 0.9741365496948672,
+    "true_rank_in_pool": 5
+   },
+   {
+    "pos": 3,
+    "player": "Tony Allen",
+    "win_pct": 0.9698230359762855,
+    "true_rank_in_pool": 4
+   },
+   {
+    "pos": 4,
+    "player": "Rudy Gobert",
+    "win_pct": 0.9555128495581411,
+    "true_rank_in_pool": 3
+   },
+   {
+    "pos": 5,
+    "player": "DeMarcus Cousins",
+    "win_pct": 0.9498023055851015,
+    "true_rank_in_pool": 7
+   },
+   {
+    "pos": 6,
+    "player": "Nerlens Noel",
+    "win_pct": 0.9433452723345296,
+    "true_rank_in_pool": 19
+   },
+   {
+    "pos": 7,
+    "player": "Zaza Pachulia",
+    "win_pct": 0.9309938122319613,
+    "true_rank_in_pool": 12
+   },
+   {
+    "pos": 8,
+    "player": "Marcin Gortat",
+    "win_pct": 0.9288234101928635,
+    "true_rank_in_pool": 8
+   },
+   {
+    "pos": 9,
+    "player": "Kawhi Leonard",
+    "win_pct": 0.9285233583663014,
+    "true_rank_in_pool": 1
+   },
+   {
+    "pos": 10,
+    "player": "Anthony Davis",
+    "win_pct": 0.926678301243351,
+    "true_rank_in_pool": 6
+   }
+  ]
+ }
+}
