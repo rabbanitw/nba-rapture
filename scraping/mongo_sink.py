@@ -45,6 +45,8 @@ KEY_FIELDS = {
     # Type=Opponent. Kept as its own source so the two never collide on upsert.
     "wowy-opp": ["source", "timestamp", "season_type", "standard_name", "on_or_off"],
     "nba-tracking": ["source", "timestamp", "season_type", "standard_name", "data_type"],
+    # Nearest-defender defended shots (leaguedashptdefend); data_type = category.
+    "nba-defend": ["source", "timestamp", "season_type", "standard_name", "data_type"],
 }
 
 
