@@ -103,18 +103,18 @@ def tournament_scores(models, Xf, idx):
 
 
 def main():
+    global PAIRS_PER_CELL
     ap = argparse.ArgumentParser()
     ap.add_argument("--datadir", default=str(REPO_ROOT / "training" / "data_fixed"))
     ap.add_argument("--out", default=str(REPO_ROOT / "training"
                                          / "RESULTS_pairwise.md"))
-    ap.add_argument("--pairs-per-cell", type=int, default=PAIRS_PER_CELL,
+    ap.add_argument("--pairs-per-cell", type=int, default=6000,
                     help="6k fits in 7GB; 12k was measurably better; a 32-64GB "
                          "machine can try 48000+ (memory ~ pairs x 1170 x 4B x ~2)")
     ap.add_argument("--save-preds", action="store_true",
-                    help="write row-aligned tournament scores for ALL regular-season "
-                         "rows to data_fixed/pairwise_gbm_preds.npz for integration")
+                    help="write row-aligned tournament scores per target to "
+                         "data_fixed/pairwise_gbm_<target>.npy for integration")
     args = ap.parse_args()
-    global PAIRS_PER_CELL
     PAIRS_PER_CELL = args.pairs_per_cell
     rng = np.random.default_rng(0)
 
