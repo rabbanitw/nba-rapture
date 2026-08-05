@@ -107,7 +107,15 @@ def main():
     ap.add_argument("--datadir", default=str(REPO_ROOT / "training" / "data_fixed"))
     ap.add_argument("--out", default=str(REPO_ROOT / "training"
                                          / "RESULTS_pairwise.md"))
+    ap.add_argument("--pairs-per-cell", type=int, default=PAIRS_PER_CELL,
+                    help="6k fits in 7GB; 12k was measurably better; a 32-64GB "
+                         "machine can try 48000+ (memory ~ pairs x 1170 x 4B x ~2)")
+    ap.add_argument("--save-preds", action="store_true",
+                    help="write row-aligned tournament scores for ALL regular-season "
+                         "rows to data_fixed/pairwise_gbm_preds.npz for integration")
     args = ap.parse_args()
+    global PAIRS_PER_CELL
+    PAIRS_PER_CELL = args.pairs_per_cell
     rng = np.random.default_rng(0)
 
     X, feat, d = prepare(args.datadir)
@@ -190,6 +198,18 @@ def main():
             m = cells_te == c
             rb[m] = -(ranks(p_direct[m]) + ranks(p_pair[m])) / 2.0
         record(target, "rank-avg(d,p)", rb)
+
+        if args.save_preds:
+            # row-aligned tournament scores for every RS cell (train + test), so
+            # the container-side pipeline can blend and LOSO-validate this model
+            allsc = np.full(Xf.shape[0], np.nan)
+            for c in np.unique(cells_all[(tr | test)]):
+                sub = np.where((tr | test) & (cells_all == c))[0]
+                if len(sub) >= 20:
+                    allsc[sub] = tournament_scores(models, Xf, sub)
+            outp = Path(args.datadir) / f"pairwise_gbm_{target}.npy"
+            np.save(outp, allsc)
+            print(f"  saved {outp}", flush=True)
 
         # tournament board with the minutes cutoff, per test season
         for c in np.unique(cells_te):
