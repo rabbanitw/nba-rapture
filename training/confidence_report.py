@@ -29,6 +29,10 @@ from experiment_topk_rank import ranks
 
 MC = 2000
 CI = (5, 95)
+# Uniform eligibility, matching 538's own floor and the projection boards. Without
+# it the pools are inconsistent across folds (historical cells inherit 538's floor,
+# modern cells go down to ~50 minutes) and a 56-minute player once projected 5th.
+MIN_MP = 1065
 TOP_SHOW = 20
 rng = np.random.default_rng(7)
 
@@ -59,9 +63,10 @@ for target, ykey in (("offense", "y_off"), ("defense", "y_def")):
     per_fold = {}
     for s in seasons:
         det = detail[s]
-        mean_pred = np.mean(members_of(det, target), axis=0)
-        b, _ = buckets(det["mp"])
-        res = np.array(det[ykey]) - mean_pred
+        el = np.array(det["mp"]) >= MIN_MP
+        mean_pred = np.mean(members_of(det, target), axis=0)[el]
+        b, _ = buckets(np.array(det["mp"])[el])
+        res = np.array(det[ykey])[el] - mean_pred
         per_fold[s] = (b, res)
     pools[target] = per_fold
 
@@ -81,11 +86,13 @@ cover_top30 = {"offense": [0, 0], "defense": [0, 0]}
 for target, ykey in (("offense", "y_off"), ("defense", "y_def")):
     for s in seasons:
         det = detail[s]
-        mem = members_of(det, target)
+        el = np.array(det["mp"]) >= MIN_MP
+        mem = [m[el] for m in members_of(det, target)]
+        players = [p for p, e in zip(det["players"], el) if e]
         mean_pred = np.mean(mem, axis=0)
-        y = np.array(det[ykey])
+        y = np.array(det[ykey])[el]
         n = len(y)
-        b, _ = buckets(det["mp"])
+        b, _ = buckets(np.array(det["mp"])[el])
         bucket_pools = {k: pool_for(target, s, k) for k in np.unique(b)}
 
         rank_counts = np.zeros((n, n), dtype=np.int32)
@@ -115,7 +122,7 @@ for target, ykey in (("offense", "y_off"), ("defense", "y_def")):
             if pos <= 30:
                 cover_top30[target][0] += inside
                 cover_top30[target][1] += 1
-            rows.append({"pos": pos, "player": det["players"][j],
+            rows.append({"pos": pos, "player": players[j],
                          "est": float(mean_pred[j]), "true_rank": tr,
                          "ci": (lo, hi), "p10": p10, "p30": p30,
                          "inside": inside})
