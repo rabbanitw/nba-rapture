@@ -1,0 +1,353 @@
+{
+ "n_uncorrected": 253,
+ "n_familywise": 0,
+ "fam_null_95": NaN,
+ "membership_top": [
+  [
+   "wowy_diff|OpponentPoints",
+   0.192555819331079
+  ],
+  [
+   "cellrel|4",
+   0.19733476250412246
+  ],
+  [
+   "pbp|OnDefRtg",
+   0.19733476250412246
+  ],
+  [
+   "pbp|OpponentPoints",
+   0.20248797435064927
+  ],
+  [
+   "wowy_on|OpponentPoints",
+   0.2104462150282504
+  ],
+  [
+   "defend|d2_value36",
+   0.7783966833390707
+  ],
+  [
+   "defend|d2_pct_pm",
+   0.22230695617928964
+  ],
+  [
+   "pbp|RecoveredBlocks",
+   0.7631687277235426
+  ],
+  [
+   "pbp|Blocks",
+   0.7586678000311943
+  ],
+  [
+   "pbp|Blocked2s",
+   0.755476701069106
+  ],
+  [
+   "pbp|BlockedShortMidRange",
+   0.7467002280105443
+  ],
+  [
+   "track:defensive-impact|BLK",
+   0.7436422613205369
+  ],
+  [
+   "defend|rim_pct_pm",
+   0.25697293360737694
+  ],
+  [
+   "pbp|BlockedAtRim",
+   0.7389412323013326
+  ],
+  [
+   "track:defensive-impact|DFG%",
+   0.26545207258777953
+  ],
+  [
+   "pbp|DefTwoPtRebounds",
+   0.7290331424932937
+  ],
+  [
+   "pbp|Rebounds",
+   0.7269586597121214
+  ],
+  [
+   "defend|dfga36",
+   0.7267784647383251
+  ],
+  [
+   "track:paint-touch|PASS",
+   0.725558948785265
+  ],
+  [
+   "track:rebounding|REB\nCHANCES",
+   0.7243210363227645
+  ],
+  [
+   "track:paint-touch|AST",
+   0.7240643162054886
+  ],
+  [
+   "track:rebounding|REB",
+   0.7222497680824665
+  ],
+  [
+   "wowy_diff|DefRebounds",
+   0.7181158603862722
+  ],
+  [
+   "pbp|DefRebounds",
+   0.7180832546268185
+  ],
+  [
+   "track:defensive-rebounding|DREB\nCHANCES",
+   0.7173724845587282
+  ],
+  [
+   "pbp|OffFGReboundPct",
+   0.7161328955536183
+  ],
+  [
+   "pbp|DefAtRimReboundPct",
+   0.7159634634523695
+  ],
+  [
+   "pbp|OffArc3ReboundPct",
+   0.7157278874942953
+  ],
+  [
+   "pbp|OffThreePtReboundPct",
+   0.7153390585517068
+  ],
+  [
+   "pbp|DefTwoPtReboundPct",
+   0.7148524147003233
+  ],
+  [
+   "pbp|DefShortMidRangeReboundPct",
+   0.7132746141569564
+  ],
+  [
+   "pbp|OffTwoPtReboundPct",
+   0.7102697498369942
+  ],
+  [
+   "track:rebounding|CONTESTED\nREB%",
+   0.7096014302292561
+  ],
+  [
+   "track:defensive-impact|DREB",
+   0.7093452848342865
+  ],
+  [
+   "track:rebounding|DEFERRED\nREB CHANCES",
+   0.70880177025782
+  ],
+  [
+   "cellrel|11",
+   0.7078239756692919
+  ],
+  [
+   "pbp|DefFGReboundPct",
+   0.7078239756692919
+  ],
+  [
+   "defend|rim_fga36",
+   0.7073437131276351
+  ],
+  [
+   "track:defensive-impact|DFGA",
+   0.7063312849308157
+  ],
+  [
+   "track:rebounding|CONTESTED\nREB",
+   0.7059307802281627
+  ]
+ ],
+ "ordering_top": [
+  [
+   "pbp|OpponentPoints",
+   -0.40107038128566375
+  ],
+  [
+   "pbp|OnDefRtg",
+   -0.3980702874893523
+  ],
+  [
+   "cellrel|4",
+   -0.3980702874893523
+  ],
+  [
+   "defend|d2_pct_pm",
+   -0.3863228431591199
+  ],
+  [
+   "wowy_on|OpponentPoints",
+   -0.37608025943328693
+  ],
+  [
+   "defend|d2_value36",
+   0.3600050410610105
+  ],
+  [
+   "wowy_diff|OpponentPoints",
+   -0.3463870556453875
+  ],
+  [
+   "wowy_on|DefRebounds",
+   0.3424569615680261
+  ],
+  [
+   "wowy_on|DefTwoPtRebounds",
+   0.332797024423648
+  ],
+  [
+   "pbp|PlusMinus",
+   0.31057033392447025
+  ],
+  [
+   "wowy_diff|DefTwoPtRebounds",
+   0.29871172303742394
+  ],
+  [
+   "wowy_on|PlusMinus",
+   0.2982452875760107
+  ],
+  [
+   "pbp|BlockedShortMidRange",
+   0.29232877880095276
+  ],
+  [
+   "wowy_diff|DefRebounds",
+   0.2900383681506805
+  ],
+  [
+   "track:defensive-rebounding|DEFERRED\nDREB CHANCES",
+   0.2875326711106275
+  ],
+  [
+   "defend|rim_pct_pm",
+   -0.28647850341219666
+  ],
+  [
+   "pbp|Blocks",
+   0.28558781496741514
+  ],
+  [
+   "wowy_on|AtRimPctAssisted",
+   0.28300435847532446
+  ],
+  [
+   "defend|dfga36",
+   0.28134729003561515
+  ],
+  [
+   "pbp|PenaltyCorner3FGA",
+   -0.27804501651181246
+  ],
+  [
+   "pbp|Blocked2s",
+   0.27679711672307294
+  ],
+  [
+   "pbp|DefTwoPtRebounds",
+   0.276748199721176
+  ],
+  [
+   "track:defensive-rebounding|DREB\nCHANCES",
+   0.27510425266247024
+  ],
+  [
+   "wowy_on|DefTwoPtReboundPct",
+   0.27312196282797147
+  ],
+  [
+   "track:rebounding|DEFERRED\nREB CHANCES",
+   0.2685044900237946
+  ],
+  [
+   "pbp|RecoveredBlocks",
+   0.2678059016315251
+  ],
+  [
+   "track:elbow-touch|FTM",
+   0.2613682121460072
+  ],
+  [
+   "track:defensive-rebounding|CONTESTED\nDREB",
+   0.2557213199563964
+  ],
+  [
+   "pbp|BlockedAtRim",
+   0.25385405549058515
+  ],
+  [
+   "ctx|pos_C",
+   0.25191095039348294
+  ],
+  [
+   "pbp|DefRebounds",
+   0.25085464065978746
+  ],
+  [
+   "track:elbow-touch|AST",
+   0.2494475199095189
+  ],
+  [
+   "track:elbow-touch|FTA",
+   0.24915596354961175
+  ],
+  [
+   "track:defensive-rebounding|AVG DREB\nDISTANCE",
+   -0.2486023186293472
+  ],
+  [
+   "wowy_diff|ShootingFouls",
+   -0.24766245155551475
+  ],
+  [
+   "track:defensive-impact|DREB",
+   0.24670336937906198
+  ],
+  [
+   "track:shooting-efficiency|ELBOW\nTOUCH PTS",
+   0.24478679705907078
+  ],
+  [
+   "wowy_diff|PlusMinus",
+   0.2445261430519768
+  ],
+  [
+   "cellrel|8",
+   0.2445261430519768
+  ],
+  [
+   "track:defensive-rebounding|DREB",
+   0.2442211081924956
+  ]
+ ],
+ "base": {
+  "dev@10": 3.8,
+  "tau@10": 0.5111111111111111,
+  "hits@10": 14,
+  "dev@20": 6.975,
+  "tau@20": 0.5105263157894737,
+  "hits@20": 30,
+  "dev@30": 10.316666666666666,
+  "tau@30": 0.5379310344827587,
+  "hits@30": 43,
+  "mae": 0.6249924947772537
+ },
+ "two_stage_rank_avg": {
+  "dev@10": 4.85,
+  "tau@10": 0.3555555555555555,
+  "hits@10": 15,
+  "dev@20": 7.35,
+  "tau@20": 0.46842105263157896,
+  "hits@20": 31,
+  "dev@30": 10.05,
+  "tau@30": 0.535632183908046,
+  "hits@30": 45,
+  "mae": 4.267319264826269
+ }
+}
