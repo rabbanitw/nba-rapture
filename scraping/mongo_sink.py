@@ -47,6 +47,8 @@ KEY_FIELDS = {
     "nba-tracking": ["source", "timestamp", "season_type", "standard_name", "data_type"],
     # Nearest-defender defended shots (leaguedashptdefend); data_type = category.
     "nba-defend": ["source", "timestamp", "season_type", "standard_name", "data_type"],
+    # Own shots by closest-defender distance + time of possession; data_type = table.
+    "nba-shotdash": ["source", "timestamp", "season_type", "standard_name", "data_type"],
 }
 
 
