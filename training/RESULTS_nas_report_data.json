@@ -1,0 +1,3004 @@
+{
+ "metrics_full": {
+  "offense": {
+   "gbm-direct": {
+    "dev@10": 1.95,
+    "tau@10": 0.6,
+    "hits@10": 16,
+    "dev@20": 3.725,
+    "tau@20": 0.7053,
+    "hits@20": 32,
+    "dev@30": 7.5667,
+    "tau@30": 0.7103,
+    "hits@30": 48,
+    "mae": 0.5425
+   },
+   "gbm-pairwise": {
+    "dev@10": 1.55,
+    "tau@10": 0.7556,
+    "hits@10": 17,
+    "dev@20": 2.875,
+    "tau@20": 0.7789,
+    "hits@20": 35,
+    "dev@30": 4.4667,
+    "tau@30": 0.7425,
+    "hits@30": 51,
+    "mae": 1.4043
+   },
+   "nas-direct": {
+    "dev@10": 3.65,
+    "tau@10": 0.8222,
+    "hits@10": 14,
+    "dev@20": 6.125,
+    "tau@20": 0.6316,
+    "hits@20": 30,
+    "dev@30": 10.3167,
+    "tau@30": 0.5632,
+    "hits@30": 46,
+    "mae": 0.7502
+   },
+   "nas-pairwise": {
+    "dev@10": 3.25,
+    "tau@10": 0.7111,
+    "hits@10": 15,
+    "dev@20": 6.925,
+    "tau@20": 0.6211,
+    "hits@20": 29,
+    "dev@30": 9.65,
+    "tau@30": 0.5862,
+    "hits@30": 47,
+    "mae": 1.4004
+   }
+  },
+  "defense": {
+   "gbm-direct": {
+    "dev@10": 3.65,
+    "tau@10": 0.5111,
+    "hits@10": 14,
+    "dev@20": 6.25,
+    "tau@20": 0.5316,
+    "hits@20": 29,
+    "dev@30": 10.4667,
+    "tau@30": 0.5632,
+    "hits@30": 43,
+    "mae": 0.6843
+   },
+   "gbm-pairwise": {
+    "dev@10": 4.65,
+    "tau@10": 0.5111,
+    "hits@10": 14,
+    "dev@20": 7.125,
+    "tau@20": 0.4526,
+    "hits@20": 31,
+    "dev@30": 11.2167,
+    "tau@30": 0.5264,
+    "hits@30": 42,
+    "mae": 1.3367
+   },
+   "nas-direct": {
+    "dev@10": 12.75,
+    "tau@10": 0.3111,
+    "hits@10": 12,
+    "dev@20": 15.075,
+    "tau@20": 0.3789,
+    "hits@20": 23,
+    "dev@30": 18.5333,
+    "tau@30": 0.4437,
+    "hits@30": 38,
+    "mae": 0.8451
+   },
+   "nas-pairwise": {
+    "dev@10": 6.0,
+    "tau@10": 0.5111,
+    "hits@10": 12,
+    "dev@20": 12.375,
+    "tau@20": 0.4421,
+    "hits@20": 27,
+    "dev@30": 16.4333,
+    "tau@30": 0.4989,
+    "hits@30": 42,
+    "mae": 1.3275
+   }
+  }
+ },
+ "metrics_paine": {
+  "offense": {
+   "gbm-direct": {
+    "dev@10": 1.95,
+    "tau@10": 0.6,
+    "hits@10": 16,
+    "dev@20": 3.775,
+    "tau@20": 0.6947,
+    "hits@20": 33,
+    "dev@30": 7.7,
+    "tau@30": 0.7057,
+    "hits@30": 47,
+    "mae": 0.5436
+   },
+   "gbm-pairwise": {
+    "dev@10": 1.55,
+    "tau@10": 0.7556,
+    "hits@10": 17,
+    "dev@20": 2.925,
+    "tau@20": 0.7895,
+    "hits@20": 34,
+    "dev@30": 4.5167,
+    "tau@30": 0.7402,
+    "hits@30": 50,
+    "mae": 1.4065
+   },
+   "nas-direct": {
+    "dev@10": 3.65,
+    "tau@10": 0.8222,
+    "hits@10": 14,
+    "dev@20": 6.875,
+    "tau@20": 0.6579,
+    "hits@20": 29,
+    "dev@30": 10.0333,
+    "tau@30": 0.5678,
+    "hits@30": 46,
+    "mae": 0.7487
+   },
+   "nas-pairwise": {
+    "dev@10": 3.25,
+    "tau@10": 0.7111,
+    "hits@10": 15,
+    "dev@20": 7.25,
+    "tau@20": 0.6053,
+    "hits@20": 29,
+    "dev@30": 10.1,
+    "tau@30": 0.5862,
+    "hits@30": 46,
+    "mae": 1.4026
+   },
+   "paine-published": {
+    "dev@10": 4.35,
+    "tau@10": 0.6667,
+    "hits@10": 17,
+    "dev@20": 6.375,
+    "tau@20": 0.6632,
+    "hits@20": 32,
+    "dev@30": 11.2667,
+    "tau@30": 0.6644,
+    "hits@30": 44,
+    "mae": 0.7181
+   },
+   "paine-recreated": {
+    "dev@10": 4.35,
+    "tau@10": 0.5556,
+    "hits@10": 16,
+    "dev@20": 9.35,
+    "tau@20": 0.6789,
+    "hits@20": 31,
+    "dev@30": 9.8,
+    "tau@30": 0.6736,
+    "hits@30": 45,
+    "mae": 0.7839
+   }
+  },
+  "defense": {
+   "gbm-direct": {
+    "dev@10": 3.8,
+    "tau@10": 0.4889,
+    "hits@10": 14,
+    "dev@20": 6.3,
+    "tau@20": 0.5053,
+    "hits@20": 29,
+    "dev@30": 10.5,
+    "tau@30": 0.4989,
+    "hits@30": 45,
+    "mae": 0.68
+   },
+   "gbm-pairwise": {
+    "dev@10": 4.75,
+    "tau@10": 0.4889,
+    "hits@10": 14,
+    "dev@20": 6.975,
+    "tau@20": 0.4526,
+    "hits@20": 31,
+    "dev@30": 11.1167,
+    "tau@30": 0.4851,
+    "hits@30": 43,
+    "mae": 1.3306
+   },
+   "nas-direct": {
+    "dev@10": 13.0,
+    "tau@10": 0.2889,
+    "hits@10": 12,
+    "dev@20": 15.175,
+    "tau@20": 0.3632,
+    "hits@20": 23,
+    "dev@30": 17.65,
+    "tau@30": 0.3954,
+    "hits@30": 39,
+    "mae": 0.8399
+   },
+   "nas-pairwise": {
+    "dev@10": 6.05,
+    "tau@10": 0.4889,
+    "hits@10": 12,
+    "dev@20": 12.4,
+    "tau@20": 0.4158,
+    "hits@20": 27,
+    "dev@30": 15.1833,
+    "tau@30": 0.4575,
+    "hits@30": 44,
+    "mae": 1.3215
+   },
+   "paine-published": {
+    "dev@10": 13.4,
+    "tau@10": 0.5111,
+    "hits@10": 11,
+    "dev@20": 16.85,
+    "tau@20": 0.4316,
+    "hits@20": 26,
+    "dev@30": 23.2,
+    "tau@30": 0.4207,
+    "hits@30": 37,
+    "mae": 0.8852
+   },
+   "paine-recreated": {
+    "dev@10": 16.4,
+    "tau@10": 0.4889,
+    "hits@10": 11,
+    "dev@20": 19.2,
+    "tau@20": 0.4,
+    "hits@20": 22,
+    "dev@30": 21.7833,
+    "tau@30": 0.2851,
+    "hits@30": 35,
+    "mae": 0.9971
+   }
+  }
+ },
+ "metrics_train": {
+  "offense": {
+   "gbm-direct": {
+    "dev@10": 1.4,
+    "tau@10": 0.6889,
+    "hits@10": 10,
+    "dev@20": 2.4,
+    "tau@20": 0.7474,
+    "hits@20": 18,
+    "dev@30": 3.3667,
+    "tau@30": 0.7563,
+    "hits@30": 27,
+    "mae": 0.3809
+   },
+   "gbm-pairwise": {
+    "dev@10": 1.8,
+    "tau@10": 0.7333,
+    "hits@10": 8,
+    "dev@20": 2.65,
+    "tau@20": 0.7053,
+    "hits@20": 19,
+    "dev@30": 3.3,
+    "tau@30": 0.7241,
+    "hits@30": 28,
+    "mae": 1.4213
+   },
+   "nas-direct": {
+    "dev@10": 0.4,
+    "tau@10": 0.9111,
+    "hits@10": 10,
+    "dev@20": 0.55,
+    "tau@20": 0.9368,
+    "hits@20": 19,
+    "dev@30": 1.0667,
+    "tau@30": 0.9126,
+    "hits@30": 30,
+    "mae": 1.0673
+   },
+   "nas-pairwise": {
+    "dev@10": 0.8,
+    "tau@10": 0.7778,
+    "hits@10": 9,
+    "dev@20": 1.85,
+    "tau@20": 0.8,
+    "hits@20": 19,
+    "dev@30": 2.1333,
+    "tau@30": 0.8023,
+    "hits@30": 30,
+    "mae": 1.4106
+   }
+  },
+  "defense": {
+   "gbm-direct": {
+    "dev@10": 3.1,
+    "tau@10": 0.5556,
+    "hits@10": 7,
+    "dev@20": 6.7,
+    "tau@20": 0.5895,
+    "hits@20": 16,
+    "dev@30": 9.2,
+    "tau@30": 0.5586,
+    "hits@30": 23,
+    "mae": 0.5481
+   },
+   "gbm-pairwise": {
+    "dev@10": 6.6,
+    "tau@10": 0.4667,
+    "hits@10": 7,
+    "dev@20": 7.05,
+    "tau@20": 0.6316,
+    "hits@20": 16,
+    "dev@30": 8.6333,
+    "tau@30": 0.6046,
+    "hits@30": 23,
+    "mae": 1.3291
+   },
+   "nas-direct": {
+    "dev@10": 0.1,
+    "tau@10": 1.0,
+    "hits@10": 9,
+    "dev@20": 0.2,
+    "tau@20": 0.9789,
+    "hits@20": 20,
+    "dev@30": 0.4,
+    "tau@30": 0.9724,
+    "hits@30": 29,
+    "mae": 0.0052
+   },
+   "nas-pairwise": {
+    "dev@10": 1.1,
+    "tau@10": 0.6889,
+    "hits@10": 8,
+    "dev@20": 2.15,
+    "tau@20": 0.7579,
+    "hits@20": 17,
+    "dev@30": 3.2,
+    "tau@30": 0.7011,
+    "hits@30": 27,
+    "mae": 1.279
+   }
+  }
+ },
+ "boards": {
+  "offense|2013-14|test": {
+   "true": [
+    {
+     "pos": 1,
+     "player": "Kevin Durant",
+     "score": 7.6
+    },
+    {
+     "pos": 2,
+     "player": "Chris Paul",
+     "score": 7.1
+    },
+    {
+     "pos": 3,
+     "player": "James Harden",
+     "score": 6.3
+    },
+    {
+     "pos": 4,
+     "player": "LeBron James",
+     "score": 5.8
+    },
+    {
+     "pos": 5,
+     "player": "Kevin Love",
+     "score": 5.7
+    },
+    {
+     "pos": 6,
+     "player": "Goran Dragic",
+     "score": 4.8
+    },
+    {
+     "pos": 7,
+     "player": "Kyle Lowry",
+     "score": 4.4
+    },
+    {
+     "pos": 8,
+     "player": "Dirk Nowitzki",
+     "score": 4.4
+    },
+    {
+     "pos": 9,
+     "player": "Carmelo Anthony",
+     "score": 4.2
+    },
+    {
+     "pos": 10,
+     "player": "Manu Ginobili",
+     "score": 4.0
+    },
+    {
+     "pos": 11,
+     "player": "Patty Mills",
+     "score": 3.9
+    },
+    {
+     "pos": 12,
+     "player": "Damian Lillard",
+     "score": 3.6
+    },
+    {
+     "pos": 13,
+     "player": "Mike Conley",
+     "score": 3.5
+    },
+    {
+     "pos": 14,
+     "player": "Isaiah Thomas",
+     "score": 3.5
+    },
+    {
+     "pos": 15,
+     "player": "Russell Westbrook",
+     "score": 3.3
+    }
+   ],
+   "gbm-direct": [
+    {
+     "pos": 1,
+     "player": "LeBron James",
+     "true_rank": 4
+    },
+    {
+     "pos": 2,
+     "player": "Kevin Durant",
+     "true_rank": 1
+    },
+    {
+     "pos": 3,
+     "player": "James Harden",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Chris Paul",
+     "true_rank": 2
+    },
+    {
+     "pos": 5,
+     "player": "Goran Dragic",
+     "true_rank": 6
+    },
+    {
+     "pos": 6,
+     "player": "Kevin Love",
+     "true_rank": 5
+    },
+    {
+     "pos": 7,
+     "player": "Damian Lillard",
+     "true_rank": 12
+    },
+    {
+     "pos": 8,
+     "player": "Manu Ginobili",
+     "true_rank": 10
+    },
+    {
+     "pos": 9,
+     "player": "Russell Westbrook",
+     "true_rank": 15
+    },
+    {
+     "pos": 10,
+     "player": "Carmelo Anthony",
+     "true_rank": 9
+    },
+    {
+     "pos": 11,
+     "player": "Kyle Lowry",
+     "true_rank": 7
+    },
+    {
+     "pos": 12,
+     "player": "Isaiah Thomas",
+     "true_rank": 14
+    },
+    {
+     "pos": 13,
+     "player": "Dirk Nowitzki",
+     "true_rank": 8
+    },
+    {
+     "pos": 14,
+     "player": "Mike Conley",
+     "true_rank": 13
+    },
+    {
+     "pos": 15,
+     "player": "Patty Mills",
+     "true_rank": 11
+    }
+   ],
+   "gbm-pairwise": [
+    {
+     "pos": 1,
+     "player": "Kevin Durant",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Chris Paul",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "LeBron James",
+     "true_rank": 4
+    },
+    {
+     "pos": 4,
+     "player": "James Harden",
+     "true_rank": 3
+    },
+    {
+     "pos": 5,
+     "player": "Kevin Love",
+     "true_rank": 5
+    },
+    {
+     "pos": 6,
+     "player": "Goran Dragic",
+     "true_rank": 6
+    },
+    {
+     "pos": 7,
+     "player": "Kyle Lowry",
+     "true_rank": 7
+    },
+    {
+     "pos": 8,
+     "player": "Damian Lillard",
+     "true_rank": 12
+    },
+    {
+     "pos": 9,
+     "player": "Manu Ginobili",
+     "true_rank": 10
+    },
+    {
+     "pos": 10,
+     "player": "Carmelo Anthony",
+     "true_rank": 9
+    },
+    {
+     "pos": 11,
+     "player": "Dirk Nowitzki",
+     "true_rank": 8
+    },
+    {
+     "pos": 12,
+     "player": "Mike Conley",
+     "true_rank": 13
+    },
+    {
+     "pos": 13,
+     "player": "Isaiah Thomas",
+     "true_rank": 14
+    },
+    {
+     "pos": 14,
+     "player": "Russell Westbrook",
+     "true_rank": 15
+    },
+    {
+     "pos": 15,
+     "player": "Blake Griffin",
+     "true_rank": 17
+    }
+   ],
+   "nas-direct": [
+    {
+     "pos": 1,
+     "player": "Kevin Durant",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Chris Paul",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "James Harden",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "LeBron James",
+     "true_rank": 4
+    },
+    {
+     "pos": 5,
+     "player": "Kevin Love",
+     "true_rank": 5
+    },
+    {
+     "pos": 6,
+     "player": "Damian Lillard",
+     "true_rank": 12
+    },
+    {
+     "pos": 7,
+     "player": "Goran Dragic",
+     "true_rank": 6
+    },
+    {
+     "pos": 8,
+     "player": "Isaiah Thomas",
+     "true_rank": 14
+    },
+    {
+     "pos": 9,
+     "player": "Kyle Lowry",
+     "true_rank": 7
+    },
+    {
+     "pos": 10,
+     "player": "Paul George",
+     "true_rank": 22
+    },
+    {
+     "pos": 11,
+     "player": "Carmelo Anthony",
+     "true_rank": 9
+    },
+    {
+     "pos": 12,
+     "player": "Blake Griffin",
+     "true_rank": 17
+    },
+    {
+     "pos": 13,
+     "player": "Manu Ginobili",
+     "true_rank": 10
+    },
+    {
+     "pos": 14,
+     "player": "Dirk Nowitzki",
+     "true_rank": 8
+    },
+    {
+     "pos": 15,
+     "player": "Russell Westbrook",
+     "true_rank": 15
+    }
+   ],
+   "nas-pairwise": [
+    {
+     "pos": 1,
+     "player": "Kevin Durant",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "LeBron James",
+     "true_rank": 4
+    },
+    {
+     "pos": 3,
+     "player": "James Harden",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Chris Paul",
+     "true_rank": 2
+    },
+    {
+     "pos": 5,
+     "player": "Kevin Love",
+     "true_rank": 5
+    },
+    {
+     "pos": 6,
+     "player": "Goran Dragic",
+     "true_rank": 6
+    },
+    {
+     "pos": 7,
+     "player": "Damian Lillard",
+     "true_rank": 12
+    },
+    {
+     "pos": 8,
+     "player": "Kyle Lowry",
+     "true_rank": 7
+    },
+    {
+     "pos": 9,
+     "player": "Paul George",
+     "true_rank": 22
+    },
+    {
+     "pos": 10,
+     "player": "Isaiah Thomas",
+     "true_rank": 14
+    },
+    {
+     "pos": 11,
+     "player": "Mike Conley",
+     "true_rank": 13
+    },
+    {
+     "pos": 12,
+     "player": "Carmelo Anthony",
+     "true_rank": 9
+    },
+    {
+     "pos": 13,
+     "player": "Manu Ginobili",
+     "true_rank": 10
+    },
+    {
+     "pos": 14,
+     "player": "Dirk Nowitzki",
+     "true_rank": 8
+    },
+    {
+     "pos": 15,
+     "player": "Blake Griffin",
+     "true_rank": 17
+    }
+   ],
+   "paine-published": [
+    {
+     "pos": 1,
+     "player": "Kevin Durant",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "LeBron James",
+     "true_rank": 4
+    },
+    {
+     "pos": 3,
+     "player": "Chris Paul",
+     "true_rank": 2
+    },
+    {
+     "pos": 4,
+     "player": "James Harden",
+     "true_rank": 3
+    },
+    {
+     "pos": 5,
+     "player": "Goran Dragic",
+     "true_rank": 6
+    },
+    {
+     "pos": 6,
+     "player": "Kevin Love",
+     "true_rank": 5
+    },
+    {
+     "pos": 7,
+     "player": "Dirk Nowitzki",
+     "true_rank": 8
+    },
+    {
+     "pos": 8,
+     "player": "Brandan Wright",
+     "true_rank": 41
+    },
+    {
+     "pos": 9,
+     "player": "Carmelo Anthony",
+     "true_rank": 9
+    },
+    {
+     "pos": 10,
+     "player": "Kyle Lowry",
+     "true_rank": 7
+    },
+    {
+     "pos": 11,
+     "player": "Blake Griffin",
+     "true_rank": 17
+    },
+    {
+     "pos": 12,
+     "player": "Isaiah Thomas",
+     "true_rank": 14
+    },
+    {
+     "pos": 13,
+     "player": "Manu Ginobili",
+     "true_rank": 10
+    },
+    {
+     "pos": 14,
+     "player": "Russell Westbrook",
+     "true_rank": 15
+    },
+    {
+     "pos": 15,
+     "player": "Nikola Pekovic",
+     "true_rank": 68
+    }
+   ]
+  },
+  "offense|2014-15|test": {
+   "true": [
+    {
+     "pos": 1,
+     "player": "Chris Paul",
+     "score": 8.5
+    },
+    {
+     "pos": 2,
+     "player": "James Harden",
+     "score": 7.7
+    },
+    {
+     "pos": 3,
+     "player": "Russell Westbrook",
+     "score": 6.1
+    },
+    {
+     "pos": 4,
+     "player": "Kyrie Irving",
+     "score": 5.5
+    },
+    {
+     "pos": 5,
+     "player": "LeBron James",
+     "score": 5.3
+    },
+    {
+     "pos": 6,
+     "player": "Lou Williams",
+     "score": 5.2
+    },
+    {
+     "pos": 7,
+     "player": "Kyle Korver",
+     "score": 4.6
+    },
+    {
+     "pos": 8,
+     "player": "Isaiah Thomas",
+     "score": 4.5
+    },
+    {
+     "pos": 9,
+     "player": "Anthony Davis",
+     "score": 4.3
+    },
+    {
+     "pos": 10,
+     "player": "Klay Thompson",
+     "score": 4.3
+    },
+    {
+     "pos": 11,
+     "player": "Damian Lillard",
+     "score": 4.0
+    },
+    {
+     "pos": 12,
+     "player": "George Hill",
+     "score": 3.9
+    },
+    {
+     "pos": 13,
+     "player": "Carmelo Anthony",
+     "score": 3.8
+    },
+    {
+     "pos": 14,
+     "player": "Ty Lawson",
+     "score": 3.8
+    },
+    {
+     "pos": 15,
+     "player": "Kawhi Leonard",
+     "score": 3.7
+    }
+   ],
+   "gbm-direct": [
+    {
+     "pos": 1,
+     "player": "James Harden",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Chris Paul",
+     "true_rank": 1
+    },
+    {
+     "pos": 3,
+     "player": "LeBron James",
+     "true_rank": 5
+    },
+    {
+     "pos": 4,
+     "player": "Russell Westbrook",
+     "true_rank": 3
+    },
+    {
+     "pos": 5,
+     "player": "Kyrie Irving",
+     "true_rank": 4
+    },
+    {
+     "pos": 6,
+     "player": "Isaiah Thomas",
+     "true_rank": 8
+    },
+    {
+     "pos": 7,
+     "player": "Damian Lillard",
+     "true_rank": 11
+    },
+    {
+     "pos": 8,
+     "player": "Lou Williams",
+     "true_rank": 6
+    },
+    {
+     "pos": 9,
+     "player": "Klay Thompson",
+     "true_rank": 10
+    },
+    {
+     "pos": 10,
+     "player": "George Hill",
+     "true_rank": 12
+    },
+    {
+     "pos": 11,
+     "player": "Blake Griffin",
+     "true_rank": 22
+    },
+    {
+     "pos": 12,
+     "player": "Anthony Davis",
+     "true_rank": 9
+    },
+    {
+     "pos": 13,
+     "player": "Jimmy Butler",
+     "true_rank": 20
+    },
+    {
+     "pos": 14,
+     "player": "Mike Conley",
+     "true_rank": 32
+    },
+    {
+     "pos": 15,
+     "player": "Carmelo Anthony",
+     "true_rank": 13
+    }
+   ],
+   "gbm-pairwise": [
+    {
+     "pos": 1,
+     "player": "Chris Paul",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "James Harden",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "LeBron James",
+     "true_rank": 5
+    },
+    {
+     "pos": 4,
+     "player": "Russell Westbrook",
+     "true_rank": 3
+    },
+    {
+     "pos": 5,
+     "player": "Kyrie Irving",
+     "true_rank": 4
+    },
+    {
+     "pos": 6,
+     "player": "Lou Williams",
+     "true_rank": 6
+    },
+    {
+     "pos": 7,
+     "player": "Damian Lillard",
+     "true_rank": 11
+    },
+    {
+     "pos": 8,
+     "player": "Klay Thompson",
+     "true_rank": 10
+    },
+    {
+     "pos": 9,
+     "player": "Isaiah Thomas",
+     "true_rank": 8
+    },
+    {
+     "pos": 10,
+     "player": "Blake Griffin",
+     "true_rank": 22
+    },
+    {
+     "pos": 11,
+     "player": "JJ Redick",
+     "true_rank": 29
+    },
+    {
+     "pos": 12,
+     "player": "Anthony Davis",
+     "true_rank": 9
+    },
+    {
+     "pos": 13,
+     "player": "George Hill",
+     "true_rank": 12
+    },
+    {
+     "pos": 14,
+     "player": "Kyle Korver",
+     "true_rank": 7
+    },
+    {
+     "pos": 15,
+     "player": "Jimmy Butler",
+     "true_rank": 20
+    }
+   ],
+   "nas-direct": [
+    {
+     "pos": 1,
+     "player": "Chris Paul",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "James Harden",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "LeBron James",
+     "true_rank": 5
+    },
+    {
+     "pos": 4,
+     "player": "Damian Lillard",
+     "true_rank": 11
+    },
+    {
+     "pos": 5,
+     "player": "Russell Westbrook",
+     "true_rank": 3
+    },
+    {
+     "pos": 6,
+     "player": "Lou Williams",
+     "true_rank": 6
+    },
+    {
+     "pos": 7,
+     "player": "Kyrie Irving",
+     "true_rank": 4
+    },
+    {
+     "pos": 8,
+     "player": "Isaiah Thomas",
+     "true_rank": 8
+    },
+    {
+     "pos": 9,
+     "player": "Blake Griffin",
+     "true_rank": 22
+    },
+    {
+     "pos": 10,
+     "player": "JJ Redick",
+     "true_rank": 29
+    },
+    {
+     "pos": 11,
+     "player": "Klay Thompson",
+     "true_rank": 10
+    },
+    {
+     "pos": 12,
+     "player": "Kyle Lowry",
+     "true_rank": 18
+    },
+    {
+     "pos": 13,
+     "player": "Kawhi Leonard",
+     "true_rank": 15
+    },
+    {
+     "pos": 14,
+     "player": "Brandon Jennings",
+     "true_rank": 23
+    },
+    {
+     "pos": 15,
+     "player": "Kyle Korver",
+     "true_rank": 7
+    }
+   ],
+   "nas-pairwise": [
+    {
+     "pos": 1,
+     "player": "James Harden",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Chris Paul",
+     "true_rank": 1
+    },
+    {
+     "pos": 3,
+     "player": "Kyrie Irving",
+     "true_rank": 4
+    },
+    {
+     "pos": 4,
+     "player": "LeBron James",
+     "true_rank": 5
+    },
+    {
+     "pos": 5,
+     "player": "Lou Williams",
+     "true_rank": 6
+    },
+    {
+     "pos": 6,
+     "player": "Damian Lillard",
+     "true_rank": 11
+    },
+    {
+     "pos": 7,
+     "player": "Russell Westbrook",
+     "true_rank": 3
+    },
+    {
+     "pos": 8,
+     "player": "Klay Thompson",
+     "true_rank": 10
+    },
+    {
+     "pos": 9,
+     "player": "JJ Redick",
+     "true_rank": 29
+    },
+    {
+     "pos": 10,
+     "player": "Isaiah Thomas",
+     "true_rank": 8
+    },
+    {
+     "pos": 11,
+     "player": "Jimmy Butler",
+     "true_rank": 20
+    },
+    {
+     "pos": 12,
+     "player": "Kyle Lowry",
+     "true_rank": 18
+    },
+    {
+     "pos": 13,
+     "player": "Kyle Korver",
+     "true_rank": 7
+    },
+    {
+     "pos": 14,
+     "player": "Blake Griffin",
+     "true_rank": 22
+    },
+    {
+     "pos": 15,
+     "player": "Anthony Davis",
+     "true_rank": 9
+    }
+   ],
+   "paine-published": [
+    {
+     "pos": 1,
+     "player": "Chris Paul",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "James Harden",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "LeBron James",
+     "true_rank": 5
+    },
+    {
+     "pos": 4,
+     "player": "Anthony Davis",
+     "true_rank": 9
+    },
+    {
+     "pos": 5,
+     "player": "Russell Westbrook",
+     "true_rank": 3
+    },
+    {
+     "pos": 6,
+     "player": "Jimmy Butler",
+     "true_rank": 20
+    },
+    {
+     "pos": 7,
+     "player": "Blake Griffin",
+     "true_rank": 22
+    },
+    {
+     "pos": 8,
+     "player": "Kyrie Irving",
+     "true_rank": 4
+    },
+    {
+     "pos": 9,
+     "player": "Lou Williams",
+     "true_rank": 6
+    },
+    {
+     "pos": 10,
+     "player": "Klay Thompson",
+     "true_rank": 10
+    },
+    {
+     "pos": 11,
+     "player": "George Hill",
+     "true_rank": 12
+    },
+    {
+     "pos": 12,
+     "player": "Kawhi Leonard",
+     "true_rank": 15
+    },
+    {
+     "pos": 13,
+     "player": "JJ Redick",
+     "true_rank": 29
+    },
+    {
+     "pos": 14,
+     "player": "Ty Lawson",
+     "true_rank": 14
+    },
+    {
+     "pos": 15,
+     "player": "Gordon Hayward",
+     "true_rank": 21
+    }
+   ]
+  },
+  "offense|2021-22|train-insample": {
+   "true": [
+    {
+     "pos": 1,
+     "player": "Nikola Jokic",
+     "score": 9.0
+    },
+    {
+     "pos": 2,
+     "player": "Trae Young",
+     "score": 7.6
+    },
+    {
+     "pos": 3,
+     "player": "Luka Doncic",
+     "score": 5.8
+    },
+    {
+     "pos": 4,
+     "player": "Giannis Antetokounmpo",
+     "score": 5.7
+    },
+    {
+     "pos": 5,
+     "player": "Stephen Curry",
+     "score": 5.7
+    },
+    {
+     "pos": 6,
+     "player": "Kevin Durant",
+     "score": 5.0
+    },
+    {
+     "pos": 7,
+     "player": "Jayson Tatum",
+     "score": 4.8
+    },
+    {
+     "pos": 8,
+     "player": "Donovan Mitchell",
+     "score": 4.6
+    },
+    {
+     "pos": 9,
+     "player": "LeBron James",
+     "score": 4.6
+    },
+    {
+     "pos": 10,
+     "player": "Ja Morant",
+     "score": 4.6
+    },
+    {
+     "pos": 11,
+     "player": "Darius Garland",
+     "score": 4.5
+    },
+    {
+     "pos": 12,
+     "player": "Joel Embiid",
+     "score": 4.3
+    },
+    {
+     "pos": 13,
+     "player": "Devin Booker",
+     "score": 4.3
+    },
+    {
+     "pos": 14,
+     "player": "Chris Paul",
+     "score": 4.1
+    },
+    {
+     "pos": 15,
+     "player": "Jrue Holiday",
+     "score": 4.0
+    }
+   ],
+   "gbm-direct": [
+    {
+     "pos": 1,
+     "player": "Nikola Jokic",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Trae Young",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "Stephen Curry",
+     "true_rank": 5
+    },
+    {
+     "pos": 4,
+     "player": "Luka Doncic",
+     "true_rank": 3
+    },
+    {
+     "pos": 5,
+     "player": "Donovan Mitchell",
+     "true_rank": 8
+    },
+    {
+     "pos": 6,
+     "player": "Giannis Antetokounmpo",
+     "true_rank": 4
+    },
+    {
+     "pos": 7,
+     "player": "Kevin Durant",
+     "true_rank": 6
+    },
+    {
+     "pos": 8,
+     "player": "LeBron James",
+     "true_rank": 9
+    },
+    {
+     "pos": 9,
+     "player": "Ja Morant",
+     "true_rank": 10
+    },
+    {
+     "pos": 10,
+     "player": "Jayson Tatum",
+     "true_rank": 7
+    },
+    {
+     "pos": 11,
+     "player": "Darius Garland",
+     "true_rank": 11
+    },
+    {
+     "pos": 12,
+     "player": "DeMar DeRozan",
+     "true_rank": 16
+    },
+    {
+     "pos": 13,
+     "player": "Devin Booker",
+     "true_rank": 13
+    },
+    {
+     "pos": 14,
+     "player": "Jrue Holiday",
+     "true_rank": 15
+    },
+    {
+     "pos": 15,
+     "player": "Karl-Anthony Towns",
+     "true_rank": 19
+    }
+   ],
+   "gbm-pairwise": [
+    {
+     "pos": 1,
+     "player": "Trae Young",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Nikola Jokic",
+     "true_rank": 1
+    },
+    {
+     "pos": 3,
+     "player": "Luka Doncic",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Stephen Curry",
+     "true_rank": 5
+    },
+    {
+     "pos": 5,
+     "player": "Giannis Antetokounmpo",
+     "true_rank": 4
+    },
+    {
+     "pos": 6,
+     "player": "Donovan Mitchell",
+     "true_rank": 8
+    },
+    {
+     "pos": 7,
+     "player": "Kevin Durant",
+     "true_rank": 6
+    },
+    {
+     "pos": 8,
+     "player": "Jrue Holiday",
+     "true_rank": 15
+    },
+    {
+     "pos": 9,
+     "player": "Ja Morant",
+     "true_rank": 10
+    },
+    {
+     "pos": 10,
+     "player": "Devin Booker",
+     "true_rank": 13
+    },
+    {
+     "pos": 11,
+     "player": "Jayson Tatum",
+     "true_rank": 7
+    },
+    {
+     "pos": 12,
+     "player": "Darius Garland",
+     "true_rank": 11
+    },
+    {
+     "pos": 13,
+     "player": "LeBron James",
+     "true_rank": 9
+    },
+    {
+     "pos": 14,
+     "player": "James Harden",
+     "true_rank": 18
+    },
+    {
+     "pos": 15,
+     "player": "Joel Embiid",
+     "true_rank": 12
+    }
+   ],
+   "nas-direct": [
+    {
+     "pos": 1,
+     "player": "Nikola Jokic",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Trae Young",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "Luka Doncic",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Stephen Curry",
+     "true_rank": 5
+    },
+    {
+     "pos": 5,
+     "player": "Giannis Antetokounmpo",
+     "true_rank": 4
+    },
+    {
+     "pos": 6,
+     "player": "Kevin Durant",
+     "true_rank": 6
+    },
+    {
+     "pos": 7,
+     "player": "Jayson Tatum",
+     "true_rank": 7
+    },
+    {
+     "pos": 8,
+     "player": "LeBron James",
+     "true_rank": 9
+    },
+    {
+     "pos": 9,
+     "player": "Donovan Mitchell",
+     "true_rank": 8
+    },
+    {
+     "pos": 10,
+     "player": "Ja Morant",
+     "true_rank": 10
+    },
+    {
+     "pos": 11,
+     "player": "Darius Garland",
+     "true_rank": 11
+    },
+    {
+     "pos": 12,
+     "player": "Devin Booker",
+     "true_rank": 13
+    },
+    {
+     "pos": 13,
+     "player": "Chris Paul",
+     "true_rank": 14
+    },
+    {
+     "pos": 14,
+     "player": "Joel Embiid",
+     "true_rank": 12
+    },
+    {
+     "pos": 15,
+     "player": "Jrue Holiday",
+     "true_rank": 15
+    }
+   ],
+   "nas-pairwise": [
+    {
+     "pos": 1,
+     "player": "Trae Young",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Nikola Jokic",
+     "true_rank": 1
+    },
+    {
+     "pos": 3,
+     "player": "Luka Doncic",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Giannis Antetokounmpo",
+     "true_rank": 4
+    },
+    {
+     "pos": 5,
+     "player": "Stephen Curry",
+     "true_rank": 5
+    },
+    {
+     "pos": 6,
+     "player": "Donovan Mitchell",
+     "true_rank": 8
+    },
+    {
+     "pos": 7,
+     "player": "Jayson Tatum",
+     "true_rank": 7
+    },
+    {
+     "pos": 8,
+     "player": "Kevin Durant",
+     "true_rank": 6
+    },
+    {
+     "pos": 9,
+     "player": "Ja Morant",
+     "true_rank": 10
+    },
+    {
+     "pos": 10,
+     "player": "Darius Garland",
+     "true_rank": 11
+    },
+    {
+     "pos": 11,
+     "player": "Devin Booker",
+     "true_rank": 13
+    },
+    {
+     "pos": 12,
+     "player": "LeBron James",
+     "true_rank": 9
+    },
+    {
+     "pos": 13,
+     "player": "Joel Embiid",
+     "true_rank": 12
+    },
+    {
+     "pos": 14,
+     "player": "James Harden",
+     "true_rank": 18
+    },
+    {
+     "pos": 15,
+     "player": "DeMar DeRozan",
+     "true_rank": 16
+    }
+   ]
+  },
+  "defense|2013-14|test": {
+   "true": [
+    {
+     "pos": 1,
+     "player": "Kawhi Leonard",
+     "score": 5.0
+    },
+    {
+     "pos": 2,
+     "player": "Draymond Green",
+     "score": 4.6
+    },
+    {
+     "pos": 3,
+     "player": "Joakim Noah",
+     "score": 4.5
+    },
+    {
+     "pos": 4,
+     "player": "Andrew Bogut",
+     "score": 4.4
+    },
+    {
+     "pos": 5,
+     "player": "Michael KiddGilchrist",
+     "score": 4.4
+    },
+    {
+     "pos": 6,
+     "player": "Tiago Splitter",
+     "score": 4.2
+    },
+    {
+     "pos": 7,
+     "player": "Danny Green",
+     "score": 4.0
+    },
+    {
+     "pos": 8,
+     "player": "Chris Paul",
+     "score": 3.9
+    },
+    {
+     "pos": 9,
+     "player": "Nene",
+     "score": 3.8
+    },
+    {
+     "pos": 10,
+     "player": "Anderson Varejao",
+     "score": 3.6
+    },
+    {
+     "pos": 11,
+     "player": "Kevin Garnett",
+     "score": 3.5
+    },
+    {
+     "pos": 12,
+     "player": "Nick Calathes",
+     "score": 3.5
+    },
+    {
+     "pos": 13,
+     "player": "Ian Mahinmi",
+     "score": 3.5
+    },
+    {
+     "pos": 14,
+     "player": "Jimmy Butler",
+     "score": 3.4
+    },
+    {
+     "pos": 15,
+     "player": "Roy Hibbert",
+     "score": 3.4
+    }
+   ],
+   "gbm-direct": [
+    {
+     "pos": 1,
+     "player": "Andrew Bogut",
+     "true_rank": 4
+    },
+    {
+     "pos": 2,
+     "player": "Tiago Splitter",
+     "true_rank": 6
+    },
+    {
+     "pos": 3,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 4,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 5,
+     "player": "Paul George",
+     "true_rank": 21
+    },
+    {
+     "pos": 6,
+     "player": "Kevin Garnett",
+     "true_rank": 11
+    },
+    {
+     "pos": 7,
+     "player": "Joakim Noah",
+     "true_rank": 3
+    },
+    {
+     "pos": 8,
+     "player": "Nene",
+     "true_rank": 9
+    },
+    {
+     "pos": 9,
+     "player": "Ian Mahinmi",
+     "true_rank": 13
+    },
+    {
+     "pos": 10,
+     "player": "Jimmy Butler",
+     "true_rank": 14
+    },
+    {
+     "pos": 11,
+     "player": "Danny Green",
+     "true_rank": 7
+    },
+    {
+     "pos": 12,
+     "player": "Anderson Varejao",
+     "true_rank": 10
+    },
+    {
+     "pos": 13,
+     "player": "Andre Iguodala",
+     "true_rank": 25
+    },
+    {
+     "pos": 14,
+     "player": "Anthony Davis",
+     "true_rank": 34
+    },
+    {
+     "pos": 15,
+     "player": "Tony Allen",
+     "true_rank": 31
+    }
+   ],
+   "gbm-pairwise": [
+    {
+     "pos": 1,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Andrew Bogut",
+     "true_rank": 4
+    },
+    {
+     "pos": 3,
+     "player": "Joakim Noah",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Tiago Splitter",
+     "true_rank": 6
+    },
+    {
+     "pos": 5,
+     "player": "Paul George",
+     "true_rank": 21
+    },
+    {
+     "pos": 6,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 7,
+     "player": "Nene",
+     "true_rank": 9
+    },
+    {
+     "pos": 8,
+     "player": "Roy Hibbert",
+     "true_rank": 15
+    },
+    {
+     "pos": 9,
+     "player": "Andre Iguodala",
+     "true_rank": 25
+    },
+    {
+     "pos": 10,
+     "player": "Jimmy Butler",
+     "true_rank": 14
+    },
+    {
+     "pos": 11,
+     "player": "Ian Mahinmi",
+     "true_rank": 13
+    },
+    {
+     "pos": 12,
+     "player": "Marcin Gortat",
+     "true_rank": 29
+    },
+    {
+     "pos": 13,
+     "player": "DeMarcus Cousins",
+     "true_rank": 16
+    },
+    {
+     "pos": 14,
+     "player": "Kevin Garnett",
+     "true_rank": 11
+    },
+    {
+     "pos": 15,
+     "player": "CJ Watson",
+     "true_rank": 17
+    }
+   ],
+   "nas-direct": [
+    {
+     "pos": 1,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Roy Hibbert",
+     "true_rank": 15
+    },
+    {
+     "pos": 3,
+     "player": "Andrew Bogut",
+     "true_rank": 4
+    },
+    {
+     "pos": 4,
+     "player": "Nene",
+     "true_rank": 9
+    },
+    {
+     "pos": 5,
+     "player": "Anthony Davis",
+     "true_rank": 34
+    },
+    {
+     "pos": 6,
+     "player": "DeMarcus Cousins",
+     "true_rank": 16
+    },
+    {
+     "pos": 7,
+     "player": "Marc Gasol",
+     "true_rank": 22
+    },
+    {
+     "pos": 8,
+     "player": "Joakim Noah",
+     "true_rank": 3
+    },
+    {
+     "pos": 9,
+     "player": "Tim Duncan",
+     "true_rank": 18
+    },
+    {
+     "pos": 10,
+     "player": "DeAndre Jordan",
+     "true_rank": 65
+    },
+    {
+     "pos": 11,
+     "player": "Anderson Varejao",
+     "true_rank": 10
+    },
+    {
+     "pos": 12,
+     "player": "Kevin Garnett",
+     "true_rank": 11
+    },
+    {
+     "pos": 13,
+     "player": "Paul George",
+     "true_rank": 21
+    },
+    {
+     "pos": 14,
+     "player": "Tiago Splitter",
+     "true_rank": 6
+    },
+    {
+     "pos": 15,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    }
+   ],
+   "nas-pairwise": [
+    {
+     "pos": 1,
+     "player": "Andrew Bogut",
+     "true_rank": 4
+    },
+    {
+     "pos": 2,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "Joakim Noah",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 5,
+     "player": "Jimmy Butler",
+     "true_rank": 14
+    },
+    {
+     "pos": 6,
+     "player": "Nene",
+     "true_rank": 9
+    },
+    {
+     "pos": 7,
+     "player": "Paul George",
+     "true_rank": 21
+    },
+    {
+     "pos": 8,
+     "player": "Roy Hibbert",
+     "true_rank": 15
+    },
+    {
+     "pos": 9,
+     "player": "Andre Iguodala",
+     "true_rank": 25
+    },
+    {
+     "pos": 10,
+     "player": "DeMarcus Cousins",
+     "true_rank": 16
+    },
+    {
+     "pos": 11,
+     "player": "Al Jefferson",
+     "true_rank": 47
+    },
+    {
+     "pos": 12,
+     "player": "Anderson Varejao",
+     "true_rank": 10
+    },
+    {
+     "pos": 13,
+     "player": "Kirk Hinrich",
+     "true_rank": 42
+    },
+    {
+     "pos": 14,
+     "player": "DeAndre Jordan",
+     "true_rank": 65
+    },
+    {
+     "pos": 15,
+     "player": "Kevin Garnett",
+     "true_rank": 11
+    }
+   ],
+   "paine-published": [
+    {
+     "pos": 1,
+     "player": "Andrew Bogut",
+     "true_rank": 4
+    },
+    {
+     "pos": 2,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 3,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 4,
+     "player": "DeAndre Jordan",
+     "true_rank": 65
+    },
+    {
+     "pos": 5,
+     "player": "Jimmy Butler",
+     "true_rank": 14
+    },
+    {
+     "pos": 6,
+     "player": "Tony Allen",
+     "true_rank": 31
+    },
+    {
+     "pos": 7,
+     "player": "Joakim Noah",
+     "true_rank": 3
+    },
+    {
+     "pos": 8,
+     "player": "Danny Green",
+     "true_rank": 7
+    },
+    {
+     "pos": 9,
+     "player": "Ricky Rubio",
+     "true_rank": 49
+    },
+    {
+     "pos": 10,
+     "player": "Andre Iguodala",
+     "true_rank": 25
+    },
+    {
+     "pos": 11,
+     "player": "Paul George",
+     "true_rank": 21
+    },
+    {
+     "pos": 12,
+     "player": "Kyle OQuinn",
+     "true_rank": 53
+    },
+    {
+     "pos": 13,
+     "player": "Roy Hibbert",
+     "true_rank": 15
+    },
+    {
+     "pos": 14,
+     "player": "David West",
+     "true_rank": 57
+    },
+    {
+     "pos": 15,
+     "player": "Paul Millsap",
+     "true_rank": 23
+    }
+   ]
+  },
+  "defense|2014-15|test": {
+   "true": [
+    {
+     "pos": 1,
+     "player": "Kawhi Leonard",
+     "score": 5.2
+    },
+    {
+     "pos": 2,
+     "player": "Draymond Green",
+     "score": 5.1
+    },
+    {
+     "pos": 3,
+     "player": "Rudy Gobert",
+     "score": 4.8
+    },
+    {
+     "pos": 4,
+     "player": "Tony Allen",
+     "score": 4.8
+    },
+    {
+     "pos": 5,
+     "player": "Andrew Bogut",
+     "score": 4.7
+    },
+    {
+     "pos": 6,
+     "player": "Anthony Davis",
+     "score": 4.5
+    },
+    {
+     "pos": 7,
+     "player": "DeMarcus Cousins",
+     "score": 4.4
+    },
+    {
+     "pos": 8,
+     "player": "Marcin Gortat",
+     "score": 3.6
+    },
+    {
+     "pos": 9,
+     "player": "Tim Duncan",
+     "score": 3.5
+    },
+    {
+     "pos": 10,
+     "player": "Andre Roberson",
+     "score": 3.4
+    },
+    {
+     "pos": 11,
+     "player": "Kosta Koufos",
+     "score": 3.3
+    },
+    {
+     "pos": 12,
+     "player": "Zaza Pachulia",
+     "score": 3.2
+    },
+    {
+     "pos": 13,
+     "player": "Khris Middleton",
+     "score": 3.1
+    },
+    {
+     "pos": 14,
+     "player": "Michael KiddGilchrist",
+     "score": 3.0
+    },
+    {
+     "pos": 15,
+     "player": "Serge Ibaka",
+     "score": 3.0
+    }
+   ],
+   "gbm-direct": [
+    {
+     "pos": 1,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Tony Allen",
+     "true_rank": 4
+    },
+    {
+     "pos": 3,
+     "player": "Andrew Bogut",
+     "true_rank": 5
+    },
+    {
+     "pos": 4,
+     "player": "Rudy Gobert",
+     "true_rank": 3
+    },
+    {
+     "pos": 5,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 6,
+     "player": "Anthony Davis",
+     "true_rank": 6
+    },
+    {
+     "pos": 7,
+     "player": "Zaza Pachulia",
+     "true_rank": 12
+    },
+    {
+     "pos": 8,
+     "player": "Nerlens Noel",
+     "true_rank": 19
+    },
+    {
+     "pos": 9,
+     "player": "DeMarcus Cousins",
+     "true_rank": 7
+    },
+    {
+     "pos": 10,
+     "player": "Andre Roberson",
+     "true_rank": 10
+    },
+    {
+     "pos": 11,
+     "player": "Kosta Koufos",
+     "true_rank": 11
+    },
+    {
+     "pos": 12,
+     "player": "Josh Smith",
+     "true_rank": 23
+    },
+    {
+     "pos": 13,
+     "player": "Nene",
+     "true_rank": 18
+    },
+    {
+     "pos": 14,
+     "player": "Marcin Gortat",
+     "true_rank": 8
+    },
+    {
+     "pos": 15,
+     "player": "Danny Green",
+     "true_rank": 16
+    }
+   ],
+   "gbm-pairwise": [
+    {
+     "pos": 1,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Andrew Bogut",
+     "true_rank": 5
+    },
+    {
+     "pos": 3,
+     "player": "Tony Allen",
+     "true_rank": 4
+    },
+    {
+     "pos": 4,
+     "player": "Rudy Gobert",
+     "true_rank": 3
+    },
+    {
+     "pos": 5,
+     "player": "DeMarcus Cousins",
+     "true_rank": 7
+    },
+    {
+     "pos": 6,
+     "player": "Nerlens Noel",
+     "true_rank": 19
+    },
+    {
+     "pos": 7,
+     "player": "Zaza Pachulia",
+     "true_rank": 12
+    },
+    {
+     "pos": 8,
+     "player": "Marcin Gortat",
+     "true_rank": 8
+    },
+    {
+     "pos": 9,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 10,
+     "player": "Anthony Davis",
+     "true_rank": 6
+    },
+    {
+     "pos": 11,
+     "player": "Danny Green",
+     "true_rank": 16
+    },
+    {
+     "pos": 12,
+     "player": "AlFarouq Aminu",
+     "true_rank": 24
+    },
+    {
+     "pos": 13,
+     "player": "Michael KiddGilchrist",
+     "true_rank": 14
+    },
+    {
+     "pos": 14,
+     "player": "Nene",
+     "true_rank": 18
+    },
+    {
+     "pos": 15,
+     "player": "Kosta Koufos",
+     "true_rank": 11
+    }
+   ],
+   "nas-direct": [
+    {
+     "pos": 1,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Anthony Davis",
+     "true_rank": 6
+    },
+    {
+     "pos": 3,
+     "player": "Rudy Gobert",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Andrew Bogut",
+     "true_rank": 5
+    },
+    {
+     "pos": 5,
+     "player": "DeMarcus Cousins",
+     "true_rank": 7
+    },
+    {
+     "pos": 6,
+     "player": "Tim Duncan",
+     "true_rank": 9
+    },
+    {
+     "pos": 7,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 8,
+     "player": "DeAndre Jordan",
+     "true_rank": 63
+    },
+    {
+     "pos": 9,
+     "player": "Marcus Smart",
+     "true_rank": 43
+    },
+    {
+     "pos": 10,
+     "player": "Tony Allen",
+     "true_rank": 4
+    },
+    {
+     "pos": 11,
+     "player": "Pau Gasol",
+     "true_rank": 90
+    },
+    {
+     "pos": 12,
+     "player": "Zaza Pachulia",
+     "true_rank": 12
+    },
+    {
+     "pos": 13,
+     "player": "Derrick Favors",
+     "true_rank": 34
+    },
+    {
+     "pos": 14,
+     "player": "AlFarouq Aminu",
+     "true_rank": 24
+    },
+    {
+     "pos": 15,
+     "player": "Marc Gasol",
+     "true_rank": 21
+    }
+   ],
+   "nas-pairwise": [
+    {
+     "pos": 1,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 2,
+     "player": "Rudy Gobert",
+     "true_rank": 3
+    },
+    {
+     "pos": 3,
+     "player": "Anthony Davis",
+     "true_rank": 6
+    },
+    {
+     "pos": 4,
+     "player": "Tony Allen",
+     "true_rank": 4
+    },
+    {
+     "pos": 5,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 6,
+     "player": "DeMarcus Cousins",
+     "true_rank": 7
+    },
+    {
+     "pos": 7,
+     "player": "Andrew Bogut",
+     "true_rank": 5
+    },
+    {
+     "pos": 8,
+     "player": "Marcus Smart",
+     "true_rank": 43
+    },
+    {
+     "pos": 9,
+     "player": "Nerlens Noel",
+     "true_rank": 19
+    },
+    {
+     "pos": 10,
+     "player": "Zaza Pachulia",
+     "true_rank": 12
+    },
+    {
+     "pos": 11,
+     "player": "Ersan Ilyasova",
+     "true_rank": 100
+    },
+    {
+     "pos": 12,
+     "player": "Nene",
+     "true_rank": 18
+    },
+    {
+     "pos": 13,
+     "player": "AlFarouq Aminu",
+     "true_rank": 24
+    },
+    {
+     "pos": 14,
+     "player": "Andre Iguodala",
+     "true_rank": 47
+    },
+    {
+     "pos": 15,
+     "player": "Michael KiddGilchrist",
+     "true_rank": 14
+    }
+   ],
+   "paine-published": [
+    {
+     "pos": 1,
+     "player": "Kawhi Leonard",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Tony Allen",
+     "true_rank": 4
+    },
+    {
+     "pos": 3,
+     "player": "Draymond Green",
+     "true_rank": 2
+    },
+    {
+     "pos": 4,
+     "player": "Andrew Bogut",
+     "true_rank": 5
+    },
+    {
+     "pos": 5,
+     "player": "DeAndre Jordan",
+     "true_rank": 63
+    },
+    {
+     "pos": 6,
+     "player": "Nerlens Noel",
+     "true_rank": 19
+    },
+    {
+     "pos": 7,
+     "player": "Anthony Davis",
+     "true_rank": 6
+    },
+    {
+     "pos": 8,
+     "player": "Rudy Gobert",
+     "true_rank": 3
+    },
+    {
+     "pos": 9,
+     "player": "Danny Green",
+     "true_rank": 16
+    },
+    {
+     "pos": 10,
+     "player": "AlFarouq Aminu",
+     "true_rank": 24
+    },
+    {
+     "pos": 11,
+     "player": "Tim Duncan",
+     "true_rank": 9
+    },
+    {
+     "pos": 12,
+     "player": "Paul Millsap",
+     "true_rank": 26
+    },
+    {
+     "pos": 13,
+     "player": "Khris Middleton",
+     "true_rank": 13
+    },
+    {
+     "pos": 14,
+     "player": "Andre Roberson",
+     "true_rank": 10
+    },
+    {
+     "pos": 15,
+     "player": "Bismack Biyombo",
+     "true_rank": 109
+    }
+   ]
+  },
+  "defense|2021-22|train-insample": {
+   "true": [
+    {
+     "pos": 1,
+     "player": "Rudy Gobert",
+     "score": 6.9
+    },
+    {
+     "pos": 2,
+     "player": "Nikola Jokic",
+     "score": 5.9
+    },
+    {
+     "pos": 3,
+     "player": "Alex Caruso",
+     "score": 4.7
+    },
+    {
+     "pos": 4,
+     "player": "Draymond Green",
+     "score": 4.3
+    },
+    {
+     "pos": 5,
+     "player": "Gary Payton II",
+     "score": 4.3
+    },
+    {
+     "pos": 6,
+     "player": "Matisse Thybulle",
+     "score": 4.2
+    },
+    {
+     "pos": 7,
+     "player": "Jarrett Allen",
+     "score": 4.2
+    },
+    {
+     "pos": 8,
+     "player": "Paul George",
+     "score": 3.9
+    },
+    {
+     "pos": 9,
+     "player": "Bam Adebayo",
+     "score": 3.9
+    },
+    {
+     "pos": 10,
+     "player": "Al Horford",
+     "score": 3.8
+    },
+    {
+     "pos": 11,
+     "player": "Kenrich Williams",
+     "score": 3.8
+    },
+    {
+     "pos": 12,
+     "player": "Joel Embiid",
+     "score": 3.6
+    },
+    {
+     "pos": 13,
+     "player": "Jusuf Nurkic",
+     "score": 3.4
+    },
+    {
+     "pos": 14,
+     "player": "Derrick White",
+     "score": 3.2
+    },
+    {
+     "pos": 15,
+     "player": "Jalen Smith",
+     "score": 2.9
+    }
+   ],
+   "gbm-direct": [
+    {
+     "pos": 1,
+     "player": "Rudy Gobert",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Nikola Jokic",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "Joel Embiid",
+     "true_rank": 12
+    },
+    {
+     "pos": 4,
+     "player": "Matisse Thybulle",
+     "true_rank": 6
+    },
+    {
+     "pos": 5,
+     "player": "Jarrett Allen",
+     "true_rank": 7
+    },
+    {
+     "pos": 6,
+     "player": "Gary Payton II",
+     "true_rank": 5
+    },
+    {
+     "pos": 7,
+     "player": "Draymond Green",
+     "true_rank": 4
+    },
+    {
+     "pos": 8,
+     "player": "Jusuf Nurkic",
+     "true_rank": 13
+    },
+    {
+     "pos": 9,
+     "player": "Kenrich Williams",
+     "true_rank": 11
+    },
+    {
+     "pos": 10,
+     "player": "Alex Caruso",
+     "true_rank": 3
+    },
+    {
+     "pos": 11,
+     "player": "Isaiah Hartenstein",
+     "true_rank": 52
+    },
+    {
+     "pos": 12,
+     "player": "Paul George",
+     "true_rank": 8
+    },
+    {
+     "pos": 13,
+     "player": "Robert Williams III",
+     "true_rank": 21
+    },
+    {
+     "pos": 14,
+     "player": "Al Horford",
+     "true_rank": 10
+    },
+    {
+     "pos": 15,
+     "player": "Giannis Antetokounmpo",
+     "true_rank": 36
+    }
+   ],
+   "gbm-pairwise": [
+    {
+     "pos": 1,
+     "player": "Rudy Gobert",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Matisse Thybulle",
+     "true_rank": 6
+    },
+    {
+     "pos": 3,
+     "player": "Jarrett Allen",
+     "true_rank": 7
+    },
+    {
+     "pos": 4,
+     "player": "Draymond Green",
+     "true_rank": 4
+    },
+    {
+     "pos": 5,
+     "player": "Nikola Jokic",
+     "true_rank": 2
+    },
+    {
+     "pos": 6,
+     "player": "Alex Caruso",
+     "true_rank": 3
+    },
+    {
+     "pos": 7,
+     "player": "Kenrich Williams",
+     "true_rank": 11
+    },
+    {
+     "pos": 8,
+     "player": "Gary Payton II",
+     "true_rank": 5
+    },
+    {
+     "pos": 9,
+     "player": "Isaiah Hartenstein",
+     "true_rank": 52
+    },
+    {
+     "pos": 10,
+     "player": "Joel Embiid",
+     "true_rank": 12
+    },
+    {
+     "pos": 11,
+     "player": "Bam Adebayo",
+     "true_rank": 9
+    },
+    {
+     "pos": 12,
+     "player": "Al Horford",
+     "true_rank": 10
+    },
+    {
+     "pos": 13,
+     "player": "Robert Covington",
+     "true_rank": 20
+    },
+    {
+     "pos": 14,
+     "player": "Maxi Kleber",
+     "true_rank": 16
+    },
+    {
+     "pos": 15,
+     "player": "Robert Williams III",
+     "true_rank": 21
+    }
+   ],
+   "nas-direct": [
+    {
+     "pos": 1,
+     "player": "Rudy Gobert",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Nikola Jokic",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "Alex Caruso",
+     "true_rank": 3
+    },
+    {
+     "pos": 4,
+     "player": "Draymond Green",
+     "true_rank": 4
+    },
+    {
+     "pos": 5,
+     "player": "Gary Payton II",
+     "true_rank": 5
+    },
+    {
+     "pos": 6,
+     "player": "Matisse Thybulle",
+     "true_rank": 6
+    },
+    {
+     "pos": 7,
+     "player": "Jarrett Allen",
+     "true_rank": 7
+    },
+    {
+     "pos": 8,
+     "player": "Paul George",
+     "true_rank": 8
+    },
+    {
+     "pos": 9,
+     "player": "Bam Adebayo",
+     "true_rank": 9
+    },
+    {
+     "pos": 10,
+     "player": "Kenrich Williams",
+     "true_rank": 11
+    },
+    {
+     "pos": 11,
+     "player": "Al Horford",
+     "true_rank": 10
+    },
+    {
+     "pos": 12,
+     "player": "Joel Embiid",
+     "true_rank": 12
+    },
+    {
+     "pos": 13,
+     "player": "Jusuf Nurkic",
+     "true_rank": 13
+    },
+    {
+     "pos": 14,
+     "player": "Derrick White",
+     "true_rank": 14
+    },
+    {
+     "pos": 15,
+     "player": "Jalen Smith",
+     "true_rank": 15
+    }
+   ],
+   "nas-pairwise": [
+    {
+     "pos": 1,
+     "player": "Rudy Gobert",
+     "true_rank": 1
+    },
+    {
+     "pos": 2,
+     "player": "Nikola Jokic",
+     "true_rank": 2
+    },
+    {
+     "pos": 3,
+     "player": "Matisse Thybulle",
+     "true_rank": 6
+    },
+    {
+     "pos": 4,
+     "player": "Alex Caruso",
+     "true_rank": 3
+    },
+    {
+     "pos": 5,
+     "player": "Gary Payton II",
+     "true_rank": 5
+    },
+    {
+     "pos": 6,
+     "player": "Jarrett Allen",
+     "true_rank": 7
+    },
+    {
+     "pos": 7,
+     "player": "Paul George",
+     "true_rank": 8
+    },
+    {
+     "pos": 8,
+     "player": "Joel Embiid",
+     "true_rank": 12
+    },
+    {
+     "pos": 9,
+     "player": "Bam Adebayo",
+     "true_rank": 9
+    },
+    {
+     "pos": 10,
+     "player": "Kenrich Williams",
+     "true_rank": 11
+    },
+    {
+     "pos": 11,
+     "player": "Draymond Green",
+     "true_rank": 4
+    },
+    {
+     "pos": 12,
+     "player": "Jusuf Nurkic",
+     "true_rank": 13
+    },
+    {
+     "pos": 13,
+     "player": "Al Horford",
+     "true_rank": 10
+    },
+    {
+     "pos": 14,
+     "player": "Maxi Kleber",
+     "true_rank": 16
+    },
+    {
+     "pos": 15,
+     "player": "Derrick White",
+     "true_rank": 14
+    }
+   ]
+  }
+ },
+ "pools": {
+  "offense": {
+   "paine_matched": 490,
+   "per_cell": {
+    "2013-14": 245,
+    "2014-15": 245
+   }
+  },
+  "defense": {
+   "paine_matched": 490,
+   "per_cell": {
+    "2013-14": 245,
+    "2014-15": 245
+   }
+  }
+ }
+}

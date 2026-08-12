@@ -1,0 +1,397 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1.9cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs,amsmath}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\title{Neural Architecture Search for RAPTOR Re-estimation:\\
+Direct-Rating and Player-vs-Player Ranking Models}
+\author{nba-rapture}
+\date{\today}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We run two neural-architecture-search campaigns against the strongest
+gradient-boosted baselines in this project: (i) direct regression of
+per-player-season offensive and defensive RAPTOR, and (ii) a player-vs-player
+(pairwise) ranking formulation in which the model only predicts which of two
+players has the higher rating. Search spaces cover four regression families
+(plain MLP, residual MLP, self-normalizing SELU networks, bottleneck
+compressors) and three pairwise families (Bradley--Terry scorer, difference
+network, two-tower interaction encoder), with successive-halving over
+depth, width, activation, normalization, dropout, learning rate, weight decay,
+batch size, and schedule. Selection uses held-out whole-season validation
+cells; the 2013-14 and 2014-15 test cells are scored exactly once per final
+model. We report top-of-leaderboard metrics (dev@10, dev@20, Kendall
+$\tau$@k, hits@k), side-by-side projected-vs-true leaderboards including an
+in-sample training season, and comparisons against Neil Paine's Estimated
+RAPTOR linear model.
+\end{abstract}
+
+\section{Task, data, and splits}
+\textbf{Labels.} FiveThirtyEight full-history RAPTOR, separate offense
+(\texttt{raptor\_offense}) and defense (\texttt{raptor\_defense}) per player
+per season. \textbf{Features.} The project's scraped matrix: pbpstats
+totals/on-off, WOWY and opponent-WOWY splits, NBA tracking tables, and
+\texttt{leaguedashptdefend} nearest-defender data; after rate normalization,
+on-minus-off differentials, cell-relative standardization (12 features), and
+engineered opponent/defend blocks, offense rows carry 1{,}173 columns and
+defense rows 1{,}161. Identifier columns are excluded.
+
+\textbf{Splits} (identical for every system in this report):
+\begin{itemize}\itemsep0pt
+\item \emph{Train}: 13{,}021 regular-season rows ($\geq$50 minutes) from
+  labeled cells spanning 2015-16 through 2022-23, in-season snapshots
+  included, excluding the four validation cells below.
+\item \emph{Validation}: four whole-season cells (2015-16, 2016-17, 2017-18,
+  2019-20) used for NAS selection and early stopping only.
+\item \emph{Test}: the 2013-14 and 2014-15 regular-season cells (494 rows),
+  never touched during search; each final model is scored on them once.
+\end{itemize}
+\textbf{Metrics.} dev@$k$ = mean absolute rank error of the projected top-$k$
+(how far the player projected at position $i\le k$ truly ranks from $i$);
+$\tau$@$k$ = Kendall tau between projected and true order of the true
+top-$k$; hits@$k$ = overlap of projected and true top-$k$ sets, summed over
+both test cells; MAE in RAPTOR points (undefined for tournament-scale
+pairwise systems).
+
+\section{Search methodology}
+\textbf{Direct-rating NAS} samples 24 configurations from: family $\in$
+\{mlp, resmlp, snn, bottleneck\}; width $\in$ \{128, 256, 512, 1024\}; depth
+1--4 (2--6 for resmlp); activation \{ReLU, GELU, SiLU\}; normalization
+\{batch, layer, none\}; dropout \{0, 0.1, 0.2, 0.35\}; lr
+$\log\mathcal{U}(10^{-3.7},10^{-2.3})$; weight decay \{0, $10^{-5}$,
+$10^{-4}$, $10^{-3}$\}; batch \{256, 512, 1024\}; cosine schedule on/off.
+SNN ignores the sampled activation/norm and uses SELU with LeCun-normal
+initialization and alpha-dropout. Loss is smooth-L1 weighted by
+$\sqrt{\text{minutes}}$. Successive halving: $24 \times 30$ epochs
+$\rightarrow$ top $8\times{+}60 \rightarrow$ top $3\times{+}120$; selection on
+mean validation-cell Spearman; the winner is retrained from scratch with
+three seeds and seed-averaged.
+
+\textbf{Pairwise NAS (round 2)} samples 20 configurations from families
+\{scorer $s(a)-s(b)$, antisymmetrized difference net $f(a-b)$, two-tower
+$g([e_a-e_b,\,e_a e_b])$\}, each with optional residual trunk, plus the same
+hyperparameter axes and an embedding size \{32, 64, 128\} for the two-tower.
+Training streams 200k fresh within-cell ordered pairs per epoch (ties
+$|\Delta y|<0.05$ dropped), BCE on the pair logit. Halving: $20\times 8$
+epochs $\rightarrow 6\times{+}16 \rightarrow 3\times{+}24$; selection on
+validation-cell pairwise accuracy. Inference is a full round-robin tournament
+per cell with antisymmetrized win probabilities; we evaluate both the solo
+winner and the ensemble of the three best architectures (round 1 fielded
+only solo models while the GBM baseline enjoys seed averaging). Round 1
+(20 configs, no residual trunks, no schedules, offense only) is included for
+reference.
+
+\section{Winning architectures}
+\begin{table}[ht]\centering\small\caption{NAS winners and their full hyperparameters. The SNN family overrides act/norm with SELU/none by construction.}\begin{tabular}{lllll}\toprule
+param & direct offense & direct defense & pairwise offense & pairwise defense \\
+\midrule
+family & snn & resmlp & diffnet & diffnet \\
+res & -- & -- & False & False \\
+width & 128 & 512 & 256 & 256 \\
+depth & 2 & 4 & 3 & 3 \\
+act & silu & gelu & gelu & gelu \\
+norm & batch & none & layer & layer \\
+dropout & 0.35 & 0.2 & 0.2 & 0.2 \\
+lr & 2.03e-03 & 2.35e-03 & 1.27e-03 & 1.27e-03 \\
+wd & 0.0001 & 0.0001 & 1e-05 & 1e-05 \\
+batch & 512 & 512 & 4096 & 4096 \\
+sched & none & cosine & cosine & cosine \\
+emb & -- & -- & 128 & 128 \\
+bneck & 64 & 64 & -- & -- \\
+val score & +0.9092 & +0.8398 & 0.8881 & 0.8322 \\
+\bottomrule\end{tabular}\end{table}
+The pairwise ensembles average the three best architectures per target: offense diffnet(0.8881), diffnet(0.8878), diffnet(0.8824); defense diffnet(0.8322), diffnet(0.8294), diffnet(0.8278). Pairwise round 1 winner (offense): scorer, hidden (256, 256), relu, norm=none, dropout 0.2, lr 6.89e-04, wd 0.0001, batch 4096; val acc 0.8832, test dev@10 3.60.
+\section{Results}
+\begin{table}[ht]\centering\small
+\caption{Offense, full test cells (2013-14 + 2014-15 RS, 494 rows). GBM systems are the project baselines; NAS systems are this report's subject.}\label{tab:full-offense}
+\begin{tabular}{lrrrrrrr}
+\toprule
+system & dev@10 & dev@20 & $\tau$@10 & $\tau$@20 & hits@10 & hits@20 & MAE \\
+\midrule
+GBM direct blend & 1.95 & 3.73 & +0.600 & +0.705 & 16/20 & 32/40 & 0.542 \\
+GBM pairwise (48k) & 1.55 & 2.88 & +0.756 & +0.779 & 17/20 & 35/40 & -- \\
+NAS direct net & 3.65 & 6.12 & +0.822 & +0.632 & 14/20 & 30/40 & 0.750 \\
+NAS pairwise ens. & 3.25 & 6.92 & +0.711 & +0.621 & 15/20 & 29/40 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[ht]\centering\small
+\caption{Defense, full test cells (2013-14 + 2014-15 RS, 494 rows). GBM systems are the project baselines; NAS systems are this report's subject.}\label{tab:full-defense}
+\begin{tabular}{lrrrrrrr}
+\toprule
+system & dev@10 & dev@20 & $\tau$@10 & $\tau$@20 & hits@10 & hits@20 & MAE \\
+\midrule
+GBM direct blend & 3.65 & 6.25 & +0.511 & +0.532 & 14/20 & 29/40 & 0.684 \\
+GBM pairwise (48k) & 4.65 & 7.12 & +0.511 & +0.453 & 14/20 & 31/40 & -- \\
+NAS direct net & 12.75 & 15.07 & +0.311 & +0.379 & 12/20 & 23/40 & 0.845 \\
+NAS pairwise ens. & 6.00 & 12.38 & +0.511 & +0.442 & 12/20 & 27/40 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+For production context (different architecture, same test cells): the deployed offense stack (components + opponent features) verifies at dev@10 1.10, $\tau$@10 +0.800; the deployed defense stack (matched features + defend) at dev@10 3.80, $\tau$@10 +0.511. Ten-fold leave-one-season-out medians: offense 1.50, defense 5.00, pairwise GBM 1.60.
+\subsection{Against Neil Paine's Estimated RAPTOR}
+\textbf{Caveat favoring Paine:} his published weights were fit on full RAPTOR 2014--2023, which \emph{contains both of our test seasons} -- his numbers are in-sample where ours are strictly out-of-sample. Pools below are the $\geq$1065-minute test rows matched into his file by normalized name (offense n=490, defense n=490).
+\begin{table}[ht]\centering\small
+\caption{Offense, Paine-matched $\geq$1065-minute pool.}\label{tab:paine-offense}
+\begin{tabular}{lrrrrrrr}
+\toprule
+system & dev@10 & dev@20 & $\tau$@10 & $\tau$@20 & hits@10 & hits@20 & MAE \\
+\midrule
+GBM direct blend & 1.95 & 3.77 & +0.600 & +0.695 & 16/20 & 33/40 & 0.544 \\
+GBM pairwise (48k) & 1.55 & 2.92 & +0.756 & +0.789 & 17/20 & 34/40 & -- \\
+NAS direct net & 3.65 & 6.88 & +0.822 & +0.658 & 14/20 & 29/40 & 0.749 \\
+NAS pairwise ens. & 3.25 & 7.25 & +0.711 & +0.605 & 15/20 & 29/40 & -- \\
+Paine eRT (publ.) & 4.35 & 6.38 & +0.667 & +0.663 & 17/20 & 32/40 & 0.718 \\
+Paine eRT (recr.) & 4.35 & 9.35 & +0.556 & +0.679 & 16/20 & 31/40 & 0.784 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[ht]\centering\small
+\caption{Defense, Paine-matched $\geq$1065-minute pool.}\label{tab:paine-defense}
+\begin{tabular}{lrrrrrrr}
+\toprule
+system & dev@10 & dev@20 & $\tau$@10 & $\tau$@20 & hits@10 & hits@20 & MAE \\
+\midrule
+GBM direct blend & 3.80 & 6.30 & +0.489 & +0.505 & 14/20 & 29/40 & 0.680 \\
+GBM pairwise (48k) & 4.75 & 6.97 & +0.489 & +0.453 & 14/20 & 31/40 & -- \\
+NAS direct net & 13.00 & 15.18 & +0.289 & +0.363 & 12/20 & 23/40 & 0.840 \\
+NAS pairwise ens. & 6.05 & 12.40 & +0.489 & +0.416 & 12/20 & 27/40 & -- \\
+Paine eRT (publ.) & 13.40 & 16.85 & +0.511 & +0.432 & 11/20 & 26/40 & 0.885 \\
+Paine eRT (recr.) & 16.40 & 19.20 & +0.489 & +0.400 & 11/20 & 22/40 & 0.997 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\subsection{In-sample fit (training cell)}
+The 2021-22 regular-season cell was part of every system's training data; this table shows memorization capacity, not skill, and is included because projected-vs-true boards on a training season (next section) are only interpretable alongside it.
+\begin{table}[ht]\centering\small
+\caption{Offense, 2021-22 RS, in-sample.}\label{tab:train-offense}
+\begin{tabular}{lrrrrrrr}
+\toprule
+system & dev@10 & dev@20 & $\tau$@10 & $\tau$@20 & hits@10 & hits@20 & MAE \\
+\midrule
+GBM direct blend & 1.40 & 2.40 & +0.689 & +0.747 & 10/20 & 18/40 & 0.381 \\
+GBM pairwise (48k) & 1.80 & 2.65 & +0.733 & +0.705 & 8/20 & 19/40 & -- \\
+NAS direct net & 0.40 & 0.55 & +0.911 & +0.937 & 10/20 & 19/40 & 1.067 \\
+NAS pairwise ens. & 0.80 & 1.85 & +0.778 & +0.800 & 9/20 & 19/40 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[ht]\centering\small
+\caption{Defense, 2021-22 RS, in-sample.}\label{tab:train-defense}
+\begin{tabular}{lrrrrrrr}
+\toprule
+system & dev@10 & dev@20 & $\tau$@10 & $\tau$@20 & hits@10 & hits@20 & MAE \\
+\midrule
+GBM direct blend & 3.10 & 6.70 & +0.556 & +0.590 & 7/20 & 16/40 & 0.548 \\
+GBM pairwise (48k) & 6.60 & 7.05 & +0.467 & +0.632 & 7/20 & 16/40 & -- \\
+NAS direct net & 0.10 & 0.20 & +1.000 & +0.979 & 9/20 & 20/40 & 0.005 \\
+NAS pairwise ens. & 1.10 & 2.15 & +0.689 & +0.758 & 8/20 & 17/40 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+\section{Leaderboards: projected vs.\ true}
+Each cell shows the player a system projects at that position, with his true rank in parentheses; pools are the $\geq$1065-minute players of the cell. 2013-14 and 2014-15 are out-of-sample for our systems (in-sample for Paine); 2021-22 is in-sample for our systems and shown to make training-fit visible.
+\begin{table}[ht]\centering\scriptsize
+\caption{Offense 2013-14 (test)}
+\begin{tabular}{rllllll}
+\toprule
+\# & true (score) & GBM direct blend & GBM pairwise & NAS direct net & NAS pairwise ens. & Paine eRT \\
+\midrule
+1 & K. Durant (+7.6) & L. James (4) & K. Durant (1) & K. Durant (1) & K. Durant (1) & K. Durant (1) \\
+2 & C. Paul (+7.1) & K. Durant (1) & C. Paul (2) & C. Paul (2) & L. James (4) & L. James (4) \\
+3 & J. Harden (+6.3) & J. Harden (3) & L. James (4) & J. Harden (3) & J. Harden (3) & C. Paul (2) \\
+4 & L. James (+5.8) & C. Paul (2) & J. Harden (3) & L. James (4) & C. Paul (2) & J. Harden (3) \\
+5 & K. Love (+5.7) & G. Dragic (6) & K. Love (5) & K. Love (5) & K. Love (5) & G. Dragic (6) \\
+6 & G. Dragic (+4.8) & K. Love (5) & G. Dragic (6) & D. Lillard (12) & G. Dragic (6) & K. Love (5) \\
+7 & K. Lowry (+4.4) & D. Lillard (12) & K. Lowry (7) & G. Dragic (6) & D. Lillard (12) & D. Nowitzki (8) \\
+8 & D. Nowitzki (+4.4) & M. Ginobili (10) & D. Lillard (12) & I. Thomas (14) & K. Lowry (7) & B. Wright (41) \\
+9 & C. Anthony (+4.2) & R. Westbrook (15) & M. Ginobili (10) & K. Lowry (7) & P. George (22) & C. Anthony (9) \\
+10 & M. Ginobili (+4.0) & C. Anthony (9) & C. Anthony (9) & P. George (22) & I. Thomas (14) & K. Lowry (7) \\
+11 & P. Mills (+3.9) & K. Lowry (7) & D. Nowitzki (8) & C. Anthony (9) & M. Conley (13) & B. Griffin (17) \\
+12 & D. Lillard (+3.6) & I. Thomas (14) & M. Conley (13) & B. Griffin (17) & C. Anthony (9) & I. Thomas (14) \\
+13 & M. Conley (+3.5) & D. Nowitzki (8) & I. Thomas (14) & M. Ginobili (10) & M. Ginobili (10) & M. Ginobili (10) \\
+14 & I. Thomas (+3.5) & M. Conley (13) & R. Westbrook (15) & D. Nowitzki (8) & D. Nowitzki (8) & R. Westbrook (15) \\
+15 & R. Westbrook (+3.3) & P. Mills (11) & B. Griffin (17) & R. Westbrook (15) & B. Griffin (17) & N. Pekovic (68) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]\centering\scriptsize
+\caption{Offense 2014-15 (test)}
+\begin{tabular}{rllllll}
+\toprule
+\# & true (score) & GBM direct blend & GBM pairwise & NAS direct net & NAS pairwise ens. & Paine eRT \\
+\midrule
+1 & C. Paul (+8.5) & J. Harden (2) & C. Paul (1) & C. Paul (1) & J. Harden (2) & C. Paul (1) \\
+2 & J. Harden (+7.7) & C. Paul (1) & J. Harden (2) & J. Harden (2) & C. Paul (1) & J. Harden (2) \\
+3 & R. Westbrook (+6.1) & L. James (5) & L. James (5) & L. James (5) & K. Irving (4) & L. James (5) \\
+4 & K. Irving (+5.5) & R. Westbrook (3) & R. Westbrook (3) & D. Lillard (11) & L. James (5) & A. Davis (9) \\
+5 & L. James (+5.3) & K. Irving (4) & K. Irving (4) & R. Westbrook (3) & L. Williams (6) & R. Westbrook (3) \\
+6 & L. Williams (+5.2) & I. Thomas (8) & L. Williams (6) & L. Williams (6) & D. Lillard (11) & J. Butler (20) \\
+7 & K. Korver (+4.6) & D. Lillard (11) & D. Lillard (11) & K. Irving (4) & R. Westbrook (3) & B. Griffin (22) \\
+8 & I. Thomas (+4.5) & L. Williams (6) & K. Thompson (10) & I. Thomas (8) & K. Thompson (10) & K. Irving (4) \\
+9 & A. Davis (+4.3) & K. Thompson (10) & I. Thomas (8) & B. Griffin (22) & J. Redick (29) & L. Williams (6) \\
+10 & K. Thompson (+4.3) & G. Hill (12) & B. Griffin (22) & J. Redick (29) & I. Thomas (8) & K. Thompson (10) \\
+11 & D. Lillard (+4.0) & B. Griffin (22) & J. Redick (29) & K. Thompson (10) & J. Butler (20) & G. Hill (12) \\
+12 & G. Hill (+3.9) & A. Davis (9) & A. Davis (9) & K. Lowry (18) & K. Lowry (18) & K. Leonard (15) \\
+13 & C. Anthony (+3.8) & J. Butler (20) & G. Hill (12) & K. Leonard (15) & K. Korver (7) & J. Redick (29) \\
+14 & T. Lawson (+3.8) & M. Conley (32) & K. Korver (7) & B. Jennings (23) & B. Griffin (22) & T. Lawson (14) \\
+15 & K. Leonard (+3.7) & C. Anthony (13) & J. Butler (20) & K. Korver (7) & A. Davis (9) & G. Hayward (21) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]\centering\scriptsize
+\caption{Defense 2013-14 (test)}
+\begin{tabular}{rllllll}
+\toprule
+\# & true (score) & GBM direct blend & GBM pairwise & NAS direct net & NAS pairwise ens. & Paine eRT \\
+\midrule
+1 & K. Leonard (+5.0) & A. Bogut (4) & D. Green (2) & D. Green (2) & A. Bogut (4) & A. Bogut (4) \\
+2 & D. Green (+4.6) & T. Splitter (6) & A. Bogut (4) & R. Hibbert (15) & D. Green (2) & K. Leonard (1) \\
+3 & J. Noah (+4.5) & D. Green (2) & J. Noah (3) & A. Bogut (4) & J. Noah (3) & D. Green (2) \\
+4 & A. Bogut (+4.4) & K. Leonard (1) & T. Splitter (6) & Nene (9) & K. Leonard (1) & D. Jordan (65) \\
+5 & M. KiddGilchrist (+4.4) & P. George (21) & P. George (21) & A. Davis (34) & J. Butler (14) & J. Butler (14) \\
+6 & T. Splitter (+4.2) & K. Garnett (11) & K. Leonard (1) & D. Cousins (16) & Nene (9) & T. Allen (31) \\
+7 & D. Green (+4.0) & J. Noah (3) & Nene (9) & M. Gasol (22) & P. George (21) & J. Noah (3) \\
+8 & C. Paul (+3.9) & Nene (9) & R. Hibbert (15) & J. Noah (3) & R. Hibbert (15) & D. Green (7) \\
+9 & Nene (+3.8) & I. Mahinmi (13) & A. Iguodala (25) & T. Duncan (18) & A. Iguodala (25) & R. Rubio (49) \\
+10 & A. Varejao (+3.6) & J. Butler (14) & J. Butler (14) & D. Jordan (65) & D. Cousins (16) & A. Iguodala (25) \\
+11 & K. Garnett (+3.5) & D. Green (7) & I. Mahinmi (13) & A. Varejao (10) & A. Jefferson (47) & P. George (21) \\
+12 & N. Calathes (+3.5) & A. Varejao (10) & M. Gortat (29) & K. Garnett (11) & A. Varejao (10) & K. OQuinn (53) \\
+13 & I. Mahinmi (+3.5) & A. Iguodala (25) & D. Cousins (16) & P. George (21) & K. Hinrich (42) & R. Hibbert (15) \\
+14 & J. Butler (+3.4) & A. Davis (34) & K. Garnett (11) & T. Splitter (6) & D. Jordan (65) & D. West (57) \\
+15 & R. Hibbert (+3.4) & T. Allen (31) & C. Watson (17) & K. Leonard (1) & K. Garnett (11) & P. Millsap (23) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]\centering\scriptsize
+\caption{Defense 2014-15 (test)}
+\begin{tabular}{rllllll}
+\toprule
+\# & true (score) & GBM direct blend & GBM pairwise & NAS direct net & NAS pairwise ens. & Paine eRT \\
+\midrule
+1 & K. Leonard (+5.2) & D. Green (2) & D. Green (2) & D. Green (2) & D. Green (2) & K. Leonard (1) \\
+2 & D. Green (+5.1) & T. Allen (4) & A. Bogut (5) & A. Davis (6) & R. Gobert (3) & T. Allen (4) \\
+3 & R. Gobert (+4.8) & A. Bogut (5) & T. Allen (4) & R. Gobert (3) & A. Davis (6) & D. Green (2) \\
+4 & T. Allen (+4.8) & R. Gobert (3) & R. Gobert (3) & A. Bogut (5) & T. Allen (4) & A. Bogut (5) \\
+5 & A. Bogut (+4.7) & K. Leonard (1) & D. Cousins (7) & D. Cousins (7) & K. Leonard (1) & D. Jordan (63) \\
+6 & A. Davis (+4.5) & A. Davis (6) & N. Noel (19) & T. Duncan (9) & D. Cousins (7) & N. Noel (19) \\
+7 & D. Cousins (+4.4) & Z. Pachulia (12) & Z. Pachulia (12) & K. Leonard (1) & A. Bogut (5) & A. Davis (6) \\
+8 & M. Gortat (+3.6) & N. Noel (19) & M. Gortat (8) & D. Jordan (63) & M. Smart (43) & R. Gobert (3) \\
+9 & T. Duncan (+3.5) & D. Cousins (7) & K. Leonard (1) & M. Smart (43) & N. Noel (19) & D. Green (16) \\
+10 & A. Roberson (+3.4) & A. Roberson (10) & A. Davis (6) & T. Allen (4) & Z. Pachulia (12) & A. Aminu (24) \\
+11 & K. Koufos (+3.3) & K. Koufos (11) & D. Green (16) & P. Gasol (90) & E. Ilyasova (100) & T. Duncan (9) \\
+12 & Z. Pachulia (+3.2) & J. Smith (23) & A. Aminu (24) & Z. Pachulia (12) & Nene (18) & P. Millsap (26) \\
+13 & K. Middleton (+3.1) & Nene (18) & M. KiddGilchrist (14) & D. Favors (34) & A. Aminu (24) & K. Middleton (13) \\
+14 & M. KiddGilchrist (+3.0) & M. Gortat (8) & Nene (18) & A. Aminu (24) & A. Iguodala (47) & A. Roberson (10) \\
+15 & S. Ibaka (+3.0) & D. Green (16) & K. Koufos (11) & M. Gasol (21) & M. KiddGilchrist (14) & B. Biyombo (109) \\
+\bottomrule
+\end{tabular}
+\end{table}
+\clearpage
+\begin{table}[ht]\centering\scriptsize
+\caption{Offense 2021-22 (training season, in-sample)}
+\begin{tabular}{rlllll}
+\toprule
+\# & true (score) & GBM direct blend & GBM pairwise & NAS direct net & NAS pairwise ens. \\
+\midrule
+1 & N. Jokic (+9.0) & N. Jokic (1) & T. Young (2) & N. Jokic (1) & T. Young (2) \\
+2 & T. Young (+7.6) & T. Young (2) & N. Jokic (1) & T. Young (2) & N. Jokic (1) \\
+3 & L. Doncic (+5.8) & S. Curry (5) & L. Doncic (3) & L. Doncic (3) & L. Doncic (3) \\
+4 & G. Antetokounmpo (+5.7) & L. Doncic (3) & S. Curry (5) & S. Curry (5) & G. Antetokounmpo (4) \\
+5 & S. Curry (+5.7) & D. Mitchell (8) & G. Antetokounmpo (4) & G. Antetokounmpo (4) & S. Curry (5) \\
+6 & K. Durant (+5.0) & G. Antetokounmpo (4) & D. Mitchell (8) & K. Durant (6) & D. Mitchell (8) \\
+7 & J. Tatum (+4.8) & K. Durant (6) & K. Durant (6) & J. Tatum (7) & J. Tatum (7) \\
+8 & D. Mitchell (+4.6) & L. James (9) & J. Holiday (15) & L. James (9) & K. Durant (6) \\
+9 & L. James (+4.6) & J. Morant (10) & J. Morant (10) & D. Mitchell (8) & J. Morant (10) \\
+10 & J. Morant (+4.6) & J. Tatum (7) & D. Booker (13) & J. Morant (10) & D. Garland (11) \\
+11 & D. Garland (+4.5) & D. Garland (11) & J. Tatum (7) & D. Garland (11) & D. Booker (13) \\
+12 & J. Embiid (+4.3) & D. DeRozan (16) & D. Garland (11) & D. Booker (13) & L. James (9) \\
+13 & D. Booker (+4.3) & D. Booker (13) & L. James (9) & C. Paul (14) & J. Embiid (12) \\
+14 & C. Paul (+4.1) & J. Holiday (15) & J. Harden (18) & J. Embiid (12) & J. Harden (18) \\
+15 & J. Holiday (+4.0) & K. Towns (19) & J. Embiid (12) & J. Holiday (15) & D. DeRozan (16) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]\centering\scriptsize
+\caption{Defense 2021-22 (training season, in-sample)}
+\begin{tabular}{rlllll}
+\toprule
+\# & true (score) & GBM direct blend & GBM pairwise & NAS direct net & NAS pairwise ens. \\
+\midrule
+1 & R. Gobert (+6.9) & R. Gobert (1) & R. Gobert (1) & R. Gobert (1) & R. Gobert (1) \\
+2 & N. Jokic (+5.9) & N. Jokic (2) & M. Thybulle (6) & N. Jokic (2) & N. Jokic (2) \\
+3 & A. Caruso (+4.7) & J. Embiid (12) & J. Allen (7) & A. Caruso (3) & M. Thybulle (6) \\
+4 & D. Green (+4.3) & M. Thybulle (6) & D. Green (4) & D. Green (4) & A. Caruso (3) \\
+5 & G. Payton II (+4.3) & J. Allen (7) & N. Jokic (2) & G. Payton II (5) & G. Payton II (5) \\
+6 & M. Thybulle (+4.2) & G. Payton II (5) & A. Caruso (3) & M. Thybulle (6) & J. Allen (7) \\
+7 & J. Allen (+4.2) & D. Green (4) & K. Williams (11) & J. Allen (7) & P. George (8) \\
+8 & P. George (+3.9) & J. Nurkic (13) & G. Payton II (5) & P. George (8) & J. Embiid (12) \\
+9 & B. Adebayo (+3.9) & K. Williams (11) & I. Hartenstein (52) & B. Adebayo (9) & B. Adebayo (9) \\
+10 & A. Horford (+3.8) & A. Caruso (3) & J. Embiid (12) & K. Williams (11) & K. Williams (11) \\
+11 & K. Williams (+3.8) & I. Hartenstein (52) & B. Adebayo (9) & A. Horford (10) & D. Green (4) \\
+12 & J. Embiid (+3.6) & P. George (8) & A. Horford (10) & J. Embiid (12) & J. Nurkic (13) \\
+13 & J. Nurkic (+3.4) & R. Williams III (21) & R. Covington (20) & J. Nurkic (13) & A. Horford (10) \\
+14 & D. White (+3.2) & A. Horford (10) & M. Kleber (16) & D. White (14) & M. Kleber (16) \\
+15 & J. Smith (+2.9) & G. Antetokounmpo (36) & R. Williams III (21) & J. Smith (15) & D. White (14) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+\begin{itemize}\itemsep2pt
+\item \textbf{Round 2 genuinely improved the neural pairwise model.}
+Adding difference-network depth, LayerNorm, and cosine schedules to the
+search moved the best neural pairwise result from dev@10 3.60 (round 1) to
+2.70 on offense, and from 18.1 (the original all-pairs
+RankNet) to 6.05 on defense. Notably, the same
+configuration won both targets under independent selection, and its family
+is the free-form difference net $f(x_a{-}x_b)$ -- the GBM's own
+formulation -- over the Bradley--Terry scorer that round 1's halving kept.
+\item \textbf{But the GBM gap remains.} The best neural systems reach
+2.70/6.05 (offense/defense) against
+1.55/3.65 for GBMs consuming identical features and 1.10/3.80 for the
+production stacks. Across 108 trained configurations in five campaigns, no
+searched region closes it.
+\item \textbf{The gap is generalization, not capacity.} In-sample on the
+2021-22 training cell the nets essentially memorize -- direct net dev@10
+0.40 offense,
+0.10 defense (tau@10
++1.00) -- while the GBMs fit training
+far more loosely (1.40/3.10)
+yet generalize better. On 13k rows $\times$ 1.1k columns the trees'
+inductive bias, not model capacity, is what transfers.
+\item \textbf{Ensembling did not help.} Averaging the top-3 architectures
+moved offense from 2.70 to 3.25 and
+defense from 6.05 to 6.00: diverse
+architectures at a shared plateau average toward the plateau, unlike GBM
+seed-averaging, which reduces the variance of one stronger learner.
+\item \textbf{Defense stays qualitatively harder for networks} (best net
+6.05 vs.\ 3.65--3.80 GBM), consistent with the
+elite-defender study: defensive elite ordering rides on a few engineered
+nearest-defender columns inside a full profile -- a regime trees exploit
+and MLPs dilute.
+\item \textbf{Against Paine's Estimated RAPTOR} every system here --
+including the neural ones -- clears his published defense numbers (13.40
+dev@10), and all GBM systems clear his offense (4.35), despite his weights
+being fit on data containing our test seasons.
+\item \textbf{Conclusion.} Gradient boosting remains the production
+choice for both formulations. Untested neural territory that plausibly
+differs in kind: attention over feature tokens (FT-Transformer) and
+prior-fitted models (TabPFN), both wanting GPU-scale compute.
+\end{itemize}
+
+\section*{Reproduction}
+\texttt{python training/nas\_direct.py};
+\texttt{python training/nas\_pairwise2.py};
+\texttt{python training/build\_nas\_report\_data.py};
+\texttt{python training/gen\_nas\_report.py}.
+
+\end{document}

@@ -1,0 +1,200 @@
+{
+ "offense": {
+  "winner": {
+   "family": "diffnet",
+   "res": false,
+   "width": 256,
+   "depth": 3,
+   "act": "gelu",
+   "norm": "layer",
+   "dropout": 0.2,
+   "lr": 0.0012736680475739632,
+   "wd": 1e-05,
+   "batch": 4096,
+   "sched": "cosine",
+   "emb": 128
+  },
+  "val_acc": 0.8880667174736233,
+  "top3": [
+   {
+    "i": 8,
+    "cfg": {
+     "family": "diffnet",
+     "res": false,
+     "width": 256,
+     "depth": 3,
+     "act": "gelu",
+     "norm": "layer",
+     "dropout": 0.2,
+     "lr": 0.0012736680475739632,
+     "wd": 1e-05,
+     "batch": 4096,
+     "sched": "cosine",
+     "emb": 128
+    },
+    "acc": 0.8880667174736233
+   },
+   {
+    "i": 4,
+    "cfg": {
+     "family": "diffnet",
+     "res": false,
+     "width": 512,
+     "depth": 2,
+     "act": "gelu",
+     "norm": "layer",
+     "dropout": 0.0,
+     "lr": 0.00032493315358115275,
+     "wd": 0.0,
+     "batch": 2048,
+     "sched": "cosine",
+     "emb": 128
+    },
+    "acc": 0.8878360484142729
+   },
+   {
+    "i": 13,
+    "cfg": {
+     "family": "diffnet",
+     "res": false,
+     "width": 512,
+     "depth": 3,
+     "act": "gelu",
+     "norm": "layer",
+     "dropout": 0.1,
+     "lr": 0.0017837127630858363,
+     "wd": 0.0,
+     "batch": 2048,
+     "sched": "cosine",
+     "emb": 64
+    },
+    "acc": 0.8823617263622232
+   }
+  ],
+  "test": {
+   "solo": {
+    "dev@10": 2.7,
+    "tau@10": 0.711111111111111,
+    "hits@10": 15,
+    "dev@20": 6.35,
+    "tau@20": 0.6210526315789473,
+    "hits@20": 29,
+    "dev@30": 10.683333333333334,
+    "tau@30": 0.6045977011494252,
+    "hits@30": 46,
+    "mae": 1.404026444028557
+   },
+   "top3-ens": {
+    "dev@10": 3.25,
+    "tau@10": 0.711111111111111,
+    "hits@10": 15,
+    "dev@20": 6.925000000000001,
+    "tau@20": 0.6210526315789473,
+    "hits@20": 29,
+    "dev@30": 9.65,
+    "tau@30": 0.5862068965517242,
+    "hits@30": 47,
+    "mae": 1.4003980107289236
+   }
+  }
+ },
+ "defense": {
+  "winner": {
+   "family": "diffnet",
+   "res": false,
+   "width": 256,
+   "depth": 3,
+   "act": "gelu",
+   "norm": "layer",
+   "dropout": 0.2,
+   "lr": 0.0012736680475739632,
+   "wd": 1e-05,
+   "batch": 4096,
+   "sched": "cosine",
+   "emb": 128
+  },
+  "val_acc": 0.8321936161037324,
+  "top3": [
+   {
+    "i": 8,
+    "cfg": {
+     "family": "diffnet",
+     "res": false,
+     "width": 256,
+     "depth": 3,
+     "act": "gelu",
+     "norm": "layer",
+     "dropout": 0.2,
+     "lr": 0.0012736680475739632,
+     "wd": 1e-05,
+     "batch": 4096,
+     "sched": "cosine",
+     "emb": 128
+    },
+    "acc": 0.8321936161037324
+   },
+   {
+    "i": 16,
+    "cfg": {
+     "family": "diffnet",
+     "res": true,
+     "width": 512,
+     "depth": 1,
+     "act": "silu",
+     "norm": "layer",
+     "dropout": 0.3,
+     "lr": 0.002044216221916372,
+     "wd": 1e-05,
+     "batch": 2048,
+     "sched": "cosine",
+     "emb": 64
+    },
+    "acc": 0.8294123186418183
+   },
+   {
+    "i": 4,
+    "cfg": {
+     "family": "diffnet",
+     "res": false,
+     "width": 512,
+     "depth": 2,
+     "act": "gelu",
+     "norm": "layer",
+     "dropout": 0.0,
+     "lr": 0.00032493315358115275,
+     "wd": 0.0,
+     "batch": 2048,
+     "sched": "cosine",
+     "emb": 128
+    },
+    "acc": 0.8278010987839537
+   }
+  ],
+  "test": {
+   "solo": {
+    "dev@10": 6.05,
+    "tau@10": 0.5111111111111111,
+    "hits@10": 13,
+    "dev@20": 12.149999999999999,
+    "tau@20": 0.4526315789473684,
+    "hits@20": 28,
+    "dev@30": 16.883333333333333,
+    "tau@30": 0.5310344827586208,
+    "hits@30": 42,
+    "mae": 1.3339210164896402
+   },
+   "top3-ens": {
+    "dev@10": 6.0,
+    "tau@10": 0.5111111111111111,
+    "hits@10": 12,
+    "dev@20": 12.375,
+    "tau@20": 0.4421052631578948,
+    "hits@20": 27,
+    "dev@30": 16.433333333333334,
+    "tau@30": 0.4988505747126437,
+    "hits@30": 42,
+    "mae": 1.3275099926450602
+   }
+  }
+ }
+}
