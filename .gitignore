@@ -1,6 +1,7 @@
 .devcontainer/devcontainer.json
 .devcontainer/devcontainer-lock.json
 credentials.txt
+.venv/
 training/data/
 training/models/
 training/_ts_by_source.json

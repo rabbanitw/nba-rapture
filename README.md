@@ -15,10 +15,24 @@ training/data_fixed/  row-aligned feature/label artifacts (npz)
 training/rapm_public/ third-party single-season RAPM (MIT, basketball-analytics)
 ```
 
-Reference documents: `training/raptor_methodology_fulltext.txt` (recovered
-methodology explainer), `training/RESULTS_raptor_coverage.md` (section-by-section
-mapping of the methodology to this pipeline), and the `training/RESULTS_*.md/json`
-files produced by individual experiments.
+Start with [`RAPTOR_REPRODUCTION.md`](RAPTOR_REPRODUCTION.md), the canonical
+methodology, architecture-selection, hyperparameter, and Neil Paine comparison
+report. Supporting references are `training/raptor_methodology_fulltext.txt`
+(recovered methodology explainer), `training/RESULTS_raptor_coverage.md`
+(section-by-section mapping), and the `training/RESULTS_*.md/json` files produced
+by individual experiments.
+
+### Current validated architecture
+
+Ten-season leave-one-season-out validation selects separate heads: offense is a
+three-seed LightGBM/Ridge blend over the full matrix plus opponent context and
+four structural RAPTOR hats; defense is a whole-season-matched LightGBM/Ridge
+blend plus nearest-defender features. Total is offense + defense. On 2,238
+1,065-minute player-seasons common to Neil Paine's published file, the stack
+scores RMSE **1.063**, R² **0.851**, and Spearman **0.911**, versus Paine's
+Estimated RAPTOR at 1.299 / 0.777 / 0.862. See
+`training/RESULTS_final_architecture.md` for the canonical table and confidence
+intervals.
 
 ---
 
@@ -219,6 +233,13 @@ Descriptions only; per-experiment outcomes are in the referenced
 - *Positional matchups* (`parse_attrib.py`, `posmatch.py`): possession
   re-parse with scorer/rebounder attribution; events distributed over the five
   opponents by position-vector overlap; per-player-season matchup variables.
+- *Courtmate chain* (`courtmate_chain.py`): the methodology's own-on,
+  courtmates-without, and courtmates'-courtmates ratings from possession
+  lineups, with the published shared×apart weighting.
+- *Post-processing* (`postprocess.py`): exact 0.85/0.21 blend, score-effect
+  coefficients, team reconciliation constraint, replacement level, and WAR
+  formula. Inputs whose fitted coefficients were never published remain
+  explicit rather than guessed.
 
 **Validation and reporting machinery**
 - Season-held-out CV harnesses (`season_cv.py`, `loso_confidence.py`,
@@ -266,11 +287,18 @@ python training/experiment_combined.py
 python training/loso_confidence.py
 python training/final_boards.py
 
+# canonical architecture + Neil Paine comparison (10-season LOSO)
+python training/benchmark_final_architecture.py --paine-repo C:/tmp/NBA-elo
+
 # 4. structural reproduction branch
 python training/raptor2/structural2.py
 python training/raptor2/cv_hybrid.py --seedbase 0
+
+# deterministic formula, courtmate-chain, and identity-join tests
+python -m unittest discover -s training -p "test_*.py" -v
 ```
 
 Environment: Python 3.12; lightgbm, xgboost, catboost, scikit-learn, torch
 (CPU in-container; CUDA 12.8 wheels for GPU scripts), pymongo, pandas, scipy.
+The canonical CPU environment is pinned in `requirements.txt`;
 `training/db.py` provides the Mongo connection and `REPO_ROOT`.

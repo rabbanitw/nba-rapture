@@ -20,7 +20,7 @@ feature names, 2026-08-12), not recalled from memory.
 | 7 | Net passes | ✅ |
 | 8 | Enhanced offensive rebounds | 🟡 |
 | 9 | Team OREB on missed shots | 🟡 |
-| 10 | Positional opponents' DREB | ❌ |
+| 10 | Positional opponents' DREB | 🟡 possession-lineup implementation (2013-19) |
 | 11 | Defended (covered) 3PA | ✅ scraped, 🔬 no gain |
 | 12 | Isolation turnovers | 🟡 |
 | 13 | Fast-break starts | 🟡 |
@@ -31,19 +31,19 @@ feature names, 2026-08-12), not recalled from memory.
 | 18 | Offensive fouls drawn | 🟡 (charges only) |
 | 19 | Opponents' FGM/FGA (nearest defender) | ✅ — most valuable defense block |
 | 20 | Enhanced defensive rebounds | 🟡 |
-| 21 | Positional opponents' points | ❌ |
-| 22 | Positional opponents' OREB | ❌ |
+| 21 | Positional opponents' points | 🟡 implemented/tested, no gain |
+| 22 | Positional opponents' OREB | 🟡 implemented/tested, no gain |
 | 23 | Distance traveled (perimeter-gated) | 🟡 |
 | 24 | Opponents' FTM on own fouls | 🟡 proxy |
 | 25 | Fastbreak turnovers committed | ✅ |
 | 26 | Penalty fouls committed | 🟡 |
 | 27 | Opponents' offensive rating | 🔬 tested, rejected for production |
-| 28 | RAPTOR On-Off | 🟡 — biggest structural gap (courtmate chain) |
+| 28 | RAPTOR On-Off | 🟡 — chain builder implemented; artifact not checked in |
 | 29 | Combining Box and On-Off | ✅ replicated + validated |
-| 30 | Score effects adjustment | ❌ |
-| 31 | Team effects adjustment | ❌ (538: luck; PREDATOR drops it) |
+| 30 | Score effects adjustment | 🟡 exact formula; possession inputs absent |
+| 31 | Team effects adjustment | 🟡 constraint implemented; target/transform partial |
 | 32 | Individual Pace Impact | ➖ |
-| 33 | Replacement level / WAR / market values | ➖ |
+| 33 | Replacement level / WAR / market values | ✅ WAR; market curve unpublished |
 | 34 | PREDATOR | ➖ |
 
 ---
@@ -102,9 +102,11 @@ both need play-level linkage our per-player tables don't carry.
 cover the shooter's own-rebound effect; the team-level rate on a shooter's
 misses (in-bounds, not-after-block conditioning) is not constructible.
 
-**Positional opponents' DREB** ❌ Requires probabilistic positional matchup
-assignment over lineup-level logs (538 use depth-chart positions, not tracking
-matchups). We carry position dummies only. True gap.
+**Positional opponents' DREB** 🟡 `raptor2/parse_attrib.py` and
+`raptor2/posmatch.py` now reconstruct possession lineups, attribute rebounds,
+and distribute events probabilistically by position-vector overlap. The
+`posopp_dreb100` feature covers 2013-14 through 2018-19. It is not available for
+later seasons and has not yet earned promotion into the offense stack.
 
 **Defended 3-point attempts (spacing)** ✅→🔬 Closed this week: shot dashboard
 scraped at all 64 cells, `covered3pa` engineered with 538's exact 100/80/57/31
@@ -149,10 +151,11 @@ most load-bearing group for elite defensive ordering (Δtau@30 −0.223).
 **Enhanced defensive rebounds** 🟡 Contested DREB and deferred-chance columns
 present; shot-location-conditioned values not constructible (as with OREB).
 
-**Positional opponents' points / OREB** ❌❌ Same matchup-model gap as #10.
-The doc's own table (Gasol 18.0 vs Lillard 23.9 pts/100 allowed) shows this
-carries real signal we cannot see. The one confirmed 538 defensive input with
-no counterpart in our matrix.
+**Positional opponents' points / OREB** 🟡 The same possession-lineup parser
+now emits `posopp_pts100` and `posopp_oreb100` for the 2013-19 window. Appending
+them to the in-window defense GBM was neutral (dev@10 5.05→5.55; MAE
+0.642→0.639), so the variables remain an audited structural reproduction rather
+than production inputs (`raptor2/RESULTS_posmatch.json`).
 
 **Distance traveled, perimeter-gated** 🟡 Both halves present
 (`track:speed-distance|DIST. MILES DEF`, `AVG SPEED DEF`; defended 2PA/3PA for
@@ -184,10 +187,13 @@ inferior construction, and that this replicates RAPM out-of-sample as well as
 RAPM itself. We carry: full on/off/diff WOWY (227 differential features),
 opponent-WOWY for competition context, and 3-point-luck ingredients (opponent
 Arc3/Corner3 accuracy and frequency, used in the luck-adjusted DRtg features).
-We do NOT have the courtmate-level chain — it requires pair-level WOWY scrapes
-(O(rotation²) requests per team-season). Catalogued; the only 538 on-off
-ingredient we lack. Our components architecture nonetheless recovers their
-on-off component well enough for the combiner to reproduce their weights.
+`raptor2/courtmate_chain.py` now builds the three-level chain directly from the
+possession lineups produced by `build_rapm.py`, avoiding O(rotation²) pair-WOWY
+requests, and emits opponent quality separately. The raw possession caches are
+not checked in, so this block has not been materialized for the canonical
+ten-season benchmark. The production matrix therefore still uses the inferior
+team-without-player proxy. Our components architecture nonetheless recovers
+their on-off component well enough for the combiner to reproduce their weights.
 
 ## Combining Box and On-Off ✅ — replicated and independently validated
 
@@ -197,16 +203,23 @@ box/on-off scale — same structure, same "sums to slightly more than 1"
 property, box dominant. This is the production offense model (test dev@10
 1.10, LOSO median 1.50).
 
-**Score effects** ❌ Per-quarter, per-10-point coasting adjustments
+**Score effects** 🟡 The exact published coefficients and tied-game conversion
+are implemented and unit-tested in `raptor2/postprocess.py`. Per-quarter,
+per-10-point coasting adjustments
 (−1.1/−1.7/−2.3/−2.9 RS; roughly half in playoffs) computed on-court per
-player. Needs possession-level score margins we don't collect from any current
-source. Our labels contain the adjustment; our features can't see it — a real,
-quantified distortion channel for players on extreme teams.
+player still need possession-level score margins, which are not retained in the
+checked-in aggregate artifacts. Our labels contain the adjustment; our feature
+matrix cannot apply it row-by-row — a real, quantified distortion channel for
+players on extreme teams.
 
-**Team effects** ❌ Ratings reconciled to team totals, weighted by
+**Team effects** 🟡 The constraint-preserving, usage-weighted reconciliation is
+implemented and unit-tested in `raptor2/postprocess.py`. Ratings are reconciled
+to team totals, weighted by
 offensive/defensive usage (their defensive-usage definition — induced TOs +
 fouls-to-FTs + defended FGA — is buildable from our columns but the
-reconciliation itself was never implemented). Mitigating context from the doc:
+exact nonlinear usage transform was not published). Team-season targets are not
+stored in the checked-in matrix, so this remains an optional post-process.
+Mitigating context from the doc:
 PREDATOR omits this adjustment because it doesn't help out-of-sample — 538
 themselves conclude the residual is mostly luck.
 
@@ -218,9 +231,9 @@ level.
 
 ## Replacement Level, WAR and Market Values ➖
 
-Constants documented (−2.75, WAR multipliers 0.0005102/0.0005262, position
-table). Not needed to predict ratings; trivially applicable downstream if we
-ever emit WAR.
+Constants documented and implemented in `raptor2/postprocess.py` (−2.75, WAR
+multipliers 0.0005102/0.0005262, position table). Individual Pace Impact must be
+supplied because its switcher-regression coefficients were never published.
 
 ## PREDATOR ➖
 
@@ -241,7 +254,8 @@ correlations tell us the distinction is minor even for them.
 - **Partial by data granularity**: enhanced rebounding values, exact
   EV-weighted assist accounting, penalty-state bookkeeping, perimeter-gated
   distance (interaction unbuilt; evidence says low-stakes).
-- **True gaps, in expected order of impact**: positional-matchup
-  points/rebounds allowed (defense), courtmate-chain on-off, score-effects
-  adjustment. All three need new data infrastructure (lineup-level or
-  possession-level logs), not modeling changes.
+- **Implemented but not materialized in the canonical ten-season artifact**:
+  courtmate-chain on-off, score effects, and team reconciliation. They require
+  possession caches or team targets that are not checked in.
+- **Finite-window reproduction, empirically neutral**: positional-matchup
+  points/rebounds allowed (2013-19).

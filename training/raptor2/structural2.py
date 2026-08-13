@@ -9,6 +9,7 @@ Run:  python training/raptor2/structural2.py
 
 import json
 import sys
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -39,7 +40,12 @@ STAMPS = {"2013-14": "20140715000000", "2014-15": "20150715000000",
 
 
 def ridge_hat(Vtr, ytr, wtr, Vall, names, tag, quiet=False):
-    med = np.nanmedian(Vtr, axis=0)
+    # Some methodology variables are structurally unavailable in an early fold.
+    # They are intentionally zero-imputed below; suppress NumPy's expected
+    # all-NaN-column warning so canonical runs stay readable.
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message="All-NaN slice encountered")
+        med = np.nanmedian(Vtr, axis=0)
     med = np.where(np.isfinite(med), med, 0.0)
     A = np.where(np.isfinite(Vtr), Vtr, med)
     B = np.where(np.isfinite(Vall), Vall, med)

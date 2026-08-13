@@ -1,0 +1,12 @@
+# Reproducible core environment for the checked-in RAPTOR matrices and the
+# canonical LightGBM/Ridge benchmark.  GPU/NAS experiments require PyTorch;
+# CatBoost and XGBoost are optional and are intentionally not core dependencies.
+numpy==2.3.2
+pandas==2.3.1
+scipy==1.16.1
+scikit-learn==1.7.1
+lightgbm==4.6.0
+
+# Collection and data-platform dependencies.
+pymongo==4.14.1
+requests==2.32.4

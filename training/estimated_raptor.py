@@ -58,7 +58,10 @@ def norm_name(s):
     ("Kentavious CaldwellPope"), so anything but letters and digits is noise.
     """
     s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
-    s = re.sub(r"\b(jr|sr|ii|iii|iv)\b", "", s.lower())
+    # Strip a generational suffix only at the end.  The old unanchored pattern
+    # also removed the *first name* from "JR Smith", preventing seven valid
+    # Paine joins in the canonical 2014-23 comparison.
+    s = re.sub(r"(?:^|\s)(jr|sr|ii|iii|iv)\.?$", "", s.lower().strip())
     return re.sub(r"[^a-z0-9]", "", s)
 
 

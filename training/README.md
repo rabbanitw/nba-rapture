@@ -1,5 +1,12 @@
 # RAPTOR prediction pipeline
 
+> **Current canonical model:** this document preserves the original two-season
+> development history. The selected architecture and apples-to-apples ten-season
+> benchmark now live in [`../RAPTOR_REPRODUCTION.md`](../RAPTOR_REPRODUCTION.md)
+> and [`RESULTS_final_architecture.md`](RESULTS_final_architecture.md). Run
+> `benchmark_final_architecture.py` for the leakage-safe comparison against Neil
+> Paine's published Estimated RAPTOR.
+
 Predicts FiveThirtyEight RAPTOR totals from the scraped stats in MongoDB.
 Seasons **2013-14 and 2014-15 are held out as test** and are scored exactly once.
 
