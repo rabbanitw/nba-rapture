@@ -48,7 +48,8 @@ BUILD = Path("/tmp/rapm_build")
 SEASON_OF = {2013: "2013-14", 2014: "2014-15", 2015: "2015-16",
              2016: "2016-17", 2017: "2017-18", 2018: "2018-19",
              2019: "2019-20", 2020: "2020-21", 2021: "2021-22",
-             2022: "2022-23"}
+             2022: "2022-23", 2023: "2023-24", 2024: "2024-25",
+             2025: "2025-26"}
 STAMP_OF = {"2013-14": "20140715000000", "2014-15": "20150715000000",
             "2015-16": "20160715000000", "2016-17": "20170715000000",
             "2017-18": "20180715000000", "2018-19": "20190715000000",
@@ -180,6 +181,13 @@ def main():
           flush=True)
     np.savez_compressed(TD / "raptor2" / "courtmate.npz", CM=CM,
                         names=np.array(COLS))
+    # raw (season|name) -> ratings map, for rows outside combined.npz (the
+    # 2023-26 projection matrix)
+    (TD / "raptor2" / "courtmate_chain.json").write_text(json.dumps(
+        {f"{s}|{nm}": [None if not np.isfinite(v) else round(float(v), 4)
+                       for v in row]
+         for (s, nm), row in chain.items()}))
+    print("wrote raptor2/courtmate_chain.json", flush=True)
 
     # ---- on-off v3 component fit report ------------------------------------
     from structural import cell_relative

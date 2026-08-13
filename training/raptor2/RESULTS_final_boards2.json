@@ -1,0 +1,1662 @@
+{
+ "verification": {
+  "offense": {
+   "dev@10": 1.45,
+   "tau@10": 0.7111,
+   "hits@10": 16,
+   "dev@20": 3.375,
+   "tau@20": 0.7105,
+   "hits@20": 33,
+   "dev@30": 6.2333,
+   "tau@30": 0.7264,
+   "hits@30": 47,
+   "mae": 0.5074
+  },
+  "defense": {
+   "dev@10": 3.85,
+   "tau@10": 0.4889,
+   "hits@10": 15,
+   "dev@20": 7.175,
+   "tau@20": 0.4947,
+   "hits@20": 28,
+   "dev@30": 9.15,
+   "tau@30": 0.5448,
+   "hits@30": 45,
+   "mae": 0.6682
+  }
+ },
+ "boards": {
+  "offense|2023-24": [
+   {
+    "pos": 1,
+    "player": "Nikola Jokic",
+    "est": 7.76,
+    "mp": 2737,
+    "ci": "25-211",
+    "p_top10": 0.02,
+    "p_top30": 0.32
+   },
+   {
+    "pos": 2,
+    "player": "Luka Doncic",
+    "est": 7.5,
+    "mp": 2624,
+    "ci": "8-211",
+    "p_top10": 0.13,
+    "p_top30": 0.46
+   },
+   {
+    "pos": 3,
+    "player": "Jalen Brunson",
+    "est": 6.71,
+    "mp": 2726,
+    "ci": "25-211",
+    "p_top10": 0.01,
+    "p_top30": 0.36
+   },
+   {
+    "pos": 4,
+    "player": "Shai Gilgeous-Alexander",
+    "est": 6.6,
+    "mp": 2553,
+    "ci": "6-216",
+    "p_top10": 0.19,
+    "p_top30": 0.33
+   },
+   {
+    "pos": 5,
+    "player": "Tyrese Haliburton",
+    "est": 6.03,
+    "mp": 2224,
+    "ci": "7-241",
+    "p_top10": 0.05,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 6,
+    "player": "Donovan Mitchell",
+    "est": 5.78,
+    "mp": 1943,
+    "ci": "24-236",
+    "p_top10": 0.02,
+    "p_top30": 0.06
+   },
+   {
+    "pos": 7,
+    "player": "Stephen Curry",
+    "est": 5.62,
+    "mp": 2421,
+    "ci": "7-221",
+    "p_top10": 0.09,
+    "p_top30": 0.2
+   },
+   {
+    "pos": 8,
+    "player": "LeBron James",
+    "est": 5.41,
+    "mp": 2504,
+    "ci": "6-216",
+    "p_top10": 0.18,
+    "p_top30": 0.31
+   },
+   {
+    "pos": 9,
+    "player": "Devin Booker",
+    "est": 5.41,
+    "mp": 2447,
+    "ci": "1-216",
+    "p_top10": 0.12,
+    "p_top30": 0.23
+   },
+   {
+    "pos": 10,
+    "player": "Trae Young",
+    "est": 5.28,
+    "mp": 1942,
+    "ci": "23-237",
+    "p_top10": 0.03,
+    "p_top30": 0.06
+   },
+   {
+    "pos": 11,
+    "player": "Damian Lillard",
+    "est": 5.17,
+    "mp": 2579,
+    "ci": "6-216",
+    "p_top10": 0.18,
+    "p_top30": 0.36
+   },
+   {
+    "pos": 12,
+    "player": "Giannis Antetokounmpo",
+    "est": 5.02,
+    "mp": 2567,
+    "ci": "6-216",
+    "p_top10": 0.17,
+    "p_top30": 0.33
+   },
+   {
+    "pos": 13,
+    "player": "Joel Embiid",
+    "est": 4.88,
+    "mp": 1309,
+    "ci": "39-239",
+    "p_top10": 0.0,
+    "p_top30": 0.03
+   },
+   {
+    "pos": 14,
+    "player": "Jamal Murray",
+    "est": 4.81,
+    "mp": 1861,
+    "ci": "23-230",
+    "p_top10": 0.03,
+    "p_top30": 0.07
+   },
+   {
+    "pos": 15,
+    "player": "Kyrie Irving",
+    "est": 4.73,
+    "mp": 2030,
+    "ci": "29-237",
+    "p_top10": 0.02,
+    "p_top30": 0.05
+   },
+   {
+    "pos": 16,
+    "player": "Jayson Tatum",
+    "est": 4.49,
+    "mp": 2645,
+    "ci": "8-211",
+    "p_top10": 0.07,
+    "p_top30": 0.41
+   },
+   {
+    "pos": 17,
+    "player": "James Harden",
+    "est": 4.4,
+    "mp": 2470,
+    "ci": "2-216",
+    "p_top10": 0.13,
+    "p_top30": 0.25
+   },
+   {
+    "pos": 18,
+    "player": "De'Aaron Fox",
+    "est": 4.17,
+    "mp": 2659,
+    "ci": "14-211",
+    "p_top10": 0.04,
+    "p_top30": 0.42
+   },
+   {
+    "pos": 19,
+    "player": "Anthony Edwards",
+    "est": 4.05,
+    "mp": 2770,
+    "ci": "25-139",
+    "p_top10": 0.02,
+    "p_top30": 0.29
+   },
+   {
+    "pos": 20,
+    "player": "Tyrese Maxey",
+    "est": 3.98,
+    "mp": 2626,
+    "ci": "8-211",
+    "p_top10": 0.11,
+    "p_top30": 0.43
+   },
+   {
+    "pos": 21,
+    "player": "Lauri Markkanen",
+    "est": 3.89,
+    "mp": 1820,
+    "ci": "23-236",
+    "p_top10": 0.03,
+    "p_top30": 0.07
+   },
+   {
+    "pos": 22,
+    "player": "Collin Sexton",
+    "est": 3.86,
+    "mp": 2075,
+    "ci": "29-237",
+    "p_top10": 0.03,
+    "p_top30": 0.06
+   },
+   {
+    "pos": 23,
+    "player": "Paul George",
+    "est": 3.66,
+    "mp": 2502,
+    "ci": "1-216",
+    "p_top10": 0.18,
+    "p_top30": 0.29
+   },
+   {
+    "pos": 24,
+    "player": "Jimmy Butler",
+    "est": 3.44,
+    "mp": 2042,
+    "ci": "27-237",
+    "p_top10": 0.02,
+    "p_top30": 0.06
+   },
+   {
+    "pos": 25,
+    "player": "Kawhi Leonard",
+    "est": 3.4,
+    "mp": 2330,
+    "ci": "7-241",
+    "p_top10": 0.05,
+    "p_top30": 0.18
+   },
+   {
+    "pos": 26,
+    "player": "Kevin Durant",
+    "est": 3.37,
+    "mp": 2791,
+    "ci": "10-132",
+    "p_top10": 0.07,
+    "p_top30": 0.32
+   },
+   {
+    "pos": 27,
+    "player": "Fred VanVleet",
+    "est": 3.32,
+    "mp": 2684,
+    "ci": "14-211",
+    "p_top10": 0.03,
+    "p_top30": 0.42
+   },
+   {
+    "pos": 28,
+    "player": "T.J. McConnell",
+    "est": 3.02,
+    "mp": 1291,
+    "ci": "39-239",
+    "p_top10": 0.0,
+    "p_top30": 0.03
+   },
+   {
+    "pos": 29,
+    "player": "Dejounte Murray",
+    "est": 3.0,
+    "mp": 2783,
+    "ci": "17-132",
+    "p_top10": 0.04,
+    "p_top30": 0.28
+   },
+   {
+    "pos": 30,
+    "player": "D'Angelo Russell",
+    "est": 2.94,
+    "mp": 2484,
+    "ci": "1-216",
+    "p_top10": 0.15,
+    "p_top30": 0.27
+   }
+  ],
+  "offense|2024-25": [
+   {
+    "pos": 1,
+    "player": "Nikola Joki\u0107",
+    "est": 8.63,
+    "mp": 2571,
+    "ci": "3-197",
+    "p_top10": 0.2,
+    "p_top30": 0.38
+   },
+   {
+    "pos": 2,
+    "player": "Shai Gilgeous-Alexander",
+    "est": 7.46,
+    "mp": 2598,
+    "ci": "3-197",
+    "p_top10": 0.3,
+    "p_top30": 0.49
+   },
+   {
+    "pos": 3,
+    "player": "Stephen Curry",
+    "est": 6.78,
+    "mp": 2252,
+    "ci": "10-238",
+    "p_top10": 0.06,
+    "p_top30": 0.2
+   },
+   {
+    "pos": 4,
+    "player": "Luka Don\u010di\u0107",
+    "est": 6.22,
+    "mp": 1769,
+    "ci": "36-243",
+    "p_top10": 0.02,
+    "p_top30": 0.04
+   },
+   {
+    "pos": 5,
+    "player": "LaMelo Ball",
+    "est": 5.71,
+    "mp": 1505,
+    "ci": "24-247",
+    "p_top10": 0.0,
+    "p_top30": 0.08
+   },
+   {
+    "pos": 6,
+    "player": "Jalen Brunson",
+    "est": 5.66,
+    "mp": 2301,
+    "ci": "10-238",
+    "p_top10": 0.07,
+    "p_top30": 0.2
+   },
+   {
+    "pos": 7,
+    "player": "James Harden",
+    "est": 5.24,
+    "mp": 2789,
+    "ci": "5-178",
+    "p_top10": 0.08,
+    "p_top30": 0.18
+   },
+   {
+    "pos": 8,
+    "player": "Tyrese Haliburton",
+    "est": 5.08,
+    "mp": 2451,
+    "ci": "6-238",
+    "p_top10": 0.07,
+    "p_top30": 0.23
+   },
+   {
+    "pos": 9,
+    "player": "Donovan Mitchell",
+    "est": 5.04,
+    "mp": 2232,
+    "ci": "10-232",
+    "p_top10": 0.06,
+    "p_top30": 0.19
+   },
+   {
+    "pos": 10,
+    "player": "Giannis Antetokounmpo",
+    "est": 5.0,
+    "mp": 2289,
+    "ci": "10-238",
+    "p_top10": 0.06,
+    "p_top30": 0.19
+   },
+   {
+    "pos": 11,
+    "player": "Jayson Tatum",
+    "est": 5.0,
+    "mp": 2624,
+    "ci": "3-197",
+    "p_top10": 0.29,
+    "p_top30": 0.48
+   },
+   {
+    "pos": 12,
+    "player": "Damian Lillard",
+    "est": 4.85,
+    "mp": 2093,
+    "ci": "10-234",
+    "p_top10": 0.06,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 13,
+    "player": "Trae Young",
+    "est": 4.75,
+    "mp": 2739,
+    "ci": "5-178",
+    "p_top10": 0.18,
+    "p_top30": 0.36
+   },
+   {
+    "pos": 14,
+    "player": "Darius Garland",
+    "est": 4.68,
+    "mp": 2301,
+    "ci": "10-238",
+    "p_top10": 0.06,
+    "p_top30": 0.21
+   },
+   {
+    "pos": 15,
+    "player": "Ty Jerome",
+    "est": 4.33,
+    "mp": 1393,
+    "ci": "20-251",
+    "p_top10": 0.0,
+    "p_top30": 0.08
+   },
+   {
+    "pos": 16,
+    "player": "Tyler Herro",
+    "est": 4.25,
+    "mp": 2725,
+    "ci": "5-178",
+    "p_top10": 0.2,
+    "p_top30": 0.4
+   },
+   {
+    "pos": 17,
+    "player": "Cade Cunningham",
+    "est": 4.19,
+    "mp": 2452,
+    "ci": "6-234",
+    "p_top10": 0.07,
+    "p_top30": 0.23
+   },
+   {
+    "pos": 18,
+    "player": "Anthony Edwards",
+    "est": 4.18,
+    "mp": 2871,
+    "ci": "18-178",
+    "p_top10": 0.02,
+    "p_top30": 0.26
+   },
+   {
+    "pos": 19,
+    "player": "Jamal Murray",
+    "est": 4.01,
+    "mp": 2418,
+    "ci": "10-238",
+    "p_top10": 0.06,
+    "p_top30": 0.21
+   },
+   {
+    "pos": 20,
+    "player": "Austin Reaves",
+    "est": 3.57,
+    "mp": 2550,
+    "ci": "4-185",
+    "p_top10": 0.15,
+    "p_top30": 0.33
+   },
+   {
+    "pos": 21,
+    "player": "Tyrese Maxey",
+    "est": 3.56,
+    "mp": 1960,
+    "ci": "13-234",
+    "p_top10": 0.04,
+    "p_top30": 0.06
+   },
+   {
+    "pos": 22,
+    "player": "Devin Booker",
+    "est": 3.52,
+    "mp": 2795,
+    "ci": "14-178",
+    "p_top10": 0.04,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 23,
+    "player": "Ja Morant",
+    "est": 3.3,
+    "mp": 1519,
+    "ci": "24-246",
+    "p_top10": 0.0,
+    "p_top30": 0.08
+   },
+   {
+    "pos": 24,
+    "player": "Kyrie Irving",
+    "est": 3.24,
+    "mp": 1804,
+    "ci": "36-245",
+    "p_top10": 0.01,
+    "p_top30": 0.04
+   },
+   {
+    "pos": 25,
+    "player": "Payton Pritchard",
+    "est": 3.22,
+    "mp": 2271,
+    "ci": "10-238",
+    "p_top10": 0.07,
+    "p_top30": 0.2
+   },
+   {
+    "pos": 26,
+    "player": "Jimmy Butler",
+    "est": 3.16,
+    "mp": 1746,
+    "ci": "36-243",
+    "p_top10": 0.01,
+    "p_top30": 0.04
+   },
+   {
+    "pos": 27,
+    "player": "Kevin Durant",
+    "est": 3.03,
+    "mp": 2265,
+    "ci": "10-238",
+    "p_top10": 0.06,
+    "p_top30": 0.19
+   },
+   {
+    "pos": 28,
+    "player": "Karl-Anthony Towns",
+    "est": 2.86,
+    "mp": 2517,
+    "ci": "6-204",
+    "p_top10": 0.08,
+    "p_top30": 0.23
+   },
+   {
+    "pos": 29,
+    "player": "Franz Wagner",
+    "est": 2.77,
+    "mp": 2023,
+    "ci": "12-234",
+    "p_top10": 0.05,
+    "p_top30": 0.08
+   },
+   {
+    "pos": 30,
+    "player": "LeBron James",
+    "est": 2.65,
+    "mp": 2444,
+    "ci": "9-238",
+    "p_top10": 0.07,
+    "p_top30": 0.23
+   }
+  ],
+  "offense|2025-26": [
+   {
+    "pos": 1,
+    "player": "Nikola Joki\u0107",
+    "est": 7.89,
+    "mp": 2265,
+    "ci": "12-255",
+    "p_top10": 0.03,
+    "p_top30": 0.21
+   },
+   {
+    "pos": 2,
+    "player": "Shai Gilgeous-Alexander",
+    "est": 7.41,
+    "mp": 2259,
+    "ci": "12-259",
+    "p_top10": 0.04,
+    "p_top30": 0.21
+   },
+   {
+    "pos": 3,
+    "player": "Luka Don\u010di\u0107",
+    "est": 7.0,
+    "mp": 2289,
+    "ci": "12-259",
+    "p_top10": 0.02,
+    "p_top30": 0.22
+   },
+   {
+    "pos": 4,
+    "player": "Donovan Mitchell",
+    "est": 6.21,
+    "mp": 2342,
+    "ci": "14-259",
+    "p_top10": 0.01,
+    "p_top30": 0.22
+   },
+   {
+    "pos": 5,
+    "player": "Kawhi Leonard",
+    "est": 6.05,
+    "mp": 2085,
+    "ci": "7-246",
+    "p_top10": 0.08,
+    "p_top30": 0.18
+   },
+   {
+    "pos": 6,
+    "player": "James Harden",
+    "est": 5.85,
+    "mp": 2438,
+    "ci": "8-232",
+    "p_top10": 0.05,
+    "p_top30": 0.25
+   },
+   {
+    "pos": 7,
+    "player": "Stephen Curry",
+    "est": 5.64,
+    "mp": 1329,
+    "ci": "40-261",
+    "p_top10": 0.0,
+    "p_top30": 0.02
+   },
+   {
+    "pos": 8,
+    "player": "LaMelo Ball",
+    "est": 5.61,
+    "mp": 2017,
+    "ci": "7-245",
+    "p_top10": 0.07,
+    "p_top30": 0.18
+   },
+   {
+    "pos": 9,
+    "player": "Jamal Murray",
+    "est": 5.55,
+    "mp": 2652,
+    "ci": "9-208",
+    "p_top10": 0.19,
+    "p_top30": 0.46
+   },
+   {
+    "pos": 10,
+    "player": "Jalen Brunson",
+    "est": 5.48,
+    "mp": 2590,
+    "ci": "2-236",
+    "p_top10": 0.2,
+    "p_top30": 0.26
+   },
+   {
+    "pos": 11,
+    "player": "Cade Cunningham",
+    "est": 4.98,
+    "mp": 2172,
+    "ci": "7-255",
+    "p_top10": 0.07,
+    "p_top30": 0.19
+   },
+   {
+    "pos": 12,
+    "player": "Tyrese Maxey",
+    "est": 4.56,
+    "mp": 2661,
+    "ci": "9-208",
+    "p_top10": 0.17,
+    "p_top30": 0.44
+   },
+   {
+    "pos": 13,
+    "player": "Devin Booker",
+    "est": 4.46,
+    "mp": 2146,
+    "ci": "10-255",
+    "p_top10": 0.07,
+    "p_top30": 0.19
+   },
+   {
+    "pos": 14,
+    "player": "Jimmy Butler III",
+    "est": 4.37,
+    "mp": 1182,
+    "ci": "48-260",
+    "p_top10": 0.0,
+    "p_top30": 0.0
+   },
+   {
+    "pos": 15,
+    "player": "Anthony Edwards",
+    "est": 4.33,
+    "mp": 2137,
+    "ci": "9-255",
+    "p_top10": 0.07,
+    "p_top30": 0.19
+   },
+   {
+    "pos": 16,
+    "player": "Deni Avdija",
+    "est": 4.12,
+    "mp": 2199,
+    "ci": "7-255",
+    "p_top10": 0.07,
+    "p_top30": 0.2
+   },
+   {
+    "pos": 17,
+    "player": "Kevin Durant",
+    "est": 3.98,
+    "mp": 2840,
+    "ci": "37-66",
+    "p_top10": 0.0,
+    "p_top30": 0.02
+   },
+   {
+    "pos": 18,
+    "player": "Victor Wembanyama",
+    "est": 3.64,
+    "mp": 1866,
+    "ci": "6-248",
+    "p_top10": 0.06,
+    "p_top30": 0.19
+   },
+   {
+    "pos": 19,
+    "player": "Austin Reaves",
+    "est": 3.56,
+    "mp": 1762,
+    "ci": "11-248",
+    "p_top10": 0.04,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 20,
+    "player": "Jaylen Brown",
+    "est": 3.42,
+    "mp": 2443,
+    "ci": "11-232",
+    "p_top10": 0.05,
+    "p_top30": 0.22
+   },
+   {
+    "pos": 21,
+    "player": "Keyonte George",
+    "est": 3.4,
+    "mp": 1786,
+    "ci": "10-248",
+    "p_top10": 0.05,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 22,
+    "player": "Jrue Holiday",
+    "est": 3.34,
+    "mp": 1560,
+    "ci": "27-252",
+    "p_top10": 0.02,
+    "p_top30": 0.07
+   },
+   {
+    "pos": 23,
+    "player": "Michael Porter Jr.",
+    "est": 3.33,
+    "mp": 1689,
+    "ci": "19-251",
+    "p_top10": 0.04,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 24,
+    "player": "Payton Pritchard",
+    "est": 3.31,
+    "mp": 2556,
+    "ci": "2-236",
+    "p_top10": 0.19,
+    "p_top30": 0.25
+   },
+   {
+    "pos": 25,
+    "player": "Joel Embiid",
+    "est": 3.31,
+    "mp": 1201,
+    "ci": "48-261",
+    "p_top10": 0.0,
+    "p_top30": 0.0
+   },
+   {
+    "pos": 26,
+    "player": "Coby White",
+    "est": 3.28,
+    "mp": 1250,
+    "ci": "46-260",
+    "p_top10": 0.0,
+    "p_top30": 0.01
+   },
+   {
+    "pos": 27,
+    "player": "Lauri Markkanen",
+    "est": 3.07,
+    "mp": 1443,
+    "ci": "36-258",
+    "p_top10": 0.01,
+    "p_top30": 0.04
+   },
+   {
+    "pos": 28,
+    "player": "Jalen Duren",
+    "est": 3.01,
+    "mp": 1976,
+    "ci": "7-248",
+    "p_top10": 0.07,
+    "p_top30": 0.19
+   },
+   {
+    "pos": 29,
+    "player": "Darius Garland",
+    "est": 2.7,
+    "mp": 1344,
+    "ci": "40-261",
+    "p_top10": 0.0,
+    "p_top30": 0.01
+   },
+   {
+    "pos": 30,
+    "player": "De'Aaron Fox",
+    "est": 2.68,
+    "mp": 2231,
+    "ci": "10-259",
+    "p_top10": 0.06,
+    "p_top30": 0.21
+   }
+  ],
+  "defense|2023-24": [
+   {
+    "pos": 1,
+    "player": "Rudy Gobert",
+    "est": 4.39,
+    "mp": 2593,
+    "ci": "12-232",
+    "p_top10": 0.03,
+    "p_top30": 0.07
+   },
+   {
+    "pos": 2,
+    "player": "Joel Embiid",
+    "est": 3.97,
+    "mp": 1309,
+    "ci": "16-241",
+    "p_top10": 0.05,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 3,
+    "player": "Victor Wembanyama",
+    "est": 3.71,
+    "mp": 2106,
+    "ci": "13-235",
+    "p_top10": 0.03,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 4,
+    "player": "Jusuf Nurkic",
+    "est": 3.65,
+    "mp": 2078,
+    "ci": "13-237",
+    "p_top10": 0.04,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 5,
+    "player": "Alex Caruso",
+    "est": 3.28,
+    "mp": 2040,
+    "ci": "11-235",
+    "p_top10": 0.05,
+    "p_top30": 0.14
+   },
+   {
+    "pos": 6,
+    "player": "Draymond Green",
+    "est": 3.09,
+    "mp": 1490,
+    "ci": "8-237",
+    "p_top10": 0.06,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 7,
+    "player": "Isaiah Hartenstein",
+    "est": 3.02,
+    "mp": 1896,
+    "ci": "13-237",
+    "p_top10": 0.04,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 8,
+    "player": "Chet Holmgren",
+    "est": 2.98,
+    "mp": 2413,
+    "ci": "18-232",
+    "p_top10": 0.03,
+    "p_top30": 0.07
+   },
+   {
+    "pos": 9,
+    "player": "Dean Wade",
+    "est": 2.82,
+    "mp": 1108,
+    "ci": "49-231",
+    "p_top10": 0.01,
+    "p_top30": 0.03
+   },
+   {
+    "pos": 10,
+    "player": "Kristaps Porzingis",
+    "est": 2.79,
+    "mp": 1690,
+    "ci": "10-236",
+    "p_top10": 0.05,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 11,
+    "player": "Nic Claxton",
+    "est": 2.72,
+    "mp": 2116,
+    "ci": "13-235",
+    "p_top10": 0.04,
+    "p_top30": 0.14
+   },
+   {
+    "pos": 12,
+    "player": "Anthony Davis",
+    "est": 2.66,
+    "mp": 2700,
+    "ci": "9-225",
+    "p_top10": 0.05,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 13,
+    "player": "Nikola Jokic",
+    "est": 2.65,
+    "mp": 2737,
+    "ci": "9-234",
+    "p_top10": 0.05,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 14,
+    "player": "Paul George",
+    "est": 2.57,
+    "mp": 2502,
+    "ci": "28-232",
+    "p_top10": 0.02,
+    "p_top30": 0.06
+   },
+   {
+    "pos": 15,
+    "player": "Bam Adebayo",
+    "est": 2.41,
+    "mp": 2416,
+    "ci": "26-232",
+    "p_top10": 0.01,
+    "p_top30": 0.06
+   },
+   {
+    "pos": 16,
+    "player": "Evan Mobley",
+    "est": 2.4,
+    "mp": 1532,
+    "ci": "8-239",
+    "p_top10": 0.06,
+    "p_top30": 0.15
+   },
+   {
+    "pos": 17,
+    "player": "Ivica Zubac",
+    "est": 2.37,
+    "mp": 1795,
+    "ci": "10-237",
+    "p_top10": 0.05,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 18,
+    "player": "Wendell Carter Jr.",
+    "est": 2.33,
+    "mp": 1406,
+    "ci": "7-237",
+    "p_top10": 0.06,
+    "p_top30": 0.14
+   },
+   {
+    "pos": 19,
+    "player": "Amen Thompson",
+    "est": 2.27,
+    "mp": 1388,
+    "ci": "8-236",
+    "p_top10": 0.05,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 20,
+    "player": "Brook Lopez",
+    "est": 2.2,
+    "mp": 2411,
+    "ci": "26-234",
+    "p_top10": 0.02,
+    "p_top30": 0.06
+   },
+   {
+    "pos": 21,
+    "player": "Andre Drummond",
+    "est": 2.17,
+    "mp": 1351,
+    "ci": "7-236",
+    "p_top10": 0.06,
+    "p_top30": 0.14
+   },
+   {
+    "pos": 22,
+    "player": "Walker Kessler",
+    "est": 2.12,
+    "mp": 1493,
+    "ci": "7-237",
+    "p_top10": 0.06,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 23,
+    "player": "Nickeil Alexander-Walker",
+    "est": 2.11,
+    "mp": 1921,
+    "ci": "10-237",
+    "p_top10": 0.05,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 24,
+    "player": "Larry Nance Jr.",
+    "est": 2.11,
+    "mp": 1216,
+    "ci": "14-241",
+    "p_top10": 0.05,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 25,
+    "player": "OG Anunoby",
+    "est": 2.03,
+    "mp": 1702,
+    "ci": "10-237",
+    "p_top10": 0.05,
+    "p_top30": 0.15
+   },
+   {
+    "pos": 26,
+    "player": "Ausar Thompson",
+    "est": 1.99,
+    "mp": 1583,
+    "ci": "15-239",
+    "p_top10": 0.05,
+    "p_top30": 0.14
+   },
+   {
+    "pos": 27,
+    "player": "Derrick White",
+    "est": 1.94,
+    "mp": 2381,
+    "ci": "23-234",
+    "p_top10": 0.02,
+    "p_top30": 0.08
+   },
+   {
+    "pos": 28,
+    "player": "Kawhi Leonard",
+    "est": 1.93,
+    "mp": 2330,
+    "ci": "19-234",
+    "p_top10": 0.01,
+    "p_top30": 0.08
+   },
+   {
+    "pos": 29,
+    "player": "Franz Wagner",
+    "est": 1.92,
+    "mp": 2337,
+    "ci": "15-232",
+    "p_top10": 0.02,
+    "p_top30": 0.08
+   },
+   {
+    "pos": 30,
+    "player": "Toumani Camara",
+    "est": 1.91,
+    "mp": 1739,
+    "ci": "15-239",
+    "p_top10": 0.04,
+    "p_top30": 0.15
+   }
+  ],
+  "defense|2024-25": [
+   {
+    "pos": 1,
+    "player": "Victor Wembanyama",
+    "est": 4.46,
+    "mp": 1527,
+    "ci": "11-241",
+    "p_top10": 0.04,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 2,
+    "player": "Rudy Gobert",
+    "est": 4.17,
+    "mp": 2388,
+    "ci": "18-247",
+    "p_top10": 0.02,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 3,
+    "player": "Alperen Sengun",
+    "est": 3.54,
+    "mp": 2394,
+    "ci": "16-248",
+    "p_top10": 0.01,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 4,
+    "player": "Jaxson Hayes",
+    "est": 3.49,
+    "mp": 1093,
+    "ci": "7-223",
+    "p_top10": 0.07,
+    "p_top30": 0.15
+   },
+   {
+    "pos": 5,
+    "player": "Jarrett Allen",
+    "est": 3.17,
+    "mp": 2296,
+    "ci": "18-247",
+    "p_top10": 0.01,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 6,
+    "player": "Ausar Thompson",
+    "est": 3.13,
+    "mp": 1328,
+    "ci": "8-230",
+    "p_top10": 0.06,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 7,
+    "player": "Ivica Zubac",
+    "est": 3.03,
+    "mp": 2624,
+    "ci": "15-247",
+    "p_top10": 0.0,
+    "p_top30": 0.14
+   },
+   {
+    "pos": 8,
+    "player": "Donovan Clingan",
+    "est": 2.89,
+    "mp": 1324,
+    "ci": "10-230",
+    "p_top10": 0.06,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 9,
+    "player": "Luke Kornet",
+    "est": 2.85,
+    "mp": 1361,
+    "ci": "11-237",
+    "p_top10": 0.05,
+    "p_top30": 0.09
+   },
+   {
+    "pos": 10,
+    "player": "Toumani Camara",
+    "est": 2.75,
+    "mp": 2548,
+    "ci": "15-247",
+    "p_top10": 0.01,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 11,
+    "player": "Kris Dunn",
+    "est": 2.71,
+    "mp": 1783,
+    "ci": "14-248",
+    "p_top10": 0.04,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 12,
+    "player": "Draymond Green",
+    "est": 2.69,
+    "mp": 1983,
+    "ci": "16-249",
+    "p_top10": 0.03,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 13,
+    "player": "Brandon Clarke",
+    "est": 2.61,
+    "mp": 1207,
+    "ci": "8-227",
+    "p_top10": 0.06,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 14,
+    "player": "Evan Mobley",
+    "est": 2.6,
+    "mp": 2167,
+    "ci": "16-247",
+    "p_top10": 0.02,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 15,
+    "player": "Anthony Davis",
+    "est": 2.45,
+    "mp": 1706,
+    "ci": "9-241",
+    "p_top10": 0.05,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 16,
+    "player": "Luguentz Dort",
+    "est": 2.37,
+    "mp": 2073,
+    "ci": "18-248",
+    "p_top10": 0.02,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 17,
+    "player": "Isaiah Hartenstein",
+    "est": 2.36,
+    "mp": 1590,
+    "ci": "10-241",
+    "p_top10": 0.05,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 18,
+    "player": "Kevon Looney",
+    "est": 2.36,
+    "mp": 1142,
+    "ci": "7-227",
+    "p_top10": 0.07,
+    "p_top30": 0.15
+   },
+   {
+    "pos": 19,
+    "player": "Amen Thompson",
+    "est": 2.34,
+    "mp": 2225,
+    "ci": "18-248",
+    "p_top10": 0.01,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 20,
+    "player": "Wendell Carter Jr.",
+    "est": 2.29,
+    "mp": 1758,
+    "ci": "11-245",
+    "p_top10": 0.05,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 21,
+    "player": "Kristaps Porzi\u0146\u0123is",
+    "est": 2.27,
+    "mp": 1210,
+    "ci": "8-227",
+    "p_top10": 0.07,
+    "p_top30": 0.14
+   },
+   {
+    "pos": 22,
+    "player": "Jaden McDaniels",
+    "est": 2.27,
+    "mp": 2614,
+    "ci": "15-247",
+    "p_top10": 0.0,
+    "p_top30": 0.15
+   },
+   {
+    "pos": 23,
+    "player": "Dyson Daniels",
+    "est": 2.25,
+    "mp": 2571,
+    "ci": "15-247",
+    "p_top10": 0.0,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 24,
+    "player": "Sam Merrill",
+    "est": 2.25,
+    "mp": 1401,
+    "ci": "10-237",
+    "p_top10": 0.06,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 25,
+    "player": "Nicolas Batum",
+    "est": 2.22,
+    "mp": 1367,
+    "ci": "10-236",
+    "p_top10": 0.06,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 26,
+    "player": "Daniel Gafford",
+    "est": 2.19,
+    "mp": 1226,
+    "ci": "10-227",
+    "p_top10": 0.06,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 27,
+    "player": "Jonathan Isaac",
+    "est": 2.11,
+    "mp": 1090,
+    "ci": "7-223",
+    "p_top10": 0.08,
+    "p_top30": 0.15
+   },
+   {
+    "pos": 28,
+    "player": "Brandin Podziemski",
+    "est": 2.05,
+    "mp": 1716,
+    "ci": "11-245",
+    "p_top10": 0.04,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 29,
+    "player": "Jakob Poeltl",
+    "est": 2.05,
+    "mp": 1686,
+    "ci": "11-241",
+    "p_top10": 0.05,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 30,
+    "player": "Isaiah Stewart",
+    "est": 2.04,
+    "mp": 1434,
+    "ci": "8-237",
+    "p_top10": 0.06,
+    "p_top30": 0.11
+   }
+  ],
+  "defense|2025-26": [
+   {
+    "pos": 1,
+    "player": "Victor Wembanyama",
+    "est": 5.73,
+    "mp": 1866,
+    "ci": "14-257",
+    "p_top10": 0.04,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 2,
+    "player": "Chet Holmgren",
+    "est": 4.41,
+    "mp": 1997,
+    "ci": "14-257",
+    "p_top10": 0.04,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 3,
+    "player": "Rudy Gobert",
+    "est": 4.13,
+    "mp": 2380,
+    "ci": "10-257",
+    "p_top10": 0.05,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 4,
+    "player": "Isaiah Hartenstein",
+    "est": 3.98,
+    "mp": 1137,
+    "ci": "23-248",
+    "p_top10": 0.01,
+    "p_top30": 0.09
+   },
+   {
+    "pos": 5,
+    "player": "Neemias Queta",
+    "est": 3.62,
+    "mp": 1926,
+    "ci": "11-256",
+    "p_top10": 0.05,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 6,
+    "player": "Derrick White",
+    "est": 3.11,
+    "mp": 2625,
+    "ci": "10-260",
+    "p_top10": 0.07,
+    "p_top30": 0.16
+   },
+   {
+    "pos": 7,
+    "player": "Hugo Gonz\u00e1lez",
+    "est": 3.09,
+    "mp": 1084,
+    "ci": "23-261",
+    "p_top10": 0.0,
+    "p_top30": 0.09
+   },
+   {
+    "pos": 8,
+    "player": "Luke Kornet",
+    "est": 3.03,
+    "mp": 1430,
+    "ci": "15-258",
+    "p_top10": 0.03,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 9,
+    "player": "Cason Wallace",
+    "est": 2.91,
+    "mp": 2046,
+    "ci": "8-256",
+    "p_top10": 0.05,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 10,
+    "player": "Ronald Holland II",
+    "est": 2.84,
+    "mp": 1550,
+    "ci": "12-257",
+    "p_top10": 0.04,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 11,
+    "player": "Ajay Mitchell",
+    "est": 2.84,
+    "mp": 1473,
+    "ci": "16-252",
+    "p_top10": 0.03,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 12,
+    "player": "Dyson Daniels",
+    "est": 2.83,
+    "mp": 2520,
+    "ci": "16-257",
+    "p_top10": 0.05,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 13,
+    "player": "Ausar Thompson",
+    "est": 2.79,
+    "mp": 1896,
+    "ci": "14-256",
+    "p_top10": 0.03,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 14,
+    "player": "Dru Smith",
+    "est": 2.68,
+    "mp": 1141,
+    "ci": "23-248",
+    "p_top10": 0.01,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 15,
+    "player": "Baylor Scheierman",
+    "est": 2.54,
+    "mp": 1429,
+    "ci": "15-249",
+    "p_top10": 0.03,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 16,
+    "player": "Bam Adebayo",
+    "est": 2.51,
+    "mp": 2365,
+    "ci": "14-259",
+    "p_top10": 0.05,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 17,
+    "player": "Jaylin Williams",
+    "est": 2.5,
+    "mp": 1277,
+    "ci": "13-248",
+    "p_top10": 0.03,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 18,
+    "player": "Javonte Green",
+    "est": 2.47,
+    "mp": 1446,
+    "ci": "14-256",
+    "p_top10": 0.04,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 19,
+    "player": "Jarrett Allen",
+    "est": 2.45,
+    "mp": 1519,
+    "ci": "13-259",
+    "p_top10": 0.04,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 20,
+    "player": "Ryan Kalkbrenner",
+    "est": 2.44,
+    "mp": 1479,
+    "ci": "11-252",
+    "p_top10": 0.05,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 21,
+    "player": "Collin Murray-Boyles",
+    "est": 2.39,
+    "mp": 1246,
+    "ci": "13-248",
+    "p_top10": 0.03,
+    "p_top30": 0.13
+   },
+   {
+    "pos": 22,
+    "player": "Wendell Carter Jr.",
+    "est": 2.38,
+    "mp": 2288,
+    "ci": "19-257",
+    "p_top10": 0.03,
+    "p_top30": 0.07
+   },
+   {
+    "pos": 23,
+    "player": "Marcus Smart",
+    "est": 2.35,
+    "mp": 1769,
+    "ci": "14-256",
+    "p_top10": 0.04,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 24,
+    "player": "Donovan Clingan",
+    "est": 2.33,
+    "mp": 2094,
+    "ci": "11-255",
+    "p_top10": 0.05,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 25,
+    "player": "John Konchar",
+    "est": 2.33,
+    "mp": 1115,
+    "ci": "23-261",
+    "p_top10": 0.01,
+    "p_top30": 0.1
+   },
+   {
+    "pos": 26,
+    "player": "Toumani Camara",
+    "est": 2.1,
+    "mp": 2731,
+    "ci": "19-254",
+    "p_top10": 0.04,
+    "p_top30": 0.22
+   },
+   {
+    "pos": 27,
+    "player": "Mouhamed Gueye",
+    "est": 2.1,
+    "mp": 1179,
+    "ci": "13-244",
+    "p_top10": 0.02,
+    "p_top30": 0.12
+   },
+   {
+    "pos": 28,
+    "player": "Ryan Dunn",
+    "est": 2.09,
+    "mp": 1355,
+    "ci": "12-258",
+    "p_top10": 0.03,
+    "p_top30": 0.14
+   },
+   {
+    "pos": 29,
+    "player": "Jordan Goodwin",
+    "est": 2.08,
+    "mp": 1572,
+    "ci": "12-252",
+    "p_top10": 0.04,
+    "p_top30": 0.11
+   },
+   {
+    "pos": 30,
+    "player": "Jalen Suggs",
+    "est": 2.06,
+    "mp": 1574,
+    "ci": "11-252",
+    "p_top10": 0.04,
+    "p_top30": 0.13
+   }
+  ]
+ }
+}
