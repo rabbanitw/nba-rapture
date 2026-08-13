@@ -1,0 +1,150 @@
+{
+  "protocol": {
+    "objective": "unweighted training RMSE",
+    "model": "no-intercept linear blend of total box and on/off RAPTOR",
+    "test_used_for_fit": false,
+    "n_train": 16259,
+    "n_test": 692,
+    "test_seasons": [
+      "2013-14",
+      "2014-15"
+    ]
+  },
+  "results": {
+    "published_0.85_0.21": {
+      "box_weight": 0.85,
+      "onoff_weight": 0.21,
+      "scores": {
+        "train_all": {
+          "n": 16259,
+          "rmse": 1.1024800601587696,
+          "mae": 0.33463842780033654
+        },
+        "train_complete_seasons": {
+          "n": 3012,
+          "rmse": 0.09498225820720156,
+          "mae": 0.07519360120653949
+        },
+        "test_all": {
+          "n": 692,
+          "rmse": 0.09705173588211662,
+          "mae": 0.07692449096549547
+        },
+        "test_regular_season": {
+          "n": 494,
+          "rmse": 0.0889652340463355,
+          "mae": 0.07025844529219154
+        },
+        "test_playoffs": {
+          "n": 198,
+          "rmse": 0.11476937202878391,
+          "mae": 0.09355593825141542
+        }
+      }
+    },
+    "learned_all_training": {
+      "box_weight": 0.9167592632634397,
+      "onoff_weight": 0.12905684656430802,
+      "scores": {
+        "train_all": {
+          "n": 16259,
+          "rmse": 0.7196484798448662,
+          "mae": 0.36256462191416305
+        },
+        "train_complete_seasons": {
+          "n": 3012,
+          "rmse": 0.472784008131015,
+          "mae": 0.2848159448651793
+        },
+        "test_all": {
+          "n": 692,
+          "rmse": 0.45748905768969156,
+          "mae": 0.3001970533874868
+        },
+        "test_regular_season": {
+          "n": 494,
+          "rmse": 0.24424719778291692,
+          "mae": 0.1893239259137609
+        },
+        "test_playoffs": {
+          "n": 198,
+          "rmse": 0.7633081575184049,
+          "mae": 0.5768199067815302
+        }
+      }
+    },
+    "learned_complete_seasons_sensitivity": {
+      "box_weight": 0.8473514082404328,
+      "onoff_weight": 0.20914559353260376,
+      "scores": {
+        "train_all": {
+          "n": 16259,
+          "rmse": 1.0939516064037311,
+          "mae": 0.331750523319176
+        },
+        "train_complete_seasons": {
+          "n": 3012,
+          "rmse": 0.09372313819457835,
+          "mae": 0.07362005142646744
+        },
+        "test_all": {
+          "n": 692,
+          "rmse": 0.09419084361865744,
+          "mae": 0.07470653829066377
+        },
+        "test_regular_season": {
+          "n": 494,
+          "rmse": 0.08642581424771001,
+          "mae": 0.06829701743861066
+        },
+        "test_playoffs": {
+          "n": 198,
+          "rmse": 0.11122529322664106,
+          "mae": 0.09069796910336193
+        }
+      }
+    }
+  },
+  "training_diagnostic_by_season": {
+    "2015-16": {
+      "n": 346,
+      "published_rmse": 0.10460476915351347,
+      "learned_rmse": 0.4095305147504912
+    },
+    "2016-17": {
+      "n": 347,
+      "published_rmse": 0.09168802049947566,
+      "learned_rmse": 0.43678660608915126
+    },
+    "2017-18": {
+      "n": 345,
+      "published_rmse": 0.09302605049507504,
+      "learned_rmse": 0.39875321355896065
+    },
+    "2018-19": {
+      "n": 327,
+      "published_rmse": 0.09399049574195369,
+      "learned_rmse": 0.3818924849587698
+    },
+    "2019-20": {
+      "n": 165,
+      "published_rmse": 0.0961603193928294,
+      "learned_rmse": 0.38145112612610627
+    },
+    "2020-21": {
+      "n": 10118,
+      "published_rmse": 0.5358264955358908,
+      "learned_rmse": 0.4761391522601662
+    },
+    "2021-22": {
+      "n": 4250,
+      "published_rmse": 1.990621700937641,
+      "learned_rmse": 1.1728651507094414
+    },
+    "2022-23": {
+      "n": 361,
+      "published_rmse": 0.0776388407114835,
+      "learned_rmse": 0.28567408551244383
+    }
+  }
+}

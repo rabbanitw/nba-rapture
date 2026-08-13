@@ -312,6 +312,7 @@ best-looking number in the table — while the same model scores 3.974 on the fu
 |---|---|
 | [RESULTS_combined.md](RESULTS_combined.md) | position one-hot × minimum-minutes threshold for the combined model |
 | [RESULTS_estimated_raptor.md](RESULTS_estimated_raptor.md) | Neil Paine's Estimated RAPTOR recreated and scored head-to-head |
+| [RESULTS_optimized_blend.md](RESULTS_optimized_blend.md) | training-only optimization of the published box/on-off blend and untouched-test result |
 | [RESULTS_top20.md](RESULTS_top20.md) | top-20 total/offense/defense leaderboards, predicted vs true |
 | [RESULTS_top100.md](RESULTS_top100.md) | top-100 leaderboards with precision@K (regular season only) |
 | [RESULTS_top20_nofilter.md](RESULTS_top20_nofilter.md), [RESULTS_top100_nofilter.md](RESULTS_top100_nofilter.md) | same, with every minutes filter removed |
