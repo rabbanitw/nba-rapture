@@ -224,14 +224,12 @@ def main():
             mps = dmeta["mp"][idx].astype(float)
             b_of = np.digitize(mps, terc)
             order0 = np.argsort(-est)
-            R = np.zeros((len(idx), MC), dtype=np.int32)
+            # rk[j, t] = rank of player j in draw t (0-based)
+            rk = np.zeros((len(idx), MC), dtype=np.int32)
             for t in range(MC):
                 draw = est + np.array(
                     [rng.choice(buckets[b]) for b in b_of])
-                R[np.argsort(-draw), t] = np.arange(len(idx))
-            rk = np.empty_like(R)
-            for t in range(MC):
-                rk[R[:, t], t] = np.arange(len(idx))
+                rk[np.argsort(-draw), t] = np.arange(len(idx))
             rows = []
             for pos_i, j in enumerate(order0[:30]):
                 lo, hi = np.percentile(rk[j], [5, 95]).astype(int) + 1
