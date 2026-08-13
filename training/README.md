@@ -5,7 +5,8 @@
 > benchmark now live in [`../RAPTOR_REPRODUCTION.md`](../RAPTOR_REPRODUCTION.md)
 > and [`RESULTS_final_architecture.md`](RESULTS_final_architecture.md). Run
 > `benchmark_final_architecture.py` for the leakage-safe comparison against Neil
-> Paine's published Estimated RAPTOR.
+> Paine's published Estimated RAPTOR. The defense-first ranking and structural-
+> loss search is documented in [`RESULTS_defense_deep_final.md`](RESULTS_defense_deep_final.md).
 
 Predicts FiveThirtyEight RAPTOR totals from the scraped stats in MongoDB.
 Seasons **2013-14 and 2014-15 are held out as test** and are scored exactly once.
@@ -313,6 +314,7 @@ best-looking number in the table — while the same model scores 3.974 on the fu
 | [RESULTS_combined.md](RESULTS_combined.md) | position one-hot × minimum-minutes threshold for the combined model |
 | [RESULTS_estimated_raptor.md](RESULTS_estimated_raptor.md) | Neil Paine's Estimated RAPTOR recreated and scored head-to-head |
 | [RESULTS_optimized_blend.md](RESULTS_optimized_blend.md) | training-only optimization of the published box/on-off blend and untouched-test result |
+| [RESULTS_defense_deep_final.md](RESULTS_defense_deep_final.md) | ten-season defense/ranking search, structural-loss tests, selected ensemble, and uncertainty |
 | [RESULTS_top20.md](RESULTS_top20.md) | top-20 total/offense/defense leaderboards, predicted vs true |
 | [RESULTS_top100.md](RESULTS_top100.md) | top-100 leaderboards with precision@K (regular season only) |
 | [RESULTS_top20_nofilter.md](RESULTS_top20_nofilter.md), [RESULTS_top100_nofilter.md](RESULTS_top100_nofilter.md) | same, with every minutes filter removed |

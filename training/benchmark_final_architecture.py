@@ -9,8 +9,8 @@ Candidate promoted by the repository's prior disjoint-seed studies:
 
 * offense: full matrix + cell-relative/opponent features + four structural
   RAPTOR component hats, 3-seed LightGBM/Ridge blend;
-* defense: whole-season-matched full matrix + cell-relative and nearest-
-  defender features, 3-seed LightGBM/Ridge blend;
+* defense: 60% matched full-matrix head + 40% otherwise identical head augmented
+  with fold-fitted defensive component hats and their published 0.85/0.21 blend;
 * total: independently predicted offense + defense.
 
 The script also scores the small structural reproduction, a direct-total
@@ -236,14 +236,20 @@ def run(data_dir, paine_path, out_prefix):
 
         Xo = np.hstack([X, Z, Eopp, H])
         Xd = np.hstack([X, Z, defend["E"]])
+        struct_d_all = 0.85 * H[:, 2] + 0.21 * H[:, 3]
+        Xd_hats = np.hstack([Xd, H[:, 2:4], struct_d_all[:, None]])
         med_o = safe_nanmedian(Xo[tr])
         med_d = safe_nanmedian(Xd[tr])
+        med_d_hats = safe_nanmedian(Xd_hats[tr])
         med_t = safe_nanmedian(X[tr])
 
         p_o = blend_members(Xo[tr], y_o[tr], Xo[te], med_o,
                             params["offense"], rounds["offense"], SEEDS)
-        p_d = blend_members(Xd[tr], y_d[tr], Xd[te], med_d,
-                            params["defense"], rounds["defense"], SEEDS)
+        p_d_direct = blend_members(Xd[tr], y_d[tr], Xd[te], med_d,
+                                   params["defense"], rounds["defense"], SEEDS)
+        p_d_hats = blend_members(Xd_hats[tr], y_d[tr], Xd_hats[te], med_d_hats,
+                                 params["defense"], rounds["defense"], SEEDS)
+        p_d = 0.60 * p_d_direct + 0.40 * p_d_hats
         p_direct = blend_members(X[tr], y_t[tr], X[te], med_t,
                                  params["total"], rounds["total"], SEEDS)
         p_struct_o = 0.85 * hats["box_o"][te] + 0.21 * hats["onoff_o"][te]
@@ -255,6 +261,8 @@ def run(data_dir, paine_path, out_prefix):
                 "mp": float(mp[i]), "y_offense": float(y_o[i]),
                 "y_defense": float(y_d[i]), "y_total": float(y_t[i]),
                 "ours_offense": float(p_o[j]), "ours_defense": float(p_d[j]),
+                "direct_defense": float(p_d_direct[j]),
+                "hat_defense": float(p_d_hats[j]),
                 "ours_total": float(p_o[j] + p_d[j]),
                 "direct_total": float(p_direct[j]),
                 "struct_offense": float(p_struct_o[j]),
@@ -273,7 +281,8 @@ def run(data_dir, paine_path, out_prefix):
         "offense": [("ours hybrid OOF", "ours_offense"),
                     ("structural fixed OOF", "struct_offense"),
                     ("Paine published", "eRO")],
-        "defense": [("ours matched OOF", "ours_defense"),
+        "defense": [("ours selected OOF", "ours_defense"),
+                    ("old matched OOF", "direct_defense"),
                     ("structural fixed OOF", "struct_defense"),
                     ("Paine published", "eRD")],
         "total": [("ours O+D OOF", "ours_total"),
@@ -323,7 +332,9 @@ def run(data_dir, paine_path, out_prefix):
         "features": {"base": int(X.shape[1]), "cell_relative": int(Z.shape[1]),
                      "opponent_engineered": int(Eopp.shape[1]),
                      "defend_engineered": int(defend["E"].shape[1]),
-                     "structural_hats": 4},
+                     "structural_hats": 4,
+                     "defense_hat_features": 3},
+        "defense_ensemble": {"direct_weight": 0.60, "hat_weight": 0.40},
         "rounds": rounds, "params": params,
         "rows_eligible": int(len(eligible)), "rows_common": int(len(common)),
         "matches_all_rows": match_counts,
@@ -371,7 +382,7 @@ def write_report(path, payload):
                   ""]
 
     ours_labels = {"total": "ours O+D OOF", "offense": "ours hybrid OOF",
-                   "defense": "ours matched OOF"}
+                   "defense": "ours selected OOF"}
     wins = {
         target: sum(
             cell[ours_labels[target]]["rmse"] < cell["Paine published"]["rmse"]
@@ -391,7 +402,9 @@ def write_report(path, payload):
         f"{m['features']['cell_relative']} cell-relative, "
         f"{m['features']['opponent_engineered']} opponent, and four structural hats.",
         f"- Defense adds {m['features']['cell_relative']} cell-relative and "
-        f"{m['features']['defend_engineered']} nearest-defender features.",
+        f"{m['features']['defend_engineered']} nearest-defender features; its "
+        "second head also receives two defensive component hats and their fixed "
+        "0.85/0.21 combination. Final defense is 60% direct / 40% hat-augmented.",
         f"- LightGBM members use seeds {m['seeds']}, a 0.75 tree / 0.25 RidgeCV "
         "blend, and the checked-in tuned parameters.",
         f"- Effective rounds (full-season regime): total {m['rounds']['total']}, "

@@ -26,10 +26,11 @@ by individual experiments.
 
 Ten-season leave-one-season-out validation selects separate heads: offense is a
 three-seed LightGBM/Ridge blend over the full matrix plus opponent context and
-four structural RAPTOR hats; defense is a whole-season-matched LightGBM/Ridge
-blend plus nearest-defender features. Total is offense + defense. On 2,238
+four structural RAPTOR hats. Defense is a 60/40 ensemble of the matched
+LightGBM/Ridge head and a second head augmented by defensive box/on-off hats and
+their published 0.85/0.21 combination. Total is offense + defense. On 2,238
 1,065-minute player-seasons common to Neil Paine's published file, the stack
-scores RMSE **1.063**, R² **0.851**, and Spearman **0.911**, versus Paine's
+scores RMSE **1.051**, R² **0.854**, and Spearman **0.913**, versus Paine's
 Estimated RAPTOR at 1.299 / 0.777 / 0.862. See
 `training/RESULTS_final_architecture.md` for the canonical table and confidence
 intervals.
@@ -289,6 +290,12 @@ python training/final_boards.py
 
 # canonical architecture + Neil Paine comparison (10-season LOSO)
 python training/benchmark_final_architecture.py --paine-repo C:/tmp/NBA-elo
+
+# defense-first ranking, component, and exact published-loss research
+python training/experiment_defense_deep.py --stage screen
+python training/experiment_defense_deep.py --stage confirm
+python training/experiment_defense_deep.py --stage loss
+python training/select_defense_architecture.py
 
 # 4. structural reproduction branch
 python training/raptor2/structural2.py
