@@ -25,7 +25,7 @@ import pandas as pd              # noqa: E402
 import play_by_play_utils as U   # noqa: E402
 
 BUILD = Path("/tmp/rapm_build")
-SEASONS = [2013, 2014, 2015, 2016, 2017, 2018]
+SEASONS = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
 
 def parse_game_attrib(g):
