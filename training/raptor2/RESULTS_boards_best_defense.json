@@ -1,124 +1,124 @@
 {
  "summary": {
   "2013-14": {
-   "dev@10": 5.5,
+   "dev@10": 6.8,
    "tau@10": 0.3333,
    "hits@10": 6,
-   "dev@20": 9.1,
-   "tau@20": 0.3368,
+   "dev@20": 10.2,
+   "tau@20": 0.3053,
    "hits@20": 14,
-   "dev@30": 11.8667,
-   "tau@30": 0.4299,
-   "hits@30": 23,
-   "mae": 0.5917
+   "dev@30": 13.2,
+   "tau@30": 0.4115,
+   "hits@30": 22,
+   "mae": 0.602
   },
   "2014-15": {
-   "dev@10": 2.5,
-   "tau@10": 0.5111,
+   "dev@10": 2.7,
+   "tau@10": 0.4667,
    "hits@10": 8,
-   "dev@20": 4.3,
-   "tau@20": 0.5579,
+   "dev@20": 4.9,
+   "tau@20": 0.5789,
    "hits@20": 17,
-   "dev@30": 6.6333,
-   "tau@30": 0.6552,
+   "dev@30": 6.9,
+   "tau@30": 0.692,
    "hits@30": 23,
-   "mae": 0.5652
+   "mae": 0.5557
   },
   "2015-16": {
-   "dev@10": 4.3,
-   "tau@10": 0.6444,
+   "dev@10": 4.7,
+   "tau@10": 0.6889,
    "hits@10": 8,
-   "dev@20": 14.7,
-   "tau@20": 0.5579,
+   "dev@20": 15.0,
+   "tau@20": 0.6211,
    "hits@20": 11,
-   "dev@30": 15.2333,
-   "tau@30": 0.6046,
+   "dev@30": 15.6333,
+   "tau@30": 0.623,
    "hits@30": 17,
-   "mae": 0.5433
+   "mae": 0.5548
   },
   "2016-17": {
-   "dev@10": 3.1,
-   "tau@10": 0.7333,
+   "dev@10": 6.3,
+   "tau@10": 0.6889,
    "hits@10": 7,
-   "dev@20": 11.8,
-   "tau@20": 0.6316,
+   "dev@20": 11.5,
+   "tau@20": 0.6632,
    "hits@20": 15,
-   "dev@30": 12.1,
-   "tau@30": 0.6506,
-   "hits@30": 23,
-   "mae": 0.6091
+   "dev@30": 11.9,
+   "tau@30": 0.6828,
+   "hits@30": 22,
+   "mae": 0.6096
   },
   "2017-18": {
    "dev@10": 4.6,
    "tau@10": 0.6,
    "hits@10": 7,
-   "dev@20": 9.95,
-   "tau@20": 0.3684,
+   "dev@20": 10.25,
+   "tau@20": 0.4105,
    "hits@20": 13,
-   "dev@30": 14.1,
+   "dev@30": 13.5,
    "tau@30": 0.4023,
-   "hits@30": 20,
-   "mae": 0.5986
+   "hits@30": 21,
+   "mae": 0.5818
   },
   "2018-19": {
-   "dev@10": 6.3,
-   "tau@10": 0.4222,
+   "dev@10": 6.5,
+   "tau@10": 0.3333,
    "hits@10": 7,
-   "dev@20": 9.8,
-   "tau@20": 0.5474,
+   "dev@20": 10.55,
+   "tau@20": 0.5053,
    "hits@20": 14,
-   "dev@30": 9.9,
-   "tau@30": 0.5862,
+   "dev@30": 9.5667,
+   "tau@30": 0.6,
    "hits@30": 24,
-   "mae": 0.6268
+   "mae": 0.6115
   },
   "2019-20": {
-   "dev@10": 4.2,
-   "tau@10": 0.3778,
+   "dev@10": 4.8,
+   "tau@10": 0.3333,
    "hits@10": 8,
-   "dev@20": 7.05,
+   "dev@20": 6.85,
    "tau@20": 0.5158,
    "hits@20": 14,
-   "dev@30": 8.7,
+   "dev@30": 8.8,
    "tau@30": 0.4483,
-   "hits@30": 23,
-   "mae": 0.606
+   "hits@30": 24,
+   "mae": 0.616
   },
   "2020-21": {
-   "dev@10": 3.5,
-   "tau@10": 0.5556,
-   "hits@10": 8,
-   "dev@20": 9.95,
-   "tau@20": 0.6105,
-   "hits@20": 14,
-   "dev@30": 10.1333,
-   "tau@30": 0.5264,
+   "dev@10": 3.2,
+   "tau@10": 0.5111,
+   "hits@10": 7,
+   "dev@20": 9.2,
+   "tau@20": 0.5789,
+   "hits@20": 13,
+   "dev@30": 10.7,
+   "tau@30": 0.4483,
    "hits@30": 24,
-   "mae": 0.6331
+   "mae": 0.6253
   },
   "2021-22": {
-   "dev@10": 3.0,
-   "tau@10": 0.6444,
-   "hits@10": 7,
-   "dev@20": 8.2,
-   "tau@20": 0.5474,
-   "hits@20": 16,
-   "dev@30": 11.9,
-   "tau@30": 0.531,
-   "hits@30": 21,
-   "mae": 0.6471
-  },
-  "2022-23": {
-   "dev@10": 4.1,
+   "dev@10": 3.2,
    "tau@10": 0.4222,
    "hits@10": 7,
-   "dev@20": 6.2,
-   "tau@20": 0.4105,
+   "dev@20": 9.25,
+   "tau@20": 0.5053,
    "hits@20": 16,
-   "dev@30": 8.7667,
-   "tau@30": 0.4299,
+   "dev@30": 11.4333,
+   "tau@30": 0.6184,
    "hits@30": 23,
-   "mae": 0.6621
+   "mae": 0.6021
+  },
+  "2022-23": {
+   "dev@10": 2.9,
+   "tau@10": 0.2889,
+   "hits@10": 7,
+   "dev@20": 6.95,
+   "tau@20": 0.5263,
+   "hits@20": 15,
+   "dev@30": 8.5333,
+   "tau@30": 0.5402,
+   "hits@30": 24,
+   "mae": 0.6111
   }
  },
  "boards": {
@@ -126,7 +126,7 @@
    {
     "pos": 1,
     "player": "Tiago Splitter",
-    "est": 4.44,
+    "est": 4.55,
     "actual": 4.2,
     "actual_rank": 6,
     "rank_dev": 5,
@@ -135,7 +135,7 @@
    {
     "pos": 2,
     "player": "Andrew Bogut",
-    "est": 4.02,
+    "est": 4.1,
     "actual": 4.4,
     "actual_rank": 4,
     "rank_dev": 2,
@@ -144,7 +144,7 @@
    {
     "pos": 3,
     "player": "Joakim Noah",
-    "est": 3.63,
+    "est": 3.73,
     "actual": 4.5,
     "actual_rank": 3,
     "rank_dev": 0,
@@ -152,17 +152,17 @@
    },
    {
     "pos": 4,
-    "player": "Draymond Green",
-    "est": 3.62,
-    "actual": 4.6,
-    "actual_rank": 2,
-    "rank_dev": 2,
-    "mp": 1797
+    "player": "Roy Hibbert",
+    "est": 3.7,
+    "actual": 3.4,
+    "actual_rank": 15,
+    "rank_dev": 11,
+    "mp": 2409
    },
    {
     "pos": 5,
     "player": "Kawhi Leonard",
-    "est": 3.61,
+    "est": 3.65,
     "actual": 5.0,
     "actual_rank": 1,
     "rank_dev": 4,
@@ -170,26 +170,26 @@
    },
    {
     "pos": 6,
-    "player": "Roy Hibbert",
-    "est": 3.56,
-    "actual": 3.4,
-    "actual_rank": 15,
-    "rank_dev": 9,
-    "mp": 2409
+    "player": "Ian Mahinmi",
+    "est": 3.6,
+    "actual": 3.5,
+    "actual_rank": 13,
+    "rank_dev": 7,
+    "mp": 1248
    },
    {
     "pos": 7,
-    "player": "Ian Mahinmi",
-    "est": 3.56,
-    "actual": 3.5,
-    "actual_rank": 13,
-    "rank_dev": 6,
-    "mp": 1248
+    "player": "Draymond Green",
+    "est": 3.48,
+    "actual": 4.6,
+    "actual_rank": 2,
+    "rank_dev": 5,
+    "mp": 1797
    },
    {
     "pos": 8,
     "player": "Marcin Gortat",
-    "est": 3.29,
+    "est": 3.25,
     "actual": 2.5,
     "actual_rank": 29,
     "rank_dev": 21,
@@ -198,7 +198,7 @@
    {
     "pos": 9,
     "player": "Danny Green",
-    "est": 3.15,
+    "est": 3.1,
     "actual": 4.0,
     "actual_rank": 7,
     "rank_dev": 2,
@@ -206,129 +206,129 @@
    },
    {
     "pos": 10,
-    "player": "Jimmy Butler",
-    "est": 3.03,
-    "actual": 3.4,
-    "actual_rank": 14,
-    "rank_dev": 4,
-    "mp": 2591
-   },
-   {
-    "pos": 11,
     "player": "Paul George",
-    "est": 3.02,
+    "est": 3.0,
     "actual": 2.9,
     "actual_rank": 21,
-    "rank_dev": 10,
+    "rank_dev": 11,
     "mp": 2898
    },
    {
-    "pos": 12,
+    "pos": 11,
     "player": "Nene",
     "est": 2.79,
     "actual": 3.8,
     "actual_rank": 9,
-    "rank_dev": 3,
+    "rank_dev": 2,
     "mp": 1560
    },
    {
-    "pos": 13,
-    "player": "Tony Allen",
-    "est": 2.76,
-    "actual": 2.4,
-    "actual_rank": 31,
-    "rank_dev": 18,
-    "mp": 1278
-   },
-   {
-    "pos": 14,
-    "player": "Kevin Garnett",
-    "est": 2.71,
-    "actual": 3.5,
-    "actual_rank": 11,
-    "rank_dev": 3,
-    "mp": 1109
-   },
-   {
-    "pos": 15,
-    "player": "Andre Iguodala",
-    "est": 2.63,
-    "actual": 2.6,
-    "actual_rank": 25,
-    "rank_dev": 10,
-    "mp": 2040
-   },
-   {
-    "pos": 16,
-    "player": "Chris Bosh",
-    "est": 2.62,
-    "actual": 1.0,
-    "actual_rank": 75,
-    "rank_dev": 59,
-    "mp": 2531
-   },
-   {
-    "pos": 17,
-    "player": "CJ Watson",
-    "est": 2.59,
-    "actual": 3.2,
-    "actual_rank": 17,
-    "rank_dev": 0,
-    "mp": 1193
-   },
-   {
-    "pos": 18,
+    "pos": 12,
     "player": "Jae Crowder",
-    "est": 2.57,
+    "est": 2.74,
     "actual": 3.0,
     "actual_rank": 19,
-    "rank_dev": 1,
+    "rank_dev": 7,
     "mp": 1254
    },
    {
-    "pos": 19,
-    "player": "Tim Duncan",
-    "est": 2.52,
-    "actual": 3.0,
-    "actual_rank": 18,
+    "pos": 13,
+    "player": "Jimmy Butler",
+    "est": 2.73,
+    "actual": 3.4,
+    "actual_rank": 14,
     "rank_dev": 1,
-    "mp": 2158
+    "mp": 2591
    },
    {
-    "pos": 20,
-    "player": "Kirk Hinrich",
-    "est": 2.49,
-    "actual": 2.1,
-    "actual_rank": 42,
-    "rank_dev": 22,
-    "mp": 2116
+    "pos": 14,
+    "player": "Andre Iguodala",
+    "est": 2.68,
+    "actual": 2.6,
+    "actual_rank": 25,
+    "rank_dev": 11,
+    "mp": 2040
    },
    {
-    "pos": 21,
-    "player": "DeMarcus Cousins",
-    "est": 2.45,
-    "actual": 3.3,
-    "actual_rank": 16,
-    "rank_dev": 5,
-    "mp": 2298
+    "pos": 15,
+    "player": "Tony Allen",
+    "est": 2.68,
+    "actual": 2.4,
+    "actual_rank": 31,
+    "rank_dev": 16,
+    "mp": 1278
    },
    {
-    "pos": 22,
+    "pos": 16,
     "player": "Robin Lopez",
-    "est": 2.41,
+    "est": 2.65,
     "actual": 2.0,
     "actual_rank": 44,
-    "rank_dev": 22,
+    "rank_dev": 28,
     "mp": 2603
    },
    {
-    "pos": 23,
+    "pos": 17,
+    "player": "Chris Bosh",
+    "est": 2.61,
+    "actual": 1.0,
+    "actual_rank": 75,
+    "rank_dev": 58,
+    "mp": 2531
+   },
+   {
+    "pos": 18,
+    "player": "Kevin Garnett",
+    "est": 2.54,
+    "actual": 3.5,
+    "actual_rank": 11,
+    "rank_dev": 7,
+    "mp": 1109
+   },
+   {
+    "pos": 19,
+    "player": "DeMarcus Cousins",
+    "est": 2.53,
+    "actual": 3.3,
+    "actual_rank": 16,
+    "rank_dev": 3,
+    "mp": 2298
+   },
+   {
+    "pos": 20,
+    "player": "CJ Watson",
+    "est": 2.48,
+    "actual": 3.2,
+    "actual_rank": 17,
+    "rank_dev": 3,
+    "mp": 1193
+   },
+   {
+    "pos": 21,
+    "player": "Tim Duncan",
+    "est": 2.46,
+    "actual": 3.0,
+    "actual_rank": 18,
+    "rank_dev": 3,
+    "mp": 2158
+   },
+   {
+    "pos": 22,
     "player": "Nick Calathes",
-    "est": 2.37,
+    "est": 2.43,
     "actual": 3.5,
     "actual_rank": 12,
-    "rank_dev": 11,
+    "rank_dev": 10,
     "mp": 1173
+   },
+   {
+    "pos": 23,
+    "player": "Paul Millsap",
+    "est": 2.33,
+    "actual": 2.7,
+    "actual_rank": 23,
+    "rank_dev": 0,
+    "mp": 2482
    },
    {
     "pos": 24,
@@ -341,37 +341,37 @@
    },
    {
     "pos": 25,
-    "player": "Chris Paul",
-    "est": 2.27,
-    "actual": 3.9,
-    "actual_rank": 8,
+    "player": "Kirk Hinrich",
+    "est": 2.26,
+    "actual": 2.1,
+    "actual_rank": 42,
     "rank_dev": 17,
-    "mp": 2171
+    "mp": 2116
    }
   ],
   "2014-15": [
    {
     "pos": 1,
-    "player": "Andrew Bogut",
-    "est": 4.98,
-    "actual": 4.7,
-    "actual_rank": 5,
-    "rank_dev": 4,
-    "mp": 1583
+    "player": "Draymond Green",
+    "est": 4.88,
+    "actual": 5.1,
+    "actual_rank": 2,
+    "rank_dev": 1,
+    "mp": 2490
    },
    {
     "pos": 2,
-    "player": "Draymond Green",
-    "est": 4.91,
-    "actual": 5.1,
-    "actual_rank": 2,
-    "rank_dev": 0,
-    "mp": 2490
+    "player": "Andrew Bogut",
+    "est": 4.73,
+    "actual": 4.7,
+    "actual_rank": 5,
+    "rank_dev": 3,
+    "mp": 1583
    },
    {
     "pos": 3,
     "player": "Rudy Gobert",
-    "est": 4.66,
+    "est": 4.58,
     "actual": 4.8,
     "actual_rank": 3,
     "rank_dev": 0,
@@ -380,7 +380,7 @@
    {
     "pos": 4,
     "player": "Tony Allen",
-    "est": 4.03,
+    "est": 4.24,
     "actual": 4.8,
     "actual_rank": 4,
     "rank_dev": 0,
@@ -389,7 +389,7 @@
    {
     "pos": 5,
     "player": "DeMarcus Cousins",
-    "est": 3.9,
+    "est": 3.75,
     "actual": 4.4,
     "actual_rank": 7,
     "rank_dev": 2,
@@ -397,35 +397,35 @@
    },
    {
     "pos": 6,
-    "player": "Anthony Davis",
-    "est": 3.71,
-    "actual": 4.5,
-    "actual_rank": 6,
-    "rank_dev": 0,
-    "mp": 2455
+    "player": "Marcin Gortat",
+    "est": 3.37,
+    "actual": 3.6,
+    "actual_rank": 8,
+    "rank_dev": 2,
+    "mp": 2453
    },
    {
     "pos": 7,
-    "player": "Kawhi Leonard",
-    "est": 3.34,
-    "actual": 5.2,
-    "actual_rank": 1,
-    "rank_dev": 6,
-    "mp": 2033
+    "player": "Anthony Davis",
+    "est": 3.37,
+    "actual": 4.5,
+    "actual_rank": 6,
+    "rank_dev": 1,
+    "mp": 2455
    },
    {
     "pos": 8,
-    "player": "Marcin Gortat",
-    "est": 3.18,
-    "actual": 3.6,
-    "actual_rank": 8,
-    "rank_dev": 0,
-    "mp": 2453
+    "player": "Kawhi Leonard",
+    "est": 3.21,
+    "actual": 5.2,
+    "actual_rank": 1,
+    "rank_dev": 7,
+    "mp": 2033
    },
    {
     "pos": 9,
     "player": "Nerlens Noel",
-    "est": 3.12,
+    "est": 3.14,
     "actual": 2.7,
     "actual_rank": 19,
     "rank_dev": 10,
@@ -433,44 +433,44 @@
    },
    {
     "pos": 10,
-    "player": "Khris Middleton",
-    "est": 2.93,
-    "actual": 3.1,
-    "actual_rank": 13,
-    "rank_dev": 3,
-    "mp": 2378
-   },
-   {
-    "pos": 11,
-    "player": "Andre Roberson",
-    "est": 2.78,
-    "actual": 3.4,
-    "actual_rank": 10,
-    "rank_dev": 1,
-    "mp": 1286
-   },
-   {
-    "pos": 12,
     "player": "Kosta Koufos",
-    "est": 2.78,
+    "est": 2.92,
     "actual": 3.3,
     "actual_rank": 11,
     "rank_dev": 1,
     "mp": 1348
    },
    {
-    "pos": 13,
+    "pos": 11,
+    "player": "Khris Middleton",
+    "est": 2.92,
+    "actual": 3.1,
+    "actual_rank": 13,
+    "rank_dev": 2,
+    "mp": 2378
+   },
+   {
+    "pos": 12,
     "player": "Jonas Jerebko",
-    "est": 2.75,
+    "est": 2.8,
     "actual": 2.8,
     "actual_rank": 17,
-    "rank_dev": 4,
+    "rank_dev": 5,
     "mp": 1230
+   },
+   {
+    "pos": 13,
+    "player": "Andre Roberson",
+    "est": 2.7,
+    "actual": 3.4,
+    "actual_rank": 10,
+    "rank_dev": 3,
+    "mp": 1286
    },
    {
     "pos": 14,
     "player": "Danny Green",
-    "est": 2.5,
+    "est": 2.53,
     "actual": 3.0,
     "actual_rank": 16,
     "rank_dev": 2,
@@ -479,7 +479,7 @@
    {
     "pos": 15,
     "player": "Marcus Smart",
-    "est": 2.49,
+    "est": 2.45,
     "actual": 1.8,
     "actual_rank": 43,
     "rank_dev": 28,
@@ -488,7 +488,7 @@
    {
     "pos": 16,
     "player": "AlFarouq Aminu",
-    "est": 2.38,
+    "est": 2.39,
     "actual": 2.6,
     "actual_rank": 24,
     "rank_dev": 8,
@@ -496,17 +496,17 @@
    },
    {
     "pos": 17,
-    "player": "Josh Smith",
-    "est": 2.35,
-    "actual": 2.6,
-    "actual_rank": 23,
-    "rank_dev": 6,
-    "mp": 2300
+    "player": "Tim Duncan",
+    "est": 2.36,
+    "actual": 3.5,
+    "actual_rank": 9,
+    "rank_dev": 8,
+    "mp": 2227
    },
    {
     "pos": 18,
     "player": "Zaza Pachulia",
-    "est": 2.34,
+    "est": 2.31,
     "actual": 3.2,
     "actual_rank": 12,
     "rank_dev": 6,
@@ -514,149 +514,149 @@
    },
    {
     "pos": 19,
-    "player": "Michael KiddGilchrist",
-    "est": 2.31,
-    "actual": 3.0,
-    "actual_rank": 14,
-    "rank_dev": 5,
-    "mp": 1587
+    "player": "Josh Smith",
+    "est": 2.3,
+    "actual": 2.6,
+    "actual_rank": 23,
+    "rank_dev": 4,
+    "mp": 2300
    },
    {
     "pos": 20,
-    "player": "Tyson Chandler",
-    "est": 2.28,
-    "actual": 2.6,
-    "actual_rank": 20,
-    "rank_dev": 0,
-    "mp": 2286
+    "player": "Serge Ibaka",
+    "est": 2.25,
+    "actual": 3.0,
+    "actual_rank": 15,
+    "rank_dev": 5,
+    "mp": 2116
    },
    {
     "pos": 21,
-    "player": "Nene",
-    "est": 2.27,
-    "actual": 2.8,
-    "actual_rank": 18,
-    "rank_dev": 3,
-    "mp": 1693
-   },
-   {
-    "pos": 22,
     "player": "Jared Dudley",
-    "est": 2.26,
+    "est": 2.19,
     "actual": 1.8,
     "actual_rank": 44,
-    "rank_dev": 22,
+    "rank_dev": 23,
     "mp": 1717
    },
    {
+    "pos": 22,
+    "player": "Nene",
+    "est": 2.16,
+    "actual": 2.8,
+    "actual_rank": 18,
+    "rank_dev": 4,
+    "mp": 1693
+   },
+   {
     "pos": 23,
-    "player": "Tim Duncan",
-    "est": 2.22,
-    "actual": 3.5,
-    "actual_rank": 9,
-    "rank_dev": 14,
-    "mp": 2227
+    "player": "Tyson Chandler",
+    "est": 2.11,
+    "actual": 2.6,
+    "actual_rank": 20,
+    "rank_dev": 3,
+    "mp": 2286
    },
    {
     "pos": 24,
-    "player": "Wesley Matthews",
-    "est": 2.17,
-    "actual": 1.3,
-    "actual_rank": 56,
-    "rank_dev": 32,
-    "mp": 2024
+    "player": "Michael KiddGilchrist",
+    "est": 2.1,
+    "actual": 3.0,
+    "actual_rank": 14,
+    "rank_dev": 10,
+    "mp": 1587
    },
    {
     "pos": 25,
-    "player": "Joakim Noah",
-    "est": 2.16,
-    "actual": 2.6,
-    "actual_rank": 22,
-    "rank_dev": 3,
-    "mp": 2049
+    "player": "Dwight Howard",
+    "est": 2.05,
+    "actual": 1.9,
+    "actual_rank": 41,
+    "rank_dev": 16,
+    "mp": 1223
    }
   ],
   "2015-16": [
    {
     "pos": 1,
-    "player": "Tim Duncan",
-    "est": 4.52,
-    "actual": 5.3,
-    "actual_rank": 1,
-    "rank_dev": 0,
-    "mp": 1536
-   },
-   {
-    "pos": 2,
     "player": "Draymond Green",
-    "est": 4.35,
+    "est": 4.52,
     "actual": 5.2,
     "actual_rank": 3,
-    "rank_dev": 1,
+    "rank_dev": 2,
     "mp": 2808
    },
    {
-    "pos": 3,
-    "player": "Kawhi Leonard",
-    "est": 3.45,
-    "actual": 5.1,
-    "actual_rank": 4,
+    "pos": 2,
+    "player": "Tim Duncan",
+    "est": 4.48,
+    "actual": 5.3,
+    "actual_rank": 1,
     "rank_dev": 1,
-    "mp": 2380
+    "mp": 1536
    },
    {
-    "pos": 4,
+    "pos": 3,
     "player": "Andrew Bogut",
-    "est": 3.34,
+    "est": 3.61,
     "actual": 2.9,
     "actual_rank": 12,
-    "rank_dev": 8,
+    "rank_dev": 9,
     "mp": 1451
    },
    {
-    "pos": 5,
-    "player": "Nikola Jokic",
-    "est": 3.31,
-    "actual": 4.5,
-    "actual_rank": 5,
+    "pos": 4,
+    "player": "Kawhi Leonard",
+    "est": 3.57,
+    "actual": 5.1,
+    "actual_rank": 4,
     "rank_dev": 0,
-    "mp": 1733
+    "mp": 2380
    },
    {
-    "pos": 6,
+    "pos": 5,
     "player": "Danny Green",
-    "est": 3.23,
+    "est": 3.3,
     "actual": 2.2,
     "actual_rank": 28,
-    "rank_dev": 22,
+    "rank_dev": 23,
     "mp": 2062
    },
    {
+    "pos": 6,
+    "player": "Nikola Jokic",
+    "est": 3.27,
+    "actual": 4.5,
+    "actual_rank": 5,
+    "rank_dev": 1,
+    "mp": 1733
+   },
+   {
     "pos": 7,
-    "player": "Rudy Gobert",
-    "est": 3.15,
-    "actual": 3.5,
-    "actual_rank": 7,
-    "rank_dev": 0,
-    "mp": 1932
+    "player": "Steven Adams",
+    "est": 3.23,
+    "actual": 5.3,
+    "actual_rank": 2,
+    "rank_dev": 5,
+    "mp": 2014
    },
    {
     "pos": 8,
-    "player": "Luc Mbah a Moute",
-    "est": 3.11,
+    "player": "Rudy Gobert",
+    "est": 3.16,
     "actual": 3.5,
-    "actual_rank": 8,
-    "rank_dev": 0,
-    "mp": 1274
+    "actual_rank": 7,
+    "rank_dev": 1,
+    "mp": 1932
    },
    {
     "pos": 9,
-    "player": "Steven Adams",
-    "est": 3.09,
-    "actual": 5.3,
-    "actual_rank": 2,
-    "rank_dev": 7,
-    "mp": 2014
+    "player": "Luc Mbah a Moute",
+    "est": 3.1,
+    "actual": 3.5,
+    "actual_rank": 8,
+    "rank_dev": 1,
+    "mp": 1274
    },
    {
     "pos": 10,
@@ -669,26 +669,26 @@
    },
    {
     "pos": 11,
-    "player": "Clint Capela",
-    "est": 2.89,
-    "actual": 1.7,
-    "actual_rank": 47,
-    "rank_dev": 36,
-    "mp": 1471
+    "player": "Andre Drummond",
+    "est": 2.95,
+    "actual": 1.6,
+    "actual_rank": 48,
+    "rank_dev": 37,
+    "mp": 2666
    },
    {
     "pos": 12,
-    "player": "Andre Drummond",
+    "player": "Clint Capela",
     "est": 2.76,
-    "actual": 1.6,
-    "actual_rank": 48,
-    "rank_dev": 36,
-    "mp": 2666
+    "actual": 1.7,
+    "actual_rank": 47,
+    "rank_dev": 35,
+    "mp": 1471
    },
    {
     "pos": 13,
     "player": "Ronnie Price",
-    "est": 2.73,
+    "est": 2.61,
     "actual": 1.5,
     "actual_rank": 60,
     "rank_dev": 47,
@@ -697,7 +697,7 @@
    {
     "pos": 14,
     "player": "Wesley Johnson",
-    "est": 2.65,
+    "est": 2.51,
     "actual": 1.8,
     "actual_rank": 41,
     "rank_dev": 27,
@@ -705,26 +705,26 @@
    },
    {
     "pos": 15,
-    "player": "Ian Mahinmi",
-    "est": 2.45,
-    "actual": 2.9,
-    "actual_rank": 13,
-    "rank_dev": 2,
-    "mp": 1816
+    "player": "Andre Roberson",
+    "est": 2.43,
+    "actual": 1.3,
+    "actual_rank": 67,
+    "rank_dev": 52,
+    "mp": 1553
    },
    {
     "pos": 16,
-    "player": "Jeremy Lamb",
-    "est": 2.44,
-    "actual": 2.4,
-    "actual_rank": 20,
-    "rank_dev": 4,
-    "mp": 1227
+    "player": "Ian Mahinmi",
+    "est": 2.38,
+    "actual": 2.9,
+    "actual_rank": 13,
+    "rank_dev": 3,
+    "mp": 1816
    },
    {
     "pos": 17,
     "player": "Kelly Olynyk",
-    "est": 2.43,
+    "est": 2.35,
     "actual": 2.0,
     "actual_rank": 33,
     "rank_dev": 16,
@@ -732,17 +732,17 @@
    },
    {
     "pos": 18,
-    "player": "Andre Roberson",
-    "est": 2.36,
-    "actual": 1.3,
-    "actual_rank": 67,
-    "rank_dev": 49,
-    "mp": 1553
+    "player": "Jeremy Lamb",
+    "est": 2.34,
+    "actual": 2.4,
+    "actual_rank": 20,
+    "rank_dev": 2,
+    "mp": 1227
    },
    {
     "pos": 19,
     "player": "Jared Sullinger",
-    "est": 2.22,
+    "est": 2.31,
     "actual": 1.9,
     "actual_rank": 36,
     "rank_dev": 17,
@@ -751,7 +751,7 @@
    {
     "pos": 20,
     "player": "Marcus Smart",
-    "est": 2.21,
+    "est": 2.31,
     "actual": 1.9,
     "actual_rank": 37,
     "rank_dev": 17,
@@ -759,55 +759,55 @@
    },
    {
     "pos": 21,
-    "player": "Ed Davis",
-    "est": 2.13,
-    "actual": 2.0,
-    "actual_rank": 32,
-    "rank_dev": 11,
-    "mp": 1684
-   },
-   {
-    "pos": 22,
     "player": "DeAndre Jordan",
-    "est": 2.1,
+    "est": 2.3,
     "actual": 1.9,
     "actual_rank": 38,
-    "rank_dev": 16,
+    "rank_dev": 17,
     "mp": 2598
    },
    {
+    "pos": 22,
+    "player": "David West",
+    "est": 2.11,
+    "actual": 2.7,
+    "actual_rank": 14,
+    "rank_dev": 8,
+    "mp": 1404
+   },
+   {
     "pos": 23,
-    "player": "Marc Gasol",
-    "est": 2.01,
-    "actual": 2.6,
-    "actual_rank": 16,
-    "rank_dev": 7,
-    "mp": 1791
+    "player": "Ed Davis",
+    "est": 2.09,
+    "actual": 2.0,
+    "actual_rank": 32,
+    "rank_dev": 9,
+    "mp": 1684
    },
    {
     "pos": 24,
-    "player": "Mario Chalmers",
-    "est": 2.0,
-    "actual": 2.5,
-    "actual_rank": 17,
-    "rank_dev": 7,
-    "mp": 1373
+    "player": "Marcin Gortat",
+    "est": 2.07,
+    "actual": 3.3,
+    "actual_rank": 10,
+    "rank_dev": 14,
+    "mp": 2256
    },
    {
     "pos": 25,
-    "player": "Amir Johnson",
-    "est": 1.98,
-    "actual": 1.3,
-    "actual_rank": 66,
-    "rank_dev": 41,
-    "mp": 1800
+    "player": "Hassan Whiteside",
+    "est": 2.05,
+    "actual": 2.0,
+    "actual_rank": 34,
+    "rank_dev": 9,
+    "mp": 2125
    }
   ],
   "2016-17": [
    {
     "pos": 1,
     "player": "Rudy Gobert",
-    "est": 5.0,
+    "est": 4.96,
     "actual": 5.6,
     "actual_rank": 2,
     "rank_dev": 1,
@@ -825,7 +825,7 @@
    {
     "pos": 3,
     "player": "Dewayne Dedmon",
-    "est": 4.17,
+    "est": 4.03,
     "actual": 4.1,
     "actual_rank": 4,
     "rank_dev": 1,
@@ -834,7 +834,7 @@
    {
     "pos": 4,
     "player": "Anthony Davis",
-    "est": 4.07,
+    "est": 3.92,
     "actual": 4.4,
     "actual_rank": 3,
     "rank_dev": 1,
@@ -843,7 +843,7 @@
    {
     "pos": 5,
     "player": "Luc Mbah a Moute",
-    "est": 3.45,
+    "est": 3.33,
     "actual": 3.8,
     "actual_rank": 7,
     "rank_dev": 2,
@@ -861,7 +861,7 @@
    {
     "pos": 7,
     "player": "Amir Johnson",
-    "est": 2.95,
+    "est": 2.82,
     "actual": 3.6,
     "actual_rank": 8,
     "rank_dev": 1,
@@ -869,44 +869,44 @@
    },
    {
     "pos": 8,
-    "player": "Myles Turner",
-    "est": 2.88,
-    "actual": 2.2,
-    "actual_rank": 23,
-    "rank_dev": 15,
-    "mp": 2541
-   },
-   {
-    "pos": 9,
     "player": "James Johnson",
-    "est": 2.84,
+    "est": 2.81,
     "actual": 2.4,
     "actual_rank": 15,
-    "rank_dev": 6,
+    "rank_dev": 7,
     "mp": 2085
    },
    {
+    "pos": 9,
+    "player": "Myles Turner",
+    "est": 2.69,
+    "actual": 2.2,
+    "actual_rank": 23,
+    "rank_dev": 14,
+    "mp": 2541
+   },
+   {
     "pos": 10,
-    "player": "Danny Green",
-    "est": 2.67,
-    "actual": 2.6,
-    "actual_rank": 13,
-    "rank_dev": 3,
-    "mp": 1807
+    "player": "DeAndre Jordan",
+    "est": 2.63,
+    "actual": 1.6,
+    "actual_rank": 45,
+    "rank_dev": 35,
+    "mp": 2570
    },
    {
     "pos": 11,
-    "player": "Chris Paul",
-    "est": 2.61,
-    "actual": 1.4,
-    "actual_rank": 55,
-    "rank_dev": 44,
-    "mp": 1921
+    "player": "Nene",
+    "est": 2.59,
+    "actual": 3.5,
+    "actual_rank": 9,
+    "rank_dev": 2,
+    "mp": 1198
    },
    {
     "pos": 12,
     "player": "Zaza Pachulia",
-    "est": 2.56,
+    "est": 2.54,
     "actual": 0.9,
     "actual_rank": 74,
     "rank_dev": 62,
@@ -914,62 +914,62 @@
    },
    {
     "pos": 13,
-    "player": "DeAndre Jordan",
-    "est": 2.52,
-    "actual": 1.6,
-    "actual_rank": 45,
-    "rank_dev": 32,
-    "mp": 2570
-   },
-   {
-    "pos": 14,
     "player": "Andre Roberson",
-    "est": 2.52,
+    "est": 2.54,
     "actual": 4.0,
     "actual_rank": 5,
-    "rank_dev": 9,
+    "rank_dev": 8,
     "mp": 2376
    },
    {
+    "pos": 14,
+    "player": "Danny Green",
+    "est": 2.47,
+    "actual": 2.6,
+    "actual_rank": 13,
+    "rank_dev": 1,
+    "mp": 1807
+   },
+   {
     "pos": 15,
-    "player": "Nene",
-    "est": 2.43,
-    "actual": 3.5,
-    "actual_rank": 9,
-    "rank_dev": 6,
-    "mp": 1198
+    "player": "Chris Paul",
+    "est": 2.46,
+    "actual": 1.4,
+    "actual_rank": 55,
+    "rank_dev": 40,
+    "mp": 1921
    },
    {
     "pos": 16,
-    "player": "Giannis Antetokounmpo",
-    "est": 2.41,
-    "actual": 2.4,
-    "actual_rank": 16,
-    "rank_dev": 0,
-    "mp": 2845
-   },
-   {
-    "pos": 17,
     "player": "Michael KiddGilchrist",
-    "est": 2.36,
+    "est": 2.4,
     "actual": 3.4,
     "actual_rank": 11,
-    "rank_dev": 6,
+    "rank_dev": 5,
     "mp": 2349
    },
    {
-    "pos": 18,
+    "pos": 17,
     "player": "Cody Zeller",
-    "est": 2.27,
+    "est": 2.38,
     "actual": 1.4,
     "actual_rank": 54,
-    "rank_dev": 36,
+    "rank_dev": 37,
     "mp": 1725
+   },
+   {
+    "pos": 18,
+    "player": "Giannis Antetokounmpo",
+    "est": 2.28,
+    "actual": 2.4,
+    "actual_rank": 16,
+    "rank_dev": 2,
+    "mp": 2845
    },
    {
     "pos": 19,
     "player": "Jimmy Butler",
-    "est": 2.26,
+    "est": 2.19,
     "actual": 2.4,
     "actual_rank": 17,
     "rank_dev": 2,
@@ -978,7 +978,7 @@
    {
     "pos": 20,
     "player": "Manu Ginobili",
-    "est": 2.22,
+    "est": 2.15,
     "actual": 2.9,
     "actual_rank": 12,
     "rank_dev": 8,
@@ -987,7 +987,7 @@
    {
     "pos": 21,
     "player": "PJ Tucker",
-    "est": 2.2,
+    "est": 2.07,
     "actual": 1.6,
     "actual_rank": 46,
     "rank_dev": 25,
@@ -995,46 +995,46 @@
    },
    {
     "pos": 22,
-    "player": "Nikola Mirotic",
-    "est": 2.17,
-    "actual": 1.1,
-    "actual_rank": 69,
-    "rank_dev": 47,
-    "mp": 1679
-   },
-   {
-    "pos": 23,
     "player": "Dwight Howard",
-    "est": 2.16,
+    "est": 2.06,
     "actual": 2.3,
     "actual_rank": 20,
-    "rank_dev": 3,
+    "rank_dev": 2,
     "mp": 2199
    },
    {
+    "pos": 23,
+    "player": "Thaddeus Young",
+    "est": 2.06,
+    "actual": 2.0,
+    "actual_rank": 29,
+    "rank_dev": 6,
+    "mp": 2237
+   },
+   {
     "pos": 24,
-    "player": "Jared Dudley",
-    "est": 2.12,
-    "actual": 2.3,
-    "actual_rank": 19,
-    "rank_dev": 5,
-    "mp": 1362
+    "player": "Patrick Beverley",
+    "est": 2.04,
+    "actual": 2.5,
+    "actual_rank": 14,
+    "rank_dev": 10,
+    "mp": 2058
    },
    {
     "pos": 25,
-    "player": "Patrick Beverley",
-    "est": 2.12,
-    "actual": 2.5,
-    "actual_rank": 14,
-    "rank_dev": 11,
-    "mp": 2058
+    "player": "Nikola Mirotic",
+    "est": 1.99,
+    "actual": 1.1,
+    "actual_rank": 69,
+    "rank_dev": 44,
+    "mp": 1679
    }
   ],
   "2017-18": [
    {
     "pos": 1,
     "player": "Rudy Gobert",
-    "est": 4.81,
+    "est": 4.92,
     "actual": 4.0,
     "actual_rank": 1,
     "rank_dev": 0,
@@ -1043,7 +1043,7 @@
    {
     "pos": 2,
     "player": "Anthony Davis",
-    "est": 4.57,
+    "est": 4.5,
     "actual": 3.8,
     "actual_rank": 2,
     "rank_dev": 0,
@@ -1052,7 +1052,7 @@
    {
     "pos": 3,
     "player": "Joel Embiid",
-    "est": 4.28,
+    "est": 4.19,
     "actual": 3.4,
     "actual_rank": 6,
     "rank_dev": 3,
@@ -1061,7 +1061,7 @@
    {
     "pos": 4,
     "player": "Jusuf Nurkic",
-    "est": 3.73,
+    "est": 3.77,
     "actual": 2.6,
     "actual_rank": 17,
     "rank_dev": 13,
@@ -1070,7 +1070,7 @@
    {
     "pos": 5,
     "player": "Larry Nance Jr.",
-    "est": 3.55,
+    "est": 3.54,
     "actual": 2.6,
     "actual_rank": 18,
     "rank_dev": 13,
@@ -1079,7 +1079,7 @@
    {
     "pos": 6,
     "player": "Victor Oladipo",
-    "est": 3.41,
+    "est": 3.2,
     "actual": 3.5,
     "actual_rank": 5,
     "rank_dev": 1,
@@ -1088,7 +1088,7 @@
    {
     "pos": 7,
     "player": "Aron Baynes",
-    "est": 3.23,
+    "est": 3.17,
     "actual": 3.7,
     "actual_rank": 3,
     "rank_dev": 4,
@@ -1097,7 +1097,7 @@
    {
     "pos": 8,
     "player": "Clint Capela",
-    "est": 3.18,
+    "est": 3.13,
     "actual": 2.8,
     "actual_rank": 14,
     "rank_dev": 6,
@@ -1115,7 +1115,7 @@
    {
     "pos": 10,
     "player": "Dejounte Murray",
-    "est": 2.85,
+    "est": 2.91,
     "actual": 3.1,
     "actual_rank": 9,
     "rank_dev": 1,
@@ -1124,7 +1124,7 @@
    {
     "pos": 11,
     "player": "Amir Johnson",
-    "est": 2.85,
+    "est": 2.87,
     "actual": 3.2,
     "actual_rank": 8,
     "rank_dev": 3,
@@ -1132,53 +1132,53 @@
    },
    {
     "pos": 12,
-    "player": "Fred VanVleet",
-    "est": 2.84,
-    "actual": 1.9,
-    "actual_rank": 33,
-    "rank_dev": 21,
-    "mp": 1520
-   },
-   {
-    "pos": 13,
-    "player": "Delon Wright",
-    "est": 2.8,
-    "actual": 1.7,
-    "actual_rank": 41,
-    "rank_dev": 28,
-    "mp": 1433
-   },
-   {
-    "pos": 14,
     "player": "Pau Gasol",
-    "est": 2.79,
+    "est": 2.84,
     "actual": 1.1,
     "actual_rank": 69,
-    "rank_dev": 55,
+    "rank_dev": 57,
     "mp": 1812
    },
    {
-    "pos": 15,
+    "pos": 13,
+    "player": "Fred VanVleet",
+    "est": 2.73,
+    "actual": 1.9,
+    "actual_rank": 33,
+    "rank_dev": 20,
+    "mp": 1520
+   },
+   {
+    "pos": 14,
     "player": "Giannis Antetokounmpo",
     "est": 2.73,
     "actual": 2.5,
     "actual_rank": 21,
-    "rank_dev": 6,
+    "rank_dev": 7,
     "mp": 2756
    },
    {
+    "pos": 15,
+    "player": "Delon Wright",
+    "est": 2.66,
+    "actual": 1.7,
+    "actual_rank": 41,
+    "rank_dev": 26,
+    "mp": 1433
+   },
+   {
     "pos": 16,
-    "player": "Luc Mbah a Moute",
-    "est": 2.69,
-    "actual": 2.5,
-    "actual_rank": 19,
-    "rank_dev": 3,
-    "mp": 1564
+    "player": "Thaddeus Young",
+    "est": 2.59,
+    "actual": 2.0,
+    "actual_rank": 30,
+    "rank_dev": 14,
+    "mp": 2607
    },
    {
     "pos": 17,
     "player": "Kyle Anderson",
-    "est": 2.67,
+    "est": 2.57,
     "actual": 3.1,
     "actual_rank": 10,
     "rank_dev": 7,
@@ -1186,26 +1186,26 @@
    },
    {
     "pos": 18,
-    "player": "Jimmy Butler",
-    "est": 2.56,
-    "actual": 2.3,
-    "actual_rank": 25,
-    "rank_dev": 7,
-    "mp": 2164
+    "player": "Luc Mbah a Moute",
+    "est": 2.55,
+    "actual": 2.5,
+    "actual_rank": 19,
+    "rank_dev": 1,
+    "mp": 1564
    },
    {
     "pos": 19,
-    "player": "Thaddeus Young",
-    "est": 2.54,
+    "player": "Ersan Ilyasova",
+    "est": 2.53,
     "actual": 2.0,
-    "actual_rank": 30,
-    "rank_dev": 11,
-    "mp": 2607
+    "actual_rank": 31,
+    "rank_dev": 12,
+    "mp": 1729
    },
    {
     "pos": 20,
     "player": "Kristaps Porzingis",
-    "est": 2.46,
+    "est": 2.47,
     "actual": 2.0,
     "actual_rank": 32,
     "rank_dev": 12,
@@ -1213,55 +1213,55 @@
    },
    {
     "pos": 21,
-    "player": "Ersan Ilyasova",
-    "est": 2.43,
-    "actual": 2.0,
-    "actual_rank": 31,
-    "rank_dev": 10,
-    "mp": 1729
+    "player": "Jimmy Butler",
+    "est": 2.46,
+    "actual": 2.3,
+    "actual_rank": 25,
+    "rank_dev": 4,
+    "mp": 2164
    },
    {
     "pos": 22,
-    "player": "Kosta Koufos",
-    "est": 2.43,
-    "actual": 0.6,
-    "actual_rank": 90,
-    "rank_dev": 68,
-    "mp": 1391
+    "player": "Nikola Vucevic",
+    "est": 2.37,
+    "actual": 0.4,
+    "actual_rank": 97,
+    "rank_dev": 75,
+    "mp": 1683
    },
    {
     "pos": 23,
-    "player": "DeMarcus Cousins",
-    "est": 2.42,
-    "actual": 2.2,
-    "actual_rank": 27,
-    "rank_dev": 4,
-    "mp": 1737
+    "player": "Dwight Powell",
+    "est": 2.34,
+    "actual": 2.9,
+    "actual_rank": 11,
+    "rank_dev": 12,
+    "mp": 1672
    },
    {
     "pos": 24,
-    "player": "Marcin Gortat",
-    "est": 2.4,
-    "actual": 1.6,
-    "actual_rank": 43,
-    "rank_dev": 19,
-    "mp": 2075
+    "player": "Hassan Whiteside",
+    "est": 2.32,
+    "actual": 2.5,
+    "actual_rank": 22,
+    "rank_dev": 2,
+    "mp": 1364
    },
    {
     "pos": 25,
-    "player": "Hassan Whiteside",
-    "est": 2.38,
-    "actual": 2.5,
-    "actual_rank": 22,
-    "rank_dev": 3,
-    "mp": 1364
+    "player": "DeMarcus Cousins",
+    "est": 2.23,
+    "actual": 2.2,
+    "actual_rank": 27,
+    "rank_dev": 2,
+    "mp": 1737
    }
   ],
   "2018-19": [
    {
     "pos": 1,
     "player": "Rudy Gobert",
-    "est": 4.11,
+    "est": 4.09,
     "actual": 5.1,
     "actual_rank": 2,
     "rank_dev": 1,
@@ -1269,89 +1269,89 @@
    },
    {
     "pos": 2,
-    "player": "Joel Embiid",
-    "est": 3.74,
-    "actual": 3.6,
-    "actual_rank": 6,
-    "rank_dev": 4,
-    "mp": 2154
-   },
-   {
-    "pos": 3,
     "player": "Jusuf Nurkic",
-    "est": 3.66,
+    "est": 3.6,
     "actual": 5.2,
     "actual_rank": 1,
-    "rank_dev": 2,
+    "rank_dev": 1,
     "mp": 1974
    },
    {
-    "pos": 4,
-    "player": "Hassan Whiteside",
-    "est": 3.64,
-    "actual": 3.8,
-    "actual_rank": 4,
-    "rank_dev": 0,
-    "mp": 1674
+    "pos": 3,
+    "player": "Joel Embiid",
+    "est": 3.56,
+    "actual": 3.6,
+    "actual_rank": 6,
+    "rank_dev": 3,
+    "mp": 2154
    },
    {
-    "pos": 5,
+    "pos": 4,
     "player": "Robert Covington",
-    "est": 3.46,
+    "est": 3.44,
     "actual": 3.3,
     "actual_rank": 10,
-    "rank_dev": 5,
+    "rank_dev": 6,
     "mp": 1203
    },
    {
-    "pos": 6,
-    "player": "Myles Turner",
-    "est": 3.44,
-    "actual": 1.9,
-    "actual_rank": 33,
-    "rank_dev": 27,
-    "mp": 2119
+    "pos": 5,
+    "player": "Hassan Whiteside",
+    "est": 3.38,
+    "actual": 3.8,
+    "actual_rank": 4,
+    "rank_dev": 1,
+    "mp": 1674
    },
    {
-    "pos": 7,
+    "pos": 6,
     "player": "Andre Drummond",
-    "est": 3.32,
+    "est": 3.27,
     "actual": 3.1,
     "actual_rank": 12,
-    "rank_dev": 5,
+    "rank_dev": 6,
     "mp": 2647
    },
    {
-    "pos": 8,
-    "player": "Marc Gasol",
-    "est": 3.29,
-    "actual": 3.9,
-    "actual_rank": 3,
-    "rank_dev": 5,
-    "mp": 2436
-   },
-   {
-    "pos": 9,
+    "pos": 7,
     "player": "Giannis Antetokounmpo",
-    "est": 3.22,
+    "est": 3.27,
     "actual": 2.6,
     "actual_rank": 20,
-    "rank_dev": 11,
+    "rank_dev": 13,
     "mp": 2358
    },
    {
-    "pos": 10,
+    "pos": 8,
+    "player": "Myles Turner",
+    "est": 3.2,
+    "actual": 1.9,
+    "actual_rank": 33,
+    "rank_dev": 25,
+    "mp": 2119
+   },
+   {
+    "pos": 9,
     "player": "Draymond Green",
-    "est": 3.18,
+    "est": 3.15,
     "actual": 3.5,
     "actual_rank": 7,
-    "rank_dev": 3,
+    "rank_dev": 2,
     "mp": 2065
+   },
+   {
+    "pos": 10,
+    "player": "Marc Gasol",
+    "est": 3.15,
+    "actual": 3.9,
+    "actual_rank": 3,
+    "rank_dev": 7,
+    "mp": 2436
    },
    {
     "pos": 11,
     "player": "Nikola Vucevic",
-    "est": 2.97,
+    "est": 3.04,
     "actual": 3.5,
     "actual_rank": 8,
     "rank_dev": 3,
@@ -1359,116 +1359,116 @@
    },
    {
     "pos": 12,
-    "player": "Paul George",
-    "est": 2.92,
-    "actual": 3.8,
-    "actual_rank": 5,
-    "rank_dev": 7,
-    "mp": 2841
-   },
-   {
-    "pos": 13,
-    "player": "Kyle Anderson",
-    "est": 2.91,
-    "actual": 2.2,
-    "actual_rank": 28,
-    "rank_dev": 15,
-    "mp": 1281
-   },
-   {
-    "pos": 14,
     "player": "Derrick Favors",
-    "est": 2.88,
+    "est": 2.92,
     "actual": 3.2,
     "actual_rank": 11,
-    "rank_dev": 3,
+    "rank_dev": 1,
     "mp": 1766
    },
    {
-    "pos": 15,
+    "pos": 13,
     "player": "Anthony Davis",
-    "est": 2.82,
+    "est": 2.77,
     "actual": 3.3,
     "actual_rank": 9,
-    "rank_dev": 6,
+    "rank_dev": 4,
     "mp": 1850
    },
    {
-    "pos": 16,
+    "pos": 14,
+    "player": "Paul George",
+    "est": 2.76,
+    "actual": 3.8,
+    "actual_rank": 5,
+    "rank_dev": 9,
+    "mp": 2841
+   },
+   {
+    "pos": 15,
     "player": "Derrick Jones Jr.",
-    "est": 2.77,
+    "est": 2.71,
     "actual": 2.2,
     "actual_rank": 24,
-    "rank_dev": 8,
+    "rank_dev": 9,
     "mp": 1153
    },
    {
-    "pos": 17,
+    "pos": 16,
     "player": "Ed Davis",
-    "est": 2.74,
+    "est": 2.5,
     "actual": 1.5,
     "actual_rank": 46,
-    "rank_dev": 29,
+    "rank_dev": 30,
     "mp": 1446
    },
    {
-    "pos": 18,
-    "player": "Derrick White",
-    "est": 2.54,
-    "actual": 3.0,
-    "actual_rank": 15,
-    "rank_dev": 3,
-    "mp": 1728
-   },
-   {
-    "pos": 19,
-    "player": "Cory Joseph",
-    "est": 2.5,
-    "actual": 2.5,
-    "actual_rank": 21,
-    "rank_dev": 2,
-    "mp": 2063
-   },
-   {
-    "pos": 20,
+    "pos": 17,
     "player": "Brook Lopez",
-    "est": 2.45,
+    "est": 2.47,
     "actual": 0.9,
     "actual_rank": 77,
-    "rank_dev": 57,
+    "rank_dev": 60,
     "mp": 2322
    },
    {
-    "pos": 21,
+    "pos": 18,
     "player": "Josh Hart",
-    "est": 2.45,
+    "est": 2.46,
     "actual": 3.0,
     "actual_rank": 14,
-    "rank_dev": 7,
+    "rank_dev": 4,
     "mp": 1715
    },
    {
-    "pos": 22,
-    "player": "Bam Adebayo",
+    "pos": 19,
+    "player": "Nikola Jokic",
     "est": 2.45,
-    "actual": 2.7,
-    "actual_rank": 19,
-    "rank_dev": 3,
-    "mp": 1913
+    "actual": 1.8,
+    "actual_rank": 37,
+    "rank_dev": 18,
+    "mp": 2504
+   },
+   {
+    "pos": 20,
+    "player": "Kyle Anderson",
+    "est": 2.4,
+    "actual": 2.2,
+    "actual_rank": 28,
+    "rank_dev": 8,
+    "mp": 1281
+   },
+   {
+    "pos": 21,
+    "player": "Cory Joseph",
+    "est": 2.39,
+    "actual": 2.5,
+    "actual_rank": 21,
+    "rank_dev": 0,
+    "mp": 2063
+   },
+   {
+    "pos": 22,
+    "player": "Derrick White",
+    "est": 2.38,
+    "actual": 3.0,
+    "actual_rank": 15,
+    "rank_dev": 7,
+    "mp": 1728
    },
    {
     "pos": 23,
-    "player": "Nikola Jokic",
-    "est": 2.4,
-    "actual": 1.8,
-    "actual_rank": 37,
-    "rank_dev": 14,
-    "mp": 2504
+    "player": "Bam Adebayo",
+    "est": 2.37,
+    "actual": 2.7,
+    "actual_rank": 19,
+    "rank_dev": 4,
+    "mp": 1913
    },
    {
     "pos": 24,
     "player": "Kevon Looney",
-    "est": 2.38,
+    "est": 2.29,
     "actual": 2.7,
     "actual_rank": 18,
     "rank_dev": 6,
@@ -1477,7 +1477,7 @@
    {
     "pos": 25,
     "player": "Kyle Lowry",
-    "est": 2.19,
+    "est": 2.14,
     "actual": 1.9,
     "actual_rank": 31,
     "rank_dev": 6,
@@ -1488,7 +1488,7 @@
    {
     "pos": 1,
     "player": "Giannis Antetokounmpo",
-    "est": 4.49,
+    "est": 4.59,
     "actual": 3.9,
     "actual_rank": 5,
     "rank_dev": 4,
@@ -1506,7 +1506,7 @@
    {
     "pos": 3,
     "player": "Joel Embiid",
-    "est": 3.71,
+    "est": 3.6,
     "actual": 3.6,
     "actual_rank": 8,
     "rank_dev": 5,
@@ -1515,7 +1515,7 @@
    {
     "pos": 4,
     "player": "Marc Gasol",
-    "est": 3.27,
+    "est": 3.28,
     "actual": 4.1,
     "actual_rank": 3,
     "rank_dev": 1,
@@ -1524,7 +1524,7 @@
    {
     "pos": 5,
     "player": "Brook Lopez",
-    "est": 3.06,
+    "est": 3.04,
     "actual": 3.9,
     "actual_rank": 6,
     "rank_dev": 1,
@@ -1533,7 +1533,7 @@
    {
     "pos": 6,
     "player": "Kris Dunn",
-    "est": 2.61,
+    "est": 2.44,
     "actual": 4.1,
     "actual_rank": 4,
     "rank_dev": 2,
@@ -1541,44 +1541,44 @@
    },
    {
     "pos": 7,
-    "player": "Clint Capela",
-    "est": 2.52,
-    "actual": 4.2,
-    "actual_rank": 2,
-    "rank_dev": 5,
-    "mp": 1279
-   },
-   {
-    "pos": 8,
     "player": "Patrick Beverley",
-    "est": 2.51,
+    "est": 2.42,
     "actual": 3.1,
     "actual_rank": 9,
-    "rank_dev": 1,
+    "rank_dev": 2,
     "mp": 1342
    },
    {
-    "pos": 9,
+    "pos": 8,
     "player": "Kyle Anderson",
-    "est": 2.46,
+    "est": 2.42,
     "actual": 1.8,
     "actual_rank": 30,
-    "rank_dev": 21,
+    "rank_dev": 22,
     "mp": 1330
    },
    {
-    "pos": 10,
+    "pos": 9,
     "player": "Jakob Poeltl",
-    "est": 2.43,
+    "est": 2.39,
     "actual": 3.0,
     "actual_rank": 11,
-    "rank_dev": 1,
+    "rank_dev": 2,
     "mp": 1171
+   },
+   {
+    "pos": 10,
+    "player": "Clint Capela",
+    "est": 2.39,
+    "actual": 4.2,
+    "actual_rank": 2,
+    "rank_dev": 8,
+    "mp": 1279
    },
    {
     "pos": 11,
     "player": "Ben Simmons",
-    "est": 2.38,
+    "est": 2.35,
     "actual": 2.4,
     "actual_rank": 14,
     "rank_dev": 3,
@@ -1586,62 +1586,62 @@
    },
    {
     "pos": 12,
-    "player": "Myles Turner",
-    "est": 2.31,
-    "actual": 1.7,
-    "actual_rank": 32,
-    "rank_dev": 20,
-    "mp": 1826
+    "player": "Bam Adebayo",
+    "est": 2.25,
+    "actual": 2.1,
+    "actual_rank": 18,
+    "rank_dev": 6,
+    "mp": 2417
    },
    {
     "pos": 13,
-    "player": "OG Anunoby",
-    "est": 2.26,
-    "actual": 1.8,
-    "actual_rank": 26,
-    "rank_dev": 13,
-    "mp": 2066
-   },
-   {
-    "pos": 14,
     "player": "Steven Adams",
-    "est": 2.25,
+    "est": 2.2,
     "actual": 1.7,
     "actual_rank": 34,
-    "rank_dev": 20,
+    "rank_dev": 21,
     "mp": 1680
    },
    {
-    "pos": 15,
-    "player": "Marcus Smart",
-    "est": 2.22,
-    "actual": 2.0,
-    "actual_rank": 20,
-    "rank_dev": 5,
-    "mp": 1919
+    "pos": 14,
+    "player": "Myles Turner",
+    "est": 2.18,
+    "actual": 1.7,
+    "actual_rank": 32,
+    "rank_dev": 18,
+    "mp": 1826
    },
    {
-    "pos": 16,
+    "pos": 15,
     "player": "Draymond Green",
-    "est": 2.2,
+    "est": 2.15,
     "actual": 2.3,
     "actual_rank": 15,
-    "rank_dev": 1,
+    "rank_dev": 0,
     "mp": 1222
    },
    {
+    "pos": 16,
+    "player": "Paul Millsap",
+    "est": 2.14,
+    "actual": 1.8,
+    "actual_rank": 27,
+    "rank_dev": 11,
+    "mp": 1240
+   },
+   {
     "pos": 17,
-    "player": "Mitchell Robinson",
-    "est": 2.18,
-    "actual": 1.7,
-    "actual_rank": 33,
-    "rank_dev": 16,
-    "mp": 1412
+    "player": "Marcus Smart",
+    "est": 2.07,
+    "actual": 2.0,
+    "actual_rank": 20,
+    "rank_dev": 3,
+    "mp": 1919
    },
    {
     "pos": 18,
     "player": "Andre Drummond",
-    "est": 2.16,
+    "est": 2.05,
     "actual": 1.9,
     "actual_rank": 25,
     "rank_dev": 7,
@@ -1649,17 +1649,17 @@
    },
    {
     "pos": 19,
-    "player": "Bam Adebayo",
-    "est": 2.14,
-    "actual": 2.1,
-    "actual_rank": 18,
-    "rank_dev": 1,
-    "mp": 2417
+    "player": "OG Anunoby",
+    "est": 2.04,
+    "actual": 1.8,
+    "actual_rank": 26,
+    "rank_dev": 7,
+    "mp": 2066
    },
    {
     "pos": 20,
     "player": "Montrezl Harrell",
-    "est": 2.1,
+    "est": 2.01,
     "actual": 3.6,
     "actual_rank": 7,
     "rank_dev": 13,
@@ -1667,55 +1667,55 @@
    },
    {
     "pos": 21,
-    "player": "Paul Millsap",
-    "est": 1.93,
-    "actual": 1.8,
-    "actual_rank": 27,
-    "rank_dev": 6,
-    "mp": 1240
+    "player": "Mitchell Robinson",
+    "est": 1.97,
+    "actual": 1.7,
+    "actual_rank": 33,
+    "rank_dev": 12,
+    "mp": 1412
    },
    {
     "pos": 22,
-    "player": "Deandre Ayton",
-    "est": 1.91,
-    "actual": 3.0,
-    "actual_rank": 10,
-    "rank_dev": 12,
-    "mp": 1236
-   },
-   {
-    "pos": 23,
-    "player": "Fred VanVleet",
-    "est": 1.82,
-    "actual": 1.0,
-    "actual_rank": 42,
-    "rank_dev": 19,
-    "mp": 1928
-   },
-   {
-    "pos": 24,
     "player": "Nikola Jokic",
-    "est": 1.81,
+    "est": 1.95,
     "actual": 0.8,
     "actual_rank": 50,
-    "rank_dev": 26,
+    "rank_dev": 28,
     "mp": 2336
    },
    {
-    "pos": 25,
+    "pos": 23,
+    "player": "Jrue Holiday",
+    "est": 1.84,
+    "actual": 2.4,
+    "actual_rank": 13,
+    "rank_dev": 10,
+    "mp": 2117
+   },
+   {
+    "pos": 24,
     "player": "Mikal Bridges",
-    "est": 1.76,
+    "est": 1.72,
     "actual": 1.7,
     "actual_rank": 31,
-    "rank_dev": 6,
+    "rank_dev": 7,
     "mp": 2042
+   },
+   {
+    "pos": 25,
+    "player": "Deandre Ayton",
+    "est": 1.72,
+    "actual": 3.0,
+    "actual_rank": 10,
+    "rank_dev": 15,
+    "mp": 1236
    }
   ],
   "2020-21": [
    {
     "pos": 1,
     "player": "Rudy Gobert",
-    "est": 5.71,
+    "est": 5.76,
     "actual": 8.2,
     "actual_rank": 1,
     "rank_dev": 0,
@@ -1724,7 +1724,7 @@
    {
     "pos": 2,
     "player": "Clint Capela",
-    "est": 3.92,
+    "est": 3.8,
     "actual": 5.3,
     "actual_rank": 2,
     "rank_dev": 0,
@@ -1733,7 +1733,7 @@
    {
     "pos": 3,
     "player": "Jakob Poeltl",
-    "est": 3.68,
+    "est": 3.7,
     "actual": 4.6,
     "actual_rank": 4,
     "rank_dev": 1,
@@ -1742,7 +1742,7 @@
    {
     "pos": 4,
     "player": "Mike Conley",
-    "est": 3.66,
+    "est": 3.69,
     "actual": 4.0,
     "actual_rank": 8,
     "rank_dev": 4,
@@ -1751,7 +1751,7 @@
    {
     "pos": 5,
     "player": "Alex Caruso",
-    "est": 3.5,
+    "est": 3.52,
     "actual": 4.6,
     "actual_rank": 6,
     "rank_dev": 1,
@@ -1760,7 +1760,7 @@
    {
     "pos": 6,
     "player": "Kent Bazemore",
-    "est": 3.48,
+    "est": 3.34,
     "actual": 2.6,
     "actual_rank": 21,
     "rank_dev": 15,
@@ -1768,26 +1768,26 @@
    },
    {
     "pos": 7,
-    "player": "Joel Embiid",
-    "est": 3.47,
-    "actual": 4.6,
-    "actual_rank": 5,
-    "rank_dev": 2,
-    "mp": 1481
+    "player": "Matisse Thybulle",
+    "est": 3.32,
+    "actual": 4.4,
+    "actual_rank": 7,
+    "rank_dev": 0,
+    "mp": 1264
    },
    {
     "pos": 8,
-    "player": "Matisse Thybulle",
-    "est": 3.23,
-    "actual": 4.4,
-    "actual_rank": 7,
-    "rank_dev": 1,
-    "mp": 1264
+    "player": "Joel Embiid",
+    "est": 3.09,
+    "actual": 4.6,
+    "actual_rank": 5,
+    "rank_dev": 3,
+    "mp": 1481
    },
    {
     "pos": 9,
     "player": "Jimmy Butler",
-    "est": 3.09,
+    "est": 2.98,
     "actual": 2.9,
     "actual_rank": 13,
     "rank_dev": 4,
@@ -1795,35 +1795,35 @@
    },
    {
     "pos": 10,
-    "player": "Myles Turner",
-    "est": 3.0,
-    "actual": 4.7,
-    "actual_rank": 3,
-    "rank_dev": 7,
-    "mp": 1455
+    "player": "Larry Nance Jr.",
+    "est": 2.79,
+    "actual": 2.8,
+    "actual_rank": 14,
+    "rank_dev": 4,
+    "mp": 1091
    },
    {
     "pos": 11,
-    "player": "Isaiah Stewart",
-    "est": 2.69,
-    "actual": 3.0,
-    "actual_rank": 12,
-    "rank_dev": 1,
-    "mp": 1370
+    "player": "Myles Turner",
+    "est": 2.74,
+    "actual": 4.7,
+    "actual_rank": 3,
+    "rank_dev": 8,
+    "mp": 1455
    },
    {
     "pos": 12,
-    "player": "Larry Nance Jr.",
-    "est": 2.65,
-    "actual": 2.8,
-    "actual_rank": 14,
-    "rank_dev": 2,
-    "mp": 1091
+    "player": "Isaiah Stewart",
+    "est": 2.63,
+    "actual": 3.0,
+    "actual_rank": 12,
+    "rank_dev": 0,
+    "mp": 1370
    },
    {
     "pos": 13,
     "player": "Draymond Green",
-    "est": 2.54,
+    "est": 2.49,
     "actual": 3.2,
     "actual_rank": 10,
     "rank_dev": 3,
@@ -1831,35 +1831,35 @@
    },
    {
     "pos": 14,
-    "player": "Ivica Zubac",
-    "est": 2.53,
-    "actual": 1.7,
-    "actual_rank": 48,
-    "rank_dev": 34,
-    "mp": 1519
+    "player": "Brook Lopez",
+    "est": 2.45,
+    "actual": 1.4,
+    "actual_rank": 55,
+    "rank_dev": 41,
+    "mp": 1771
    },
    {
     "pos": 15,
-    "player": "Rudy Gay",
-    "est": 2.4,
-    "actual": 2.8,
-    "actual_rank": 15,
-    "rank_dev": 0,
-    "mp": 1232
+    "player": "Ivica Zubac",
+    "est": 2.37,
+    "actual": 1.7,
+    "actual_rank": 48,
+    "rank_dev": 33,
+    "mp": 1519
    },
    {
     "pos": 16,
-    "player": "Christian Wood",
-    "est": 2.39,
-    "actual": 2.6,
-    "actual_rank": 20,
-    "rank_dev": 4,
-    "mp": 1326
+    "player": "Rudy Gay",
+    "est": 2.35,
+    "actual": 2.8,
+    "actual_rank": 15,
+    "rank_dev": 1,
+    "mp": 1232
    },
    {
     "pos": 17,
     "player": "OG Anunoby",
-    "est": 2.31,
+    "est": 2.25,
     "actual": 2.4,
     "actual_rank": 28,
     "rank_dev": 11,
@@ -1867,35 +1867,35 @@
    },
    {
     "pos": 18,
-    "player": "Ben Simmons",
-    "est": 2.24,
-    "actual": 2.4,
-    "actual_rank": 29,
-    "rank_dev": 11,
-    "mp": 1754
+    "player": "Jrue Holiday",
+    "est": 2.08,
+    "actual": 1.4,
+    "actual_rank": 57,
+    "rank_dev": 39,
+    "mp": 1740
    },
    {
     "pos": 19,
-    "player": "Jonas Valanciunas",
-    "est": 2.15,
-    "actual": 0.6,
-    "actual_rank": 82,
-    "rank_dev": 63,
-    "mp": 1623
+    "player": "Ben Simmons",
+    "est": 2.07,
+    "actual": 2.4,
+    "actual_rank": 29,
+    "rank_dev": 10,
+    "mp": 1754
    },
    {
     "pos": 20,
-    "player": "Brook Lopez",
-    "est": 2.11,
-    "actual": 1.4,
-    "actual_rank": 55,
-    "rank_dev": 35,
-    "mp": 1771
+    "player": "PJ Dozier",
+    "est": 1.93,
+    "actual": 2.4,
+    "actual_rank": 26,
+    "rank_dev": 6,
+    "mp": 1088
    },
    {
     "pos": 21,
     "player": "Raul Neto",
-    "est": 2.04,
+    "est": 1.92,
     "actual": 2.5,
     "actual_rank": 22,
     "rank_dev": 1,
@@ -1903,46 +1903,46 @@
    },
    {
     "pos": 22,
-    "player": "Kyle Anderson",
-    "est": 2.02,
-    "actual": 1.9,
-    "actual_rank": 39,
-    "rank_dev": 17,
-    "mp": 1743
-   },
-   {
-    "pos": 23,
-    "player": "Giannis Antetokounmpo",
-    "est": 1.99,
-    "actual": 2.5,
-    "actual_rank": 23,
-    "rank_dev": 0,
-    "mp": 1854
-   },
-   {
-    "pos": 24,
     "player": "Facundo Campazzo",
-    "est": 1.95,
+    "est": 1.9,
     "actual": 2.7,
     "actual_rank": 16,
-    "rank_dev": 8,
+    "rank_dev": 6,
     "mp": 1274
    },
    {
-    "pos": 25,
-    "player": "Montrezl Harrell",
+    "pos": 23,
+    "player": "Christian Wood",
     "est": 1.87,
-    "actual": 2.4,
-    "actual_rank": 24,
-    "rank_dev": 1,
-    "mp": 1516
+    "actual": 2.6,
+    "actual_rank": 20,
+    "rank_dev": 3,
+    "mp": 1326
+   },
+   {
+    "pos": 24,
+    "player": "Kyle Anderson",
+    "est": 1.87,
+    "actual": 1.9,
+    "actual_rank": 39,
+    "rank_dev": 15,
+    "mp": 1743
+   },
+   {
+    "pos": 25,
+    "player": "T.J. McConnell",
+    "est": 1.74,
+    "actual": 1.2,
+    "actual_rank": 62,
+    "rank_dev": 37,
+    "mp": 1604
    }
   ],
   "2021-22": [
    {
     "pos": 1,
     "player": "Rudy Gobert",
-    "est": 4.34,
+    "est": 4.26,
     "actual": 6.9,
     "actual_rank": 1,
     "rank_dev": 0,
@@ -1951,7 +1951,7 @@
    {
     "pos": 2,
     "player": "Nikola Jokic",
-    "est": 3.98,
+    "est": 3.91,
     "actual": 5.9,
     "actual_rank": 2,
     "rank_dev": 0,
@@ -1960,16 +1960,16 @@
    {
     "pos": 3,
     "player": "Draymond Green",
-    "est": 3.47,
+    "est": 3.49,
     "actual": 4.3,
-    "actual_rank": 4,
-    "rank_dev": 1,
+    "actual_rank": 5,
+    "rank_dev": 2,
     "mp": 1304
    },
    {
     "pos": 4,
     "player": "Joel Embiid",
-    "est": 3.41,
+    "est": 3.42,
     "actual": 3.6,
     "actual_rank": 12,
     "rank_dev": 8,
@@ -1978,7 +1978,7 @@
    {
     "pos": 5,
     "player": "Matisse Thybulle",
-    "est": 3.12,
+    "est": 3.15,
     "actual": 4.2,
     "actual_rank": 6,
     "rank_dev": 1,
@@ -1987,16 +1987,16 @@
    {
     "pos": 6,
     "player": "Maxi Kleber",
-    "est": 3.04,
+    "est": 2.9,
     "actual": 2.8,
-    "actual_rank": 16,
-    "rank_dev": 10,
+    "actual_rank": 15,
+    "rank_dev": 9,
     "mp": 1450
    },
    {
     "pos": 7,
     "player": "Jarrett Allen",
-    "est": 2.86,
+    "est": 2.79,
     "actual": 4.2,
     "actual_rank": 7,
     "rank_dev": 0,
@@ -2004,292 +2004,292 @@
    },
    {
     "pos": 8,
-    "player": "Kenrich Williams",
-    "est": 2.84,
-    "actual": 3.8,
-    "actual_rank": 11,
-    "rank_dev": 3,
-    "mp": 1072
+    "player": "Robert Williams III",
+    "est": 2.77,
+    "actual": 2.7,
+    "actual_rank": 17,
+    "rank_dev": 9,
+    "mp": 1804
    },
    {
     "pos": 9,
-    "player": "Alex Caruso",
-    "est": 2.79,
-    "actual": 4.7,
-    "actual_rank": 3,
-    "rank_dev": 6,
-    "mp": 1147
+    "player": "Kenrich Williams",
+    "est": 2.75,
+    "actual": 3.8,
+    "actual_rank": 10,
+    "rank_dev": 1,
+    "mp": 1072
    },
    {
     "pos": 10,
     "player": "Bam Adebayo",
-    "est": 2.74,
+    "est": 2.66,
     "actual": 3.9,
-    "actual_rank": 9,
-    "rank_dev": 1,
+    "actual_rank": 8,
+    "rank_dev": 2,
     "mp": 1825
    },
    {
     "pos": 11,
-    "player": "Robert Williams III",
-    "est": 2.74,
-    "actual": 2.7,
-    "actual_rank": 21,
-    "rank_dev": 10,
-    "mp": 1804
+    "player": "Gary Payton II",
+    "est": 2.64,
+    "actual": 4.3,
+    "actual_rank": 4,
+    "rank_dev": 7,
+    "mp": 1230
    },
    {
     "pos": 12,
     "player": "Myles Turner",
-    "est": 2.68,
+    "est": 2.61,
     "actual": 2.4,
-    "actual_rank": 28,
-    "rank_dev": 16,
+    "actual_rank": 25,
+    "rank_dev": 13,
     "mp": 1235
    },
    {
     "pos": 13,
-    "player": "Paul George",
-    "est": 2.67,
-    "actual": 3.9,
-    "actual_rank": 8,
-    "rank_dev": 5,
-    "mp": 1077
+    "player": "Alex Caruso",
+    "est": 2.59,
+    "actual": 4.7,
+    "actual_rank": 3,
+    "rank_dev": 10,
+    "mp": 1147
    },
    {
     "pos": 14,
-    "player": "Gary Payton II",
-    "est": 2.66,
-    "actual": 4.3,
-    "actual_rank": 5,
-    "rank_dev": 9,
-    "mp": 1230
-   },
-   {
-    "pos": 15,
     "player": "Isaiah Hartenstein",
-    "est": 2.64,
+    "est": 2.51,
     "actual": 1.6,
-    "actual_rank": 52,
-    "rank_dev": 37,
+    "actual_rank": 53,
+    "rank_dev": 39,
     "mp": 1191
    },
    {
-    "pos": 16,
-    "player": "Anthony Davis",
-    "est": 2.57,
-    "actual": 2.7,
-    "actual_rank": 19,
-    "rank_dev": 3,
-    "mp": 1404
-   },
-   {
-    "pos": 17,
+    "pos": 15,
     "player": "Al Horford",
-    "est": 2.51,
+    "est": 2.47,
     "actual": 3.8,
-    "actual_rank": 10,
-    "rank_dev": 7,
+    "actual_rank": 11,
+    "rank_dev": 4,
     "mp": 1981
    },
    {
-    "pos": 18,
+    "pos": 16,
+    "player": "Kevon Looney",
+    "est": 2.46,
+    "actual": 1.4,
+    "actual_rank": 58,
+    "rank_dev": 42,
+    "mp": 1717
+   },
+   {
+    "pos": 17,
     "player": "Lonzo Ball",
-    "est": 2.48,
+    "est": 2.44,
     "actual": 2.7,
-    "actual_rank": 17,
+    "actual_rank": 18,
     "rank_dev": 1,
     "mp": 1212
    },
    {
+    "pos": 18,
+    "player": "Paul George",
+    "est": 2.43,
+    "actual": 3.9,
+    "actual_rank": 9,
+    "rank_dev": 9,
+    "mp": 1077
+   },
+   {
     "pos": 19,
-    "player": "Derrick White",
-    "est": 2.45,
-    "actual": 3.2,
-    "actual_rank": 14,
-    "rank_dev": 5,
-    "mp": 2180
+    "player": "Jaren Jackson Jr.",
+    "est": 2.41,
+    "actual": 1.9,
+    "actual_rank": 41,
+    "rank_dev": 22,
+    "mp": 2126
    },
    {
     "pos": 20,
-    "player": "Kevon Looney",
-    "est": 2.4,
-    "actual": 1.4,
-    "actual_rank": 61,
-    "rank_dev": 41,
-    "mp": 1717
+    "player": "Derrick White",
+    "est": 2.39,
+    "actual": 3.2,
+    "actual_rank": 14,
+    "rank_dev": 6,
+    "mp": 2180
    },
    {
     "pos": 21,
-    "player": "Wendell Carter Jr.",
-    "est": 2.34,
-    "actual": 1.6,
-    "actual_rank": 54,
-    "rank_dev": 33,
-    "mp": 1852
+    "player": "Anthony Davis",
+    "est": 2.39,
+    "actual": 2.7,
+    "actual_rank": 19,
+    "rank_dev": 2,
+    "mp": 1404
    },
    {
     "pos": 22,
-    "player": "Jusuf Nurkic",
-    "est": 2.31,
-    "actual": 3.4,
-    "actual_rank": 13,
-    "rank_dev": 9,
-    "mp": 1579
+    "player": "Wendell Carter Jr.",
+    "est": 2.33,
+    "actual": 1.6,
+    "actual_rank": 54,
+    "rank_dev": 32,
+    "mp": 1852
    },
    {
     "pos": 23,
-    "player": "Chris Boucher",
-    "est": 2.26,
-    "actual": 1.3,
-    "actual_rank": 66,
-    "rank_dev": 43,
-    "mp": 1658
+    "player": "Jusuf Nurkic",
+    "est": 2.28,
+    "actual": 3.4,
+    "actual_rank": 13,
+    "rank_dev": 10,
+    "mp": 1579
    },
    {
     "pos": 24,
-    "player": "Mason Plumlee",
+    "player": "Giannis Antetokounmpo",
     "est": 2.24,
-    "actual": 0.9,
-    "actual_rank": 81,
-    "rank_dev": 57,
-    "mp": 1771
+    "actual": 2.1,
+    "actual_rank": 34,
+    "rank_dev": 10,
+    "mp": 2204
    },
    {
     "pos": 25,
-    "player": "Jaren Jackson Jr.",
+    "player": "Chris Boucher",
     "est": 2.21,
-    "actual": 1.9,
-    "actual_rank": 45,
-    "rank_dev": 20,
-    "mp": 2126
+    "actual": 1.3,
+    "actual_rank": 63,
+    "rank_dev": 38,
+    "mp": 1658
    }
   ],
   "2022-23": [
    {
     "pos": 1,
-    "player": "Alex Caruso",
-    "est": 3.85,
-    "actual": 6.1,
-    "actual_rank": 1,
-    "rank_dev": 0,
-    "mp": 1575
-   },
-   {
-    "pos": 2,
     "player": "Anthony Davis",
-    "est": 3.83,
+    "est": 3.92,
     "actual": 4.6,
     "actual_rank": 3,
-    "rank_dev": 1,
+    "rank_dev": 2,
     "mp": 1904
    },
    {
-    "pos": 3,
-    "player": "Steven Adams",
-    "est": 3.53,
-    "actual": 3.5,
-    "actual_rank": 11,
-    "rank_dev": 8,
-    "mp": 1133
+    "pos": 2,
+    "player": "Alex Caruso",
+    "est": 3.92,
+    "actual": 6.1,
+    "actual_rank": 1,
+    "rank_dev": 1,
+    "mp": 1575
    },
    {
-    "pos": 4,
+    "pos": 3,
     "player": "Draymond Green",
-    "est": 3.42,
+    "est": 3.57,
     "actual": 3.5,
-    "actual_rank": 9,
-    "rank_dev": 5,
+    "actual_rank": 10,
+    "rank_dev": 7,
     "mp": 2297
    },
    {
-    "pos": 5,
+    "pos": 4,
     "player": "Brook Lopez",
-    "est": 3.25,
+    "est": 3.32,
     "actual": 5.0,
     "actual_rank": 2,
-    "rank_dev": 3,
+    "rank_dev": 2,
     "mp": 2373
    },
    {
+    "pos": 5,
+    "player": "Steven Adams",
+    "est": 3.29,
+    "actual": 3.6,
+    "actual_rank": 8,
+    "rank_dev": 3,
+    "mp": 1133
+   },
+   {
     "pos": 6,
-    "player": "Jaren Jackson Jr.",
-    "est": 3.03,
-    "actual": 2.8,
-    "actual_rank": 17,
-    "rank_dev": 11,
-    "mp": 1787
+    "player": "Joel Embiid",
+    "est": 3.05,
+    "actual": 3.7,
+    "actual_rank": 6,
+    "rank_dev": 0,
+    "mp": 2284
    },
    {
     "pos": 7,
-    "player": "Joel Embiid",
+    "player": "Rudy Gobert",
     "est": 3.0,
-    "actual": 3.7,
-    "actual_rank": 6,
-    "rank_dev": 1,
-    "mp": 2284
+    "actual": 4.1,
+    "actual_rank": 5,
+    "rank_dev": 2,
+    "mp": 2148
    },
    {
     "pos": 8,
     "player": "Derrick White",
-    "est": 2.98,
+    "est": 2.95,
     "actual": 3.1,
-    "actual_rank": 14,
-    "rank_dev": 6,
+    "actual_rank": 13,
+    "rank_dev": 5,
     "mp": 2319
    },
    {
     "pos": 9,
-    "player": "Rudy Gobert",
-    "est": 2.85,
-    "actual": 4.1,
-    "actual_rank": 5,
-    "rank_dev": 4,
-    "mp": 2148
+    "player": "Jaren Jackson Jr.",
+    "est": 2.93,
+    "actual": 2.8,
+    "actual_rank": 15,
+    "rank_dev": 6,
+    "mp": 1787
    },
    {
     "pos": 10,
     "player": "Dennis Smith Jr.",
-    "est": 2.57,
+    "est": 2.69,
     "actual": 3.5,
-    "actual_rank": 8,
-    "rank_dev": 2,
+    "actual_rank": 11,
+    "rank_dev": 1,
     "mp": 1390
    },
    {
     "pos": 11,
+    "player": "Jarrett Allen",
+    "est": 2.55,
+    "actual": 1.8,
+    "actual_rank": 36,
+    "rank_dev": 25,
+    "mp": 2220
+   },
+   {
+    "pos": 12,
+    "player": "Nikola Jokic",
+    "est": 2.45,
+    "actual": 4.1,
+    "actual_rank": 4,
+    "rank_dev": 8,
+    "mp": 2323
+   },
+   {
+    "pos": 13,
     "player": "John Konchar",
-    "est": 2.5,
-    "actual": 3.3,
+    "est": 2.31,
+    "actual": 3.2,
     "actual_rank": 12,
     "rank_dev": 1,
     "mp": 1494
    },
    {
-    "pos": 12,
-    "player": "Jarrett Allen",
-    "est": 2.34,
-    "actual": 1.8,
-    "actual_rank": 38,
-    "rank_dev": 26,
-    "mp": 2220
-   },
-   {
-    "pos": 13,
-    "player": "Nikola Jokic",
-    "est": 2.33,
-    "actual": 4.1,
-    "actual_rank": 4,
-    "rank_dev": 9,
-    "mp": 2323
-   },
-   {
     "pos": 14,
     "player": "Isaiah Hartenstein",
-    "est": 2.3,
+    "est": 2.28,
     "actual": 2.6,
-    "actual_rank": 21,
-    "rank_dev": 7,
+    "actual_rank": 20,
+    "rank_dev": 6,
     "mp": 1626
    },
    {
@@ -2297,99 +2297,99 @@
     "player": "Immanuel Quickley",
     "est": 2.23,
     "actual": 2.2,
-    "actual_rank": 28,
-    "rank_dev": 13,
+    "actual_rank": 26,
+    "rank_dev": 11,
     "mp": 2344
    },
    {
     "pos": 16,
-    "player": "Delon Wright",
-    "est": 2.13,
-    "actual": 3.5,
-    "actual_rank": 10,
-    "rank_dev": 6,
-    "mp": 1221
-   },
-   {
-    "pos": 17,
     "player": "Josh Okogie",
     "est": 2.11,
     "actual": 3.7,
     "actual_rank": 7,
-    "rank_dev": 10,
+    "rank_dev": 9,
     "mp": 1350
    },
    {
+    "pos": 17,
+    "player": "Delon Wright",
+    "est": 2.1,
+    "actual": 3.5,
+    "actual_rank": 9,
+    "rank_dev": 8,
+    "mp": 1221
+   },
+   {
     "pos": 18,
-    "player": "Mitchell Robinson",
-    "est": 2.0,
-    "actual": 2.2,
-    "actual_rank": 27,
-    "rank_dev": 9,
-    "mp": 1591
+    "player": "Onyeka Okongwu",
+    "est": 1.89,
+    "actual": 1.3,
+    "actual_rank": 48,
+    "rank_dev": 30,
+    "mp": 1849
    },
    {
     "pos": 19,
-    "player": "Donte DiVincenzo",
-    "est": 1.92,
-    "actual": 2.7,
-    "actual_rank": 20,
-    "rank_dev": 1,
-    "mp": 1894
-   },
-   {
-    "pos": 20,
-    "player": "Bam Adebayo",
-    "est": 1.89,
-    "actual": 2.7,
-    "actual_rank": 19,
-    "rank_dev": 1,
-    "mp": 2598
-   },
-   {
-    "pos": 21,
     "player": "Jusuf Nurkic",
-    "est": 1.89,
+    "est": 1.84,
     "actual": 2.0,
-    "actual_rank": 31,
-    "rank_dev": 10,
+    "actual_rank": 28,
+    "rank_dev": 9,
     "mp": 1391
    },
    {
-    "pos": 22,
+    "pos": 20,
     "player": "Giannis Antetokounmpo",
     "est": 1.82,
     "actual": 2.3,
-    "actual_rank": 25,
+    "actual_rank": 23,
     "rank_dev": 3,
     "mp": 2024
    },
    {
-    "pos": 23,
-    "player": "Onyeka Okongwu",
+    "pos": 21,
+    "player": "Donte DiVincenzo",
     "est": 1.8,
-    "actual": 1.3,
-    "actual_rank": 52,
-    "rank_dev": 29,
-    "mp": 1849
+    "actual": 2.7,
+    "actual_rank": 17,
+    "rank_dev": 4,
+    "mp": 1894
+   },
+   {
+    "pos": 22,
+    "player": "Bam Adebayo",
+    "est": 1.76,
+    "actual": 2.7,
+    "actual_rank": 16,
+    "rank_dev": 6,
+    "mp": 2598
+   },
+   {
+    "pos": 23,
+    "player": "Jrue Holiday",
+    "est": 1.71,
+    "actual": 2.0,
+    "actual_rank": 30,
+    "rank_dev": 7,
+    "mp": 2183
    },
    {
     "pos": 24,
-    "player": "Sam Merrill",
-    "est": 1.79,
-    "actual": 1.2,
-    "actual_rank": 55,
-    "rank_dev": 31,
-    "mp": 1290
+    "player": "Matisse Thybulle",
+    "est": 1.7,
+    "actual": 2.5,
+    "actual_rank": 21,
+    "rank_dev": 3,
+    "mp": 1200
    },
    {
     "pos": 25,
-    "player": "Saben Lee",
-    "est": 1.75,
-    "actual": 1.3,
-    "actual_rank": 51,
-    "rank_dev": 26,
-    "mp": 2171
+    "player": "Mitchell Robinson",
+    "est": 1.69,
+    "actual": 2.2,
+    "actual_rank": 25,
+    "rank_dev": 0,
+    "mp": 1591
    }
   ]
  }
