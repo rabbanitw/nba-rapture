@@ -49,6 +49,7 @@ STAMPS = {"2013-14": "20140715000000", "2014-15": "20150715000000",
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seedbase", type=int, default=0)
+    ap.add_argument("--arms", nargs="*", default=["e", "ecr", "er"])
     args = ap.parse_args()
     seeds = (args.seedbase, args.seedbase + 1, args.seedbase + 2)
 
@@ -80,9 +81,15 @@ def main():
     huE = hz["E"].astype(np.float32)
     huR = hz["R"].astype(np.float32)
     huEcr = cell_relative(huE, cells, mp)
+    enames = [str(x) for x in hz["enames"]]
+    slim_cols = [enames.index(c) for c in
+                 ("charges_per36", "deflections_per36", "mu_pts_per100",
+                  "mu_efg_allowed")]
     ARMS = {"e": np.hstack([base, huE]),
             "ecr": np.hstack([base, huEcr]),
-            "er": np.hstack([base, huE, huR])}
+            "er": np.hstack([base, huE, huR]),
+            "slim": np.hstack([base, huE[:, slim_cols]])}
+    ARMS = {k: v for k, v in ARMS.items() if k in args.arms}
 
     def make_hats(mask_tr):
         hats = {}
@@ -135,6 +142,8 @@ def main():
               f"hats3 median {ref['defense']['median']:.2f} | "
               f"{rec[0]}W {rec[1]}T {rec[2]}L", flush=True)
     tag = f"_s{args.seedbase}" if args.seedbase else ""
+    if set(args.arms) != {"e", "ecr", "er"}:
+        tag += "_" + "-".join(sorted(args.arms))
     fp = TD / "raptor2" / f"RESULTS_cv_hustle{tag}.json"
     fp.write_text(json.dumps(out, indent=1))
     print(f"wrote {fp}", flush=True)
