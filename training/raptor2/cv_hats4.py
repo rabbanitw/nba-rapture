@@ -41,6 +41,7 @@ from structural import cell_relative
 from variables import build_variables
 from variables2 import build_onoff2
 from cv_components import gbm_pred, ridge_pred
+from structural2 import ridge_hat
 
 TD = REPO_ROOT / "training"
 FLOOR = 1065
@@ -53,7 +54,8 @@ STAMPS = {"2013-14": "20140715000000", "2014-15": "20150715000000",
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--arm", choices=["linear", "winner", "both", "hats3"],
+    ap.add_argument("--arm", choices=["linear", "winner", "both", "hats3",
+                                  "hist"],
                 default="linear")
     ap.add_argument("--side", choices=["both", "offense", "defense"],
                     default="both")
@@ -153,18 +155,28 @@ def main():
             trn = labeled & (d["timestamp"] != stamp)
             elm = mp[te] >= FLOOR
             hats = []
+            if args.arm == "hist":
+                HH = np.load(TD / "raptor2" / "hist_hat.npz")["H"]
+                hats.append(HH[:, 0])
+                hats.append(HH[:, 1])
             for tag in ("box_o", "onoff_o", "box_d", "onoff_d"):
-                if args.arm == "hats3":
+                if args.arm in ("hats3", "hist"):
                     Wd, S, lab, _sd = BLOCKS[tag]
                     yv = comp[lab].astype(np.float64)
                     m = trn & np.isfinite(yv) & np.isfinite(S).all(axis=1)
-                    hats.append(ridge_pred(S[m], yv[m], w[m], S))
+                    h = ridge_hat(S[m], yv[m], w[m], S, [""] * S.shape[1],
+                                  tag, quiet=True)
+                    h[~np.isfinite(S).all(axis=1)] = np.nan
+                    hats.append(h)
                 elif args.arm == "both":
                     # production struct ridge hat + the linear-wide hat
                     Wd, S, lab, _sd = BLOCKS[tag]
                     yv = comp[lab].astype(np.float64)
                     m = trn & np.isfinite(yv) & np.isfinite(S).all(axis=1)
-                    hats.append(ridge_pred(S[m], yv[m], w[m], S))
+                    h = ridge_hat(S[m], yv[m], w[m], S, [""] * S.shape[1],
+                                  tag, quiet=True)
+                    h[~np.isfinite(S).all(axis=1)] = np.nan
+                    hats.append(h)
                     hats.append(hat_linear(tag, trn))
                 elif args.arm == "linear" or tag == "box_o":
                     hats.append(hat_linear(tag, trn))
