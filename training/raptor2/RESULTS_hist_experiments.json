@@ -1,0 +1,82 @@
+{
+ "E1|raptor_offense|raw|ridge": {
+  "rho": 0.972,
+  "r2": 0.949
+ },
+ "E1|raptor_offense|raw|gbm": {
+  "rho": 0.976,
+  "r2": 0.952
+ },
+ "E1|raptor_offense|raw+derived|ridge": {
+  "rho": 0.978,
+  "r2": 0.964
+ },
+ "E1|raptor_offense|raw+derived|gbm": {
+  "rho": 0.979,
+  "r2": 0.964
+ },
+ "E1|raptor_defense|raw|ridge": {
+  "rho": 0.946,
+  "r2": 0.896
+ },
+ "E1|raptor_defense|raw|gbm": {
+  "rho": 0.946,
+  "r2": 0.896
+ },
+ "E1|raptor_defense|raw+derived|ridge": {
+  "rho": 0.956,
+  "r2": 0.925
+ },
+ "E1|raptor_defense|raw+derived|gbm": {
+  "rho": 0.959,
+  "r2": 0.927
+ },
+ "E2|raptor_offense": {
+  "rho_transfer": 0.966,
+  "rho_refit_cv": 0.969,
+  "r2_refit_cv": 0.945,
+  "resid_var_by_poss_quintile": [
+   0.39,
+   0.34,
+   0.31,
+   0.32,
+   0.34
+  ]
+ },
+ "E2|raptor_defense": {
+  "rho_transfer": 0.815,
+  "rho_refit_cv": 0.851,
+  "r2_refit_cv": 0.763,
+  "resid_var_by_poss_quintile": [
+   0.64,
+   0.73,
+   0.76,
+   0.72,
+   0.65
+  ]
+ },
+ "E3|raptor_offense|1978-2000 box": {
+  "yoy_r": 0.811,
+  "n": 4258
+ },
+ "E3|raptor_offense|2001-2013 box+RAPM": {
+  "yoy_r": 0.783,
+  "n": 2716
+ },
+ "E3|raptor_offense|2014-2022 tracking": {
+  "yoy_r": 0.727,
+  "n": 2013
+ },
+ "E3|raptor_defense|1978-2000 box": {
+  "yoy_r": 0.779,
+  "n": 4258
+ },
+ "E3|raptor_defense|2001-2013 box+RAPM": {
+  "yoy_r": 0.7,
+  "n": 2716
+ },
+ "E3|raptor_defense|2014-2022 tracking": {
+  "yoy_r": 0.631,
+  "n": 2013
+ }
+}

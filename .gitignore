@@ -24,3 +24,6 @@ training/RESULTS_top100_stride3.json
 
 __pycache__/
 scraping/__pycache__/
+training/raptor2/bbref_hist.jsonl
+training/data_fixed/*.pre_namefix
+.claude/settings.local.json
