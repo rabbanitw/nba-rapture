@@ -1,0 +1,525 @@
+{
+ "seedbase": 20,
+ "arms": {
+  "base": {
+   "per_season": {
+    "2013-14": {
+     "dev@10": 7.0,
+     "dev@20": 10.55,
+     "tau@10": 0.378,
+     "under": 2,
+     "over": 3,
+     "under_big": 1,
+     "over_big": 3,
+     "big_top_pred": 11,
+     "big_top_act": 11
+    },
+    "2014-15": {
+     "dev@10": 2.7,
+     "dev@20": 4.85,
+     "tau@10": 0.467,
+     "under": 0,
+     "over": 1,
+     "under_big": 0,
+     "over_big": 0,
+     "big_top_pred": 10,
+     "big_top_act": 12
+    },
+    "2015-16": {
+     "dev@10": 8.1,
+     "dev@20": 15.1,
+     "tau@10": 0.644,
+     "under": 2,
+     "over": 6,
+     "under_big": 1,
+     "over_big": 2,
+     "big_top_pred": 11,
+     "big_top_act": 14
+    },
+    "2016-17": {
+     "dev@10": 9.0,
+     "dev@20": 11.7,
+     "tau@10": 0.733,
+     "under": 1,
+     "over": 4,
+     "under_big": 1,
+     "over_big": 3,
+     "big_top_pred": 10,
+     "big_top_act": 8
+    },
+    "2017-18": {
+     "dev@10": 4.9,
+     "dev@20": 10.0,
+     "tau@10": 0.644,
+     "under": 4,
+     "over": 2,
+     "under_big": 1,
+     "over_big": 1,
+     "big_top_pred": 10,
+     "big_top_act": 11
+    },
+    "2018-19": {
+     "dev@10": 6.3,
+     "dev@20": 10.2,
+     "tau@10": 0.378,
+     "under": 0,
+     "over": 4,
+     "under_big": 0,
+     "over_big": 4,
+     "big_top_pred": 14,
+     "big_top_act": 14
+    },
+    "2019-20": {
+     "dev@10": 5.2,
+     "dev@20": 7.35,
+     "tau@10": 0.289,
+     "under": 1,
+     "over": 2,
+     "under_big": 0,
+     "over_big": 1,
+     "big_top_pred": 13,
+     "big_top_act": 13
+    },
+    "2020-21": {
+     "dev@10": 3.2,
+     "dev@20": 9.0,
+     "tau@10": 0.467,
+     "under": 3,
+     "over": 3,
+     "under_big": 1,
+     "over_big": 2,
+     "big_top_pred": 11,
+     "big_top_act": 12
+    },
+    "2021-22": {
+     "dev@10": 3.2,
+     "dev@20": 9.0,
+     "tau@10": 0.422,
+     "under": 1,
+     "over": 3,
+     "under_big": 1,
+     "over_big": 3,
+     "big_top_pred": 14,
+     "big_top_act": 12
+    },
+    "2022-23": {
+     "dev@10": 3.7,
+     "dev@20": 6.0,
+     "tau@10": 0.289,
+     "under": 1,
+     "over": 1,
+     "under_big": 1,
+     "over_big": 1,
+     "big_top_pred": 12,
+     "big_top_act": 12
+    }
+   },
+   "median": 5.050000000000001,
+   "mean": 5.330000000000001,
+   "dev20_mean": 9.375,
+   "wl_vs_base": [
+    1,
+    3,
+    6
+   ],
+   "bias_totals": {
+    "under": 15,
+    "over": 29,
+    "under_big": 7,
+    "over_big": 20,
+    "big_top_pred": 116,
+    "big_top_act": 119
+   }
+  },
+  "prelhat": {
+   "per_season": {
+    "2013-14": {
+     "dev@10": 7.0,
+     "dev@20": 11.05,
+     "tau@10": 0.378,
+     "under": 4,
+     "over": 3,
+     "under_big": 2,
+     "over_big": 3,
+     "big_top_pred": 10,
+     "big_top_act": 11
+    },
+    "2014-15": {
+     "dev@10": 2.5,
+     "dev@20": 4.65,
+     "tau@10": 0.511,
+     "under": 0,
+     "over": 1,
+     "under_big": 0,
+     "over_big": 0,
+     "big_top_pred": 10,
+     "big_top_act": 12
+    },
+    "2015-16": {
+     "dev@10": 7.9,
+     "dev@20": 14.9,
+     "tau@10": 0.689,
+     "under": 4,
+     "over": 7,
+     "under_big": 2,
+     "over_big": 3,
+     "big_top_pred": 12,
+     "big_top_act": 14
+    },
+    "2016-17": {
+     "dev@10": 9.2,
+     "dev@20": 11.9,
+     "tau@10": 0.733,
+     "under": 2,
+     "over": 4,
+     "under_big": 1,
+     "over_big": 3,
+     "big_top_pred": 10,
+     "big_top_act": 8
+    },
+    "2017-18": {
+     "dev@10": 6.0,
+     "dev@20": 10.05,
+     "tau@10": 0.644,
+     "under": 4,
+     "over": 2,
+     "under_big": 1,
+     "over_big": 1,
+     "big_top_pred": 10,
+     "big_top_act": 11
+    },
+    "2018-19": {
+     "dev@10": 6.5,
+     "dev@20": 9.3,
+     "tau@10": 0.422,
+     "under": 0,
+     "over": 3,
+     "under_big": 0,
+     "over_big": 3,
+     "big_top_pred": 13,
+     "big_top_act": 14
+    },
+    "2019-20": {
+     "dev@10": 4.8,
+     "dev@20": 8.0,
+     "tau@10": 0.333,
+     "under": 1,
+     "over": 2,
+     "under_big": 0,
+     "over_big": 1,
+     "big_top_pred": 13,
+     "big_top_act": 13
+    },
+    "2020-21": {
+     "dev@10": 4.1,
+     "dev@20": 9.5,
+     "tau@10": 0.333,
+     "under": 3,
+     "over": 3,
+     "under_big": 1,
+     "over_big": 2,
+     "big_top_pred": 12,
+     "big_top_act": 12
+    },
+    "2021-22": {
+     "dev@10": 3.6,
+     "dev@20": 6.2,
+     "tau@10": 0.422,
+     "under": 1,
+     "over": 2,
+     "under_big": 1,
+     "over_big": 2,
+     "big_top_pred": 13,
+     "big_top_act": 12
+    },
+    "2022-23": {
+     "dev@10": 3.8,
+     "dev@20": 6.0,
+     "tau@10": 0.289,
+     "under": 1,
+     "over": 1,
+     "under_big": 1,
+     "over_big": 1,
+     "big_top_pred": 11,
+     "big_top_act": 12
+    }
+   },
+   "median": 5.4,
+   "mean": 5.54,
+   "dev20_mean": 9.155,
+   "wl_vs_base": [
+    1,
+    2,
+    7
+   ],
+   "bias_totals": {
+    "under": 20,
+    "over": 28,
+    "under_big": 9,
+    "over_big": 19,
+    "big_top_pred": 114,
+    "big_top_act": 119
+   }
+  },
+  "prelf": {
+   "per_season": {
+    "2013-14": {
+     "dev@10": 6.2,
+     "dev@20": 10.3,
+     "tau@10": 0.467,
+     "under": 3,
+     "over": 2,
+     "under_big": 2,
+     "over_big": 2,
+     "big_top_pred": 11,
+     "big_top_act": 11
+    },
+    "2014-15": {
+     "dev@10": 3.1,
+     "dev@20": 4.5,
+     "tau@10": 0.556,
+     "under": 0,
+     "over": 1,
+     "under_big": 0,
+     "over_big": 0,
+     "big_top_pred": 10,
+     "big_top_act": 12
+    },
+    "2015-16": {
+     "dev@10": 8.3,
+     "dev@20": 15.05,
+     "tau@10": 0.6,
+     "under": 3,
+     "over": 6,
+     "under_big": 1,
+     "over_big": 2,
+     "big_top_pred": 12,
+     "big_top_act": 14
+    },
+    "2016-17": {
+     "dev@10": 2.1,
+     "dev@20": 9.45,
+     "tau@10": 0.733,
+     "under": 1,
+     "over": 3,
+     "under_big": 1,
+     "over_big": 2,
+     "big_top_pred": 9,
+     "big_top_act": 8
+    },
+    "2017-18": {
+     "dev@10": 4.6,
+     "dev@20": 9.9,
+     "tau@10": 0.6,
+     "under": 3,
+     "over": 3,
+     "under_big": 1,
+     "over_big": 1,
+     "big_top_pred": 11,
+     "big_top_act": 11
+    },
+    "2018-19": {
+     "dev@10": 6.7,
+     "dev@20": 10.1,
+     "tau@10": 0.422,
+     "under": 0,
+     "over": 3,
+     "under_big": 0,
+     "over_big": 3,
+     "big_top_pred": 14,
+     "big_top_act": 14
+    },
+    "2019-20": {
+     "dev@10": 5.7,
+     "dev@20": 7.95,
+     "tau@10": 0.289,
+     "under": 1,
+     "over": 3,
+     "under_big": 0,
+     "over_big": 1,
+     "big_top_pred": 12,
+     "big_top_act": 13
+    },
+    "2020-21": {
+     "dev@10": 3.0,
+     "dev@20": 9.5,
+     "tau@10": 0.511,
+     "under": 2,
+     "over": 3,
+     "under_big": 0,
+     "over_big": 2,
+     "big_top_pred": 11,
+     "big_top_act": 12
+    },
+    "2021-22": {
+     "dev@10": 3.6,
+     "dev@20": 6.85,
+     "tau@10": 0.467,
+     "under": 1,
+     "over": 2,
+     "under_big": 1,
+     "over_big": 2,
+     "big_top_pred": 13,
+     "big_top_act": 12
+    },
+    "2022-23": {
+     "dev@10": 2.9,
+     "dev@20": 8.25,
+     "tau@10": 0.378,
+     "under": 2,
+     "over": 2,
+     "under_big": 2,
+     "over_big": 1,
+     "big_top_pred": 11,
+     "big_top_act": 12
+    }
+   },
+   "median": 4.1,
+   "mean": 4.62,
+   "dev20_mean": 9.184999999999999,
+   "wl_vs_base": [
+    3,
+    2,
+    5
+   ],
+   "bias_totals": {
+    "under": 16,
+    "over": 28,
+    "under_big": 8,
+    "over_big": 16,
+    "big_top_pred": 114,
+    "big_top_act": 119
+   }
+  },
+  "splitblend": {
+   "per_season": {
+    "2013-14": {
+     "dev@10": 6.8,
+     "dev@20": 10.1,
+     "tau@10": 0.422,
+     "under": 4,
+     "over": 3,
+     "under_big": 2,
+     "over_big": 3,
+     "big_top_pred": 12,
+     "big_top_act": 11
+    },
+    "2014-15": {
+     "dev@10": 2.6,
+     "dev@20": 4.6,
+     "tau@10": 0.422,
+     "under": 0,
+     "over": 1,
+     "under_big": 0,
+     "over_big": 0,
+     "big_top_pred": 10,
+     "big_top_act": 12
+    },
+    "2015-16": {
+     "dev@10": 4.3,
+     "dev@20": 15.2,
+     "tau@10": 0.778,
+     "under": 2,
+     "over": 8,
+     "under_big": 1,
+     "over_big": 3,
+     "big_top_pred": 11,
+     "big_top_act": 14
+    },
+    "2016-17": {
+     "dev@10": 2.9,
+     "dev@20": 10.2,
+     "tau@10": 0.778,
+     "under": 1,
+     "over": 4,
+     "under_big": 0,
+     "over_big": 3,
+     "big_top_pred": 10,
+     "big_top_act": 8
+    },
+    "2017-18": {
+     "dev@10": 5.0,
+     "dev@20": 9.85,
+     "tau@10": 0.644,
+     "under": 5,
+     "over": 2,
+     "under_big": 2,
+     "over_big": 1,
+     "big_top_pred": 10,
+     "big_top_act": 11
+    },
+    "2018-19": {
+     "dev@10": 5.7,
+     "dev@20": 10.0,
+     "tau@10": 0.467,
+     "under": 0,
+     "over": 4,
+     "under_big": 0,
+     "over_big": 4,
+     "big_top_pred": 14,
+     "big_top_act": 14
+    },
+    "2019-20": {
+     "dev@10": 5.0,
+     "dev@20": 7.95,
+     "tau@10": 0.289,
+     "under": 1,
+     "over": 3,
+     "under_big": 0,
+     "over_big": 2,
+     "big_top_pred": 13,
+     "big_top_act": 13
+    },
+    "2020-21": {
+     "dev@10": 3.5,
+     "dev@20": 9.25,
+     "tau@10": 0.511,
+     "under": 4,
+     "over": 3,
+     "under_big": 2,
+     "over_big": 2,
+     "big_top_pred": 10,
+     "big_top_act": 12
+    },
+    "2021-22": {
+     "dev@10": 7.3,
+     "dev@20": 9.3,
+     "tau@10": 0.511,
+     "under": 1,
+     "over": 3,
+     "under_big": 1,
+     "over_big": 3,
+     "big_top_pred": 13,
+     "big_top_act": 12
+    },
+    "2022-23": {
+     "dev@10": 3.5,
+     "dev@20": 5.75,
+     "tau@10": 0.244,
+     "under": 1,
+     "over": 1,
+     "under_big": 1,
+     "over_big": 1,
+     "big_top_pred": 11,
+     "big_top_act": 12
+    }
+   },
+   "median": 4.65,
+   "mean": 4.659999999999999,
+   "dev20_mean": 9.219999999999999,
+   "wl_vs_base": [
+    4,
+    1,
+    5
+   ],
+   "bias_totals": {
+    "under": 19,
+    "over": 32,
+    "under_big": 9,
+    "over_big": 22,
+    "big_top_pred": 114,
+    "big_top_act": 119
+   }
+  }
+ }
+}
